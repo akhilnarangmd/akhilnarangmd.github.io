@@ -85,6 +85,57 @@ footer a { color: #2b6cb0; text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
 @media (max-width: 600px) { .tool-grid { grid-template-columns: 1fr; } }
+
+/* Feedback button */
+.feedback-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  background: white; color: #1a365d;
+  border: 2px solid #cbd5e0; border-radius: 999px;
+  padding: 9px 16px; font-size: 0.78rem; font-weight: 700;
+  cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  display: flex; align-items: center; gap: 6px;
+  font-family: inherit; transition: all 0.15s;
+}
+.feedback-btn:hover { border-color: #2b6cb0; color: #2b6cb0; box-shadow: 0 4px 14px rgba(26,54,93,0.18); }
+
+/* Modal overlay */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 1000;
+  align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: white; border-radius: 14px; padding: 28px;
+  width: 100%; max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  animation: slideUp 0.2s ease;
+}
+@keyframes slideUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.modal h3 { font-size: 1.05rem; font-weight: 800; color: #1a365d; margin-bottom: 4px; }
+.modal p { font-size: 0.8rem; color: #718096; margin-bottom: 18px; }
+.modal label { display: block; font-size: 0.8rem; font-weight: 600; color: #2d3748; margin-bottom: 4px; }
+.modal select, .modal input, .modal textarea {
+  width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e0;
+  border-radius: 7px; font-size: 0.88rem; font-family: inherit;
+  color: #1a202c; background: #f7fafc; outline: none;
+  transition: border-color 0.15s; margin-bottom: 12px;
+}
+.modal select:focus, .modal input:focus, .modal textarea:focus { border-color: #2b6cb0; background: white; }
+.modal textarea { resize: vertical; min-height: 90px; }
+.modal-btns { display: flex; gap: 8px; margin-top: 4px; }
+.modal-submit {
+  flex: 1; padding: 11px; background: linear-gradient(135deg, #1a365d, #2b6cb0);
+  color: white; border: none; border-radius: 7px;
+  font-size: 0.88rem; font-weight: 700; cursor: pointer; font-family: inherit;
+}
+.modal-cancel {
+  padding: 11px 18px; background: white; border: 1.5px solid #cbd5e0;
+  border-radius: 7px; font-size: 0.88rem; color: #718096;
+  cursor: pointer; font-family: inherit;
+}
+.modal-cancel:hover { border-color: #718096; }
+
 </style>
 </head>
 <body>
@@ -184,6 +235,14 @@ footer a:hover { text-decoration: underline; }
 
   </div>
 
+  <div style="background: linear-gradient(135deg, #1a365d, #2b6cb0); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;">
+    <div>
+      <div style="font-size:0.85rem; font-weight:800; color:white; margin-bottom:3px;">Found a mistake? Help us improve and get better.</div>
+      <div style="font-size:0.79rem; color:rgba(255,255,255,0.75); line-height:1.5;">Clinical corrections, calculation errors, and feedback are always welcome.</div>
+    </div>
+    <button onclick="openFeedback()" style="background:white; color:#1a365d; border:none; border-radius:8px; padding:10px 20px; font-size:0.85rem; font-weight:700; cursor:pointer; white-space:nowrap; font-family:inherit; flex-shrink:0; transition: opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Submit Feedback →</button>
+  </div>
+
   <div class="disclaimer">
     ⚠️ <strong>Clinical Disclaimer:</strong> All tools on Echo Info are intended for educational and computational use by trained echocardiographers and cardiologists. Results must be interpreted in the context of a complete clinical and echocardiographic evaluation. These tools do not replace individual clinical judgment or direct patient assessment.
   </div>
@@ -191,8 +250,77 @@ footer a:hover { text-decoration: underline; }
 </div>
 
 <footer>
-  <strong>Echo Info</strong> &nbsp;·&nbsp; echoinfo.org &nbsp;·&nbsp; Created by <a href="https://github.com/akhilnarangmd" target="_blank">Akhil Narang, MD</a>
+  <strong>Echo Info</strong> &nbsp;·&nbsp; echoinfo.org &nbsp;·&nbsp; Created by Akhil Narang, MD
 </footer>
+
+
+<!-- Feedback button -->
+<button class="feedback-btn" onclick="openFeedback()">
+  💬 Feedback
+</button>
+
+<!-- Feedback modal -->
+<div class="modal-overlay" id="feedback-modal" onclick="closeFeedbackOutside(event)">
+  <div class="modal">
+    <h3>Send Feedback</h3>
+    <p>Questions, corrections, or suggestions? We'd love to hear from you.</p>
+
+    <label>Tool (optional)</label>
+    <select id="fb-tool">
+      <option value="">— Select a tool —</option>
+      <option>Diastolic Function</option>
+      <option>Right Heart &amp; Pulmonary Hypertension</option>
+      <option>MR &amp; TR Quantification</option>
+      <option>Aortic Stenosis</option>
+      <option>Echo Swan</option>
+      <option>General / Site</option>
+    </select>
+
+    <label>Type</label>
+    <select id="fb-type">
+      <option value="">— Select type —</option>
+      <option>Clinical correction</option>
+      <option>Bug / calculation error</option>
+      <option>Feature request</option>
+      <option>General feedback</option>
+    </select>
+
+    <label>Message</label>
+    <textarea id="fb-message" placeholder="Describe your feedback or correction…"></textarea>
+
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeFeedback()">Cancel</button>
+      <button class="modal-submit" onclick="submitFeedback()">Send via Email →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openFeedback() {
+  document.getElementById('feedback-modal').classList.add('open');
+}
+function closeFeedback() {
+  document.getElementById('feedback-modal').classList.remove('open');
+}
+function closeFeedbackOutside(e) {
+  if (e.target === document.getElementById('feedback-modal')) closeFeedback();
+}
+function submitFeedback() {
+  const tool = document.getElementById('fb-tool').value;
+  const type = document.getElementById('fb-type').value;
+  const msg  = document.getElementById('fb-message').value.trim();
+  if (!msg) { alert('Please enter a message before sending.'); return; }
+  const subject = encodeURIComponent('[Echo Info Feedback]' + (tool ? ' ' + tool : '') + (type ? ' — ' + type : ''));
+  const body = encodeURIComponent(
+    (tool  ? 'Tool: ' + tool + '\n' : '') +
+    (type  ? 'Type: ' + type + '\n' : '') +
+    '\nMessage:\n' + msg
+  );
+  window.location.href = 'mailto:feedback@echoinfo.org?subject=' + subject + '&body=' + body;
+  closeFeedback();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFeedback(); });
+</script>
 
 </body>
 </html>
