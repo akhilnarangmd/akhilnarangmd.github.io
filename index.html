@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Echo Info — Free clinical echocardiography calculators and interactive guidelines for cardiologists and echocardiographers."/>
+<title>Echo Info — Clinical Echocardiography Tools</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f4f8; color: #1a202c; min-height: 100vh; line-height: 1.6; }
+
+.hero {
+  background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+  color: white; padding: 52px 24px 44px; text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 15% 50%, rgba(255,255,255,0.04) 0%, transparent 60%),
+                    radial-gradient(circle at 85% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-icon { font-size: 2.8rem; margin-bottom: 14px; display: block; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.15; }
+.hero h1 span { color: #90cdf4; }
+.hero p { font-size: 0.97rem; opacity: 0.82; max-width: 500px; margin: 0 auto; line-height: 1.65; }
+
+.content { max-width: 960px; margin: 0 auto; padding: 44px 20px 64px; }
+
+.section-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; margin-top: 36px; }
+.section-row:first-child { margin-top: 0; }
+.section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #a0aec0; }
+.section-line { flex: 1; height: 1px; background: #e2e8f0; }
+.section-title { font-size: 1.1rem; font-weight: 800; color: #1a365d; letter-spacing: -0.01em; }
+
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 8px; }
+
+.tool-card {
+  background: white; border-radius: 12px; border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05); overflow: hidden;
+  text-decoration: none; color: inherit; display: flex; flex-direction: column;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,54,93,0.13); border-color: transparent; }
+
+.card-top { height: 4px; }
+.card-body { padding: 18px 18px 14px; flex: 1; }
+.card-icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+.card-name { font-size: 0.97rem; font-weight: 800; color: #1a365d; margin-bottom: 5px; letter-spacing: -0.01em; }
+.card-desc { font-size: 0.8rem; color: #4a5568; line-height: 1.55; margin-bottom: 12px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { padding: 2px 8px; border-radius: 999px; font-size: 0.67rem; font-weight: 700; letter-spacing: 0.02em; }
+
+.card-footer {
+  padding: 10px 18px; border-top: 1px solid #f0f4f8;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.75rem; color: #a0aec0;
+}
+.card-launch { font-weight: 700; color: #2b6cb0; font-size: 0.78rem; display: flex; align-items: center; gap: 3px; }
+
+/* Color themes */
+.top-blue { background: linear-gradient(90deg, #1a365d, #2b6cb0); }
+.top-green { background: linear-gradient(90deg, #1a4a30, #276749); }
+.top-purple { background: linear-gradient(90deg, #44337a, #6b46c1); }
+.top-red { background: linear-gradient(90deg, #742a2a, #c53030); }
+.top-amber { background: linear-gradient(90deg, #744210, #c05621); }
+
+.tag-blue { background: #ebf8ff; color: #2c5282; }
+.tag-green { background: #f0fff4; color: #276749; }
+.tag-purple { background: #faf5ff; color: #44337a; }
+.tag-red { background: #fff5f5; color: #742a2a; }
+.tag-amber { background: #fffaf0; color: #744210; }
+.tag-gray { background: #edf2f7; color: #4a5568; }
+
+.disclaimer {
+  background: #fffaf0; border: 1px solid #fbd38d; border-radius: 10px;
+  padding: 14px 18px; font-size: 0.77rem; color: #744210; line-height: 1.65; margin-top: 40px;
+}
+
+footer {
+  background: white; border-top: 1px solid #e2e8f0;
+  padding: 20px; text-align: center; font-size: 0.76rem; color: #718096;
+}
+footer strong { color: #1a365d; }
+footer a { color: #2b6cb0; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) { .tool-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-icon">🫀</span>
+  <h1>Echo <span>Info</span></h1>
+  <p>Evidence-based echocardiography calculators and interactive clinical reference tools.</p>
+</div>
+
+<div class="content">
+
+  <!-- GUIDELINES & ALGORITHMS -->
+  <div class="section-row">
+    <div class="section-title">Guidelines &amp; Algorithms</div>
+    <div class="section-line"></div>
+    <div class="section-label">Interactive References</div>
+  </div>
+
+  <div class="tool-grid">
+
+    <a class="tool-card" href="ase-diastolic-2025/">
+      <div class="card-top top-green"></div>
+      <div class="card-body">
+        <span class="card-icon">🟢</span>
+        <div class="card-name">Diastolic Function</div>
+        <div class="card-desc">Step-by-step 2025 ASE diastolic function algorithm with LAP estimation, DD grading, special populations (AF, HCM, MR, MAC, PH), and normal ranges by age.</div>
+      </div>
+      <div class="card-footer">
+        <span>Nagueh et al., JASE 2025</span>
+        <span class="card-launch">Open →</span>
+      </div>
+    </a>
+
+    <a class="tool-card" href="rh-ph-guidelines/">
+      <div class="card-top top-purple"></div>
+      <div class="card-body">
+        <span class="card-icon">💜</span>
+        <div class="card-name">Right Heart &amp; Pulmonary Hypertension</div>
+        <div class="card-desc">Interactive PH probability grading, normal value tables, RV function grading, RAP algorithm, pre- vs. post-capillary phenotyping, and WSPH group classification.</div>
+      </div>
+      <div class="card-footer">
+        <span>Mukherjee et al., JASE 2025</span>
+        <span class="card-launch">Open →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- CALCULATORS -->
+  <div class="section-row">
+    <div class="section-title">Calculators</div>
+    <div class="section-line"></div>
+    <div class="section-label">Quantitative Tools</div>
+  </div>
+
+  <div class="tool-grid">
+
+    <a class="tool-card" href="mr-tr-calculator/">
+      <div class="card-top top-blue"></div>
+      <div class="card-body">
+        <span class="card-icon">🔵</span>
+        <div class="card-name">MR &amp; TR Quantification</div>
+        <div class="card-desc">PISA/EROA, continuity equation, regurgitant volume and fraction for mitral and tricuspid regurgitation. Severity grading per AHA/ACC and ESC guidelines.</div>
+      </div>
+      <div class="card-footer">
+        <span>AHA/ACC 2021 · ESC/EACTS 2021</span>
+        <span class="card-launch">Open →</span>
+      </div>
+    </a>
+
+    <a class="tool-card" href="aortic-stenosis/">
+      <div class="card-top top-red"></div>
+      <div class="card-body">
+        <span class="card-icon">❤️</span>
+        <div class="card-name">Aortic Stenosis</div>
+        <div class="card-desc">AVA by continuity equation, dimensionless index, projected AVA, low-flow/low-gradient classification, and dobutamine stress echo adjudication of pseudo-severe AS.</div>
+      </div>
+      <div class="card-footer">
+        <span>AHA/ACC 2021 · ESC/EACTS 2021</span>
+        <span class="card-launch">Open →</span>
+      </div>
+    </a>
+
+    <a class="tool-card" href="echo-swan/">
+      <div class="card-top top-amber"></div>
+      <div class="card-body">
+        <span class="card-icon">🟡</span>
+        <div class="card-name">Echo Swan</div>
+        <div class="card-desc">Noninvasive intracardiac pressure estimation. Calculates RAP, RVSP, PASP, PAEDP, mPAP (4 methods), PVR, LAP, LVSP, and LVEDP with a hemodynamic summary.</div>
+      </div>
+      <div class="card-footer">
+        <span>Echocardiographic Pressure Estimation</span>
+        <span class="card-launch">Open →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="disclaimer">
+    ⚠️ <strong>Clinical Disclaimer:</strong> All tools on Echo Info are intended for educational and computational use by trained echocardiographers and cardiologists. Results must be interpreted in the context of a complete clinical and echocardiographic evaluation. These tools do not replace individual clinical judgment or direct patient assessment.
+  </div>
+
+</div>
+
+<footer>
+  <strong>Echo Info</strong> &nbsp;·&nbsp; echoinfo.org &nbsp;·&nbsp; Created by <a href="https://github.com/akhilnarangmd" target="_blank">Akhil Narang, MD</a>
+</footer>
+
+</body>
+</html>
