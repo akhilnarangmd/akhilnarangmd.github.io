@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aortic Stenosis Calculator</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f4f8; color: #1a202c; min-height: 100vh; line-height: 1.6; }
+
+header { background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%); color: white; padding: 24px 20px; text-align: center; }
+header .icon { font-size: 2rem; margin-bottom: 6px; }
+header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 2px; }
+header p { font-size: 0.85rem; opacity: 0.8; }
+
+.main-nav { background: white; border-bottom: 2px solid #e2e8f0; display: flex; justify-content: center; overflow-x: auto; padding: 16px 20px; gap: 12px; }
+.main-nav button { padding: 12px 28px; border: 2px solid #cbd5e0; background: white; border-radius: 8px; font-size: 0.95rem; font-weight: 700; color: #718096; cursor: pointer; white-space: nowrap; transition: all 0.2s; font-family: inherit; }
+.main-nav button.active { background: #1a365d; border-color: #1a365d; color: white; box-shadow: 0 2px 8px rgba(26,54,93,0.25); }
+.main-nav button:hover:not(.active) { border-color: #2b6cb0; color: #2b6cb0; background: #ebf8ff; }
+
+.content { max-width: 1000px; margin: 0 auto; padding: 24px 16px 60px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.method-section { display: none; }
+.method-section.active { display: block; }
+
+.method-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.method-nav button { padding: 7px 16px; border-radius: 20px; border: 1.5px solid #cbd5e0; background: white; font-size: 0.82rem; font-weight: 500; color: #4a5568; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+.method-nav button.active { background: #2b6cb0; border-color: #2b6cb0; color: white; }
+.method-nav button:hover:not(.active) { border-color: #2b6cb0; color: #2b6cb0; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 680px) { .grid-2 { grid-template-columns: 1fr; } }
+.full { grid-column: 1 / -1; }
+
+.card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); padding: 20px; }
+.card-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #a0aec0; margin-bottom: 2px; }
+.card-heading { font-size: 0.97rem; font-weight: 700; color: #1a365d; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; }
+
+.input-group { margin-bottom: 13px; }
+.input-group label { display: block; font-size: 0.82rem; font-weight: 600; color: #2d3748; margin-bottom: 3px; }
+.hint { font-size: 0.73rem; color: #718096; display: block; margin-bottom: 3px; }
+.input-row { display: flex; align-items: center; border: 1.5px solid #cbd5e0; border-radius: 7px; overflow: hidden; background: white; transition: border-color 0.15s; }
+.input-row:focus-within { border-color: #2b6cb0; }
+input[type="number"] { flex: 1; padding: 8px 12px; border: none; outline: none; font-size: 0.92rem; background: transparent; color: #1a202c; font-family: 'SF Mono','Fira Code',monospace; }
+input[type="number"]::placeholder { color: #a0aec0; }
+.unit { padding: 8px 11px; background: #f7fafc; font-size: 0.75rem; font-weight: 600; color: #718096; border-left: 1px solid #e2e8f0; white-space: nowrap; }
+
+.formula { background: #ebf8ff; border: 1px solid #bee3f8; border-left: 3px solid #2b6cb0; border-radius: 6px; padding: 12px; margin: 14px 0; font-family: 'SF Mono','Fira Code',monospace; font-size: 0.77rem; color: #2c5282; line-height: 1.9; }
+
+.btn-calc { width: 100%; padding: 11px; background: linear-gradient(135deg, #2b6cb0, #1e4e8c); color: white; border: none; border-radius: 7px; font-size: 0.88rem; font-weight: 600; cursor: pointer; margin-top: 12px; transition: opacity 0.15s; font-family: inherit; }
+.btn-calc:hover { opacity: 0.88; }
+.btn-clear { width: 100%; padding: 8px; background: white; border: 1.5px solid #cbd5e0; border-radius: 7px; font-size: 0.82rem; color: #718096; cursor: pointer; margin-top: 6px; transition: all 0.15s; font-family: inherit; }
+.btn-clear:hover { border-color: #718096; color: #4a5568; }
+
+.result-empty { text-align: center; padding: 36px 16px; color: #a0aec0; font-size: 0.87rem; }
+.result-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f4f8; flex-wrap: wrap; }
+.result-row:last-of-type { border-bottom: none; }
+.result-name { font-size: 0.82rem; color: #4a5568; flex: 1; min-width: 120px; }
+.result-name strong { display: block; color: #1a202c; font-size: 0.87rem; }
+.result-name span { font-size: 0.73rem; color: #718096; }
+.result-val { font-family: 'SF Mono','Fira Code',monospace; font-size: 1rem; font-weight: 700; color: #1a365d; white-space: nowrap; }
+.result-val .u { font-size: 0.7rem; font-weight: 400; color: #718096; margin-left: 2px; }
+
+.badge { padding: 3px 10px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+.badge-mild { background: #c6f6d5; color: #22543d; }
+.badge-moderate { background: #fefcbf; color: #744210; }
+.badge-severe { background: #fed7d7; color: #742a2a; }
+.badge-vsevere { background: #e9d8fd; color: #44337a; }
+.badge-na { background: #edf2f7; color: #a0aec0; }
+.badge-yes { background: #c6f6d5; color: #22543d; }
+.badge-no { background: #fed7d7; color: #742a2a; }
+.badge-ind { background: #fefcbf; color: #744210; }
+
+.summary { margin-top: 16px; padding: 14px 16px; border-radius: 8px; border: 1.5px solid #bee3f8; background: #ebf8ff; }
+.summary.mild { border-color: #9ae6b4; background: #f0fff4; }
+.summary.moderate { border-color: #faf089; background: #fffff0; }
+.summary.severe { border-color: #fc8181; background: #fff5f5; }
+.summary.vsevere { border-color: #d6bcfa; background: #faf5ff; }
+.sum-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #718096; margin-bottom: 1px; }
+.sum-grade { font-size: 1.5rem; font-weight: 800; line-height: 1.2; }
+.g-mild { color: #22543d; } .g-moderate { color: #744210; } .g-severe { color: #742a2a; } .g-vsevere { color: #44337a; } .g-na { color: #718096; }
+.sum-note { font-size: 0.77rem; color: #4a5568; margin-top: 4px; }
+
+.info-note { font-size: 0.77rem; color: #744210; background: #fffaf0; border: 1px solid #fbd38d; border-radius: 6px; padding: 9px 12px; margin-bottom: 14px; }
+.info-note.blue { color: #2c5282; background: #ebf8ff; border-color: #bee3f8; }
+
+.divider { border: none; border-top: 1px solid #e2e8f0; margin: 18px 0; }
+
+.cutoff-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 12px; }
+@media (max-width: 700px) { .cutoff-grid { grid-template-columns: 1fr 1fr; } }
+.cutoff-col { border-radius: 8px; padding: 14px; border: 1px solid #e2e8f0; background: #f7fafc; }
+.cutoff-head { font-size: 0.73rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding-bottom: 8px; margin-bottom: 10px; border-bottom: 2px solid currentColor; }
+.cutoff-head.mild { color: #22543d; } .cutoff-head.moderate { color: #744210; } .cutoff-head.severe { color: #742a2a; } .cutoff-head.vsevere { color: #44337a; }
+.ci { font-size: 0.79rem; color: #4a5568; margin-bottom: 5px; display: flex; justify-content: space-between; gap: 8px; }
+.ci strong { color: #1a202c; }
+
+.sec-h { font-size: 0.97rem; font-weight: 700; color: #1a365d; margin-bottom: 6px; }
+.sec-sub { font-size: 0.82rem; color: #4a5568; margin-bottom: 14px; }
+
+/* DSE specific */
+.dse-verdict { padding: 16px; border-radius: 8px; margin-top: 16px; }
+.dse-verdict .v-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #718096; margin-bottom: 4px; }
+.dse-verdict .v-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 4px; }
+.dse-verdict .v-note { font-size: 0.79rem; color: #4a5568; }
+.dse-verdict.pseudo { border: 1.5px solid #9ae6b4; background: #f0fff4; }
+.dse-verdict.pseudo .v-title { color: #22543d; }
+.dse-verdict.true { border: 1.5px solid #fc8181; background: #fff5f5; }
+.dse-verdict.true .v-title { color: #742a2a; }
+.dse-verdict.indeterminate { border: 1.5px solid #faf089; background: #fffff0; }
+.dse-verdict.indeterminate .v-title { color: #744210; }
+
+.disclaimer { background: #fffaf0; border: 1px solid #fbd38d; border-radius: 8px; padding: 12px 16px; font-size: 0.77rem; color: #744210; margin-top: 20px; }
+footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; border-top: 1px solid #e2e8f0; background: white; margin-top: 32px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="icon">🫀</div>
+  <h1>Aortic Stenosis Calculator</h1>
+  <p>AVA · Dimensionless Index · Projected AVA · Low-Flow/Low-Gradient · DSE</p>
+</header>
+
+<nav class="main-nav">
+  <button class="active" onclick="switchTab('ava')">AVA &amp; Severity</button>
+  <button onclick="switchTab('lflg')">Low-Flow / Low-Gradient</button>
+  <button onclick="switchTab('dse')">Dobutamine Stress Echo</button>
+  <button onclick="switchTab('ref')">Severity Reference</button>
+</nav>
+
+<div class="content">
+
+<!-- ═══════════ TAB 1: AVA & SEVERITY ═══════════ -->
+<div id="panel-ava" class="tab-panel active">
+
+  <div class="method-nav">
+    <button class="active" onclick="switchMethod('ava','cont')">Continuity Equation</button>
+    <button onclick="switchMethod('ava','proj')">Projected AVA</button>
+  </div>
+
+  <!-- Continuity Equation -->
+  <div id="ava-cont" class="method-section active">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Method</div>
+        <div class="card-heading">AVA — Continuity Equation</div>
+        <div class="info-note">⚠️ LVOT diameter measured in PLAX, midsystole. LVOT VTI and AV VTI measured from apical 5-chamber or 3-chamber. Ensure parallel alignment.</div>
+
+        <div class="input-group">
+          <label>LVOT Diameter</label>
+          <span class="hint">PLAX, midsystole, inner edge-to-inner edge</span>
+          <div class="input-row"><input type="number" id="c-lvotd" placeholder="e.g. 2.0" step="0.01" min="0"/><span class="unit">cm</span></div>
+        </div>
+        <div class="input-group">
+          <label>LVOT VTI</label>
+          <span class="hint">PWD at LVOT, just proximal to valve</span>
+          <div class="input-row"><input type="number" id="c-lvotvti" placeholder="e.g. 22" step="0.1" min="0"/><span class="unit">cm</span></div>
+        </div>
+        <div class="input-group">
+          <label>AV VTI</label>
+          <span class="hint">CWD through aortic valve — maximum envelope</span>
+          <div class="input-row"><input type="number" id="c-avvti" placeholder="e.g. 80" step="0.1" min="0"/><span class="unit">cm</span></div>
+        </div>
+        <div class="input-group">
+          <label>BSA <span style="font-weight:400;color:#718096">(optional — for AVAi and SVi)</span></label>
+          <div class="input-row"><input type="number" id="c-bsa" placeholder="e.g. 1.8" step="0.01" min="0.8" max="3.0"/><span class="unit">m²</span></div>
+        </div>
+
+        <div class="formula">
+          LVOT CSA &nbsp;&nbsp;= π × (LVOT d/2)²<br/>
+          LVOT SV &nbsp;&nbsp;&nbsp;= LVOT CSA × LVOT VTI<br/>
+          AVA (cm²) &nbsp;= LVOT SV / AV VTI<br/>
+          AVAi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= AVA / BSA<br/>
+          SVi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= SV / BSA<br/>
+          DI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= LVOT VTI / AV VTI
+        </div>
+
+        <button class="btn-calc" onclick="calcCont()">▶ Calculate</button>
+        <button class="btn-clear" onclick="clearCont()">↺ Clear</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Results</div>
+        <div class="card-heading">Continuity Equation</div>
+        <div id="cont-out"><div class="result-empty">Enter values and click Calculate</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projected AVA -->
+  <div id="ava-proj" class="method-section">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Method</div>
+        <div class="card-heading">Projected AVA — Flow Normalization</div>
+        <div class="info-note blue">📖 Projected AVA normalizes AVA to a standardized flow rate of 250 mL/s. Useful in low-flow states where true AVA may be underestimated. Based on Dumesnil/Pibarot methodology.</div>
+
+        <div class="input-group">
+          <label>Measured AVA</label>
+          <span class="hint">From continuity equation at current flow state</span>
+          <div class="input-row"><input type="number" id="p-ava" placeholder="e.g. 0.85" step="0.01" min="0"/><span class="unit">cm²</span></div>
+        </div>
+        <div class="input-group">
+          <label>LVOT VTI</label>
+          <div class="input-row"><input type="number" id="p-lvotvti" placeholder="e.g. 16" step="0.1" min="0"/><span class="unit">cm</span></div>
+        </div>
+        <div class="input-group">
+          <label>LVOT Diameter</label>
+          <div class="input-row"><input type="number" id="p-lvotd" placeholder="e.g. 2.0" step="0.01" min="0"/><span class="unit">cm</span></div>
+        </div>
+        <div class="input-group">
+          <label>Heart Rate</label>
+          <div class="input-row"><input type="number" id="p-hr" placeholder="e.g. 65" step="1" min="30" max="200"/><span class="unit">bpm</span></div>
+        </div>
+
+        <div class="formula">
+          LVOT CSA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= π × (d/2)²<br/>
+          SV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= LVOT CSA × LVOT VTI<br/>
+          Flow rate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= SV × HR / 60 (mL/s)<br/>
+          Proj. AVA &nbsp;&nbsp;&nbsp;&nbsp;= AVA × (250 / Flow rate)<br/>
+          <span style="color:#1a365d">Target flow: 250 mL/s (normal reference)</span>
+        </div>
+
+        <button class="btn-calc" onclick="calcProj()">▶ Calculate</button>
+        <button class="btn-clear" onclick="clearProj()">↺ Clear</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Results</div>
+        <div class="card-heading">Projected AVA</div>
+        <div id="proj-out"><div class="result-empty">Enter values and click Calculate</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dimensionless Index -->
+  <div id="ava-di" class="method-section">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Method</div>
+        <div class="card-heading">Dimensionless Index (DI)</div>
+        <div class="info-note">⚠️ DI is independent of LVOT diameter measurement and is useful when LVOT measurement is unreliable. DI &lt; 0.25 = severe AS.</div>
+
+        <div class="input-group">
+          <label>LVOT VTI</label>
+          <span class="hint">PWD at LVOT</span>
+          <div class="input-row"><input type="number" id="d-lvotvti" placeholder="e.g. 20" step="0.1" min="0"/><span class="unit">cm</span></div>
+        </div>
+        <div class="input-group">
+          <label>AV VTI</label>
+          <span class="hint">CWD through aortic valve</span>
+          <div class="input-row"><input type="number" id="d-avvti" placeholder="e.g. 80" step="0.1" min="0"/><span class="unit">cm</span></div>
+        </div>
+        <div class="input-group">
+          <label>LVOT Vmax <span style="font-weight:400;color:#718096">(alt: use peak velocities)</span></label>
+          <div class="input-row"><input type="number" id="d-lvotv" placeholder="e.g. 1.2" step="0.1" min="0"/><span class="unit">m/s</span></div>
+        </div>
+        <div class="input-group">
+          <label>AV Vmax</label>
+          <div class="input-row"><input type="number" id="d-avv" placeholder="e.g. 4.5" step="0.1" min="0"/><span class="unit">m/s</span></div>
+        </div>
+
+        <div class="formula">
+          DI (VTI) &nbsp;&nbsp;&nbsp;&nbsp;= LVOT VTI / AV VTI<br/>
+          DI (Vmax) &nbsp;&nbsp;&nbsp;= LVOT Vmax / AV Vmax<br/>
+          <span style="color:#1a365d">DI &lt; 0.25 → Severe AS<br/>DI 0.25–0.50 → Moderate AS<br/>DI &gt; 0.50 → Mild AS</span>
+        </div>
+
+        <button class="btn-calc" onclick="calcDI()">▶ Calculate</button>
+        <button class="btn-clear" onclick="clearDI()">↺ Clear</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Results</div>
+        <div class="card-heading">Dimensionless Index</div>
+        <div id="di-out"><div class="result-empty">Enter values and click Calculate</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 2: LOW-FLOW / LOW-GRADIENT ═══════════ -->
+<div id="panel-lflg" class="tab-panel">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Low-Flow / Low-Gradient AS Classification</div>
+      <div class="card-heading">LFLG Classification &amp; SVi</div>
+      <div class="info-note">⚠️ Low-gradient AS (mean ΔP &lt;40 mmHg with AVA ≤1.0 cm²) requires careful sub-classification. Each phenotype has different prognosis and management implications.</div>
+
+      <div class="input-group">
+        <label>AVA</label>
+        <div class="input-row"><input type="number" id="lf-ava" placeholder="e.g. 0.85" step="0.01" min="0"/><span class="unit">cm²</span></div>
+      </div>
+      <div class="input-group">
+        <label>Mean Gradient</label>
+        <div class="input-row"><input type="number" id="lf-mgrad" placeholder="e.g. 30" step="1" min="0"/><span class="unit">mmHg</span></div>
+      </div>
+      <div class="input-group">
+        <label>AV Peak Velocity</label>
+        <div class="input-row"><input type="number" id="lf-vmax" placeholder="e.g. 3.8" step="0.1" min="0"/><span class="unit">m/s</span></div>
+      </div>
+      <div class="input-group">
+        <label>LV EF</label>
+        <div class="input-row"><input type="number" id="lf-ef" placeholder="e.g. 35" step="1" min="0" max="80"/><span class="unit">%</span></div>
+      </div>
+      <div class="input-group">
+        <label>LVOT VTI</label>
+        <div class="input-row"><input type="number" id="lf-lvotvti" placeholder="e.g. 15" step="0.1" min="0"/><span class="unit">cm</span></div>
+      </div>
+      <div class="input-group">
+        <label>LVOT Diameter</label>
+        <div class="input-row"><input type="number" id="lf-lvotd" placeholder="e.g. 2.0" step="0.01" min="0"/><span class="unit">cm</span></div>
+      </div>
+      <div class="input-group">
+        <label>BSA</label>
+        <div class="input-row"><input type="number" id="lf-bsa" placeholder="e.g. 1.8" step="0.01" min="0.8" max="3.0"/><span class="unit">m²</span></div>
+      </div>
+      <div class="input-group">
+        <label>Heart Rate</label>
+        <div class="input-row"><input type="number" id="lf-hr" placeholder="e.g. 70" step="1" min="30" max="200"/><span class="unit">bpm</span></div>
+      </div>
+
+      <div class="formula">
+        SVi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (LVOT CSA × LVOT VTI) / BSA<br/>
+        Flow state &nbsp;&nbsp;= SVi &lt; 35 mL/m² → Low Flow<br/>
+        <span style="color:#1a365d">
+        Classical LFLG: &nbsp;EF &lt;50%, SVi &lt;35, ΔP &lt;40<br/>
+        Paradoxical LFLG: EF ≥50%, SVi &lt;35, ΔP &lt;40<br/>
+        Normal-flow LG: &nbsp;EF ≥50%, SVi ≥35, ΔP &lt;40<br/>
+        True Severe HG: &nbsp;AVA ≤1.0, ΔP ≥40
+        </span>
+      </div>
+
+      <button class="btn-calc" onclick="calcLFLG()">▶ Classify</button>
+      <button class="btn-clear" onclick="clearLFLG()">↺ Clear</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Results</div>
+      <div class="card-heading">LFLG Classification</div>
+      <div id="lflg-out"><div class="result-empty">Enter values and click Classify</div></div>
+
+      <hr class="divider"/>
+      <div class="sec-h" style="margin-bottom:8px;">LFLG Phenotypes</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.79rem;">
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:6px;padding:10px 12px;">
+          <strong style="color:#742a2a;">Classical LFLG</strong><br/>
+          <span style="color:#4a5568;">EF &lt;50% + SVi &lt;35 + ΔP &lt;40. LV dysfunction reduces gradient — may be true severe AS. DSE indicated.</span>
+        </div>
+        <div style="background:#faf5ff;border-left:3px solid #44337a;border-radius:6px;padding:10px 12px;">
+          <strong style="color:#44337a;">Paradoxical LFLG</strong><br/>
+          <span style="color:#4a5568;">EF ≥50% + SVi &lt;35 + ΔP &lt;40. Increased afterload + concentric remodeling. Higher mortality than expected. CT calcium scoring helpful.</span>
+        </div>
+        <div style="background:#fffff0;border-left:3px solid #744210;border-radius:6px;padding:10px 12px;">
+          <strong style="color:#744210;">Normal-Flow Low-Gradient</strong><br/>
+          <span style="color:#4a5568;">EF ≥50% + SVi ≥35 + ΔP &lt;40. Often truly moderate AS or measurement error. AVA may be overestimated.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 3: DOBUTAMINE STRESS ECHO ═══════════ -->
+<div id="panel-dse" class="tab-panel">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Dobutamine Stress Echo — AS Protocol</div>
+      <div class="card-heading">Low-Dose DSE (5–20 μg/kg/min)</div>
+      <div class="info-note">⚠️ Indicated only in Classical LFLG-AS (EF &lt;50%, AVA ≤1.0, ΔP &lt;40). Target: HR increase 10–20 bpm or 20% increase in SV. Stop if SBP drops &gt;20 mmHg, ischemia, or arrhythmia.</div>
+
+      <div class="input-group">
+        <label>LVOT Diameter <span style="font-weight:400;color:#718096">(constant — measured once)</span></label>
+        <span class="hint">PLAX, midsystole, inner edge-to-inner edge</span>
+        <div class="input-row"><input type="number" id="dse-lvotd" placeholder="e.g. 2.0" step="0.01" min="0"/><span class="unit">cm</span></div>
+      </div>
+
+      <div style="font-size:0.82rem;font-weight:700;color:#1a365d;margin-top:14px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #e2e8f0;">Baseline (Rest)</div>
+
+      <div class="input-group">
+        <label>LVOT VTI</label>
+        <span class="hint">PWD at LVOT</span>
+        <div class="input-row"><input type="number" id="dse-base-lvotvti" placeholder="e.g. 14" step="0.1" min="0"/><span class="unit">cm</span></div>
+      </div>
+      <div class="input-group">
+        <label>AV VTI</label>
+        <span class="hint">CWD through aortic valve</span>
+        <div class="input-row"><input type="number" id="dse-base-avvti" placeholder="e.g. 70" step="0.1" min="0"/><span class="unit">cm</span></div>
+      </div>
+      <div class="input-group">
+        <label>AV Peak Gradient</label>
+        <span class="hint">CWD — peak instantaneous gradient</span>
+        <div class="input-row"><input type="number" id="dse-base-mg" placeholder="e.g. 25" step="1" min="0"/><span class="unit">mmHg</span></div>
+      </div>
+
+      <div style="font-size:0.82rem;font-weight:700;color:#1a365d;margin-top:14px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #e2e8f0;">Peak Dobutamine (highest tolerated dose)</div>
+
+      <div class="input-group">
+        <label>LVOT VTI</label>
+        <span class="hint">PWD at LVOT</span>
+        <div class="input-row"><input type="number" id="dse-peak-lvotvti" placeholder="e.g. 19" step="0.1" min="0"/><span class="unit">cm</span></div>
+      </div>
+      <div class="input-group">
+        <label>AV VTI</label>
+        <span class="hint">CWD through aortic valve</span>
+        <div class="input-row"><input type="number" id="dse-peak-avvti" placeholder="e.g. 90" step="0.1" min="0"/><span class="unit">cm</span></div>
+      </div>
+      <div class="input-group">
+        <label>AV Peak Gradient</label>
+        <span class="hint">CWD — peak instantaneous gradient</span>
+        <div class="input-row"><input type="number" id="dse-peak-mg" placeholder="e.g. 38" step="1" min="0"/><span class="unit">mmHg</span></div>
+      </div>
+
+      <div class="formula">
+        AVA (rest/stress) = LVOT CSA × LVOT VTI / AV VTI<br/>
+        Contractile Reserve: ΔLVOT VTI ≥20%<br/>
+        True Severe: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;peak AVA ≤1.0 cm² AND peak ΔP ≥40 mmHg<br/>
+        Pseudo-severe: &nbsp;&nbsp;&nbsp;&nbsp;peak AVA &gt;1.0 cm² at any flow<br/>
+        Indeterminate: &nbsp;&nbsp;&nbsp;&nbsp;AVA ≤1.0 but peak ΔP &lt;40
+      </div>
+
+      <button class="btn-calc" onclick="calcDSE()">▶ Analyze DSE</button>
+      <button class="btn-clear" onclick="clearDSE()">↺ Clear</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">DSE Analysis</div>
+      <div class="card-heading">Pseudo-Severe vs. True Severe AS</div>
+      <div id="dse-out"><div class="result-empty">Enter baseline and peak values, then click Analyze</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 4: SEVERITY REFERENCE ═══════════ -->
+<div id="panel-ref" class="tab-panel">
+  <div class="card">
+    <div class="card-title">Reference</div>
+    <div class="card-heading">AS Severity Cutoffs — AHA/ACC 2021 &amp; ESC 2021</div>
+    <p class="sec-sub">Grading integrates multiple parameters. No single value is definitive. Always assess in clinical context.</p>
+
+    <div class="cutoff-grid">
+      <div class="cutoff-col">
+        <div class="cutoff-head mild">Mild</div>
+        <div class="ci"><span>Vmax</span><strong>2.0–2.9 m/s</strong></div>
+        <div class="ci"><span>Mean ΔP</span><strong>&lt; 20 mmHg</strong></div>
+        <div class="ci"><span>AVA</span><strong>&gt; 1.5 cm²</strong></div>
+        <div class="ci"><span>AVAi</span><strong>&gt; 0.85 cm²/m²</strong></div>
+        <div class="ci"><span>DI</span><strong>&gt; 0.50</strong></div>
+      </div>
+      <div class="cutoff-col">
+        <div class="cutoff-head moderate">Moderate</div>
+        <div class="ci"><span>Vmax</span><strong>3.0–3.9 m/s</strong></div>
+        <div class="ci"><span>Mean ΔP</span><strong>20–39 mmHg</strong></div>
+        <div class="ci"><span>AVA</span><strong>1.0–1.5 cm²</strong></div>
+        <div class="ci"><span>AVAi</span><strong>0.60–0.85 cm²/m²</strong></div>
+        <div class="ci"><span>DI</span><strong>0.25–0.50</strong></div>
+      </div>
+      <div class="cutoff-col">
+        <div class="cutoff-head severe">Severe</div>
+        <div class="ci"><span>Vmax</span><strong>≥ 4.0 m/s</strong></div>
+        <div class="ci"><span>Mean ΔP</span><strong>≥ 40 mmHg</strong></div>
+        <div class="ci"><span>AVA</span><strong>≤ 1.0 cm²</strong></div>
+        <div class="ci"><span>AVAi</span><strong>≤ 0.60 cm²/m²</strong></div>
+        <div class="ci"><span>DI</span><strong>&lt; 0.25</strong></div>
+      </div>
+      <div class="cutoff-col" style="background:#faf5ff;border-color:#d6bcfa;">
+        <div class="cutoff-head vsevere">Very Severe</div>
+        <div class="ci"><span>Vmax</span><strong>≥ 5.0 m/s</strong></div>
+        <div class="ci"><span>Mean ΔP</span><strong>≥ 60 mmHg</strong></div>
+        <div class="ci"><span>AVA</span><strong>≤ 0.6 cm²</strong></div>
+        <div class="ci"><span>AVAi</span><strong>≤ 0.35 cm²/m²</strong></div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+    <p class="sec-h">Low-Gradient AS Phenotypes</p>
+    <div class="cutoff-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="cutoff-col">
+        <div class="cutoff-head severe">Classical LFLG</div>
+        <div class="ci"><span>EF</span><strong>&lt; 50%</strong></div>
+        <div class="ci"><span>SVi</span><strong>&lt; 35 mL/m²</strong></div>
+        <div class="ci"><span>Mean ΔP</span><strong>&lt; 40 mmHg</strong></div>
+        <div class="ci"><span>AVA</span><strong>≤ 1.0 cm²</strong></div>
+        <div class="ci"><span>DSE</span><strong>Indicated</strong></div>
+      </div>
+      <div class="cutoff-col" style="background:#faf5ff;border-color:#d6bcfa;">
+        <div class="cutoff-head vsevere">Paradoxical LFLG</div>
+        <div class="ci"><span>EF</span><strong>≥ 50%</strong></div>
+        <div class="ci"><span>SVi</span><strong>&lt; 35 mL/m²</strong></div>
+        <div class="ci"><span>Mean ΔP</span><strong>&lt; 40 mmHg</strong></div>
+        <div class="ci"><span>AVA</span><strong>≤ 1.0 cm²</strong></div>
+        <div class="ci"><span>CT Ca score</span><strong>Helpful</strong></div>
+      </div>
+      <div class="cutoff-col">
+        <div class="cutoff-head moderate">Normal-Flow LG</div>
+        <div class="ci"><span>EF</span><strong>≥ 50%</strong></div>
+        <div class="ci"><span>SVi</span><strong>≥ 35 mL/m²</strong></div>
+        <div class="ci"><span>Mean ΔP</span><strong>&lt; 40 mmHg</strong></div>
+        <div class="ci"><span>Consider</span><strong>Mod AS or error</strong></div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+    <p class="sec-h">DSE Criteria Summary</p>
+    <div class="cutoff-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="cutoff-col" style="background:#fff5f5;border-color:#fc8181;">
+        <div class="cutoff-head severe">True Severe AS</div>
+        <div class="ci"><span>Peak AVA</span><strong>≤ 1.0 cm²</strong></div>
+        <div class="ci"><span>Peak ΔP</span><strong>≥ 40 mmHg</strong></div>
+        <div class="ci"><span>Contractile reserve</span><strong>Present</strong></div>
+        <div class="ci"><span>→ AVR indicated</span></div>
+      </div>
+      <div class="cutoff-col" style="background:#f0fff4;border-color:#9ae6b4;">
+        <div class="cutoff-head mild">Pseudo-Severe AS</div>
+        <div class="ci"><span>Peak AVA</span><strong>&gt; 1.0 cm²</strong></div>
+        <div class="ci"><span>Peak ΔP</span><strong>Any</strong></div>
+        <div class="ci"><span>→ Moderate AS</span></div>
+        <div class="ci"><span>→ Medical therapy</span></div>
+      </div>
+      <div class="cutoff-col">
+        <div class="cutoff-head moderate">Indeterminate</div>
+        <div class="ci"><span>Peak AVA</span><strong>≤ 1.0 cm²</strong></div>
+        <div class="ci"><span>Peak ΔP</span><strong>&lt; 40 mmHg</strong></div>
+        <div class="ci"><span>No contractile reserve</span></div>
+        <div class="ci"><span>→ CT Ca scoring</span></div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+    <p class="sec-h">Aortic Valve Calcium Scoring (CT) — Supplemental</p>
+    <div class="cutoff-grid" style="grid-template-columns:1fr;">
+      <div class="cutoff-col">
+        <div class="cutoff-head severe" style="font-size:0.68rem;">Severe AS (CT Ca)</div>
+        <div class="ci"><span>Men</span><strong>≥ 2000 AU</strong></div>
+        <div class="ci"><span>Women</span><strong>≥ 1600 AU</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  ⚠️ <strong>Clinical Disclaimer:</strong> This tool is intended as an educational and computational aid for trained echocardiographers and cardiologists. AS grading requires integration of multiple parameters and clinical context. Not a substitute for individual clinical judgment. Based on AHA/ACC 2021 and ESC 2021 valvular heart disease guidelines.
+</div>
+</div>
+
+<footer>
+  Aortic Stenosis Calculator &nbsp;·&nbsp; akhilnarangmd.github.io &nbsp;·&nbsp; AHA/ACC 2021 &amp; ESC 2021 Guidelines
+</footer>
+
+<script>
+// ── Tab / method switching ──
+function switchTab(tab) {
+  document.querySelectorAll('.main-nav button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+
+function switchMethod(panel, method) {
+  const p = document.getElementById('panel-'+panel);
+  p.querySelectorAll('.method-nav button').forEach(b => b.classList.remove('active'));
+  p.querySelectorAll('.method-section').forEach(s => s.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById(panel+'-'+method).classList.add('active');
+}
+
+// ── Severity helpers ──
+function asSev(ava, mg, vmax) {
+  // Use most severe of available parameters
+  let s = 'mild';
+  if (ava !== null) {
+    if (ava <= 0.6) s = 'vsevere';
+    else if (ava <= 1.0) s = worst(s, 'severe');
+    else if (ava <= 1.5) s = worst(s, 'moderate');
+  }
+  if (mg !== null) {
+    if (mg >= 60) s = worst(s, 'vsevere');
+    else if (mg >= 40) s = worst(s, 'severe');
+    else if (mg >= 20) s = worst(s, 'moderate');
+  }
+  if (vmax !== null) {
+    if (vmax >= 5.0) s = worst(s, 'vsevere');
+    else if (vmax >= 4.0) s = worst(s, 'severe');
+    else if (vmax >= 3.0) s = worst(s, 'moderate');
+  }
+  return s;
+}
+
+const ORDER = ['vsevere','severe','moderate','mild'];
+function worst(a, b) { return ORDER.indexOf(a) < ORDER.indexOf(b) ? a : b; }
+
+function sevLabel(s) { return {mild:'Mild',moderate:'Moderate',severe:'Severe',vsevere:'Very Severe'}[s] || '—'; }
+function sevBadge(s) { return {mild:'badge-mild',moderate:'badge-moderate',severe:'badge-severe',vsevere:'badge-vsevere'}[s] || 'badge-na'; }
+function sevGrade(s) { return {mild:'g-mild',moderate:'g-moderate',severe:'g-severe',vsevere:'g-vsevere'}[s] || 'g-na'; }
+function sevSummary(s) { return {mild:'mild',moderate:'moderate',severe:'severe',vsevere:'vsevere'}[s] || ''; }
+
+function row(name, hint, val, unit, badge) {
+  const pill = badge ? `<span class="badge ${badge.cls}">${badge.label}</span>` : `<span class="badge badge-na">—</span>`;
+  return `<div class="result-row">
+    <div class="result-name"><strong>${name}</strong>${hint?`<span>${hint}</span>`:''}  </div>
+    <div class="result-val">${val}<span class="u">${unit}</span></div>
+    ${pill}
+  </div>`;
+}
+
+function sumBox(sev, note) {
+  return `<div class="summary ${sevSummary(sev)}">
+    <div class="sum-label">Overall Severity</div>
+    <div class="sum-grade ${sevGrade(sev)}">${sevLabel(sev)}</div>
+    <div class="sum-note">${note}</div>
+  </div>`;
+}
+
+function warn(msg) { return `<div class="info-note">⚠️ ${msg}</div>`; }
+
+// ── Continuity Equation ──
+function calcCont() {
+  const lvotd = +document.getElementById('c-lvotd').value;
+  const lvotvti = +document.getElementById('c-lvotvti').value;
+  const avvti = +document.getElementById('c-avvti').value;
+  const bsa = +document.getElementById('c-bsa').value;
+
+  if (!lvotd || !lvotvti || !avvti) { document.getElementById('cont-out').innerHTML = warn('Enter LVOT diameter, LVOT VTI, and AV VTI.'); return; }
+
+  const csa = Math.PI * Math.pow(lvotd/2, 2);
+  const sv = csa * lvotvti;
+  const ava = sv / avvti;
+  const di = lvotvti / avvti;
+  const avai = bsa > 0 ? ava / bsa : null;
+  const svi = bsa > 0 ? sv / bsa : null;
+
+  const avaSev = asSev(ava, null, null);
+  const diSev = di < 0.25 ? 'severe' : di < 0.50 ? 'moderate' : 'mild';
+
+  let html = '';
+  html += row('LVOT CSA', 'π × (LVOT d/2)²', csa.toFixed(2), 'cm²', null);
+  html += row('Stroke Volume', 'LVOT CSA × LVOT VTI', sv.toFixed(1), 'mL', null);
+  if (svi) html += row('Stroke Volume Index (SVi)', 'SV / BSA', svi.toFixed(1), 'mL/m²', {cls: svi < 35 ? 'badge-severe' : 'badge-mild', label: svi < 35 ? 'Low Flow (<35)' : 'Normal Flow'});
+  html += row('AVA', 'SV / AV VTI', ava.toFixed(2), 'cm²', {cls: sevBadge(avaSev), label: sevLabel(avaSev)});
+  if (avai) html += row('AVAi', 'AVA / BSA', avai.toFixed(2), 'cm²/m²', {cls: avai <= 0.60 ? 'badge-severe' : avai <= 0.85 ? 'badge-moderate' : 'badge-mild', label: avai <= 0.60 ? 'Severe' : avai <= 0.85 ? 'Moderate' : 'Mild'});
+  html += row('Dimensionless Index (DI)', 'LVOT VTI / AV VTI', di.toFixed(3), '', {cls: sevBadge(diSev), label: sevLabel(diSev)});
+
+  document.getElementById('cont-out').innerHTML = html;
+}
+
+function clearCont() {
+  ['c-lvotd','c-lvotvti','c-avvti','c-bsa'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('cont-out').innerHTML = '<div class="result-empty">Enter values and click Calculate</div>';
+}
+
+// ── Projected AVA ──
+function calcProj() {
+  const ava = +document.getElementById('p-ava').value;
+  const lvotvti = +document.getElementById('p-lvotvti').value;
+  const lvotd = +document.getElementById('p-lvotd').value;
+  const hr = +document.getElementById('p-hr').value;
+
+  if (!ava || !lvotvti || !lvotd || !hr) { document.getElementById('proj-out').innerHTML = warn('Enter all four values.'); return; }
+
+  const csa = Math.PI * Math.pow(lvotd/2, 2);
+  const sv = csa * lvotvti;
+  const flowRate = (sv * hr) / 60;
+  const projAva = ava * (250 / flowRate);
+
+  const sevMeasured = asSev(ava, null, null);
+  const sevProj = asSev(projAva, null, null);
+
+  let html = '';
+  html += row('Measured AVA', 'At current flow state', ava.toFixed(2), 'cm²', {cls: sevBadge(sevMeasured), label: sevLabel(sevMeasured)});
+  html += row('Stroke Volume', 'LVOT CSA × LVOT VTI', sv.toFixed(1), 'mL', null);
+  html += row('Flow Rate', 'SV × HR / 60', flowRate.toFixed(0), 'mL/s', {cls: flowRate < 200 ? 'badge-severe' : flowRate < 250 ? 'badge-moderate' : 'badge-mild', label: flowRate < 200 ? 'Low Flow' : flowRate < 250 ? 'Below Normal' : 'Normal'});
+  html += row('Projected AVA', 'Normalized to 250 mL/s', projAva.toFixed(2), 'cm²', {cls: sevBadge(sevProj), label: sevLabel(sevProj)});
+
+  const changed = sevMeasured !== sevProj;
+  html += `<div class="summary ${changed && sevProj !== 'severe' && sevProj !== 'vsevere' ? 'mild' : 'severe'}">
+    <div class="sum-label">Flow Normalization</div>
+    <div class="sum-grade ${changed ? 'g-moderate' : sevGrade(sevProj)}">${changed ? 'Reclassified' : 'Consistent'}</div>
+    <div class="sum-note">${changed
+      ? `Measured AVA (${ava.toFixed(2)} cm²) suggests ${sevLabel(sevMeasured)} AS, but projected AVA at normal flow (${projAva.toFixed(2)} cm²) suggests ${sevLabel(sevProj)} AS. Current flow rate of ${flowRate.toFixed(0)} mL/s is ${flowRate < 250 ? 'below' : 'above'} reference — AVA may be ${flowRate < 250 ? 'underestimated' : 'overestimated'} at current flow.`
+      : `Measured and projected AVA are concordant (${sevLabel(sevProj)} AS) at current flow rate of ${flowRate.toFixed(0)} mL/s.`
+    }</div>
+  </div>`;
+  document.getElementById('proj-out').innerHTML = html;
+}
+
+function clearProj() {
+  ['p-ava','p-lvotvti','p-lvotd','p-hr'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('proj-out').innerHTML = '<div class="result-empty">Enter values and click Calculate</div>';
+}
+
+// ── Dimensionless Index ──
+function calcDI() {
+  const lvotvti = +document.getElementById('d-lvotvti').value;
+  const avvti = +document.getElementById('d-avvti').value;
+  const lvotv = +document.getElementById('d-lvotv').value;
+  const avv = +document.getElementById('d-avv').value;
+
+  if (!lvotvti && !lvotv) { document.getElementById('di-out').innerHTML = warn('Enter at least LVOT VTI and AV VTI.'); return; }
+
+  let html = '';
+  if (lvotvti && avvti) {
+    const di = lvotvti / avvti;
+    const sev = di < 0.25 ? 'severe' : di < 0.5 ? 'moderate' : 'mild';
+    html += row('DI (VTI-based)', 'LVOT VTI / AV VTI', di.toFixed(3), '', {cls: sevBadge(sev), label: sevLabel(sev)});
+  }
+  if (lvotv && avv) {
+    const di = lvotv / avv;
+    const sev = di < 0.25 ? 'severe' : di < 0.5 ? 'moderate' : 'mild';
+    html += row('DI (Velocity-based)', 'LVOT Vmax / AV Vmax', di.toFixed(3), '', {cls: sevBadge(sev), label: sevLabel(sev)});
+  }
+  if (!html) { document.getElementById('di-out').innerHTML = warn('Enter at least one pair of values.'); return; }
+  html += `<div class="info-note blue" style="margin-top:14px;">DI is independent of LVOT diameter and avoids the squared amplification of measurement error. Preferred when LVOT geometry is uncertain.</div>`;
+  document.getElementById('di-out').innerHTML = html;
+}
+
+function clearDI() {
+  ['d-lvotvti','d-avvti','d-lvotv','d-avv'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('di-out').innerHTML = '<div class="result-empty">Enter values and click Calculate</div>';
+}
+
+// ── LFLG Classification ──
+function calcLFLG() {
+  const ava = +document.getElementById('lf-ava').value;
+  const mg = +document.getElementById('lf-mgrad').value;
+  const vmax = +document.getElementById('lf-vmax').value;
+  const ef = +document.getElementById('lf-ef').value;
+  const lvotvti = +document.getElementById('lf-lvotvti').value;
+  const lvotd = +document.getElementById('lf-lvotd').value;
+  const bsa = +document.getElementById('lf-bsa').value;
+  const hr = +document.getElementById('lf-hr').value;
+
+  if (!ava || !mg || !ef) { document.getElementById('lflg-out').innerHTML = warn('Enter AVA, mean gradient, and EF at minimum.'); return; }
+
+  let svi = null, sv = null;
+  if (lvotvti && lvotd && bsa && hr) {
+    const csa = Math.PI * Math.pow(lvotd/2, 2);
+    sv = csa * lvotvti;
+    svi = sv / bsa;
+  }
+
+  const lowFlow = svi !== null ? svi < 35 : null;
+  const lowGrad = mg < 40;
+  const lowEF = ef < 50;
+  const severeAVA = ava <= 1.0;
+
+  let html = '';
+  if (sv) html += row('Stroke Volume', '', sv.toFixed(1), 'mL', null);
+  if (svi) html += row('Stroke Volume Index (SVi)', 'SV / BSA', svi.toFixed(1), 'mL/m²', {cls: svi < 35 ? 'badge-severe' : 'badge-mild', label: svi < 35 ? 'Low Flow' : 'Normal Flow'});
+  html += row('AVA', '', ava.toFixed(2), 'cm²', {cls: severeAVA ? 'badge-severe' : 'badge-moderate', label: severeAVA ? '≤1.0 cm²' : '>1.0 cm²'});
+  html += row('Mean Gradient', '', mg.toFixed(0), 'mmHg', {cls: mg >= 40 ? 'badge-severe' : 'badge-moderate', label: mg >= 40 ? 'High' : 'Low'});
+  html += row('LV EF', '', ef.toFixed(0), '%', {cls: ef < 50 ? 'badge-severe' : 'badge-mild', label: ef < 50 ? 'Reduced' : 'Preserved'});
+  if (vmax) html += row('AV Peak Velocity', '', vmax.toFixed(1), 'm/s', {cls: vmax >= 4.0 ? 'badge-severe' : vmax >= 3.0 ? 'badge-moderate' : 'badge-mild', label: vmax >= 4.0 ? 'Severe' : vmax >= 3.0 ? 'Moderate' : 'Mild'});
+
+  let phenotype, phenoClass, phenoNote;
+
+  if (!severeAVA) {
+    phenotype = 'Moderate AS'; phenoClass = 'indeterminate';
+    phenoNote = 'AVA > 1.0 cm² — does not meet severe AS criteria. Confirm measurements and consider moderate AS.';
+  } else if (!lowGrad) {
+    phenotype = 'True Severe High-Gradient AS'; phenoClass = 'true';
+    phenoNote = 'AVA ≤ 1.0 cm² AND mean gradient ≥ 40 mmHg — concordant severe AS. No further flow assessment needed. AVR indicated if symptomatic.';
+  } else if (lowEF && (lowFlow === null || lowFlow)) {
+    phenotype = 'Classical LFLG-AS'; phenoClass = 'true';
+    phenoNote = `EF < 50% with AVA ≤ 1.0 cm² and mean gradient < 40 mmHg${svi ? ` (SVi ${svi.toFixed(1)} mL/m²)` : ''}. LV dysfunction reduces gradient — may be true severe AS. Low-dose DSE indicated to assess contractile reserve and reclassify.`;
+  } else if (!lowEF && lowFlow === true) {
+    phenotype = 'Paradoxical LFLG-AS'; phenoClass = 'true';
+    phenoNote = `EF ≥ 50% with low SVi (${svi ? svi.toFixed(1) : '?'} mL/m²) and mean gradient < 40 mmHg. Concentric remodeling reduces stroke volume. CT calcium scoring (Men ≥2000 AU, Women ≥1600 AU = severe) is the preferred adjudicator.`;
+  } else if (!lowEF && lowFlow === false) {
+    phenotype = 'Normal-Flow Low-Gradient'; phenoClass = 'indeterminate';
+    phenoNote = `EF ≥ 50%, SVi ≥ 35 mL/m², mean gradient < 40 mmHg with AVA ≤ 1.0 cm². Likely moderate AS or measurement error (LVOT diameter overestimation is common). Re-measure carefully.`;
+  } else {
+    phenotype = 'Indeterminate'; phenoClass = 'indeterminate';
+    phenoNote = 'Unable to fully classify — enter SVi for complete assessment.';
+  }
+
+  html += `<div class="dse-verdict ${phenoClass}" style="margin-top:16px;">
+    <div class="v-label">LFLG Phenotype</div>
+    <div class="v-title">${phenotype}</div>
+    <div class="v-note">${phenoNote}</div>
+  </div>`;
+
+  document.getElementById('lflg-out').innerHTML = html;
+}
+
+function clearLFLG() {
+  ['lf-ava','lf-mgrad','lf-vmax','lf-ef','lf-lvotvti','lf-lvotd','lf-bsa','lf-hr'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('lflg-out').innerHTML = '<div class="result-empty">Enter values and click Classify</div>';
+}
+
+// ── DSE Analysis ──
+function calcDSE() {
+  const lvotd = +document.getElementById('dse-lvotd').value;
+  const baseLvotVti = +document.getElementById('dse-base-lvotvti').value;
+  const baseAvVti = +document.getElementById('dse-base-avvti').value;
+  const baseMg = +document.getElementById('dse-base-mg').value;
+  const peakLvotVti = +document.getElementById('dse-peak-lvotvti').value;
+  const peakAvVti = +document.getElementById('dse-peak-avvti').value;
+  const peakMg = +document.getElementById('dse-peak-mg').value;
+
+  if (!lvotd || !baseLvotVti || !peakLvotVti || !baseMg || !peakMg) {
+    document.getElementById('dse-out').innerHTML = warn('Enter LVOT diameter, baseline and peak LVOT VTI, and mean gradients.'); return;
+  }
+
+  const csa = Math.PI * Math.pow(lvotd/2, 2);
+  const baseSv = csa * baseLvotVti;
+  const peakSv = csa * peakLvotVti;
+
+  // Calculate AVA from VTIs if provided
+  const baseAva = baseAvVti > 0 ? baseSv / baseAvVti : null;
+  const peakAva = peakAvVti > 0 ? peakSv / peakAvVti : null;
+
+  // Contractile reserve — LVOT VTI ≥20%
+  const crVti = ((peakLvotVti - baseLvotVti) / baseLvotVti) * 100;
+  const crSv = ((peakSv - baseSv) / baseSv) * 100;
+  const hasContractileReserve = crVti >= 20;
+
+  // Classification — use peak AVA if calculable, otherwise assess from gradients alone
+  const peakAvaCrit = peakAva !== null ? peakAva <= 1.0 : (baseAva !== null ? baseAva <= 1.0 : true);
+  const trueSevere = peakAvaCrit && peakMg >= 40;
+  const pseudoSevere = peakAva !== null && peakAva > 1.0;
+  const indeterminate = peakAvaCrit && peakMg < 40 && !pseudoSevere;
+
+  let html = '';
+
+  html += `<div style="font-size:0.82rem;font-weight:700;color:#1a365d;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #e2e8f0;">Baseline (Rest)</div>`;
+  html += row('LVOT Stroke Volume (Rest)', 'LVOT CSA × LVOT VTI', baseSv.toFixed(1), 'mL', null);
+  if (baseAva) html += row('AVA (Rest)', 'SV / AV VTI', baseAva.toFixed(2), 'cm²', {cls: baseAva <= 1.0 ? 'badge-severe' : 'badge-moderate', label: baseAva <= 1.0 ? '≤1.0 cm²' : '>1.0 cm²'});
+  html += row('Peak Gradient (Rest)', '', baseMg.toFixed(0), 'mmHg', {cls: baseMg >= 40 ? 'badge-severe' : 'badge-moderate', label: baseMg >= 40 ? '≥40 mmHg' : '<40 mmHg'});
+
+  html += `<div style="font-size:0.82rem;font-weight:700;color:#1a365d;margin:12px 0 8px;padding-bottom:6px;border-bottom:1px solid #e2e8f0;">Peak Dobutamine</div>`;
+  html += row('LVOT Stroke Volume (Peak)', 'LVOT CSA × LVOT VTI', peakSv.toFixed(1), 'mL', null);
+  if (peakAva) html += row('AVA (Peak)', 'SV / AV VTI', peakAva.toFixed(2), 'cm²', {cls: peakAva <= 1.0 ? 'badge-severe' : 'badge-mild', label: peakAva <= 1.0 ? '≤1.0 cm²' : '>1.0 cm²'});
+  html += row('Peak Gradient (Peak)', '', peakMg.toFixed(0), 'mmHg', {cls: peakMg >= 40 ? 'badge-severe' : 'badge-moderate', label: peakMg >= 40 ? '≥40 mmHg' : '<40 mmHg'});
+
+  html += `<div style="font-size:0.82rem;font-weight:700;color:#1a365d;margin:12px 0 8px;padding-bottom:6px;border-bottom:1px solid #e2e8f0;">Contractile Reserve</div>`;
+  html += row('ΔLVOT VTI', '(Peak − Base) / Base × 100', crVti.toFixed(1), '%', {cls: crVti >= 20 ? 'badge-yes' : 'badge-no', label: crVti >= 20 ? '≥20% ✓' : '<20% ✗'});
+  html += row('ΔStroke Volume', '(Peak − Base) / Base × 100', crSv.toFixed(1), '%', {cls: crSv >= 20 ? 'badge-yes' : 'badge-no', label: crSv >= 20 ? '≥20% ✓' : '<20% ✗'});
+  html += row('Contractile Reserve', '', hasContractileReserve ? 'Present' : 'Absent', '', {cls: hasContractileReserve ? 'badge-yes' : 'badge-no', label: hasContractileReserve ? 'Yes' : 'No'});
+
+  let verdictClass, verdictTitle, verdictNote;
+  if (trueSevere) {
+    verdictClass = 'true'; verdictTitle = 'True Severe AS';
+    verdictNote = `Peak AVA ≤ 1.0 cm² AND peak mean gradient ≥ 40 mmHg — confirms true severe AS. ${hasContractileReserve ? 'Contractile reserve present (ΔLVOT VTI ≥20%) — AVR is indicated and likely to improve EF.' : 'No contractile reserve — higher surgical risk but AVR may still be beneficial. Consider Heart Team discussion and CT calcium scoring.'}`;
+  } else if (pseudoSevere) {
+    verdictClass = 'pseudo'; verdictTitle = 'Pseudo-Severe AS';
+    verdictNote = 'Peak AVA > 1.0 cm² at increased flow — confirms pseudo-severe AS. The valve area was underestimated at rest due to low cardiac output. True severity is moderate AS. Optimize medical therapy for LV dysfunction.';
+  } else {
+    verdictClass = 'indeterminate'; verdictTitle = 'Indeterminate';
+    verdictNote = `Peak AVA ≤ 1.0 cm² but mean gradient remains < 40 mmHg even at peak dobutamine. ${!hasContractileReserve ? 'No contractile reserve — severely impaired LV unable to generate adequate flow to open the valve. ' : ''}CT calcium scoring is the preferred next step (Men ≥ 2000 AU, Women ≥ 1600 AU = severe AS). Heart Team discussion required.`;
+  }
+
+  html += `<div class="dse-verdict ${verdictClass}">
+    <div class="v-label">DSE Verdict</div>
+    <div class="v-title">${verdictTitle}</div>
+    <div class="v-note">${verdictNote}</div>
+  </div>`;
+
+  document.getElementById('dse-out').innerHTML = html;
+}
+
+function clearDSE() {
+  ['dse-lvotd','dse-base-lvotvti','dse-base-avvti','dse-base-mg',
+   'dse-peak-lvotvti','dse-peak-avvti','dse-peak-mg'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('dse-out').innerHTML = '<div class="result-empty">Enter baseline and peak values, then click Analyze</div>';
+}
+
+// Enter key
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const active = document.querySelector('.tab-panel.active');
+  const ms = active ? active.querySelector('.method-section.active') : null;
+  const btn = ms ? ms.querySelector('.btn-calc') : (active ? active.querySelector('.btn-calc') : null);
+  if (btn) btn.click();
+});
+</script>
+</body>
+</html>
