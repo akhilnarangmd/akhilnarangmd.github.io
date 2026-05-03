@@ -1,1 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Strain Echocardiography — 2025 ASE/EACVI Guidelines</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f4f8; color: #1a202c; min-height: 100vh; font-size: 15px; line-height: 1.6; }
 
+/* ── Home bar ── */
+.home-bar { background: white; border-bottom: 1px solid #e2e8f0; padding: 8px 20px; }
+.home-link { display: inline-flex; align-items: center; gap: 6px; color: #2b6cb0; text-decoration: none; font-size: 0.82rem; font-weight: 600; }
+.home-link::before { content: '←'; }
+.home-link:hover { color: #1a365d; }
+
+/* ── Header ── */
+header { background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%); color: white; padding: 28px 20px 24px; text-align: center; }
+header .icon { font-size: 2.2rem; margin-bottom: 8px; display: block; }
+header h1 { font-size: clamp(1.2rem, 3.5vw, 1.7rem); font-weight: 800; letter-spacing: -0.01em; margin-bottom: 4px; }
+header p { font-size: 0.82rem; opacity: 0.8; margin-bottom: 10px; }
+.badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 3px 14px; font-size: 0.72rem; letter-spacing: 0.04em; }
+
+/* ── Nav ── */
+.main-nav { background: white; border-bottom: 2px solid #e2e8f0; display: flex; justify-content: center; overflow-x: auto; padding: 12px 16px; gap: 6px; flex-wrap: wrap; }
+.main-nav button { padding: 8px 14px; border: 2px solid #cbd5e0; background: white; border-radius: 8px; font-size: 0.79rem; font-weight: 700; color: #718096; cursor: pointer; white-space: nowrap; transition: all 0.15s; font-family: inherit; }
+.main-nav button.active { background: #1a365d; border-color: #1a365d; color: white; }
+.main-nav button:hover:not(.active) { border-color: #2b6cb0; color: #2b6cb0; }
+
+/* ── Layout ── */
+.content { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.section-heading { font-size: 1.1rem; font-weight: 800; color: #1a365d; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+.subsection { font-size: 0.88rem; font-weight: 700; color: #2d3748; margin: 16px 0 8px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media(max-width:800px) { .grid-2,.grid-3 { grid-template-columns: 1fr; } }
+.full { grid-column: 1 / -1; }
+
+/* ── Cards ── */
+.card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); padding: 18px 20px; margin-bottom: 16px; }
+.card-heading { font-size: 0.88rem; font-weight: 800; color: #1a365d; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; }
+
+/* ── Tables ── */
+.param-table { width: 100%; border-collapse: collapse; font-size: 0.79rem; }
+.param-table th { background: #1a365d; color: white; padding: 8px 10px; text-align: left; font-size: 0.74rem; font-weight: 600; }
+.param-table th:first-child { border-radius: 6px 0 0 0; }
+.param-table th:last-child { border-radius: 0 6px 0 0; }
+.param-table td { padding: 7px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: middle; }
+.param-table tr:last-child td { border-bottom: none; }
+.param-table tr:nth-child(even) td { background: #f7fafc; }
+
+/* ── Value badges ── */
+.val-normal { display: inline-block; background: #c6f6d5; color: #22543d; padding: 1px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; white-space: nowrap; }
+.val-borderline { display: inline-block; background: #fefcbf; color: #744210; padding: 1px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; white-space: nowrap; }
+.val-abnormal { display: inline-block; background: #fed7d7; color: #742a2a; padding: 1px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; white-space: nowrap; }
+.badge-endorsed { background: #c6f6d5; color: #22543d; padding: 2px 9px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; display: inline-block; }
+.badge-appropriate { background: #fefcbf; color: #744210; padding: 2px 9px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; display: inline-block; }
+.badge-not { background: #edf2f7; color: #718096; padding: 2px 9px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; display: inline-block; }
+
+/* ── Info notes ── */
+.info-note { font-size: 0.78rem; background: #ebf8ff; border: 1px solid #bee3f8; border-left: 3px solid #2b6cb0; border-radius: 6px; padding: 9px 12px; margin-bottom: 12px; color: #2c5282; line-height: 1.55; }
+.info-note.amber { background: #fffaf0; border-color: #fbd38d; border-left-color: #d69e2e; color: #744210; }
+.info-note.green { background: #f0fff4; border-color: #9ae6b4; border-left-color: #276749; color: #22543d; }
+.info-note.red { background: #fff5f5; border-color: #fc8181; border-left-color: #742a2a; color: #742a2a; }
+
+/* ── Pitfall cards ── */
+.pitfall-card { border-radius: 8px; border: 1px solid #e2e8f0; background: white; overflow: hidden; margin-bottom: 12px; }
+.pitfall-header { background: #1a365d; color: white; padding: 10px 14px; font-size: 0.82rem; font-weight: 700; display: flex; gap: 10px; align-items: center; }
+.pitfall-body { display: grid; grid-template-columns: 1fr 1fr; font-size: 0.79rem; }
+.pitfall-col { padding: 10px 14px; }
+.pitfall-col:first-child { border-right: 1px solid #e2e8f0; background: #fff5f5; }
+.pitfall-col strong { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: #718096; margin-bottom: 4px; }
+@media(max-width:600px) { .pitfall-body { grid-template-columns: 1fr; } .pitfall-col:first-child { border-right: none; border-bottom: 1px solid #e2e8f0; } }
+
+/* ── Change pills ── */
+.change-pill { display: inline-flex; align-items: center; gap: 5px; background: #fff5f5; border: 1px solid #fc8181; border-radius: 999px; padding: 2px 10px; font-size: 0.68rem; font-weight: 700; color: #742a2a; margin: 2px; }
+.change-pill.blue { background: #ebf8ff; border-color: #bee3f8; color: #2c5282; }
+
+/* ── Condition cards ── */
+.condition-card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; padding: 16px; margin-bottom: 12px; }
+.condition-tag { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; margin-right: 4px; margin-bottom: 6px; }
+.cond-hf { background: #ebf8ff; color: #2c5282; }
+.cond-onco { background: #faf5ff; color: #44337a; }
+.cond-ischemia { background: #fff5f5; color: #742a2a; }
+.cond-valve { background: #f0fff4; color: #276749; }
+.cond-rv { background: #fffaf0; color: #744210; }
+.cond-la { background: #fce8ff; color: #6b21a8; }
+
+/* ── Population expandable ── */
+.pop-item { border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+.pop-header { display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; background: #f7fafc; cursor: pointer; font-weight: 700; font-size: 0.84rem; color: #1a365d; }
+.pop-header:hover { background: #edf2f7; }
+.pop-chevron { font-size: 0.72rem; color: #718096; transition: transform 0.2s; }
+.pop-item.open .pop-chevron { transform: rotate(90deg); }
+.pop-body { display: none; padding: 12px 14px; font-size: 0.79rem; color: #4a5568; line-height: 1.65; border-top: 1px solid #e2e8f0; }
+.pop-body ul { padding-left: 18px; margin-top: 6px; }
+.pop-body li { margin-bottom: 3px; }
+.pop-item.open .pop-body { display: block; }
+
+/* ── KV rows ── */
+.kv { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 7px 0; border-bottom: 1px solid #f0f4f8; font-size: 0.8rem; }
+.kv:last-child { border-bottom: none; }
+.kv-label { color: #4a5568; }
+.kv-value { font-family: 'SF Mono','Fira Code',monospace; font-weight: 700; color: #1a365d; text-align: right; }
+
+/* ── Disclaimer / Footer ── */
+.disclaimer { background: #fffaf0; border: 1px solid #fbd38d; border-radius: 8px; padding: 12px 16px; font-size: 0.77rem; color: #744210; margin-top: 24px; }
+footer { background: white; border-top: 1px solid #e2e8f0; padding: 16px; text-align: center; font-size: 0.75rem; color: #718096; }
+.citation-footer { background: #1a365d; border-radius: 10px; padding: 16px 20px; color: rgba(255,255,255,0.75); font-size: 0.79rem; line-height: 1.65; margin-top: 20px; }
+.citation-footer a { color: #f6ad55; text-decoration: none; }
+.citation-footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="home-bar">
+  <a class="home-link" href="https://echoinfo.org">Echo Info</a>
+</div>
+
+<header>
+  <span class="icon">📈</span>
+  <h1>Strain Echocardiography</h1>
+  <p>Clinical Applications — ASE/EACVI Consensus Statement 2025</p>
+  <span class="badge">Thomas et al. · JASE 2025 · DOI 10.1016/j.echo.2025.07.007</span>
+</header>
+
+<nav class="main-nav">
+  <button class="active" onclick="switchTab('normal-values')">Normal Values</button>
+  <button onclick="switchTab('indications')">Indications</button>
+  <button onclick="switchTab('by-condition')">By Condition</button>
+  <button onclick="switchTab('special-pop')">Special Populations</button>
+  <button onclick="switchTab('pitfalls')">Technical Pitfalls</button>
+  <button onclick="switchTab('whats-new')">2025 Updates</button>
+</nav>
+
+<div class="content">
+
+<!-- ═══════════════════ NORMAL VALUES ═══════════════════ -->
+<div id="panel-normal-values" class="tab-panel active">
+  <div class="section-heading">Normal Values — STE-Derived Strain</div>
+
+  <div class="grid-3">
+    <div class="card" style="border-top: 4px solid #276749;">
+      <div class="card-heading">LV Global Longitudinal Strain (LVGLS)</div>
+      <div class="kv"><span class="kv-label">Normal</span><span class="kv-value"><span class="val-normal">More negative than −18%</span></span></div>
+      <div class="kv"><span class="kv-label">Borderline</span><span class="kv-value"><span class="val-borderline">−16% to −18%</span></span></div>
+      <div class="kv"><span class="kv-label">Abnormal</span><span class="kv-value"><span class="val-abnormal">Less negative than −16%</span></span></div>
+      <div class="kv"><span class="kv-label">Mean (meta-analysis)</span><span class="kv-value">−21% (SD 2.6%)</span></div>
+      <div class="kv"><span class="kv-label">LLN (major vendors)</span><span class="kv-value">−16%</span></div>
+      <div style="font-size:0.74rem;color:#718096;margin-top:10px;line-height:1.5;">GLS decreases progressively after age 60. Relatively stable up to age 60. Age and comorbidities (not race) are main determinants of variation.</div>
+    </div>
+
+    <div class="card" style="border-top: 4px solid #744210;">
+      <div class="card-heading">RV Free Wall Longitudinal Strain (RVFWLS)</div>
+      <div class="kv"><span class="kv-label">LLN — Men</span><span class="kv-value"><span class="val-normal">More negative than −20%</span></span></div>
+      <div class="kv"><span class="kv-label">LLN — Women</span><span class="kv-value"><span class="val-normal">More negative than −21%</span></span></div>
+      <div class="kv"><span class="kv-label">Overall mean (WASE)</span><span class="kv-value">−28.3% (SD 4.3%)</span></div>
+      <div class="kv"><span class="kv-label">Men mean (WASE)</span><span class="kv-value">−27.3% (SD 4.1%)</span></div>
+      <div class="kv"><span class="kv-label">Women mean (WASE)</span><span class="kv-value">−29.3% (SD 4.2%)</span></div>
+      <div class="kv"><span class="kv-label">LLN overall (prior study)</span><span class="kv-value">−18.2%</span></div>
+      <div style="font-size:0.74rem;color:#718096;margin-top:10px;line-height:1.5;">Normal values are sex-specific but do NOT change with age. Women have more negative (better) RVFWLS than men.</div>
+    </div>
+
+    <div class="card" style="border-top: 4px solid #6b21a8;">
+      <div class="card-heading">LA Reservoir Strain (LASr)</div>
+      <div class="kv"><span class="kv-label">Normal range</span><span class="kv-value"><span class="val-normal">23% – 60%</span></span></div>
+      <div class="kv"><span class="kv-label">Borderline abnormal</span><span class="kv-value"><span class="val-borderline">23% – 30%</span></span></div>
+      <div class="kv"><span class="kv-label">Abnormal</span><span class="kv-value"><span class="val-abnormal">Less than 23%</span></span></div>
+      <div class="kv"><span class="kv-label">Mean (meta-analysis, n=2,542)</span><span class="kv-value">~39%</span></div>
+      <div class="kv"><span class="kv-label">LA conduit strain (LAScd)</span><span class="kv-value">~23%</span></div>
+      <div class="kv"><span class="kv-label">LA contractile strain (LASct)</span><span class="kv-value">~17%</span></div>
+      <div style="font-size:0.74rem;color:#718096;margin-top:10px;line-height:1.5;">All 3 LA strain parameters decrease with age. Most published studies use R-R gating — this is the de facto preferred method.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-heading">Key Reporting and Measurement Standards</div>
+    <table class="param-table">
+      <tr><th>Parameter</th><th>Standard / Recommendation</th></tr>
+      <tr><td><strong>Preferred GLS timing</strong></td><td>End-systolic LS (at aortic valve closure, AVC) — default. Peak systolic LS may be used if explicitly stated.</td></tr>
+      <tr><td><strong>Preferred tracking method</strong></td><td>Midwall / full-thickness tracking — now endorsed by ASE/EACVI. Most normative data use this approach.</td></tr>
+      <tr><td><strong>Sign convention</strong></td><td>Negative sign should be retained for GLS (e.g., "−18%"). If omitted, use term "global longitudinal shortening."</td></tr>
+      <tr><td><strong>Regional strain</strong></td><td>Not endorsed for routine clinical use — significant intervendor and test-retest variability.</td></tr>
+      <tr><td><strong>Radial strain</strong></td><td>Performed poorly in intervendor studies — NOT endorsed for clinical use.</td></tr>
+      <tr><td><strong>3D strain</strong></td><td>Not advised for routine use — lower spatial/temporal resolution and unacceptable variability.</td></tr>
+      <tr><td><strong>Layer-specific strain</strong></td><td>Not endorsed — no demonstrated superiority over full-thickness strain.</td></tr>
+      <tr><td><strong>Serial follow-up</strong></td><td>Use same vendor and same software version. A relative change of 10–15% in GLS is clinically significant.</td></tr>
+      <tr><td><strong>Frame rate</strong></td><td>50–90 fps for LV and LA strain; 60–90 fps for RV strain.</td></tr>
+      <tr><td><strong>RV view</strong></td><td>Apical RV-focused view — yields higher magnitude values than standard 4-chamber. Required for RVFWLS.</td></tr>
+      <tr><td><strong>Dedicated software</strong></td><td>Use dedicated RV and atrial strain software when available — better feasibility and reproducibility.</td></tr>
+      <tr><td><strong>AF averaging</strong></td><td>Average ≥3 consecutive cycles of similar RR length; avoid using a single cycle.</td></tr>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">Cardiotoxicity Surveillance Thresholds</div>
+      <div class="info-note amber">Used for chemotherapy monitoring — these are relative change thresholds from individual patient baseline.</div>
+      <div class="kv"><span class="kv-label">Significant relative GLS decline</span><span class="kv-value">≥15% relative decrease</span></div>
+      <div class="kv"><span class="kv-label">Actionable threshold (SUCCOUR trial)</span><span class="kv-value">≥12% relative decrease</span></div>
+      <div class="kv"><span class="kv-label">Preclinical cardiac dysfunction</span><span class="kv-value">≥15% relative decrease (conservative)</span></div>
+      <div class="kv"><span class="kv-label">Absolute example</span><span class="kv-value">Baseline −20% → follow-up −17% = 15% relative change</span></div>
+      <div style="font-size:0.74rem;color:#718096;margin-top:8px;">ESC and ICOS guidelines recognize ≥15% relative GLS decrease as mild CTRCD. Cardioprotective therapy should be considered; chemotherapy should NOT be stopped for isolated GLS fall with preserved LVEF.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">LA Strain & Filling Pressure Thresholds</div>
+      <div class="kv"><span class="kv-label">LASr for elevated filling pressure</span><span class="kv-value"><span class="val-abnormal">LASr &lt; 18%</span></span></div>
+      <div class="kv"><span class="kv-label">LASr alternative threshold</span><span class="kv-value">LASr &lt; 23% (single-center validation)</span></div>
+      <div class="kv"><span class="kv-label">Gating method</span><span class="kv-value">R-R gating preferred (most published data)</span></div>
+      <div class="kv"><span class="kv-label">Views</span><span class="kv-value">Apical 4-chamber ± 2-chamber</span></div>
+      <div style="font-size:0.74rem;color:#718096;margin-top:8px;">LASr &lt; 18% identified as optimal cutoff for elevated PCWP in multicenter study of 322 patients. Provides additive value to conventional Doppler parameters and LAVi.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ INDICATIONS ═══════════════════ -->
+<div id="panel-indications" class="tab-panel">
+  <div class="section-heading">Clinical Indications for Strain — Consensus Endorsement</div>
+  <div class="info-note">Based on Table 1 from Thomas et al., JASE 2025. <span class="badge-endorsed">+++</span> = Clinically endorsed &nbsp; <span class="badge-appropriate">++</span> = May be appropriate &nbsp; <span class="badge-not">—</span> = Not currently endorsed</div>
+
+  <div class="card">
+    <table class="param-table">
+      <tr>
+        <th>Clinical Scenario</th>
+        <th>LVGLS</th>
+        <th>RVFWLS</th>
+        <th>LASr</th>
+        <th>LV Mechanical Dispersion</th>
+        <th>LV Myocardial Work</th>
+      </tr>
+      <tr>
+        <td><strong>Acute &amp; Chronic MI</strong></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Prog</span></td>
+        <td><span class="badge-appropriate">++ Prog</span></td>
+        <td><span class="badge-not">— Insufficient evidence</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cardio-Oncology</strong></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Prog</span></td>
+        <td><span class="badge-appropriate">++ Prog</span></td>
+        <td><span class="badge-not">—</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Valvular Heart Disease ≥ moderate</strong></td>
+        <td><span class="badge-endorsed">+++ Prog</span></td>
+        <td><span class="badge-endorsed">+++ Prog</span></td>
+        <td><span class="badge-appropriate">++ Prog</span></td>
+        <td><span class="badge-not">—</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Undifferentiated Cardiomyopathy</strong></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Prog</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Acute &amp; Chronic HF</strong></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Dx &amp; Prog</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Cardiac Resynchronization (CRT)</strong></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Prog</span></td>
+        <td><span class="badge-not">—</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Athlete's Heart</strong></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Dx &amp; Prog</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Pulmonary Hypertension</strong></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-endorsed">+++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Dx</span></td>
+        <td><span class="badge-not">—</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Stress Echocardiography</strong></td>
+        <td><span class="badge-appropriate">++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Dx &amp; Prog</span></td>
+        <td><span class="badge-appropriate">++ Dx</span></td>
+        <td><span class="badge-not">—</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+      <tr>
+        <td><strong>Adult Congenital Heart Disease</strong></td>
+        <td><span class="badge-appropriate">++ Prog</span></td>
+        <td><span class="badge-appropriate">++ Dx &amp; Prog</span></td>
+        <td><span class="badge-not">—</span></td>
+        <td><span class="badge-not">—</span></td>
+        <td><span class="badge-not">—</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">When to Always Obtain Strain</div>
+      <div style="display:flex;flex-direction:column;gap:7px;font-size:0.8rem;">
+        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:5px;padding:8px 12px;"><strong style="color:#276749;">HFrEF</strong> — LVGLS for prognostication; serial follow-up to predict LV recovery</div>
+        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:5px;padding:8px 12px;"><strong style="color:#276749;">Cardio-oncology</strong> — Baseline strain before anthracyclines; serially during chemotherapy</div>
+        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:5px;padding:8px 12px;"><strong style="color:#276749;">Increased LV mass</strong> — LVGLS with bull's-eye pattern to identify amyloidosis (apical sparing)</div>
+        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:5px;padding:8px 12px;"><strong style="color:#276749;">RV enlargement / TR ≥ moderate / PH</strong> — RVFWLS when technically feasible</div>
+        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:5px;padding:8px 12px;"><strong style="color:#276749;">Asymptomatic severe AS</strong> — LVGLS predicts adverse events; &lt; −14.7% = 2.5× mortality risk</div>
+        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:5px;padding:8px 12px;"><strong style="color:#276749;">Severe primary MR</strong> — LVGLS should be supranormal (&gt; −20%); if less negative, consider intervention</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">What Is NOT Endorsed</div>
+      <div style="display:flex;flex-direction:column;gap:7px;font-size:0.8rem;">
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;padding:8px 12px;"><strong style="color:#742a2a;">Regional / segmental strain quantification</strong> — too much intervendor and test-retest variability for routine use</div>
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;padding:8px 12px;"><strong style="color:#742a2a;">Radial strain</strong> — poor performance in all intervendor studies</div>
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;padding:8px 12px;"><strong style="color:#742a2a;">3D strain</strong> — lower resolution, unacceptable variability; investigational only</div>
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;padding:8px 12px;"><strong style="color:#742a2a;">Layer-specific strain</strong> — no proven superiority over full-thickness strain</div>
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;padding:8px 12px;"><strong style="color:#742a2a;">RV / LA mechanical dispersion</strong> — insufficient evidence at this time</div>
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;padding:8px 12px;"><strong style="color:#742a2a;">Myocardial work indices (routine)</strong> — lacks standardization and clear cutoffs; investigational</div>
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;padding:8px 12px;"><strong style="color:#742a2a;">RA strain (clinical)</strong> — not currently advised for routine practice</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ BY CONDITION ═══════════════════ -->
+<div id="panel-by-condition" class="tab-panel">
+  <div class="section-heading">Strain by Clinical Condition</div>
+
+  <!-- HF -->
+  <div class="condition-card">
+    <span class="condition-tag cond-hf">Heart Failure</span>
+    <div class="card-heading" style="border:none;padding:0;margin-bottom:10px;">Heart Failure — All Stages</div>
+    <table class="param-table" style="margin-bottom:12px;">
+      <tr><th>HF Stage / Type</th><th>Key Strain Recommendation</th><th>Threshold / Cutoff</th></tr>
+      <tr><td>Stage A (Risk factors, no structural disease)</td><td>GLS not advised for screening; may identify SBHF</td><td>Abnormal: &lt; −16%; Borderline: −16 to −18%</td></tr>
+      <tr><td>Stage B (Asymptomatic LV dysfunction)</td><td>Abnormal or borderline GLS + other echo abnormalities = SBHF marker</td><td>GLS less negative than −16% + abnormal echo</td></tr>
+      <tr><td>HFrEF (LVEF &lt; 40%)</td><td>LVGLS for prognostication; serial follow-up to predict LV recovery</td><td>GLS ≤ −6.95% = worse long-term outcomes; each 1% decrease = 15% increased mortality odds</td></tr>
+      <tr><td>HFpEF (LVEF ≥ 50%)</td><td>LVGLS aids diagnosis; worsening GLS &amp; RVFWLS = adverse prognosis</td><td>Impaired GLS typically present even with normal EF</td></tr>
+      <tr><td>LVAD candidates</td><td>RVFWLS predicts RV failure post-implant — superior to TAPSE</td><td>RVFWLS cutoff varies by study; serial monitoring advised</td></tr>
+    </table>
+    <div class="info-note">In HFpEF, RVFWLS is valuable for identifying early RV dysfunction in conjunction with elevated PA pressures, and for ongoing monitoring.</div>
+  </div>
+
+  <!-- Cardio-oncology -->
+  <div class="condition-card">
+    <span class="condition-tag cond-onco">Cardio-Oncology</span>
+    <div class="card-heading" style="border:none;padding:0;margin-bottom:10px;">Cardio-Oncology — Chemotherapy Monitoring</div>
+    <table class="param-table" style="margin-bottom:12px;">
+      <tr><th>Timing</th><th>Recommendation</th></tr>
+      <tr><td>Before anthracyclines</td><td>Obtain baseline LVGLS in ALL patients</td></tr>
+      <tr><td>Before other chemotherapy / radiotherapy</td><td>Baseline strain reasonable</td></tr>
+      <tr><td>Baseline strain &lt; normal limits</td><td>Repeat echo with strain at mid-treatment</td></tr>
+      <tr><td>During anthracycline treatment</td><td>Obtain strain to identify subclinical cardiotoxicity</td></tr>
+      <tr><td>Childhood cancer survivors</td><td>Incorporate strain in all follow-up exams</td></tr>
+    </table>
+    <table class="param-table">
+      <tr><th>Threshold</th><th>Interpretation</th><th>Action</th></tr>
+      <tr><td>Relative GLS decrease ≥ 12%</td><td>Clinically significant — consider cardioprotective therapy</td><td>Start cardioprotection regardless of LVEF change</td></tr>
+      <tr><td>Relative GLS decrease ≥ 15%</td><td>Mild CTRCD per ESC/ICOS guidelines (isolated strain fall)</td><td>Optimize risk factors; do NOT stop chemotherapy if LVEF preserved</td></tr>
+      <tr><td>Relative GLS decrease ≥ 10%</td><td>Sensitivity 78%, specificity 79% for predicting LVEF decline</td><td>Close monitoring; consider cardioprotection</td></tr>
+    </table>
+  </div>
+
+  <!-- Valvular -->
+  <div class="condition-card">
+    <span class="condition-tag cond-valve">Valvular Heart Disease</span>
+    <div class="card-heading" style="border:none;padding:0;margin-bottom:10px;">Valvular Heart Disease — Strain Cutoffs</div>
+    <table class="param-table">
+      <tr><th>Valve Lesion</th><th>Key Strain Finding</th><th>Threshold / Clinical Implication</th></tr>
+      <tr><td><strong>Aortic Stenosis (AS)</strong></td><td>LVGLS — prognostic in asymptomatic patients</td><td>GLS &lt; −14.7% → 2.5× increased mortality risk in severe asymptomatic AS. Apical-sparing pattern → screen for coexisting amyloidosis (99mTc scintigraphy).</td></tr>
+      <tr><td><strong>Aortic Regurgitation (AR)</strong></td><td>LVGLS predicts disease progression and surgical outcomes</td><td>GLS −18% best cutoff for disease progression; −14% predicts poor outcome post-AVR. LVGLS worsens continuously — no single cutoff; trend matters.</td></tr>
+      <tr><td><strong>Mitral Regurgitation (primary MR)</strong></td><td>LVGLS should be supranormal — preload augmented</td><td>GLS less negative than −20% = adverse prognosis; consider intervention. BNP + GLS provide synergistic risk stratification.</td></tr>
+      <tr><td><strong>Mitral Regurgitation (secondary MR)</strong></td><td>LVGLS useful for monitoring; less clear cutoff</td><td>No well-established cutoff to guide timing of intervention in secondary MR.</td></tr>
+      <tr><td><strong>Mitral Stenosis (MS)</strong></td><td>LVGLS reduced — primarily preload-mediated</td><td>~85% of severe MS have GLS in lowest quartile; reduced preload is main driver, not intrinsic contractile dysfunction.</td></tr>
+      <tr><td><strong>Tricuspid Regurgitation (TR)</strong></td><td>RVFWLS prognostic before intervention</td><td>RVFWLS &lt; −23% → better outcomes post-surgery. &lt; −24% cutoff also validated for 5-year mortality risk after isolated TR surgery.</td></tr>
+    </table>
+    <div class="info-note amber" style="margin-top:10px;">⚠️ Key concept: Because LVGLS is a continuous parameter, in valvular disease absolute cutoffs are less meaningful than recognizing that as strain magnitude decreases, prognosis worsens continuously. In AR, TR, and primary MR (augmented preload, reduced volumetric afterload), LVGLS should be supranormal — less negative values reflect contractile dysfunction.</div>
+  </div>
+
+  <!-- RV -->
+  <div class="condition-card">
+    <span class="condition-tag cond-rv">RV Strain</span>
+    <div class="card-heading" style="border:none;padding:0;margin-bottom:10px;">RV Strain — Clinical Applications</div>
+    <table class="param-table">
+      <tr><th>Condition</th><th>RVFWLS Finding</th><th>Clinical Significance</th></tr>
+      <tr><td>Pulmonary Hypertension / PAH</td><td>Significantly worse than no-PH; correlates with invasive PA pressure, BNP, 6MWD</td><td>Serial RVFWLS monitors treatment response; improvement correlates with improving PVR</td></tr>
+      <tr><td>HF (HFrEF &amp; HFpEF)</td><td>Strong outcome predictor independent of LVEF and LVGLS</td><td>RVFWLS predicts RV failure after LVAD implantation; superior to TAPSE</td></tr>
+      <tr><td>STEMI / Ischemic CM</td><td>RVFWLS prognostic; independently associated with adverse outcomes</td><td>Incremental value over clinical, infarct size, and LV parameters</td></tr>
+      <tr><td>ARVC</td><td>Type I: normal; Type II: delayed onset/reduced peak; Type III: systolic stretching with postsystolic shortening</td><td>Detects subclinical regional RV dysfunction before conventional echo; RV mechanical dispersion stratifies arrhythmic risk</td></tr>
+      <tr><td>Systemic Sclerosis</td><td>Occult regional and global RV dysfunction detectable regardless of RVSP</td><td>Useful for screening subclinical RV disease in scleroderma</td></tr>
+      <tr><td>Significant TR</td><td>RVFWLS &lt; −23% suggestive of poorer outcomes</td><td>Pre-operative risk stratification before TR intervention</td></tr>
+    </table>
+    <div class="info-note" style="margin-top:10px;"><strong>RV-PA Coupling:</strong> RVFWLS/PASP ratio validated as noninvasive coupling index against invasive Ees/Ea. Independently prognostic in PAH, severe TR, HFpEF, and secondary MR (COAPT trial). Endorsed as an alternative/complement to TAPSE/PASP.</div>
+  </div>
+
+  <!-- LA -->
+  <div class="condition-card">
+    <span class="condition-tag cond-la">LA Strain</span>
+    <div class="card-heading" style="border:none;padding:0;margin-bottom:10px;">LA Strain — Clinical Applications</div>
+    <table class="param-table">
+      <tr><th>Application</th><th>Key LASr Finding</th><th>Evidence Level</th></tr>
+      <tr><td>Elevated LV filling pressure</td><td>LASr &lt; 18% = elevated PCWP (multicenter, n=322); LASr &lt; 23% (single-center)</td><td>Endorsed — additive to E/e′ and LAVi</td></tr>
+      <tr><td>HFpEF diagnosis</td><td>Impaired LASr commonly present; powerful independent prognostic marker</td><td>Endorsed</td></tr>
+      <tr><td>New-onset AF prediction</td><td>Impaired LASr in at-risk patients; RA strain more predictive of AF recurrence</td><td>May be appropriate — not routinely advised</td></tr>
+      <tr><td>AF recurrence after cardioversion / ablation</td><td>LASr predicts recurrence and LA reverse remodeling; no vendor-specific cutoffs yet</td><td>May be appropriate</td></tr>
+      <tr><td>Cryptogenic stroke</td><td>LASr predicts paroxysmal AF over 3-year Holter monitoring</td><td>May be appropriate in select patients</td></tr>
+      <tr><td>RA strain (RASr)</td><td>Normal RASr ~44%; RA contractile ~17%; RA conduit ~18%</td><td>NOT currently advised for routine practice — further evidence needed</td></tr>
+    </table>
+  </div>
+
+  <!-- Ischemia -->
+  <div class="condition-card">
+    <span class="condition-tag cond-ischemia">Ischemic Heart Disease</span>
+    <div class="card-heading" style="border:none;padding:0;margin-bottom:10px;">Ischemic Heart Disease</div>
+    <table class="param-table">
+      <tr><th>Application</th><th>Recommendation</th><th>Key Cutoffs</th></tr>
+      <tr><td>Non-STEMI ACS (no RWMA)</td><td>GLS / SLS patterns may detect significant CAD when RWMA absent</td><td>Cutoffs −17.4% to −19.7% (sensitivity 51–81%, specificity 58–81%)</td></tr>
+      <tr><td>STEMI</td><td>Strain has no clear added value — ECG alone mandates intervention</td><td>—</td></tr>
+      <tr><td>Early phase post-PCI for AMI</td><td>LVGLS or SLS for predicting recovery, adverse remodeling, and outcomes</td><td>Proposed cutoffs −10% to −15% for adverse remodeling prediction</td></tr>
+      <tr><td>Long-term risk after AMI</td><td>Each 1% reduction in LVGLS → 34% increase in hazard ratio for adverse outcomes</td><td>Cutoffs −9.3% to −15.1% across studies</td></tr>
+      <tr><td>Dobutamine stress echo (viability)</td><td>LVGLS increase with low-dose dobutamine → functional recovery</td><td>Qualitative assessment; no firm cutoffs endorsed</td></tr>
+      <tr><td>Exercise / dobutamine stress</td><td>Postsystolic shortening (strain curve shape) preferred over quantitative peak strain</td><td>No universal cutoff for stress strain; curve shape analysis preferred</td></tr>
+    </table>
+    <div class="info-note amber" style="margin-top:10px;">⚠️ Postsystolic shortening is the hallmark of ischemia on strain curves — a sensitive but non-specific marker. STE has insufficient temporal resolution for reliable strain rate measurement at high heart rates. TDI-based strain rate may be more reliable in stress settings.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SPECIAL POPULATIONS ═══════════════════ -->
+<div id="panel-special-pop" class="tab-panel">
+  <div class="section-heading">Special Populations</div>
+
+  <div class="pop-item open" onclick="togglePop(this)">
+    <div class="pop-header"><span>🏃 Athletes — Athlete's Heart vs Cardiomyopathy</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <strong>Key concept:</strong> GLS is usually preserved in competitive athletes; if less negative than low-normal range for age/sex, suspect underlying cardiomyopathy.
+      <ul>
+        <li><strong>Strength-based sports:</strong> Increased LV wall thickness with preserved LVGLS — distinguish from HCM and infiltrative disease</li>
+        <li><strong>Endurance sports:</strong> Increased LV chamber volume with preserved LVGLS — distinguish from eccentric cardiomyopathies</li>
+        <li><strong>RV:</strong> RV dilation common in endurance athletes; RVFWLS relatively preserved vs age-matched general population. Contrast with ARVC and HCM where RVFWLS is frequently abnormal</li>
+        <li><strong>LA:</strong> LA strain NOT advised to differentiate athlete remodeling from cardiomyopathy/atriopathy — insufficient evidence</li>
+        <li><strong>ARVC differentiation:</strong> RVFWLS may provide incremental information when RV chamber parameters are abnormal</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>🧬 Hypertrophic Cardiomyopathy (HCM)</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li><strong>Neutral-variant HCM:</strong> Relatively impaired septal function with relatively preserved apical strain</li>
+        <li><strong>Apical HCM:</strong> Apical strain impairment; apical aneurysm variant shows apical dyskinesis</li>
+        <li><strong>RVFWLS frequently abnormal</strong> in HCM — incremental to chamber measurements</li>
+        <li><strong>LA strain:</strong> LASr impaired in HCM; higher in competitive athletes than HCM patients</li>
+        <li><strong>Follow-up:</strong> Serial LVGLS and RVFWLS monitoring advised in HCM</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>💊 Cardiac Amyloidosis</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <strong>Apical-sparing pattern of longitudinal strain is the hallmark:</strong>
+      <ul>
+        <li>Mean of apical segments &gt; 2× the mean of the rest of the heart = amyloidosis pattern</li>
+        <li>Pattern seen in both light-chain (AL) and transthyretin (ATTR) amyloidosis</li>
+        <li>When apical-sparing pattern is observed: perform <strong>nuclear scintigraphy</strong> (99mTc-HDP, 99mTc-PYP, or 99mTc-DPD) to confirm ATTR</li>
+        <li>Caution: ESRD can mimic apical-sparing pattern on strain</li>
+        <li>Also seen in low-flow AS — when apical-sparing noted in AS, screen for coexisting amyloidosis</li>
+        <li>GLS should always be obtained and reported in patients with increased LV mass</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>💓 Cardiac Resynchronization Therapy (CRT)</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li><strong>Visual assessment of septal flash and apical rocking</strong> may be sufficient to select candidates — potentially more accurate than current guideline criteria alone</li>
+        <li><strong>Strain curve shape analysis</strong> characterizes LBBB-induced dyssynchrony:
+          <ul>
+            <li>Early: Slight notch in septal strain when lateral wall contracts</li>
+            <li>Progressive: More pronounced septal notching</li>
+            <li>Advanced: Systolic septal stretching during lateral wall contraction</li>
+          </ul>
+        </li>
+        <li><strong>LVMD</strong> may help identify patients needing defibrillator therapy in CRT populations; not suited for detecting dyssynchrony amenable to CRT</li>
+        <li>Myocardial work indices (lateral-to-septal work difference) show promise for CRT response prediction — not yet endorsed for routine use</li>
+        <li>Beware: Pseudonormal septal strain pattern when lateral wall is dysfunctional (infarcted)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>♻️ Post-MI / Convalescent</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li>LVGLS and SLS patterns may diagnose significant CAD in non-STEMI even without RWMA</li>
+        <li>Postsystolic shortening and early systolic stretching are characteristic ischemic strain patterns</li>
+        <li>Ischemic memory: postsystolic shortening may persist even after resolution of ischemia</li>
+        <li><strong>LVMD elevated after MI</strong> → associated with ventricular arrhythmias and sudden cardiac death risk. Optimal cutoffs vary; hazard ratio 1.19 per 10ms increase in LVMD</li>
+        <li>RVFWLS independently predicts all-cause mortality post-AMI, incremental to LVEF, E/e′, and MR</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>🫀 Congenital Heart Disease (CHD)</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li><strong>Tetralogy of Fallot (repaired):</strong> RVFWLS quantifies RV function and predicts outcomes; serial monitoring advised. LVGLS (ventricular interaction) also associates with adverse outcomes</li>
+        <li><strong>Systemic RV (TGA atrial switch, ccTGA, Fontan):</strong> Use <em>RV GLS</em> (not RVFWLS) — septal contribution is critical to systemic output. Serial RV GLS advised</li>
+        <li><strong>PH in CHD / Eisenmenger:</strong> RVFWLS has prognostic significance; LVGLS also contributory</li>
+        <li><strong>Ebstein's anomaly:</strong> LVGLS &lt; −18% superior to LVEF for transplant-free survival prediction</li>
+        <li><strong>No accepted normative RV strain values</strong> for systemic RV, post-TOF repair, or Ebstein's — use with caution</li>
+        <li>LA/RA strain in CHD: emerging area; no robust evidence to support clinical use at this time</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>🫀 Childhood Cancer Survivors</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li>Significant reductions in LVGLS and LV global radial strain even with preserved LVEF after high-dose anthracyclines ± mediastinal radiation</li>
+        <li>RVFWLS detects subclinical RV abnormalities</li>
+        <li>Subclinical LV dysfunction identified in 1/3 of survivors with normal LVEF (St. Jude Lifetime Cohort, n=1,820)</li>
+        <li>Combined LVEF + LVGLS + LV diastolic function assessment is supported in adult survivors of childhood cancer</li>
+        <li>Strain should be incorporated in all follow-up echocardiographic exams in this population</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>💊 Hypertension, Diabetes, Obesity (Stage A/B HF)</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li>Impaired LVGLS in hypertension, diabetes, and obesity is prognostically important — associated with incident HF</li>
+        <li>Hypertensive pattern: predominant basal-to-midsegment strain impairment</li>
+        <li>Abnormal or borderline GLS + other echo abnormalities = Stage B HF marker</li>
+        <li>GLS not currently advised for screening of Stage A HF — no evidence it alters outcomes</li>
+        <li>Useful for recognition and monitoring of Stage B HF treatment</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>🌀 Atrial Fibrillation</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li><strong>Strain measurement in AF:</strong> average ≥3 consecutive cycles with approximately equal RR length; avoid single-cycle measurements</li>
+        <li>P-P gating cannot be used in AF — R-R gating required</li>
+        <li>LASr detects impaired reservoir function before atrial dilatation develops</li>
+        <li>LA fibrosis increases LA stiffness and worsens reservoir and contractile function — detectable by strain</li>
+        <li>LASr and RA strain (RASr) predict AF recurrence after cardioversion and catheter ablation; no vendor-specific cutoffs yet proposed for ablation recurrence</li>
+        <li>RA strain may be more predictive of AF recurrence than LA strain</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PITFALLS ═══════════════════ -->
+<div id="panel-pitfalls" class="tab-panel">
+  <div class="section-heading">Technical Pitfalls &amp; Clinical Advice</div>
+  <div class="info-note">Based on Table 2, Thomas et al. JASE 2025. Addressing these pitfalls is essential for accurate and reproducible strain measurements.</div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Foreshortening of Apical Windows</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Erroneously increases apical segmental strain values. Example: foreshortened GLS −20.8% vs optimal GLS −16.8% — clinically significant difference.</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>Avoid using foreshortened LV images for strain quantification. Ensure the true apex is visualized during acquisition before applying speckle tracking.</div>
+    </div>
+  </div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Poor Visualization / Endocardial Tracking</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Poor endocardial/myocardial tracking. Software may smooth out poor tracking without alerting the user — a major pitfall of STE.</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>Do not incorporate segments with poor image quality into global strain calculations. If more than 3 segments are uninterpretable, do not report LVGLS.</div>
+    </div>
+  </div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Excessively Large Myocardial ROI</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Underestimates strain values. Including the pericardium artificially lowers strain magnitude.</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>Ensure that only the full myocardial wall is included in the ROI. Avoid including pericardial tissue.</div>
+    </div>
+  </div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Excessively Small Myocardial ROI</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Overestimates strain values. In hypertrophic hearts, too-thin ROI reflects a subendocardial layer rather than full thickness. Example: too-thin ROI GLS −12.1% vs optimal −10.5%.</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>Particularly important in hypertrophic hearts — ensure inclusion of the full myocardial wall. ROI width should encompass the full wall thickness.</div>
+    </div>
+  </div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Local Abnormalities in Chamber Geometry</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Septal bulge or focal thickening causes radial strain to dominate, potentially resulting in net positive systolic strain from apical views.</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>Draw ROI in a straight, longitudinal direction, avoiding significant local bulges. If the thickening extends across more than one full segment, include the thickened region within the ROI.</div>
+    </div>
+  </div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Inaccurate End-Diastole / End-Systole Definition</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Either increases or decreases strain depending on where segmental curve peaks/troughs start and end in the cardiac cycle. Affects both end-systolic and peak-systolic measurements.</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>End-diastole (zero strain) should correspond to MVC. End-systole should correspond to AVC. Manually adjust timing by direct observation of mitral/aortic valve events or spectral Doppler if automated timing is incorrect.</div>
+    </div>
+  </div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Atrial Fibrillation — Single Cycle Measurement</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Over- or underestimation of strain values depending on the preceding filling phase (RR length).</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>Consider averaging several cycles, or measure the third of three consecutive cycles with approximately the same RR length.</div>
+    </div>
+  </div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Ventricular Ectopic Beats</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Over- or underestimation of strain values depending on the preceding filling phase.</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>Avoid performing strain analysis on immediate post-ectopic beats.</div>
+    </div>
+  </div>
+
+  <div class="pitfall-card">
+    <div class="pitfall-header">⚠️ Conventional 4-Chamber View for RVFWLS</div>
+    <div class="pitfall-body">
+      <div class="pitfall-col"><strong>Effect on Strain</strong>Underestimation of RVFWLS. The RV free wall segments most distant from the IVS undergo greatest longitudinal deformation and are best captured in the RV-focused view. Example: conventional 4Ch RVLS −18.8% vs RV-focused −21.9%.</div>
+      <div class="pitfall-col"><strong>Clinical Advice</strong>Always use the apical RV-focused four-chamber view for RVFWLS quantification. Lateral approach, scanning bed with apical cutout recommended for optimal positioning.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-heading">General Technical Best Practices</div>
+    <table class="param-table">
+      <tr><th>Parameter</th><th>Best Practice</th></tr>
+      <tr><td>Frame rate — LV/LA</td><td>50–90 fps</td></tr>
+      <tr><td>Frame rate — RV</td><td>60–90 fps</td></tr>
+      <tr><td>Frame rate — Stress echo</td><td>&gt;100 fps recommended (standard STE often inadequate at high HR)</td></tr>
+      <tr><td>Dedicated software</td><td>Use dedicated RV and atrial tracking software over LV-software adaptation — better feasibility and reproducibility</td></tr>
+      <tr><td>Serial comparison</td><td>Same vendor AND same software version for serial patient follow-up. Different vendors now acceptable "with care" given convergence.</td></tr>
+      <tr><td>End-systolic strain</td><td>Default reporting parameter — report at AVC, not peak systolic, unless explicitly stated</td></tr>
+      <tr><td>Sign convention</td><td>Keep negative sign for GLS. If omitting sign, use term "global longitudinal shortening."</td></tr>
+      <tr><td>Compare tracking to motion</td><td>During postprocessing, always verify that the speckle-tracking result matches the underlying myocardial motion — software may smooth areas of failed tracking</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ WHATS NEW ═══════════════════ -->
+<div id="panel-whats-new" class="tab-panel">
+  <div class="section-heading">2025 Updates — What Changed from 2011</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">New Normal Value Thresholds</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.81rem;">
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;">
+          <strong>LVGLS — Three-zone system (new):</strong>
+          <span style="color:#718096;"> Normal &gt;−18% / Borderline −16 to −18% / Abnormal &lt;−16%. Based on comprehensive meta-analysis of 23,208 adults (Morris et al., 2025).</span>
+        </div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;">
+          <strong>RVFWLS — Sex-specific LLN:</strong>
+          <span style="color:#718096;"> Men −20%; Women −21%. Endorsed for clinical use. Normal values are sex-specific but do NOT change with age.</span>
+        </div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;">
+          <strong>LASr — Clinically endorsed thresholds:</strong>
+          <span style="color:#718096;"> Normal 23–60%; Borderline 23–30%; LASr &lt;18% = elevated filling pressure (optimal cutoff, multicenter validation).</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Technical Updates</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.81rem;">
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;">
+          <strong>Midwall/full-thickness tracking endorsed:</strong>
+          <span style="color:#718096;"> Now the preferred approach. Most normative and clinical data use this method. Vendors encouraged to standardize accordingly.</span>
+        </div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;">
+          <strong>Intervendor convergence confirmed:</strong>
+          <span style="color:#718096;"> Third intervendor study (2025) showed gratifying convergence of strain measurements. Most vendors now support midwall/full-wall strain.</span>
+        </div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;">
+          <strong>Dedicated RV/LA software:</strong>
+          <span style="color:#718096;"> Use dedicated software over LV-software adaptation — comparable values but significantly better feasibility and reproducibility (Mirea et al., 2022).</span>
+        </div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;">
+          <strong>AI algorithms — conditional endorsement:</strong>
+          <span style="color:#718096;"> May be used clinically after demonstrating agreement with existing algorithms and regulatory approval. Rapid advancement expected.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">New Clinical Endorsements (not in 2011)</div>
+      <div style="display:flex;flex-direction:column;gap:7px;font-size:0.8rem;">
+        <div style="padding:8px 12px;background:#f0fff4;border-radius:7px;border-left:3px solid #276749;"><strong>LASr for filling pressure estimation</strong> — LASr &lt;18% endorsed as optimal cutoff for elevated PCWP</div>
+        <div style="padding:8px 12px;background:#f0fff4;border-radius:7px;border-left:3px solid #276749;"><strong>RVFWLS/PASP coupling ratio</strong> — validated noninvasive RV-PA coupling index; prognostic in PAH, TR, HFpEF, secondary MR</div>
+        <div style="padding:8px 12px;background:#f0fff4;border-radius:7px;border-left:3px solid #276749;"><strong>Amyloidosis pattern (apical sparing)</strong> — mean apex &gt;2× mean rest of heart → trigger nuclear scintigraphy</div>
+        <div style="padding:8px 12px;background:#f0fff4;border-radius:7px;border-left:3px solid #276749;"><strong>Cardio-oncology protocol standardized</strong> — 12% relative GLS decline = actionable (SUCCOUR trial); 15% = mild CTRCD (ESC/ICOS)</div>
+        <div style="padding:8px 12px;background:#f0fff4;border-radius:7px;border-left:3px solid #276749;"><strong>Asymptomatic severe AS</strong> — GLS &lt;−14.7% = 2.5× mortality risk (EACVI meta-analysis, 8 studies)</div>
+        <div style="padding:8px 12px;background:#f0fff4;border-radius:7px;border-left:3px solid #276749;"><strong>Valvular disease — supranormal GLS concept</strong> — in AR, TR, primary MR, GLS should be &gt;−20%; if less negative = contractile dysfunction despite normal EF</div>
+        <div style="padding:8px 12px;background:#f0fff4;border-radius:7px;border-left:3px solid #276749;"><strong>CRT dyssynchrony staging</strong> — four-stage LBBB-induced remodeling classification by strain curve shape</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Still NOT Endorsed (confirmed in 2025)</div>
+      <div style="display:flex;flex-direction:column;gap:7px;font-size:0.8rem;">
+        <div style="padding:8px 12px;background:#fff5f5;border-radius:7px;border-left:3px solid #742a2a;"><strong>Radial strain</strong> — poor intervendor performance; not endorsed</div>
+        <div style="padding:8px 12px;background:#fff5f5;border-radius:7px;border-left:3px solid #742a2a;"><strong>3D strain (routine)</strong> — lower resolution, variability; investigational</div>
+        <div style="padding:8px 12px;background:#fff5f5;border-radius:7px;border-left:3px solid #742a2a;"><strong>Layer-specific strain</strong> — no superiority demonstrated</div>
+        <div style="padding:8px 12px;background:#fff5f5;border-radius:7px;border-left:3px solid #742a2a;"><strong>Segmental strain cutoffs</strong> — too much test-retest and intervendor variability</div>
+        <div style="padding:8px 12px;background:#fff5f5;border-radius:7px;border-left:3px solid #742a2a;"><strong>Myocardial work indices (routine)</strong> — insufficient standardization; cutoff overlap with normal</div>
+        <div style="padding:8px 12px;background:#fff5f5;border-radius:7px;border-left:3px solid #742a2a;"><strong>RA strain (clinical use)</strong> — emerging; no robust evidence yet</div>
+        <div style="padding:8px 12px;background:#fff5f5;border-radius:7px;border-left:3px solid #742a2a;"><strong>SAHF screening by GLS</strong> — no evidence GLS-guided screening alters outcomes in asymptomatic Stage A HF</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:0;">
+    <div class="card-heading">Future Directions (Emerging — Not Yet Endorsed)</div>
+    <table class="param-table">
+      <tr><th>Technology</th><th>Current Status</th><th>Limiting Factor</th></tr>
+      <tr><td>3D Speckle-Tracking Strain</td><td>Investigational; full-volume 3D strain software improving</td><td>Lower temporal/spatial resolution; intervendor variability unacceptable for routine use</td></tr>
+      <tr><td>Multilayer Strain</td><td>Not endorsed — no added value demonstrated</td><td>Thin walls limit layer differentiation; interdependence of layer-specific GLS</td></tr>
+      <tr><td>Myocardial Work (PSL)</td><td>Promising for load-correction; CRT response; ischemia detection</td><td>Lack of standardization; cutoff overlap; valve timing sensitivity</td></tr>
+      <tr><td>AI-Based Strain</td><td>Several commercially cleared algorithms (FDA); deep learning correlation with experts r=0.91</td><td>Requires agreement with existing algorithms and regulatory approval per jurisdiction</td></tr>
+      <tr><td>Ultrafast / Plane-Wave STE</td><td>Research — frame rates ≥500 fps for strain rate measurement</td><td>Not yet clinically endorsed</td></tr>
+      <tr><td>RV Myocardial Work</td><td>Cannot be clinically advised — LV PSL algorithms applied off-label to RV geometry</td><td>Consequences of LV algorithm applied to RV geometry not established</td></tr>
+    </table>
+  </div>
+
+  <div class="citation-footer">
+    <strong>Citation:</strong> Thomas JD, Edvardsen T, Abraham T, et al. Clinical Applications of Strain Echocardiography: A Clinical Consensus Statement from the American Society of Echocardiography Developed in Collaboration with the European Association of Cardiovascular Imaging of the European Society of Cardiology. <em>J Am Soc Echocardiogr.</em> 2025. doi:10.1016/j.echo.2025.07.007
+    <br><br>
+    📄 <a href="https://www.asecho.org/guideline/" target="_blank">Download full guidelines from ASE website</a> &nbsp;|&nbsp;
+    <a href="https://doi.org/10.1016/j.echo.2025.07.007" target="_blank">DOI: 10.1016/j.echo.2025.07.007</a>
+    <br><br>
+    <em style="opacity:0.6;font-size:0.75rem;">This interactive tool is for educational and clinical reference purposes only. It does not replace clinical judgment. Always refer to the full guideline document for complete recommendations.</em>
+  </div>
+</div>
+
+<div class="disclaimer">
+  ⚠️ <strong>Clinical Disclaimer:</strong> This reference is based on the 2025 ASE/EACVI Strain Consensus Statement. Strain measurements are vendor-dependent — always use the same vendor for serial follow-up. Not a substitute for individual clinical judgment or complete guideline review.
+</div>
+
+</div><!-- end content -->
+
+<footer>
+  Strain Echocardiography &nbsp;·&nbsp; echoinfo.org &nbsp;·&nbsp; Created by Akhil Narang, MD
+</footer>
+
+<script>
+// Tab switching
+document.querySelectorAll('.main-nav button').forEach((btn, i) => {
+  const ids = ['normal-values','indications','by-condition','special-pop','pitfalls','whats-new'];
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.main-nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + ids[i]).classList.add('active');
+  });
+});
+
+function switchTab(id) {
+  const btns = document.querySelectorAll('.main-nav button');
+  const ids = ['normal-values','indications','by-condition','special-pop','pitfalls','whats-new'];
+  const idx = ids.indexOf(id);
+  btns.forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  if (idx >= 0) { btns[idx].classList.add('active'); document.getElementById('panel-' + id).classList.add('active'); }
+}
+
+function togglePop(el) { el.classList.toggle('open'); }
+</script>
+</body>
+</html>
