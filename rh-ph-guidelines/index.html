@@ -200,9 +200,30 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
 .wsph-group.open .wsph-group-body { display: block; }
 .wsph-chevron { font-size: 0.75rem; color: #718096; transition: transform 0.2s; }
 .wsph-group.open .wsph-chevron { transform: rotate(90deg); }
+
+  .home-bar {
+    background: white; border-bottom: 1px solid #e2e8f0;
+    padding: 8px 20px; display: flex; align-items: center;
+  }
+  .home-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: #2b6cb0; text-decoration: none; font-size: 0.82rem;
+    font-weight: 600; transition: color 0.15s;
+  }
+  .home-link:hover { color: #1a365d; }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+
+  .citation-footer { margin-top: 2rem; padding: 1.5rem 2rem; background: #1a365d; border-radius: 12px; color: rgba(255,255,255,0.7); font-size: 0.8rem; line-height: 1.6; }
+  .citation-footer strong { color: rgba(255,255,255,0.9); }
+  .citation-footer a { color: #f6ad55; text-decoration: none; }
+  .citation-footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
+<div class="home-bar">
+  <a class="home-link" href="https://echoinfo.org">Echo Info</a>
+</div>
+
 
 <header>
   <div class="icon">🫀</div>
@@ -212,12 +233,12 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
 </header>
 
 <nav class="main-nav">
-  <button class="active" onclick="switchTab('ph')">PH Probability</button>
-  <button onclick="switchTab('calculators')">Calculators</button>
-  <button onclick="switchTab('rv-function')">RV Function</button>
+  <button class="active" onclick="switchTab('rv-function')">RV Function</button>
   <button onclick="switchTab('reference')">Normal Values</button>
-  <button onclick="switchTab('phenotypes')">Pre vs Post-Capillary</button>
+  <button onclick="switchTab('calculators')">Calculators</button>
   <button onclick="switchTab('rap')">RAP Algorithm</button>
+  <button onclick="switchTab('ph')">PH Probability</button>
+  <button onclick="switchTab('phenotypes')">PH Groups</button>
   <button onclick="switchTab('wsph')">WSPH Groups</button>
   <button onclick="switchTab('whats-new')">2025 Updates</button>
 </nav>
@@ -225,7 +246,7 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
 <div class="content">
 
 <!-- ═══════════════════════════════════════════════════════ PH PROBABILITY ═══ -->
-<div id="panel-ph" class="tab-panel active">
+<div id="panel-ph" class="tab-panel">
   <div class="section-header">
     <h2>Echocardiographic PH Probability Assessment</h2>
     <p>Select TR peak velocity range, then check signs present from at least 2 of the 3 categories (A, B, C) to determine PH probability.</p>
@@ -423,7 +444,7 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ RV FUNCTION ═══ -->
-<div id="panel-rv-function" class="tab-panel">
+<div id="panel-rv-function" class="tab-panel active">
   <div class="section-header">
     <h2>RV Systolic Function — Graded Severity</h2>
     <p>All parameters are graded into severity ranges per 2025 ASE. Use multiple parameters; no single value is definitive.</p>
@@ -971,8 +992,17 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
 </div>
 </div>
 
+<div class="citation-footer">
+  <strong>Citation:</strong> Mukherjee M, Rudski LG, Addetia K, et al. Guidelines for the Echocardiographic Assessment of the Right Heart in Adults and Special Considerations in Pulmonary Hypertension: Recommendations from the American Society of Echocardiography. <em>J Am Soc Echocardiogr.</em> 2025;38:141–186.
+  <br><br>
+  📄 <a href="https://www.asecho.org/wp-content/uploads/2025/03/PIIS0894731725000379.pdf" target="_blank">Download full guidelines from ASE website</a> &nbsp;|&nbsp;
+  <a href="https://doi.org/10.1016/j.echo.2025.01.006" target="_blank">DOI: 10.1016/j.echo.2025.01.006</a>
+  <br><br>
+  <em style="opacity:0.6; font-size:0.77rem;">This interactive tool is for educational and clinical reference purposes only. It does not replace clinical judgment or individualized patient assessment. Always refer to the full guideline document for complete recommendations. Content © 2025 American Society of Echocardiography.</em>
+</div>
+
 <footer>
-  Right Heart &amp; PH Guidelines &nbsp;·&nbsp; akhilnarangmd.github.io &nbsp;·&nbsp; 2025 ASE Guidelines — Mukherjee et al., JASE 2025;38(3):141–186
+  Right Heart &amp; Pulmonary Hypertension &nbsp;·&nbsp; echoinfo.org &nbsp;·&nbsp; Created by Akhil Narang, MD
 </footer>
 
 <script>
