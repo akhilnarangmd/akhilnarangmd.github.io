@@ -450,6 +450,19 @@ footer { background: white; border-top: 1px solid #e2e8f0; padding: 16px; text-a
   <div class="section-heading">Special Populations</div>
 
   <div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>💊 Hypertension, Diabetes, Obesity (Stage A/B HF)</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li>Impaired LVGLS in hypertension, diabetes, and obesity is prognostically important — associated with incident HF</li>
+        <li>Hypertensive pattern: predominant basal-to-midsegment strain impairment</li>
+        <li>Abnormal or borderline GLS + other echo abnormalities = Stage B HF marker</li>
+        <li>GLS not currently advised for screening of Stage A HF — no evidence it alters outcomes</li>
+        <li>Useful for recognition and monitoring of Stage B HF treatment</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pop-item" onclick="togglePop(this)">
     <div class="pop-header"><span>🏃 Athletes — Athlete's Heart vs Cardiomyopathy</span><span class="pop-chevron">▶</span></div>
     <div class="pop-body">
       <strong>Key concept:</strong> GLS is usually preserved in competitive athletes; if less negative than low-normal range for age/sex, suspect underlying cardiomyopathy.
@@ -511,33 +524,6 @@ footer { background: white; border-top: 1px solid #e2e8f0; padding: 16px; text-a
   </div>
 
   <div class="pop-item" onclick="togglePop(this)">
-    <div class="pop-header"><span>♻️ Post-MI / Convalescent</span><span class="pop-chevron">▶</span></div>
-    <div class="pop-body">
-      <ul>
-        <li>LVGLS and SLS patterns may diagnose significant CAD in non-STEMI even without RWMA</li>
-        <li>Postsystolic shortening and early systolic stretching are characteristic ischemic strain patterns</li>
-        <li>Ischemic memory: postsystolic shortening may persist even after resolution of ischemia</li>
-        <li><strong>LVMD elevated after MI</strong> → associated with ventricular arrhythmias and sudden cardiac death risk. Optimal cutoffs vary; hazard ratio 1.19 per 10ms increase in LVMD</li>
-        <li>RVFWLS independently predicts all-cause mortality post-AMI, incremental to LVEF, E/e′, and MR</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="pop-item" onclick="togglePop(this)">
-    <div class="pop-header"><span>🫀 Congenital Heart Disease (CHD)</span><span class="pop-chevron">▶</span></div>
-    <div class="pop-body">
-      <ul>
-        <li><strong>Tetralogy of Fallot (repaired):</strong> RVFWLS quantifies RV function and predicts outcomes; serial monitoring advised. LVGLS (ventricular interaction) also associates with adverse outcomes</li>
-        <li><strong>Systemic RV (TGA atrial switch, ccTGA, Fontan):</strong> Use <em>RV GLS</em> (not RVFWLS) — septal contribution is critical to systemic output. Serial RV GLS advised</li>
-        <li><strong>PH in CHD / Eisenmenger:</strong> RVFWLS has prognostic significance; LVGLS also contributory</li>
-        <li><strong>Ebstein's anomaly:</strong> LVGLS &lt; −18% superior to LVEF for transplant-free survival prediction</li>
-        <li><strong>No accepted normative RV strain values</strong> for systemic RV, post-TOF repair, or Ebstein's — use with caution</li>
-        <li>LA/RA strain in CHD: emerging area; no robust evidence to support clinical use at this time</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="pop-item" onclick="togglePop(this)">
     <div class="pop-header"><span>🫀 Childhood Cancer Survivors</span><span class="pop-chevron">▶</span></div>
     <div class="pop-body">
       <ul>
@@ -551,14 +537,14 @@ footer { background: white; border-top: 1px solid #e2e8f0; padding: 16px; text-a
   </div>
 
   <div class="pop-item" onclick="togglePop(this)">
-    <div class="pop-header"><span>💊 Hypertension, Diabetes, Obesity (Stage A/B HF)</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-header"><span>♻️ Post-MI / Convalescent</span><span class="pop-chevron">▶</span></div>
     <div class="pop-body">
       <ul>
-        <li>Impaired LVGLS in hypertension, diabetes, and obesity is prognostically important — associated with incident HF</li>
-        <li>Hypertensive pattern: predominant basal-to-midsegment strain impairment</li>
-        <li>Abnormal or borderline GLS + other echo abnormalities = Stage B HF marker</li>
-        <li>GLS not currently advised for screening of Stage A HF — no evidence it alters outcomes</li>
-        <li>Useful for recognition and monitoring of Stage B HF treatment</li>
+        <li>LVGLS and SLS patterns may diagnose significant CAD in non-STEMI even without RWMA</li>
+        <li>Postsystolic shortening and early systolic stretching are characteristic ischemic strain patterns</li>
+        <li>Ischemic memory: postsystolic shortening may persist even after resolution of ischemia</li>
+        <li><strong>LVMD elevated after MI</strong> → associated with ventricular arrhythmias and sudden cardiac death risk. Optimal cutoffs vary; hazard ratio 1.19 per 10ms increase in LVMD</li>
+        <li>RVFWLS independently predicts all-cause mortality post-AMI, incremental to LVEF, E/e′, and MR</li>
       </ul>
     </div>
   </div>
@@ -579,7 +565,21 @@ footer { background: white; border-top: 1px solid #e2e8f0; padding: 16px; text-a
 </div>
 
 <!-- ═══════════════════ PITFALLS ═══════════════════ -->
-<div id="panel-pitfalls" class="tab-panel">
+<div class="pop-item" onclick="togglePop(this)">
+    <div class="pop-header"><span>🫀 Congenital Heart Disease (CHD)</span><span class="pop-chevron">▶</span></div>
+    <div class="pop-body">
+      <ul>
+        <li><strong>Tetralogy of Fallot (repaired):</strong> RVFWLS quantifies RV function and predicts outcomes; serial monitoring advised. LVGLS (ventricular interaction) also associates with adverse outcomes</li>
+        <li><strong>Systemic RV (TGA atrial switch, ccTGA, Fontan):</strong> Use <em>RV GLS</em> (not RVFWLS) — septal contribution is critical to systemic output. Serial RV GLS advised</li>
+        <li><strong>PH in CHD / Eisenmenger:</strong> RVFWLS has prognostic significance; LVGLS also contributory</li>
+        <li><strong>Ebstein's anomaly:</strong> LVGLS &lt; −18% superior to LVEF for transplant-free survival prediction</li>
+        <li><strong>No accepted normative RV strain values</strong> for systemic RV, post-TOF repair, or Ebstein's — use with caution</li>
+        <li>LA/RA strain in CHD: emerging area; no robust evidence to support clinical use at this time</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="panel-pitfalls" class="tab-panel">
   <div class="section-heading">Technical Pitfalls &amp; Clinical Advice</div>
   <div class="info-note">Based on Table 2, Thomas et al. JASE 2025. Addressing these pitfalls is essential for accurate and reproducible strain measurements.</div>
 
