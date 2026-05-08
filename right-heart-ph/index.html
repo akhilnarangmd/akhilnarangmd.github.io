@@ -1,1 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Right Heart & PH — 2025 ASE Guidelines</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f4f8; color: #1a202c; min-height: 100vh; line-height: 1.6; }
 
+/* ── Header ── */
+header { background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%); color: white; padding: 24px 20px; text-align: center; }
+header .icon { font-size: 2rem; margin-bottom: 6px; }
+header h1 { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 3px; }
+header p { font-size: 0.82rem; opacity: 0.8; }
+header .guideline-badge { display: inline-block; margin-top: 8px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 3px 14px; font-size: 0.72rem; letter-spacing: 0.05em; }
+
+/* ── Main Nav ── */
+.main-nav { background: white; border-bottom: 2px solid #e2e8f0; display: flex; justify-content: center; overflow-x: auto; padding: 14px 20px; gap: 8px; flex-wrap: wrap; }
+.main-nav button { padding: 9px 16px; border: 2px solid #cbd5e0; background: white; border-radius: 8px; font-size: 0.82rem; font-weight: 700; color: #718096; cursor: pointer; white-space: nowrap; transition: all 0.2s; font-family: inherit; }
+.main-nav button.active { background: #1a365d; border-color: #1a365d; color: white; box-shadow: 0 2px 8px rgba(26,54,93,0.25); }
+.main-nav button:hover:not(.active) { border-color: #2b6cb0; color: #2b6cb0; background: #ebf8ff; }
+
+/* ── Layout ── */
+.content { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Section headers ── */
+.section-header { margin-bottom: 20px; }
+.section-header h2 { font-size: 1.25rem; font-weight: 700; color: #1a365d; margin-bottom: 4px; }
+.section-header p { font-size: 0.83rem; color: #718096; }
+
+/* ── Cards ── */
+.card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); padding: 20px; margin-bottom: 16px; }
+.card-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #a0aec0; margin-bottom: 4px; }
+.card-heading { font-size: 1rem; font-weight: 700; color: #1a365d; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0; }
+.card-subheading { font-size: 0.85rem; font-weight: 700; color: #2d3748; margin: 14px 0 8px; }
+
+/* ── Grid layouts ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+@media (max-width: 800px) { .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; } }
+@media (min-width: 801px) and (max-width: 1000px) { .grid-3 { grid-template-columns: 1fr 1fr; } .grid-4 { grid-template-columns: 1fr 1fr; } }
+.full { grid-column: 1 / -1; }
+
+/* ── Parameter tables ── */
+.param-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 8px; }
+.param-table th { background: #1a365d; color: white; padding: 8px 10px; text-align: left; font-size: 0.75rem; font-weight: 600; }
+.param-table th:first-child { border-radius: 6px 0 0 0; }
+.param-table th:last-child { border-radius: 0 6px 0 0; }
+.param-table td { padding: 7px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: middle; }
+.param-table tr:last-child td { border-bottom: none; }
+.param-table tr:nth-child(even) td { background: #f7fafc; }
+.param-table .val { font-family: 'SF Mono','Fira Code',monospace; font-weight: 600; color: #1a365d; }
+.param-table .val.normal { color: #276749; }
+.param-table .val.mild { color: #744210; }
+.param-table .val.moderate { color: #c05621; }
+.param-table .val.severe { color: #742a2a; }
+.param-table .label { font-weight: 600; color: #2d3748; }
+
+/* ── Severity badges ── */
+.badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+.badge-normal { background: #c6f6d5; color: #22543d; }
+.badge-mild { background: #fefcbf; color: #744210; }
+.badge-moderate { background: #feebc8; color: #c05621; }
+.badge-severe { background: #fed7d7; color: #742a2a; }
+.badge-high { background: #fed7d7; color: #742a2a; }
+.badge-intermediate { background: #fefcbf; color: #744210; }
+.badge-low { background: #c6f6d5; color: #22543d; }
+.badge-blue { background: #ebf8ff; color: #2c5282; }
+.badge-purple { background: #e9d8fd; color: #44337a; }
+
+/* ── Info notes ── */
+.info-note { font-size: 0.78rem; color: #744210; background: #fffaf0; border: 1px solid #fbd38d; border-radius: 6px; padding: 9px 12px; margin-bottom: 14px; }
+.info-note.blue { color: #2c5282; background: #ebf8ff; border-color: #bee3f8; }
+.info-note.green { color: #22543d; background: #f0fff4; border-color: #9ae6b4; }
+.info-note.red { color: #742a2a; background: #fff5f5; border-color: #fc8181; }
+
+/* ── Formula boxes ── */
+.formula { background: #ebf8ff; border: 1px solid #bee3f8; border-left: 3px solid #2b6cb0; border-radius: 6px; padding: 12px 14px; font-family: 'SF Mono','Fira Code',monospace; font-size: 0.78rem; color: #2c5282; line-height: 1.9; margin: 12px 0; }
+
+/* ── Key-value pairs ── */
+.kv-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f0f4f8; font-size: 0.82rem; flex-wrap: wrap; }
+.kv-row:last-child { border-bottom: none; }
+.kv-label { color: #4a5568; flex: 1; min-width: 140px; }
+.kv-value { font-family: 'SF Mono','Fira Code',monospace; font-weight: 700; color: #1a365d; text-align: right; }
+
+/* ── PH Probability tool ── */
+.ph-probability-box { padding: 20px; border-radius: 10px; border: 2px solid #e2e8f0; text-align: center; margin-top: 16px; transition: all 0.3s; }
+.ph-probability-box.low { border-color: #9ae6b4; background: #f0fff4; }
+.ph-probability-box.intermediate { border-color: #faf089; background: #fffff0; }
+.ph-probability-box.high { border-color: #fc8181; background: #fff5f5; }
+.ph-prob-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #718096; margin-bottom: 4px; }
+.ph-prob-value { font-size: 1.8rem; font-weight: 800; line-height: 1.2; }
+.ph-prob-value.low { color: #22543d; }
+.ph-prob-value.intermediate { color: #744210; }
+.ph-prob-value.high { color: #742a2a; }
+.ph-prob-note { font-size: 0.77rem; color: #4a5568; margin-top: 6px; }
+
+/* ── Checkbox groups ── */
+.check-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; background: white; border: 1.5px solid #e2e8f0; border-radius: 7px; cursor: pointer; transition: all 0.15s; font-size: 0.82rem; }
+.check-item:hover { border-color: #2b6cb0; }
+.check-item input[type=checkbox] { accent-color: #2b6cb0; width: 15px; height: 15px; margin-top: 2px; flex-shrink: 0; cursor: pointer; }
+.check-item.checked { background: #ebf8ff; border-color: #2b6cb0; }
+.check-item label { cursor: pointer; line-height: 1.4; }
+.check-item label strong { display: block; color: #1a202c; }
+.check-item label span { color: #718096; font-size: 0.75rem; }
+
+/* ── Category headers for PH tool ── */
+.cat-header { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 6px 12px; border-radius: 6px; margin: 10px 0 6px; }
+.cat-a { background: #ebf8ff; color: #2c5282; }
+.cat-b { background: #f0fff4; color: #1c4532; }
+.cat-c { background: #faf5ff; color: #44337a; }
+
+/* ── TRV selector ── */
+.trv-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.trv-option { padding: 8px 16px; border: 2px solid #cbd5e0; border-radius: 8px; font-size: 0.82rem; font-weight: 700; color: #718096; cursor: pointer; transition: all 0.15s; font-family: inherit; background: white; }
+.trv-option.selected { background: #1a365d; border-color: #1a365d; color: white; }
+.trv-option:hover:not(.selected) { border-color: #2b6cb0; color: #2b6cb0; }
+
+/* ── Divider ── */
+.divider { border: none; border-top: 1px solid #e2e8f0; margin: 16px 0; }
+
+/* ── Flow diagram for RAP ── */
+.flow-node { padding: 10px 14px; border-radius: 8px; font-size: 0.82rem; text-align: center; border: 1.5px solid; margin: 4px 0; }
+.flow-node.question { background: #ebf8ff; border-color: #2b6cb0; color: #1a365d; font-weight: 600; }
+.flow-node.result-normal { background: #f0fff4; border-color: #276749; color: #22543d; font-weight: 700; }
+.flow-node.result-elevated { background: #fff5f5; border-color: #742a2a; color: #742a2a; font-weight: 700; }
+.flow-node.result-intermediate { background: #fffaf0; border-color: #744210; color: #744210; font-weight: 700; }
+.flow-arrow { text-align: center; color: #718096; font-size: 1.1rem; padding: 2px 0; }
+.flow-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+/* ── Phenotype cards ── */
+.phenotype-card { border-radius: 10px; padding: 16px; border: 1.5px solid; margin-bottom: 12px; }
+.phenotype-card.pre { border-color: #bee3f8; background: #ebf8ff; }
+.phenotype-card.post { border-color: #faf089; background: #fffff0; }
+.phenotype-card.group3 { border-color: #9ae6b4; background: #f0fff4; }
+.phenotype-card.group4 { border-color: #d6bcfa; background: #faf5ff; }
+.phenotype-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; }
+.phenotype-card.pre h4 { color: #2c5282; }
+.phenotype-card.post h4 { color: #744210; }
+.phenotype-card.group3 h4 { color: #276749; }
+.phenotype-card.group4 h4 { color: #44337a; }
+.phenotype-card ul { list-style: none; padding: 0; }
+.phenotype-card li { font-size: 0.79rem; color: #4a5568; padding: 3px 0; padding-left: 16px; position: relative; }
+.phenotype-card li::before { content: '•'; position: absolute; left: 4px; color: inherit; }
+
+/* ── Highlighted stat cards ── */
+.stat-card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; padding: 16px; text-align: center; }
+.stat-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #a0aec0; margin-bottom: 6px; }
+.stat-value { font-size: 1.6rem; font-weight: 800; font-family: 'SF Mono','Fira Code',monospace; color: #1a365d; line-height: 1; margin-bottom: 4px; }
+.stat-desc { font-size: 0.72rem; color: #718096; }
+.stat-card.alert .stat-value { color: #742a2a; }
+.stat-card.warn .stat-value { color: #744210; }
+.stat-card.ok .stat-value { color: #276749; }
+
+/* ── New 2025 change pills ── */
+.change-pill { display: inline-flex; align-items: center; gap: 6px; background: #fff5f5; border: 1px solid #fc8181; border-radius: 999px; padding: 2px 10px; font-size: 0.68rem; font-weight: 700; color: #742a2a; margin: 2px; }
+.change-pill.blue { background: #ebf8ff; border-color: #bee3f8; color: #2c5282; }
+
+/* ── RVSP calculator ── */
+.calc-input-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.calc-input-row label { font-size: 0.82rem; font-weight: 600; color: #2d3748; min-width: 160px; }
+.calc-input-wrap { display: flex; align-items: center; border: 1.5px solid #cbd5e0; border-radius: 7px; overflow: hidden; background: white; flex: 1; }
+.calc-input-wrap:focus-within { border-color: #2b6cb0; }
+.calc-input-wrap input { flex: 1; padding: 7px 10px; border: none; outline: none; font-family: 'SF Mono','Fira Code',monospace; font-size: 0.9rem; background: transparent; }
+.calc-unit { padding: 7px 10px; background: #f7fafc; font-size: 0.72rem; font-weight: 600; color: #718096; border-left: 1px solid #e2e8f0; white-space: nowrap; }
+.calc-select { flex: 1; padding: 7px 10px; border: none; outline: none; font-size: 0.88rem; background: transparent; font-family: inherit; }
+.btn-calc { padding: 10px 24px; background: linear-gradient(135deg, #2b6cb0, #1e4e8c); color: white; border: none; border-radius: 7px; font-size: 0.88rem; font-weight: 600; cursor: pointer; margin-top: 8px; font-family: inherit; transition: opacity 0.15s; }
+.btn-calc:hover { opacity: 0.88; }
+.btn-clear { padding: 10px 16px; background: white; border: 1.5px solid #cbd5e0; border-radius: 7px; font-size: 0.82rem; color: #718096; cursor: pointer; margin-top: 8px; margin-left: 6px; font-family: inherit; }
+.calc-result { margin-top: 12px; padding: 14px 16px; border-radius: 8px; display: none; }
+.calc-result.show { display: block; }
+.calc-result.normal { background: #f0fff4; border-left: 4px solid #276749; }
+.calc-result.elevated { background: #fff5f5; border-left: 4px solid #742a2a; }
+.calc-result.moderate-el { background: #fffaf0; border-left: 4px solid #744210; }
+.calc-result.info { background: #ebf8ff; border-left: 4px solid #2b6cb0; }
+.calc-result-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #718096; margin-bottom: 4px; }
+.calc-result-value { font-size: 2rem; font-weight: 800; font-family: 'SF Mono','Fira Code',monospace; color: #1a365d; line-height: 1; }
+.calc-result-sub { font-size: 0.78rem; color: #4a5568; margin-top: 4px; }
+
+/* ── Coupling result ── */
+.coupling-result { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; }
+.coupling-result.coupled { background: #f0fff4; color: #276749; border: 1px solid #9ae6b4; }
+.coupling-result.borderline { background: #fffaf0; color: #744210; border: 1px solid #fbd38d; }
+.coupling-result.uncoupled { background: #fff5f5; color: #742a2a; border: 1px solid #fc8181; }
+
+/* ── Misc ── */
+.disclaimer { background: #fffaf0; border: 1px solid #fbd38d; border-radius: 8px; padding: 12px 16px; font-size: 0.77rem; color: #744210; margin-top: 20px; }
+footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; border-top: 1px solid #e2e8f0; background: white; margin-top: 32px; }
+.wsph-group { border-radius: 8px; padding: 12px 14px; border: 1px solid #e2e8f0; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+.wsph-group:hover { border-color: #2b6cb0; }
+.wsph-group.open { border-color: #2b6cb0; background: #f7fafc; }
+.wsph-group-header { display: flex; justify-content: space-between; align-items: center; }
+.wsph-group-title { font-size: 0.88rem; font-weight: 700; color: #1a365d; }
+.wsph-group-body { margin-top: 10px; font-size: 0.79rem; color: #4a5568; line-height: 1.6; display: none; }
+.wsph-group.open .wsph-group-body { display: block; }
+.wsph-chevron { font-size: 0.75rem; color: #718096; transition: transform 0.2s; }
+.wsph-group.open .wsph-chevron { transform: rotate(90deg); }
+
+  .home-bar {
+    background: white; border-bottom: 1px solid #e2e8f0;
+    padding: 8px 20px; display: flex; align-items: center;
+  }
+  .home-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: #2b6cb0; text-decoration: none; font-size: 0.82rem;
+    font-weight: 600; transition: color 0.15s;
+  }
+  .home-link:hover { color: #1a365d; }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+
+  .citation-footer { margin-top: 2rem; padding: 1.5rem 2rem; background: #1a365d; border-radius: 12px; color: rgba(255,255,255,0.7); font-size: 0.8rem; line-height: 1.6; }
+  .citation-footer strong { color: rgba(255,255,255,0.9); }
+  .citation-footer a { color: #f6ad55; text-decoration: none; }
+  .citation-footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="home-bar">
+  <a class="home-link" href="https://echoinfo.org">Echo Info</a>
+</div>
+
+
+<header>
+  <div class="icon">🫀</div>
+  <h1>Right Heart &amp; Pulmonary Hypertension</h1>
+  <p>2025 ASE Guidelines — Echocardiographic Assessment</p>
+  <div class="guideline-badge">JASE 2025 · Mukherjee et al. · DOI 10.1016/j.echo.2025.01.006</div>
+</header>
+
+<nav class="main-nav">
+  <button class="active" onclick="switchTab('rv-function')">RV Function</button>
+  <button onclick="switchTab('reference')">Normal Values</button>
+  <button onclick="switchTab('calculators')">Calculators</button>
+  <button onclick="switchTab('rap')">RAP Algorithm</button>
+  <button onclick="switchTab('ph')">PH Probability</button>
+  <button onclick="switchTab('phenotypes')">PH Groups</button>
+  <button onclick="switchTab('wsph')">WSPH Groups</button>
+  <button onclick="switchTab('whats-new')">2025 Updates</button>
+</nav>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════════════════════ RV FUNCTION ═══ -->
+<div id="panel-rv-function" class="tab-panel active">
+  <div class="section-header">
+    <h2>RV Systolic Function — Graded Severity</h2>
+    <p>All parameters are graded into severity ranges per 2025 ASE. Use multiple parameters; no single value is definitive.</p>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="stat-card ok"><div class="stat-label">TAPSE Normal</div><div class="stat-value">&gt;1.7</div><div class="stat-desc">cm</div></div>
+    <div class="stat-card ok"><div class="stat-label">TDI S′ Normal</div><div class="stat-value">&gt;9.5</div><div class="stat-desc">cm/s</div></div>
+    <div class="stat-card ok"><div class="stat-label">FAC Normal</div><div class="stat-value">&gt;35</div><div class="stat-desc">%</div></div>
+    <div class="stat-card ok"><div class="stat-label">3D RVEF Normal</div><div class="stat-value">&gt;45</div><div class="stat-desc">%</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">RV Systolic Function — Graded Severity</div>
+      <table class="param-table">
+        <tr><th>Parameter</th><th>Normal</th><th>Mild ↓</th><th>Moderate ↓</th><th>Severe ↓</th></tr>
+        <tr><td class="label">TAPSE (cm)</td><td class="val normal">&gt;1.7</td><td class="val mild">1.3–1.7</td><td class="val moderate">1.0–1.3</td><td class="val severe">≤1.0</td></tr>
+        <tr><td class="label">TDI S′ (cm/s)</td><td class="val normal">&gt;9.5</td><td class="val mild">7.2–9.5</td><td class="val moderate">5.0–7.2</td><td class="val severe">≤5.0</td></tr>
+        <tr><td class="label">FAC (%)</td><td class="val normal">&gt;35</td><td class="val mild">29–35</td><td class="val moderate">22–29</td><td class="val severe">≤22</td></tr>
+        <tr><td class="label">3D RVEF (%)</td><td class="val normal">&gt;45</td><td class="val mild">39–45</td><td class="val moderate">32–39</td><td class="val severe">&lt;32</td></tr>
+        <tr><td class="label">RVFWS (%)</td><td class="val normal">&gt;−20</td><td class="val mild">−15 to −20</td><td class="val moderate">−11 to −15</td><td class="val severe">&lt;−11</td></tr>
+        <tr><td class="label">RVGLS (%)</td><td class="val normal">&gt;−17</td><td class="val mild">−13 to −17</td><td class="val moderate">−9 to −13</td><td class="val severe">≤−9</td></tr>
+        <tr><td class="label">MPI — TDI</td><td class="val normal">&lt;0.55</td><td class="val mild">0.55–0.62</td><td class="val moderate">0.62–0.70</td><td class="val severe">≥0.70</td></tr>
+        <tr><td class="label">MPI — PW</td><td class="val normal">&lt;0.40</td><td class="val mild">0.40–0.49</td><td class="val moderate">0.49–0.57</td><td class="val severe">≥0.57</td></tr>
+        <tr><td class="label">RVOT VTI (cm)</td><td class="val normal">&gt;18</td><td colspan="3" style="color:#718096;font-size:0.76rem;">Reduced VTI = reduced SV</td></tr>
+        <tr><td class="label">RVOT AccT (ms)</td><td class="val normal">&gt;105</td><td class="val mild">80–105</td><td class="val moderate">60–80</td><td class="val severe">≤60</td></tr>
+        <tr><td class="label">RV dP/dt (mm Hg/s)</td><td class="val normal">&gt;400</td><td colspan="3" style="color:#718096;font-size:0.76rem;">&lt;400 = reduced — load-dependent</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">RV Diastolic Function — Two Contexts</div>
+      <div class="info-note blue" style="margin-bottom:10px;">📖 The guideline provides two separate frameworks: (1) Table 1 grades deceleration time by severity; (2) Table 6 classifies diastolic pattern (impaired/pseudonormal/restrictive). These are distinct uses — the table below shows the pattern classification (Table 6).</div>
+      <table class="param-table">
+        <tr><th>Parameter</th><th>Normal</th><th>Impaired Relaxation</th><th>Pseudonormal</th><th>Restrictive</th></tr>
+        <tr><td class="label">E/A ratio</td><td class="val">0.8–&lt;2.0</td><td class="val">&lt;0.8</td><td class="val">0.8–2.1</td><td class="val severe">&gt;2.1</td></tr>
+        <tr><td class="label">DT (ms) — Pattern (Table 6)</td><td class="val">120–230</td><td class="val">&gt;230</td><td class="val">120–230</td><td class="val severe">&lt;120</td></tr>
+        <tr><td class="label">e′/a′ ratio</td><td class="val">0.5–&lt;1.8</td><td class="val">&lt;1.0</td><td class="val">&lt;1.0</td><td class="val severe">&lt;1.0</td></tr>
+        <tr><td class="label">E/e′</td><td class="val normal">&lt;6.0</td><td class="val">6.0–7.3</td><td class="val moderate">7.3–8.4</td><td class="val severe">≥8.5</td></tr>
+        <tr><td class="label">IVRT (ms)</td><td class="val normal">≤73</td><td class="val">&gt;73</td><td class="val">&gt;73</td><td class="val">&gt;73</td></tr>
+        <tr><td class="label">HV S/D ratio</td><td class="val normal">≥1</td><td class="val">≥1</td><td class="val moderate">&lt;1</td><td class="val severe">&lt;1</td></tr>
+        <tr><td class="label">PA diastolic antegrade</td><td class="val">No</td><td class="val">No</td><td class="val">Yes</td><td class="val severe">Yes</td></tr>
+      </table>
+      <div style="margin-top:10px;font-size:0.79rem;color:#4a5568;background:#f7fafc;border-radius:6px;padding:10px 12px;">
+        <strong>DT graded severity (Table 1):</strong> Normal 120–230 ms · Mild 87–&lt;120 ms · Moderate 57–&lt;87 ms · Severe ≤57 ms<br/>
+        <strong>e′/a′ graded severity (Table 1):</strong> Normal 0.5–&lt;1.8 · Mildly abnormal 1.8–2.1 · Moderate &gt;2.1–2.4 · Severe ≥2.5
+      </div>
+
+      <div class="divider"></div>
+      <div class="card-subheading">RV Remodeling Stages in PH</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
+          <strong style="color:#276749;">Adaptive</strong><br/>
+          <span style="color:#4a5568;">Concentric RVH · Minimal dilation · Preserved RVEF and CO · Normal filling pressures · Preserved exercise capacity</span>
+        </div>
+        <div style="background:#fffaf0;border-left:3px solid #744210;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
+          <strong style="color:#744210;">Maladaptive</strong><br/>
+          <span style="color:#4a5568;">Chamber dilation (mid-cavity before basal) · Crescentic → spherical shape · Reduced mass · Fibrosis · Decreased function · Leftward apical traction</span>
+        </div>
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
+          <strong style="color:#742a2a;">RV-PA Uncoupling</strong><br/>
+          <span style="color:#4a5568;">Contractile failure · Congestive RH failure · Restrictive diastolic dysfunction · TVA dilation → significant FTR · Ventricular interdependence and dyssynchrony</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TR Grading -->
+  <div class="card" style="margin-top:0;">
+    <div class="card-heading">TR Severity Grading — Integrative (2025 ASE)</div>
+    <div class="info-note blue">📖 Massive and Torrential categories added in 2025. ~60% of PAH patients have moderate-severe TR. V-wave cutoff sign (triangular CW contour) invalidates Bernoulli — do not use for RVSP in this setting.</div>
+    <table class="param-table">
+      <tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th><th>Massive</th><th>Torrential</th></tr>
+      <tr><td class="label">Vena contracta width (mm)</td><td class="val">&lt;3</td><td class="val">3–6.9</td><td class="val severe">≥7</td><td class="val severe">14–20</td><td class="val severe">≥21</td></tr>
+      <tr><td class="label">EROA-PISA (mm²)</td><td class="val">&lt;20</td><td class="val">20–39</td><td class="val severe">≥40</td><td class="val severe">60–79</td><td class="val severe">≥80</td></tr>
+      <tr><td class="label">Regurgitant volume (mL)</td><td class="val">&lt;30</td><td class="val">30–44</td><td class="val severe">≥45</td><td class="val severe">60–74</td><td class="val severe">≥75</td></tr>
+      <tr><td class="label">3D vena contracta area (cm²)</td><td class="val">&lt;0.40</td><td class="val">0.40–0.59</td><td class="val severe">≥0.60</td><td colspan="2" style="color:#718096;font-size:0.76rem;">Not separately graded</td></tr>
+      <tr><td class="label">PISA radius @ Va 28 cm/s (mm)</td><td class="val">&lt;5</td><td class="val">6–8.9</td><td class="val severe">≥9</td><td colspan="2" style="color:#718096;font-size:0.76rem;">—</td></tr>
+      <tr><td class="label">Hepatic vein flow</td><td class="val">Systolic dominant</td><td class="val">Systolic blunting</td><td class="val severe">Systolic reversal</td><td class="val severe">Reversal</td><td class="val severe">Reversal</td></tr>
+      <tr><td class="label">Tricuspid inflow E velocity</td><td class="val">A-dominant</td><td class="val">Variable</td><td class="val severe">E ≥1.0 m/s</td><td colspan="2" style="color:#718096;font-size:0.76rem;">E-dominant</td></tr>
+      <tr><td class="label">CW Doppler contour</td><td class="val">Soft, parabolic</td><td class="val">Dense parabolic</td><td class="val severe">Dense triangular, early peak</td><td colspan="2" style="color:#718096;font-size:0.76rem;">Dense triangular</td></tr>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ PH PROBABILITY ═══ -->
+<div id="panel-ph" class="tab-panel">
+  <div class="section-header">
+    <h2>Echocardiographic PH Probability Assessment</h2>
+    <p>Select TR peak velocity range, then check signs present from at least 2 of the 3 categories (A, B, C) to determine PH probability.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Step 1</div>
+      <div class="card-heading">Peak TR Velocity</div>
+      <div class="trv-options">
+        <button class="trv-option" onclick="selectTRV(this,'low')" data-trv="low">&lt;2.8 m/s<br/><span style="font-size:0.7rem;font-weight:400">or not measurable</span></button>
+        <button class="trv-option" onclick="selectTRV(this,'low28')" data-trv="low28">2.8 m/s<br/><span style="font-size:0.7rem;font-weight:400">borderline — signs matter</span></button>
+        <button class="trv-option" onclick="selectTRV(this,'mid')" data-trv="mid">2.9–3.4 m/s</button>
+        <button class="trv-option" onclick="selectTRV(this,'high')" data-trv="high">&gt;3.4 m/s</button>
+      </div>
+
+      <div class="card-title" style="margin-top:14px;">Step 2 — Category A: Ventricles</div>
+      <div class="cat-header cat-a">A — Ventricular Signs <span style="font-size:0.7rem;font-weight:400;color:#718096;">(formal guideline criteria)</span></div>
+      <div class="check-group" id="cat-a">
+        <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>RV/LV basal diameter ratio &gt;1.0</strong><span>RV-focused apical 4-chamber</span></label></label>
+        <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>LV eccentricity index (LVEI) &gt;1.1</strong><span>PSAX at papillary muscle level — systole and/or diastole</span></label></label>
+      </div>
+      <div style="font-size:0.72rem;font-weight:700;color:#718096;text-transform:uppercase;letter-spacing:0.06em;margin:6px 0 4px;padding-left:4px;">Supportive / Prognostic (not formal probability criteria)</div>
+      <div class="check-group">
+        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>TAPSE/PASP &lt;0.55 mm/mm Hg</strong><span>RV-PA coupling — prognostic, not in formal probability matrix</span></label></label>
+        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>RV free-wall strain &gt;−20%</strong><span>Prognostic marker — not in formal ESC/ASE probability criteria</span></label></label>
+      </div>
+
+      <div class="cat-header cat-b">B — Pulmonary Artery Signs <span style="font-size:0.7rem;font-weight:400;color:#718096;">(formal guideline criteria)</span></div>
+      <div class="check-group" id="cat-b">
+        <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>Mid-systolic RVOT notching ("W sign")</strong><span>PSAX PA-bifurcation view — high PVR marker</span></label></label>
+        <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>End-diastolic PR velocity &gt;2.2 m/s</strong><span>PSAX, CW Doppler at pulmonic valve</span></label></label>
+      </div>
+      <div style="font-size:0.72rem;font-weight:700;color:#718096;text-transform:uppercase;letter-spacing:0.06em;margin:6px 0 4px;padding-left:4px;">Supportive (not in formal probability criteria)</div>
+      <div class="check-group">
+        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>PA diameter &gt;25 mm</strong><span>Supportive — non-specific, seen across all WSPH groups</span></label></label>
+        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>PA/Aorta ratio ≥1.0</strong><span>Supportive — adjunctive finding</span></label></label>
+        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>RVOT AccT &lt;105 ms</strong><span>Supportive — also used for mPAP estimation</span></label></label>
+      </div>
+
+      <div class="cat-header cat-c">C — IVC and RA Signs <span style="font-size:0.7rem;font-weight:400;color:#718096;">(formal guideline criteria)</span></div>
+      <div class="check-group" id="cat-c">
+        <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>IVC &gt;21 mm with decreased inspiratory collapse</strong><span>Subcostal long-axis — &lt;50% sniff or &lt;20% quiet respiration</span></label></label>
+        <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>RA area &gt;18 cm²</strong><span>RA-focused view, end-systole</span></label></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Result</div>
+      <div class="card-heading">PH Probability</div>
+
+      <div class="ph-probability-box" id="ph-result-box">
+        <div class="ph-prob-label">Select TR velocity to begin</div>
+        <div class="ph-prob-value" id="ph-prob-value" style="color:#a0aec0;">—</div>
+        <div class="ph-prob-note" id="ph-prob-note"></div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="card-subheading">Probability Matrix</div>
+      <table class="param-table">
+        <tr><th>Peak TRV</th><th>Other Signs</th><th>Probability</th></tr>
+        <tr><td>&lt;2.8 m/s or N/M</td><td>None</td><td><span class="badge badge-low">Low</span></td></tr>
+        <tr><td>&lt;2.8 m/s or N/M</td><td>Present (≥2 categories)</td><td><span class="badge badge-intermediate">Intermediate</span></td></tr>
+        <tr><td>2.8 m/s</td><td>Present (≥2 categories)</td><td><span class="badge badge-intermediate">Intermediate</span></td></tr>
+        <tr><td>2.9–3.4 m/s</td><td>None</td><td><span class="badge badge-intermediate">Intermediate</span></td></tr>
+        <tr><td>2.9–3.4 m/s</td><td>Present (≥2 categories)</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>&gt;3.4 m/s</td><td>Any</td><td><span class="badge badge-high">High</span></td></tr>
+      </table>
+
+      <div class="divider"></div>
+      <div class="card-subheading">PH Definition (2025)</div>
+      <div class="kv-row"><span class="kv-label">PH (any) — invasive</span><span class="kv-value">mPAP &gt;20 mm Hg</span></div>
+      <div class="kv-row"><span class="kv-label">Pre-capillary PH</span><span class="kv-value">mPAP &gt;20 + PCWP ≤15 + PVR &gt;2 WU</span></div>
+      <div class="kv-row"><span class="kv-label">Isolated post-capillary</span><span class="kv-value">mPAP &gt;20 + PCWP &gt;15 + PVR ≤2 WU</span></div>
+      <div class="kv-row"><span class="kv-label">Combined pre+post-capillary</span><span class="kv-value">mPAP &gt;20 + PCWP &gt;15 + PVR &gt;2 WU</span></div>
+      <div class="info-note" style="margin-top:12px;">⚠️ Echo assigns probability only. Definitive PH diagnosis requires invasive right heart catheterization.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ CALCULATORS ═══ -->
+<div id="panel-calculators" class="tab-panel">
+  <div class="section-header">
+    <h2>Hemodynamic Calculators</h2>
+    <p>Based on 2025 ASE-recommended formulas. All values are estimates — invasive measurement is the gold standard.</p>
+  </div>
+
+  <div class="grid-2">
+    <!-- RVSP -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">RVSP / PASP</div>
+      <div class="formula">RVSP = 4 × (TR Vmax)² + RAP<br/>PASP ≈ RVSP (if no PS or RVOT obstruction)</div>
+      <div class="calc-input-row">
+        <label>TR Peak Velocity</label>
+        <div class="calc-input-wrap"><input type="number" id="rvsp-trv" placeholder="e.g. 3.3" step="0.1" min="0" oninput="calcRVSP()"/><span class="calc-unit">m/s</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>RAP Estimate</label>
+        <div class="calc-input-wrap">
+          <select id="rvsp-rap" class="calc-select" onchange="calcRVSP()">
+            <option value="3">3 mm Hg — IVC ≤21 mm, collapses &gt;50%</option>
+            <option value="8" selected>8 mm Hg — Indeterminate</option>
+            <option value="15">15 mm Hg — IVC &gt;21 mm, &lt;50% collapse</option>
+            <option value="20">20 mm Hg — IVC &gt;25 mm, no variation</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-result" id="rvsp-result">
+        <div class="calc-result-label">RVSP / PASP</div>
+        <div class="calc-result-value" id="rvsp-val"></div>
+        <div class="calc-result-sub" id="rvsp-sub"></div>
+      </div>
+      <div class="info-note" style="margin-top:10px;">⚠️ Average ≥3 beats in sinus rhythm; ≥5–10 beats in AF. Use densest envelope. Avoid post-PVC beats. Triangular contour (V-wave cutoff sign) underestimates.</div>
+    </div>
+
+    <!-- mPAP -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">Mean PA Pressure (mPAP)</div>
+      <div class="formula">
+        Method 1: mPAP = ⅓·PASP + ⅔·PAEDP<br/>
+        Method 2: mPAP = 79 − (0.45 × AccT)<br/>
+        Method 3: mPAP = 90 − (0.62 × AccT) if AccT &lt;120 ms<br/>
+        Method 4: mPAP = 4·(early PR V)² + RAP
+      </div>
+      <div class="calc-input-row"><label>PASP (mm Hg)</label><div class="calc-input-wrap"><input type="number" id="mpap-pasp" placeholder="mm Hg" step="1" oninput="calcMPAP()"/><span class="calc-unit">mm Hg</span></div></div>
+      <div class="calc-input-row"><label>PAEDP (mm Hg)</label><div class="calc-input-wrap"><input type="number" id="mpap-paedp" placeholder="mm Hg" step="1" oninput="calcMPAP()"/><span class="calc-unit">mm Hg</span></div></div>
+      <div class="calc-input-row"><label>RVOT AccT</label><div class="calc-input-wrap"><input type="number" id="mpap-act" placeholder="ms" step="1" oninput="calcMPAP()"/><span class="calc-unit">ms</span></div></div>
+      <div class="calc-input-row"><label>Early PR velocity</label><div class="calc-input-wrap"><input type="number" id="mpap-prv" placeholder="m/s" step="0.1" oninput="calcMPAP()"/><span class="calc-unit">m/s</span></div></div>
+      <div class="calc-input-row"><label>RAP (for Method 4)</label><div class="calc-input-wrap"><select class="calc-select" id="mpap-rap" onchange="calcMPAP()"><option value="3">3 mm Hg</option><option value="8" selected>8 mm Hg</option><option value="15">15 mm Hg</option></select></div></div>
+      <div class="calc-result show info" id="mpap-result" style="padding:12px;"></div>
+    </div>
+
+    <!-- PVR -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">PVR — Abbas Echo Method</div>
+      <div class="formula">PVR (WU) = (TR Vmax / RVOT VTI) × 10 + 0.16<br/>Normal &lt;1.5 WU · Abnormal &gt;2.0 WU</div>
+      <div class="calc-input-row"><label>TR Peak Velocity</label><div class="calc-input-wrap"><input type="number" id="pvr-trv" placeholder="m/s" step="0.1" oninput="calcPVR()"/><span class="calc-unit">m/s</span></div></div>
+      <div class="calc-input-row"><label>RVOT VTI</label><div class="calc-input-wrap"><input type="number" id="pvr-vti" placeholder="cm" step="0.1" oninput="calcPVR()"/><span class="calc-unit">cm</span></div></div>
+      <div class="calc-result" id="pvr-result">
+        <div class="calc-result-label">PVR (Abbas)</div>
+        <div class="calc-result-value" id="pvr-val"></div>
+        <div class="calc-result-sub" id="pvr-sub"></div>
+      </div>
+      <div class="info-note" style="margin-top:10px;">⚠️ Unreliable when PVR &gt;8 WU. Invasive PVR preferred for treatment decisions.</div>
+    </div>
+
+    <!-- RV-PA Coupling -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">RV-PA Coupling (TAPSE/PASP)</div>
+      <div class="formula">TAPSE/PASP = TAPSE (mm) ÷ PASP (mm Hg)<br/>Normal 0.5–0.7 · Uncoupling ≤0.32–0.40</div>
+      <div class="calc-input-row"><label>TAPSE</label><div class="calc-input-wrap"><input type="number" id="coup-tapse" placeholder="mm" step="0.1" oninput="calcCoupling()"/><span class="calc-unit">mm</span></div></div>
+      <div class="calc-input-row"><label>PASP</label><div class="calc-input-wrap"><input type="number" id="coup-pasp" placeholder="mm Hg" step="1" oninput="calcCoupling()"/><span class="calc-unit">mm Hg</span></div></div>
+      <div id="coup-result"></div>
+      <div class="divider"></div>
+      <div class="card-subheading">Interpretation Thresholds</div>
+      <div class="kv-row"><span class="kv-label">Normal coupling</span><span class="kv-value">0.5–0.7 mm/mm Hg</span></div>
+      <div class="kv-row"><span class="kv-label">Borderline</span><span class="kv-value">0.40–0.55 mm/mm Hg</span></div>
+      <div class="kv-row"><span class="kv-label">Uncoupled</span><span class="kv-value">&lt;0.40 mm/mm Hg</span></div>
+      <div class="kv-row"><span class="kv-label">High risk</span><span class="kv-value">&lt;0.32 mm/mm Hg</span></div>
+    </div>
+
+    <!-- PAEDP -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">PA End-Diastolic Pressure (PAEDP)</div>
+      <div class="formula">PAEDP = 4 × (PR end-diastolic velocity)² + RAP<br/>Resting PR end-diastolic velocity ≥2.2 m/s = abnormal</div>
+      <div class="calc-input-row"><label>PR End-Diastolic Velocity</label><div class="calc-input-wrap"><input type="number" id="paedp-prv" placeholder="m/s" step="0.1" oninput="calcPAEDP()"/><span class="calc-unit">m/s</span></div></div>
+      <div class="calc-input-row"><label>RAP</label><div class="calc-input-wrap"><select class="calc-select" id="paedp-rap" onchange="calcPAEDP()"><option value="3">3 mm Hg</option><option value="8" selected>8 mm Hg</option><option value="15">15 mm Hg</option></select></div></div>
+      <div class="calc-result" id="paedp-result">
+        <div class="calc-result-label">PAEDP</div>
+        <div class="calc-result-value" id="paedp-val"></div>
+        <div class="calc-result-sub" id="paedp-sub"></div>
+      </div>
+    </div>
+
+    <!-- PCWP -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">Estimated PCWP</div>
+      <div class="formula">PCWP = 1.24 × (mitral E/e′) + 1.9<br/>Normal &lt;12–15 mm Hg · Elevated &gt;15 mm Hg</div>
+      <div class="calc-input-row"><label>Mitral E velocity</label><div class="calc-input-wrap"><input type="number" id="pcwp-e" placeholder="cm/s" step="1" oninput="calcPCWP()"/><span class="calc-unit">cm/s</span></div></div>
+      <div class="calc-input-row"><label>Mitral e′ average</label><div class="calc-input-wrap"><input type="number" id="pcwp-ep" placeholder="cm/s" step="0.1" oninput="calcPCWP()"/><span class="calc-unit">cm/s</span></div></div>
+      <div class="calc-result" id="pcwp-result">
+        <div class="calc-result-label">Estimated PCWP</div>
+        <div class="calc-result-value" id="pcwp-val"></div>
+        <div class="calc-result-sub" id="pcwp-sub"></div>
+      </div>
+      <div class="info-note" style="margin-top:10px;">⚠️ Inaccurate in LVAD, paced rhythm, AF, mitral prosthesis, MAC, MS, severe MR.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ NORMAL VALUES ═══ -->
+<div id="panel-reference" class="tab-panel">
+  <div class="section-header">
+    <h2>Normal Values &amp; Graded Severity Reference</h2>
+    <p>Table 1 — 2025 ASE Guidelines. All parameters graded mild/moderate/severe for the first time.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">RV Chamber Dimensions</div>
+      <table class="param-table">
+        <tr><th>Parameter</th><th>Normal</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr>
+        <tr><td class="label">RV basal diameter (cm)</td><td class="val normal">&lt;4.1</td><td class="val mild">4.1–4.4</td><td class="val moderate">4.4–4.9</td><td class="val severe">&gt;4.9</td></tr>
+        <tr><td class="label">RV basal index (cm/m²)</td><td class="val normal">&lt;2.4</td><td class="val mild">2.4–2.6</td><td class="val moderate">2.6–2.9</td><td class="val severe">&gt;2.9</td></tr>
+        <tr><td class="label">RV midventricular (cm)</td><td class="val normal">&lt;3.5</td><td class="val mild">3.5–3.8</td><td class="val moderate">3.8–4.2</td><td class="val severe">&gt;4.2</td></tr>
+        <tr><td class="label">RV longitudinal (cm)</td><td class="val normal">&lt;8.2</td><td class="val mild">8.2–8.9</td><td class="val moderate">8.9–9.6</td><td class="val severe">&gt;9.6</td></tr>
+        <tr><td class="label">RV wall thickness (cm)</td><td class="val normal">&lt;0.5</td><td class="val mild">0.5–0.7</td><td class="val moderate">0.7–0.9</td><td class="val severe">&gt;0.9</td></tr>
+        <tr><td class="label">RVOT PLAX (cm)</td><td class="val normal">&lt;3.3</td><td class="val mild">3.3–3.5</td><td class="val moderate">3.5–3.9</td><td class="val severe">&gt;3.9</td></tr>
+        <tr><td class="label">RVOT PSAX proximal (cm)</td><td class="val normal">&lt;3.4</td><td class="val mild">3.4–3.8</td><td class="val moderate">3.8–4.1</td><td class="val severe">&gt;4.1</td></tr>
+        <tr><td class="label">RVOT PSAX distal (cm)</td><td class="val normal">&lt;2.9</td><td class="val mild">2.9–3.0</td><td class="val moderate">3.0–3.3</td><td class="val severe">&gt;3.3</td></tr>
+        <tr><td class="label">RV EDA (cm²)</td><td class="val normal">&lt;25</td><td class="val mild">25–28</td><td class="val moderate">28–32</td><td class="val severe">&gt;32</td></tr>
+        <tr><td class="label">RV ESA (cm²)</td><td class="val normal">&lt;14</td><td class="val mild">14–16</td><td class="val moderate">16–19</td><td class="val severe">&gt;19</td></tr>
+        <tr><td class="label">PA diameter (cm)</td><td class="val normal">&lt;2.5</td><td class="val mild">2.5–3.0</td><td class="val moderate">3.0–3.5</td><td class="val severe">&gt;3.5</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">RA Dimensions</div>
+      <table class="param-table">
+        <tr><th>Parameter</th><th>Normal</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr>
+        <tr><td class="label">RA major axis (cm)</td><td class="val normal">&lt;5.4</td><td class="val mild">5.4–5.8</td><td class="val moderate">5.8–6.3</td><td class="val severe">&gt;6.3</td></tr>
+        <tr><td class="label">RA minor axis (cm)</td><td class="val normal">&lt;4.2</td><td class="val mild">4.2–4.7</td><td class="val moderate">4.7–5.1</td><td class="val severe">&gt;5.1</td></tr>
+        <tr><td class="label">RA area (cm²)</td><td class="val normal">&lt;19</td><td class="val mild">19–22</td><td class="val moderate">22–24</td><td class="val severe">&gt;24</td></tr>
+        <tr><td class="label">RAVi MOD (mL/m²)</td><td class="val normal">&lt;30</td><td class="val mild">30–36</td><td class="val moderate">36–41</td><td class="val severe">&gt;41</td></tr>
+        <tr><td class="label">RAVi area-length (mL/m²)</td><td class="val normal">&lt;33</td><td class="val mild">33–38</td><td class="val moderate">39–44</td><td class="val severe">&gt;44</td></tr>
+        <tr><td class="label">RA ESV 3D index (mL/m²)</td><td class="val normal">&lt;42</td><td class="val mild">42–49</td><td class="val moderate">49–57</td><td class="val severe">&gt;57</td></tr>
+        <tr><td class="label">RA EDV 3D index (mL/m²)</td><td class="val normal">&lt;20</td><td class="val mild">20–23</td><td class="val moderate">23–27</td><td class="val severe">&gt;27</td></tr>
+      </table>
+
+      <div class="divider"></div>
+      <div class="card-heading" style="border:none;padding:0;margin-bottom:10px;">3D RV Volumes</div>
+      <table class="param-table">
+        <tr><th>Parameter</th><th>Normal</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr>
+        <tr><td class="label">3D RV EDV (mL)</td><td class="val normal">&lt;130</td><td class="val mild">130–150</td><td class="val moderate">150–170</td><td class="val severe">&gt;170</td></tr>
+        <tr><td class="label">3D RV EDVi (mL/m²)</td><td class="val normal">&lt;90</td><td class="val mild">90–103</td><td class="val moderate">103–115</td><td class="val severe">&gt;115</td></tr>
+        <tr><td class="label">3D RV ESV (mL)</td><td class="val normal">&lt;66</td><td class="val mild">66–77</td><td class="val moderate">77–89</td><td class="val severe">&gt;89</td></tr>
+        <tr><td class="label">3D RV ESVi (mL/m²)</td><td class="val normal">&lt;41</td><td class="val mild">41–48</td><td class="val moderate">48–55</td><td class="val severe">&gt;55</td></tr>
+      </table>
+    </div>
+
+    <div class="card full">
+      <div class="card-heading">Hemodynamic Parameters — Normal Ranges &amp; Grading</div>
+      <table class="param-table">
+        <tr><th>Parameter</th><th>Normal</th><th>Mild elevation</th><th>Moderate elevation</th><th>Severe elevation</th><th>Notes</th></tr>
+        <tr><td class="label">Peak TR velocity (m/s)</td><td class="val normal">&lt;2.8</td><td class="val mild">2.8–3.1</td><td class="val moderate">3.2–3.5</td><td class="val severe">≥3.6</td><td style="font-size:0.74rem;color:#718096;">≥2.9 m/s, OR ≥2.8 m/s with ≥2 adjunctive signs → PH probability ↑</td></tr>
+        <tr><td class="label">RVSP (mm Hg)</td><td class="val normal">≤34</td><td class="val mild">35–49</td><td class="val moderate">50–69</td><td class="val severe">≥70</td><td style="font-size:0.74rem;color:#718096;">= PASP if no PS or RVOT obstruction</td></tr>
+        <tr><td class="label">RAP (mm Hg)</td><td class="val normal">0–5 (mean 3)</td><td class="val mild">5–10 (mean 8)</td><td class="val moderate">10–15</td><td class="val severe">≥15 (high ≥20)</td><td style="font-size:0.74rem;color:#718096;">Report as discrete number: 3, 8, 15, or 20</td></tr>
+        <tr><td class="label">RVOT AccT (ms)</td><td class="val normal">&gt;105</td><td class="val mild">80–105</td><td class="val moderate">60–80</td><td class="val severe">≤60</td><td style="font-size:0.74rem;color:#718096;">"W sign" mid-systolic notch = high PVR</td></tr>
+        <tr><td class="label">PR end-diastolic V (m/s)</td><td class="val normal">&lt;2.2</td><td colspan="3" class="val severe">≥2.2 = abnormal</td><td style="font-size:0.74rem;color:#718096;">For PAEDP estimation</td></tr>
+        <tr><td class="label">TAPSE/PASP (mm/mm Hg)</td><td class="val normal">0.5–0.7</td><td class="val mild">0.40–0.55</td><td class="val moderate">0.32–0.40</td><td class="val severe">&lt;0.32</td><td style="font-size:0.74rem;color:#718096;">Primary RV-PA coupling index</td></tr>
+        <tr><td class="label">LVEI (D2/D1)</td><td class="val normal">= 1.0</td><td colspan="2">Volume overload &gt;1 end-diastole</td><td class="val severe">Pressure overload &gt;1 end-systole</td><td style="font-size:0.74rem;color:#718096;">PH threshold for probability scoring: &gt;1.1</td></tr>
+        <tr><td class="label">IVC diameter (mm)</td><td class="val normal">≤21</td><td class="val mild">21–25</td><td colspan="2" class="val severe">&gt;25 + no variation = RAP 20</td><td style="font-size:0.74rem;color:#718096;">Measured 0.5–3.0 cm from RA ostium</td></tr>
+        <tr><td class="label">PA/Aorta ratio</td><td class="val normal">&lt;1.0</td><td colspan="3" class="val severe">≥1.0 = abnormal</td><td style="font-size:0.74rem;color:#718096;">Sens 84%, Spec 84%, AUC 0.91</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PHENOTYPES ═══ -->
+<div id="panel-phenotypes" class="tab-panel">
+  <div class="section-header">
+    <h2>Pre- vs Post-Capillary Phenotypes</h2>
+    <p>Echo can suggest the PH phenotype and guide workup. Definitive classification requires invasive RHC.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="phenotype-card pre">
+      <h4>Group 1 — Pre-Capillary (PAH)</h4>
+      <ul>
+        <li>Normal/small left heart; normal LA size</li>
+        <li>Normal mitral E/e′ (&lt;8)</li>
+        <li>Dilated RV: RV/LV &gt;1, RA ≥19 cm², RVH</li>
+        <li>LVEI &gt;1.1 — septal flattening esp. in systole</li>
+        <li>RVOT AccT ≤105 ms; PR end-diastolic V ≥2.2 m/s</li>
+        <li>Peak TRV ≥2.9 m/s</li>
+        <li>TAPSE/PASP &lt;0.55; &lt;0.32 = high risk uncoupling</li>
+        <li>PA diameter &gt;25 mm; dilated IVC; HVs/HVd &lt;1</li>
+        <li>Younger patients; no major CV comorbidities</li>
+      </ul>
+    </div>
+
+    <div class="phenotype-card post">
+      <h4>Group 2 — Post-Capillary (Left Heart Disease)</h4>
+      <ul>
+        <li>LV hypertrophy and/or chamber dilation</li>
+        <li>Reduced or preserved EF</li>
+        <li>Normal LVEI (&lt;1.2) — not septal flattening</li>
+        <li>Dilated LA</li>
+        <li>≥Grade 2 LV diastolic dysfunction</li>
+        <li>Mitral E/e′ &gt;14 = pathologic</li>
+        <li>≥Mild-moderate mitral or aortic valve disease</li>
+        <li>Peak TRV ≥2.9 m/s (RVSP elevated)</li>
+        <li>Right heart normal until late disease</li>
+        <li>Older patients; hypertension, obesity, DM, AF</li>
+      </ul>
+    </div>
+
+    <div class="phenotype-card group3">
+      <h4>Group 3 — Pre-Capillary (Lung Disease / Hypoxia)</h4>
+      <ul>
+        <li>Lung-interference limits acoustic windows → subcostal</li>
+        <li>Often shared risk factors with Group 2</li>
+        <li>≥Grade 1 LV diastolic dysfunction common</li>
+        <li>Normal mitral E/e′ unless concomitant Group 2</li>
+        <li>Normal or small RV with RVH until late</li>
+        <li>Preserved RV function until late</li>
+        <li>Peak TRV ≥2.9 m/s when PH present</li>
+        <li>COPD, ILD, hypoxia, sleep apnea, obesity hypoventilation</li>
+      </ul>
+    </div>
+
+    <div class="phenotype-card group4">
+      <h4>Group 4 — Pre-Capillary (CTEPH)</h4>
+      <ul>
+        <li>Often shared CV risk factors → LVH, LA enlargement</li>
+        <li>Normal mitral E/e′ unless concomitant Group 2</li>
+        <li>Resembles Group 1 PAH in right heart appearance</li>
+        <li>Mild RA/RV enlargement with RVH until late</li>
+        <li>Abnormal RV function; peak TRV ≥2.9 m/s</li>
+        <li>History of PE / DVT; V/Q mismatch on nuclear scan</li>
+        <li>Treatment-specific: surgical endarterectomy, balloon PA angioplasty</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:0;">
+    <div class="card-heading">Distinguishing Pre- vs Post-Capillary — Key Parameters</div>
+    <table class="param-table">
+      <tr><th>Parameter</th><th>Pre-Capillary (Group 1/3/4)</th><th>Post-Capillary (Group 2)</th></tr>
+      <tr><td class="label">Mitral E/e′</td><td class="val normal">&lt;8 (normal)</td><td class="val severe">&gt;14 (pathologic)</td></tr>
+      <tr><td class="label">LA size</td><td class="val normal">Normal</td><td class="val severe">Enlarged</td></tr>
+      <tr><td class="label">LVEI pattern</td><td class="val">Systolic flattening (&gt;1.1)</td><td class="val">Normal or early diastolic only</td></tr>
+      <tr><td class="label">LV diastolic function</td><td class="val normal">Normal (Grade 0–1)</td><td class="val severe">Grade 2–3 common</td></tr>
+      <tr><td class="label">LV EF / size</td><td class="val normal">Normal or small LV</td><td class="val">Reduced EF or hypertrophy</td></tr>
+      <tr><td class="label">PCWP estimate</td><td class="val normal">&lt;15 mm Hg</td><td class="val severe">&gt;15 mm Hg</td></tr>
+      <tr><td class="label">Mitral/aortic disease</td><td class="val normal">None or incidental</td><td class="val">Common (≥mild-moderate)</td></tr>
+      <tr><td class="label">Response to fluid challenge</td><td class="val">PCWP stable</td><td class="val severe">PCWP rise &gt;18 or E/e′ rise &gt;12</td></tr>
+      <tr><td class="label">Patient profile</td><td class="val">Younger, fewer CV comorbidities</td><td class="val">Older, HTN/DM/obesity/AF</td></tr>
+    </table>
+
+    <div class="divider"></div>
+    <div class="card-subheading">Fluid Challenge Protocol</div>
+    <div class="info-note">250–500 mL crystalloid over 15–30 min. Positive test: PCWP rise &gt;18 mm Hg or mitral E/e′ rise &gt;12 → occult LV diastolic dysfunction / unmasked post-capillary disease.</div>
+
+    <div class="card-subheading">Exercise Hemodynamics</div>
+    <div class="info-note blue">
+      <strong>Abnormal pulmonary vascular response:</strong> Rest-to-stress RVSP rise ≥20 mm Hg or peak RVSP ≥50 mm Hg.<br/>
+      <strong>Post-capillary pattern:</strong> Mitral E/e′ at exercise &gt;12; worsening MR or TR with stress.<br/>
+      <strong>Exercise PH definition (ESC/ERS):</strong> mPAP/CO slope &gt;3 mm Hg·min/L (Wood units equivalent). The "3.0–3.5" range reflects diagnostic uncertainty at borderline values.<br/>
+      <strong>Echo stress criteria:</strong> Rest-to-stress RVSP rise ≥20 mm Hg, or peak stress RVSP ≥50 mm Hg = abnormal pulmonary vascular response.<br/>
+      <strong>Prognostic sign:</strong> PASP rise ≥30 mm Hg with exertion = preserved RV contractile reserve = better survival.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ RAP ALGORITHM ═══ -->
+<div id="panel-rap" class="tab-panel">
+  <div class="section-header">
+    <h2>RAP Estimation Algorithm</h2>
+    <p>IVC-based method. Report RAP as a discrete value — not a range. (Fig. 3, 2025 ASE Guidelines)</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">IVC Assessment</div>
+      <div class="info-note">Measure IVC at end-expiration, 0.5–3.0 cm proximal to RA ostium (subcostal long-axis). M-mode preferred. Observe collapse with sniff and quiet respiration.</div>
+
+      <div class="flow-node question">Step 1: IVC Diameter?</div>
+      <div class="flow-row" style="margin-top:8px;">
+        <div>
+          <div class="flow-arrow">↓ ≤21 mm</div>
+          <div class="flow-node question">Collapse with sniff?</div>
+          <div class="flow-row">
+            <div>
+              <div class="flow-arrow">↓ ≥50%</div>
+              <div class="flow-node result-normal">RAP = 3 mm Hg<br/><span style="font-size:0.7rem">(range 0–5)</span></div>
+            </div>
+            <div>
+              <div class="flow-arrow">↓ &lt;50%</div>
+              <div class="flow-node result-intermediate">RAP = 8 mm Hg<br/><span style="font-size:0.7rem">Assess secondary indices</span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="flow-arrow">↓ &gt;21 mm</div>
+          <div class="flow-node question">Collapse with sniff?</div>
+          <div class="flow-row">
+            <div>
+              <div class="flow-arrow">↓ ≥50%</div>
+              <div class="flow-node result-intermediate">RAP = 8 mm Hg<br/><span style="font-size:0.7rem">Assess secondary indices</span></div>
+            </div>
+            <div>
+              <div class="flow-arrow">↓ &lt;50%</div>
+              <div class="flow-node result-elevated">RAP = 15 mm Hg<br/><span style="font-size:0.7rem">(range 10–20)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-arrow" style="margin-top:10px;">↓ IVC &gt;25 mm + no respirophasic variation + dilated HVs</div>
+      <div class="flow-node result-elevated">RAP = 20 mm Hg</div>
+
+      <div class="divider"></div>
+      <div class="card-subheading">Secondary Indices of Elevated RAP</div>
+      <p style="font-size:0.79rem;color:#4a5568;margin-bottom:8px;">May support reclassification of indeterminate cases in appropriate clinical context — not an automatic upgrade:</p>
+      <div style="display:flex;flex-direction:column;gap:5px;font-size:0.79rem;color:#4a5568;">
+        <div style="padding:5px 10px;background:#fff5f5;border-radius:5px;border-left:3px solid #742a2a;">RA enlargement (area &gt;18 cm²)</div>
+        <div style="padding:5px 10px;background:#fff5f5;border-radius:5px;border-left:3px solid #742a2a;">Bulging IAS into LA throughout cardiac cycle</div>
+        <div style="padding:5px 10px;background:#fff5f5;border-radius:5px;border-left:3px solid #742a2a;">Restrictive RV diastolic filling</div>
+        <div style="padding:5px 10px;background:#fff5f5;border-radius:5px;border-left:3px solid #742a2a;">Tricuspid E/e′ &gt;6</div>
+        <div style="padding:5px 10px;background:#fff5f5;border-radius:5px;border-left:3px solid #742a2a;">HV filling fraction &lt;55% (HVs/[HVs+HVd])</div>
+        <div style="padding:5px 10px;background:#fff5f5;border-radius:5px;border-left:3px solid #742a2a;">HVs/HVd &lt;1 (loss of systolic predominance)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">RAP Summary Table</div>
+      <table class="param-table" style="margin-bottom:16px;">
+        <tr><th>IVC</th><th>Collapse (sniff)</th><th>RAP (discrete)</th><th>Range</th></tr>
+        <tr><td>≤21 mm</td><td>≥50%</td><td class="val normal">3 mm Hg</td><td>0–5</td></tr>
+        <tr><td>≤21 mm</td><td>&lt;50% (indeterminate)</td><td class="val mild">8 mm Hg*</td><td>5–10</td></tr>
+        <tr><td>&gt;21 mm</td><td>≥50% (indeterminate)</td><td class="val mild">8 mm Hg*</td><td>5–10</td></tr>
+        <tr><td>&gt;21 mm</td><td>&lt;50%</td><td class="val severe">15 mm Hg</td><td>10–20</td></tr>
+        <tr><td>&gt;25 mm, no variation, dilated HVs</td><td>None</td><td class="val severe">20 mm Hg</td><td>—</td></tr>
+      </table>
+      <p style="font-size:0.75rem;color:#718096;">*Assess secondary indices — may support reclassification to 15 mm Hg in appropriate clinical context, not mandatory</p>
+
+      <div class="divider"></div>
+      <div class="card-subheading">Caveats</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:0.79rem;color:#4a5568;">
+        <div style="padding:6px 10px;background:#fffaf0;border-radius:5px;border-left:3px solid #fbd38d;">Athletes and healthy young adults may have dilated IVC with low RAP</div>
+        <div style="padding:6px 10px;background:#fffaf0;border-radius:5px;border-left:3px solid #fbd38d;">Pregnant women: IVC normally dilated</div>
+        <div style="padding:6px 10px;background:#fffaf0;border-radius:5px;border-left:3px solid #fbd38d;">Positive-pressure ventilation: IVC collapse cannot reliably estimate RAP. IVC ≤21 mm in intubated patient → RAP &lt;10 mm Hg only</div>
+        <div style="padding:6px 10px;background:#fffaf0;border-radius:5px;border-left:3px solid #fbd38d;">Average HV velocities over ≥5 beats spanning ≥1 respiratory cycle</div>
+        <div style="padding:6px 10px;background:#fffaf0;border-radius:5px;border-left:3px solid #fbd38d;">Report RAP as a discrete number — not a range</div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="card-subheading">Hepatic Vein Filling Fraction</div>
+      <div class="formula">HV filling fraction = HVs / (HVs + HVd)<br/>HVs/HVd &lt;1 = loss of systolic predominance → elevated RAP<br/>HV filling fraction &lt;55% → elevated RAP</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ WSPH GROUPS ═══ -->
+<div id="panel-wsph" class="tab-panel">
+  <div class="section-header">
+    <h2>WHO/WSPH Clinical Classification of PH</h2>
+    <p>Updated 6th/7th WSPH classification incorporated into 2025 ASE guidelines. Click each group to expand.</p>
+  </div>
+
+  <div class="card">
+    <div class="wsph-group" onclick="toggleWSPH(this)">
+      <div class="wsph-group-header">
+        <div>
+          <span class="badge badge-high" style="margin-right:8px;">Group 1</span>
+          <span class="wsph-group-title">Pulmonary Arterial Hypertension (PAH)</span>
+        </div>
+        <span class="wsph-chevron">▶</span>
+      </div>
+      <div class="wsph-group-body">
+        <ul style="list-style:disc;padding-left:18px;margin-top:6px;">
+          <li>Idiopathic PAH (including CCB long-term responders)</li>
+          <li>Heritable PAH (BMPR2, ALK1, ENG, SMAD9, CAV1, KCNK3 mutations)</li>
+          <li>Drug and toxin-induced (anorectic agents, methamphetamine, dasatinib, etc.)</li>
+          <li>Associated with CTD (scleroderma, SLE, MCTD, RA)</li>
+          <li>Associated with HIV infection</li>
+          <li>Associated with portal hypertension</li>
+          <li>Associated with congenital heart disease (Eisenmenger, systemic-to-pulmonary shunts)</li>
+          <li>Associated with schistosomiasis</li>
+          <li>PAH with features of PVOD/PCH</li>
+          <li>Persistent PH of the newborn</li>
+        </ul>
+        <div class="info-note" style="margin-top:10px;">Screening recommended for: BMPR2 carriers, first-degree relatives with heritable PAH, HIV, CHD shunts, CTD (esp. systemic sclerosis), sickle cell disease (TRV ≥2.5 m/s as trigger).</div>
+      </div>
+    </div>
+
+    <div class="wsph-group" onclick="toggleWSPH(this)">
+      <div class="wsph-group-header">
+        <div>
+          <span class="badge badge-intermediate" style="margin-right:8px;">Group 2</span>
+          <span class="wsph-group-title">PH due to Left Heart Disease</span>
+        </div>
+        <span class="wsph-chevron">▶</span>
+      </div>
+      <div class="wsph-group-body">
+        <ul style="list-style:disc;padding-left:18px;margin-top:6px;">
+          <li>HFpEF</li>
+          <li>HFrEF / HFmrEF</li>
+          <li>Specific cardiomyopathies: HCM, cardiac amyloidosis, Fabry disease, Chagas disease</li>
+          <li>Aortic valve disease; mitral valve disease; mixed valvular disease</li>
+          <li>Congenital/acquired post-capillary outflow obstruction</li>
+        </ul>
+        <div class="info-note" style="margin-top:10px;">Most common cause of PH. Post-capillary phenotype. Normal LVEI is reassuring vs pre-capillary. Fluid challenge may unmask occult LV diastolic dysfunction.</div>
+      </div>
+    </div>
+
+    <div class="wsph-group" onclick="toggleWSPH(this)">
+      <div class="wsph-group-header">
+        <div>
+          <span class="badge badge-blue" style="margin-right:8px;">Group 3</span>
+          <span class="wsph-group-title">PH due to Lung Disease and/or Hypoxia</span>
+        </div>
+        <span class="wsph-chevron">▶</span>
+      </div>
+      <div class="wsph-group-body">
+        <ul style="list-style:disc;padding-left:18px;margin-top:6px;">
+          <li>Obstructive lung disease (COPD, emphysema)</li>
+          <li>Interstitial lung disease (IPF, UIP, NSIP)</li>
+          <li>Mixed obstructive and restrictive pattern</li>
+          <li>Other parenchymal lung diseases</li>
+          <li>Restrictive non-parenchymal: hypoventilation syndromes (obesity-hypoventilation, neuromuscular diseases)</li>
+          <li>Post-pneumonectomy</li>
+          <li>Hypoxia without lung disease (high altitude, developmental abnormalities)</li>
+        </ul>
+        <div class="info-note" style="margin-top:10px;">Subcostal views often required. RV function typically preserved until late. Diagnose PH at RVSP &gt;35–40 mm Hg given baseline mild PH expected in severe lung disease.</div>
+      </div>
+    </div>
+
+    <div class="wsph-group" onclick="toggleWSPH(this)">
+      <div class="wsph-group-header">
+        <div>
+          <span class="badge badge-purple" style="margin-right:8px;">Group 4</span>
+          <span class="wsph-group-title">PH due to Pulmonary Artery Obstructions (CTEPH)</span>
+        </div>
+        <span class="wsph-chevron">▶</span>
+      </div>
+      <div class="wsph-group-body">
+        <ul style="list-style:disc;padding-left:18px;margin-top:6px;">
+          <li>Chronic thromboembolic PH (CTEPH)</li>
+          <li>Other PA obstructions: tumors, foreign bodies, parasites, congenital stenosis</li>
+        </ul>
+        <div class="info-note green" style="margin-top:10px;">Treatment-specific: surgical pulmonary endarterectomy is curative when operable. Balloon PA angioplasty for inoperable CTEPH. Riociguat approved for CTEPH.</div>
+      </div>
+    </div>
+
+    <div class="wsph-group" onclick="toggleWSPH(this)">
+      <div class="wsph-group-header">
+        <div>
+          <span class="badge badge-na" style="margin-right:8px;background:#edf2f7;color:#4a5568;">Group 5</span>
+          <span class="wsph-group-title">PH with Unclear and/or Multifactorial Mechanisms</span>
+        </div>
+        <span class="wsph-chevron">▶</span>
+      </div>
+      <div class="wsph-group-body">
+        <ul style="list-style:disc;padding-left:18px;margin-top:6px;">
+          <li>Hematologic disorders: chronic hemolytic anemia, myeloproliferative disease, splenectomy</li>
+          <li>Sarcoidosis, pulmonary Langerhans cell histiocytosis, neurofibromatosis type 1</li>
+          <li>Metabolic disorders: glycogen storage disease, Gaucher disease, thyroid disorders</li>
+          <li>Chronic renal failure with or without dialysis</li>
+          <li>Pulmonary tumor thrombotic microangiopathy</li>
+          <li>Fibrosing mediastinitis</li>
+          <li>Complex congenital heart disease</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ WHAT'S NEW ═══ -->
+<div id="panel-whats-new" class="tab-panel">
+  <div class="section-header">
+    <h2>Key 2025 Updates vs Prior Guidelines</h2>
+    <p>What changed from the 2010 ASE right heart guideline. These are clinically significant — several require updating your echo workflow and reporting language.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">Definitions Changed</div>
+
+      <div style="margin-bottom:12px;">
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a0aec0;margin-bottom:6px;">PH Threshold — mPAP</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <div style="background:#edf2f7;padding:8px 14px;border-radius:7px;font-size:0.9rem;font-weight:700;color:#718096;">2010: ≥25 mm Hg</div>
+          <div style="color:#a0aec0;">→</div>
+          <div style="background:#fff5f5;padding:8px 14px;border-radius:7px;font-size:0.9rem;font-weight:700;color:#742a2a;">2025: &gt;20 mm Hg</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a0aec0;margin-bottom:6px;">Pre-Capillary PVR Threshold</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <div style="background:#edf2f7;padding:8px 14px;border-radius:7px;font-size:0.9rem;font-weight:700;color:#718096;">2010: &gt;3 WU</div>
+          <div style="color:#a0aec0;">→</div>
+          <div style="background:#fff5f5;padding:8px 14px;border-radius:7px;font-size:0.9rem;font-weight:700;color:#742a2a;">2025: &gt;2 WU</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a0aec0;margin-bottom:6px;">Exercise PH</div>
+        <div style="background:#ebf8ff;padding:8px 14px;border-radius:7px;font-size:0.85rem;color:#2c5282;">mPAP/CO slope &gt;3.0–3.5 mm Hg·min/L (ESC/ERS, endorsed by ASE 2025)</div>
+      </div>
+
+      <div>
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#a0aec0;margin-bottom:6px;">Atriofunctional TR — New Phenotype</div>
+        <div style="background:#f0fff4;padding:8px 14px;border-radius:7px;font-size:0.82rem;color:#276749;">Isolated TV annular dilation (≥40 mm or &gt;21 mm/m²) with preserved RV size/function; chronic AF or HFpEF. Distinct from functional TR due to RV dilation.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Grading — All New Severity Ranges</div>
+      <div style="font-size:0.79rem;color:#4a5568;margin-bottom:12px;">For the first time, every major RV/RA parameter has graded mild/moderate/severe ranges (not just a binary normal/abnormal cutoff):</div>
+
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.81rem;">
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;"><strong>RV basal diameter:</strong> <span style="color:#718096;">Previously single cutoff &gt;4.2 cm. Now graded: Mild 4.1–4.4, Moderate 4.4–4.9, Severe &gt;4.9 cm</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;"><strong>TAPSE:</strong> <span style="color:#718096;">Previously single cutoff &lt;1.7 cm. Now graded: Mild 1.3–1.7, Moderate 1.0–1.3, Severe ≤1.0 cm</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;"><strong>FAC:</strong> <span style="color:#718096;">Previously &lt;35% = abnormal. Now: Mild 29–35%, Moderate 22–29%, Severe ≤22%</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;"><strong>RA area:</strong> <span style="color:#718096;">Previously &gt;18 cm² = enlarged (binary). Now: Mild 19–22, Moderate 22–24, Severe &gt;24 cm²</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;"><strong>3D RVEF:</strong> <span style="color:#718096;">New graded ranges: Normal &gt;45%, Mild 39–45%, Moderate 32–39%, Severe &lt;32%</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;"><strong>RVOT AccT:</strong> <span style="color:#718096;">Normal &gt;105 ms. Mild PH 80–105, Moderate 60–80, Severe ≤60 ms</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #2b6cb0;"><strong>TR severity:</strong> <span style="color:#718096;">Massive (EROA 60–79 mm²) and Torrential (≥80 mm²) grades added</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">New Framework — 3 Pillars</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="padding:12px 14px;background:#ebf8ff;border-radius:8px;border-left:4px solid #2b6cb0;">
+          <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#2b6cb0;margin-bottom:4px;">Pillar 1 — Structure</div>
+          <div style="font-size:0.82rem;color:#1a202c;">RV chamber dimensions (graded); RA area &amp; RAVi (graded); PA diameter; IVS morphology (LVEI); RVWT</div>
+        </div>
+        <div style="padding:12px 14px;background:#f0fff4;border-radius:8px;border-left:4px solid #276749;">
+          <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#276749;margin-bottom:4px;">Pillar 2 — Function</div>
+          <div style="font-size:0.82rem;color:#1a202c;">TAPSE, S′, FAC (graded); 3D RVEF (graded); RV strain — RVFWS preferred (new standard); MPI; RVOT VTI &amp; AccT</div>
+        </div>
+        <div style="padding:12px 14px;background:#fffaf0;border-radius:8px;border-left:4px solid #744210;">
+          <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#744210;margin-bottom:4px;">Pillar 3 — Hemodynamics</div>
+          <div style="font-size:0.82rem;color:#1a202c;">RVSP (averaged); RAP (discrete value); PAEDP; mPAP; PVR; PCWP; TAPSE/PASP coupling ratio; PH probability (low/intermediate/high)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">New Concepts &amp; Standards</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.81rem;">
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;"><strong>RV-PA Coupling (TAPSE/PASP):</strong> <span style="color:#718096;">Now a primary index in every PH report. Alternatives: RVFWS/PASP (superior in PAH), FAC/PASP</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;"><strong>RV Strain (STE) — Recommended:</strong> <span style="color:#718096;">RVFWS preferred to isolate RV from LV contractility. Should be performed when feasible for PH and at-risk patients — not absolutely required. Same vendor for serial comparison.</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;"><strong>PH Probability Framework:</strong> <span style="color:#718096;">Low/Intermediate/High based on TRV + signs from 3 categories (A: ventricles, B: PA, C: IVC/RA). Replaces single-threshold approach</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;"><strong>RAP — Discrete Values:</strong> <span style="color:#718096;">Report 3, 8, 15, or 20 mm Hg — not ranges. Secondary indices determine indeterminate cases</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;"><strong>RA Strain:</strong> <span style="color:#718096;">Decreased RA reservoir strain + increased RAVi predict clinical worsening in pre-capillary PH</span></div>
+        <div style="padding:8px 12px;background:#f7fafc;border-radius:7px;border-left:3px solid #276749;"><strong>Structured Reporting:</strong> <span style="color:#718096;">Must include: graded RV size, RA area/RAVi, TAPSE/PASP ratio, RVSP with averaged beats, discrete RAP, PH probability statement</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  ⚠️ <strong>Clinical Disclaimer:</strong> This app is an educational reference based on the 2025 ASE Guidelines (Mukherjee et al., JASE 2025;38:141–186). All calculated values are estimates. Echo assigns probability only — definitive PH diagnosis requires invasive right heart catheterization. Not a substitute for individual clinical judgment.
+</div>
+</div>
+
+<div class="citation-footer">
+  <strong>Citation:</strong> Mukherjee M, Rudski LG, Addetia K, et al. Guidelines for the Echocardiographic Assessment of the Right Heart in Adults and Special Considerations in Pulmonary Hypertension: Recommendations from the American Society of Echocardiography. <em>J Am Soc Echocardiogr.</em> 2025;38:141–186.
+  <br><br>
+  📄 <a href="https://www.asecho.org/wp-content/uploads/2025/03/PIIS0894731725000379.pdf" target="_blank">Download full guidelines from ASE website</a> &nbsp;|&nbsp;
+  <a href="https://doi.org/10.1016/j.echo.2025.01.006" target="_blank">DOI: 10.1016/j.echo.2025.01.006</a>
+  <br><br>
+  <em style="opacity:0.6; font-size:0.77rem;">This interactive tool is for educational and clinical reference purposes only. It does not replace clinical judgment or individualized patient assessment. Always refer to the full guideline document for complete recommendations. Content © 2025 American Society of Echocardiography.</em>
+</div>
+
+<footer>
+  Right Heart &amp; Pulmonary Hypertension &nbsp;·&nbsp; echoinfo.org &nbsp;·&nbsp; Created by Akhil Narang, MD
+</footer>
+
+<script>
+// ── Tab switching ──
+function switchTab(tabName) {
+  // Hide all panels
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    panel.classList.remove('active');
+  });
+
+  // Remove active state from all nav buttons
+  document.querySelectorAll('.main-nav button').forEach(button => {
+    button.classList.remove('active');
+  });
+
+  // Show selected panel
+  const selectedPanel = document.getElementById('panel-' + tabName);
+  if (selectedPanel) {
+    selectedPanel.classList.add('active');
+  }
+
+  // Activate matching nav button based on its onclick value
+  document.querySelectorAll('.main-nav button').forEach(button => {
+    const onclickValue = button.getAttribute('onclick') || '';
+    if (onclickValue.includes("'" + tabName + "'") || onclickValue.includes('"' + tabName + '"')) {
+      button.classList.add('active');
+    }
+  });
+}
+
+// Ensure RV Function is the default tab on page load
+window.addEventListener('DOMContentLoaded', () => {
+  switchTab('rv-function');
+});
+
+// ── PH Probability ──
+let trvLevel = null;
+function selectTRV(btn, level) {
+  document.querySelectorAll('.trv-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  trvLevel = level;
+  calcPH();
+}
+
+function calcPH() {
+  if (!trvLevel) return;
+  const aChecks = document.querySelectorAll('#cat-a input[type=checkbox]');
+  const bChecks = document.querySelectorAll('#cat-b input[type=checkbox]');
+  const cChecks = document.querySelectorAll('#cat-c input[type=checkbox]');
+
+  const aPos = [...aChecks].some(c => c.checked);
+  const bPos = [...bChecks].some(c => c.checked);
+  const cPos = [...cChecks].some(c => c.checked);
+  const categoriesPositive = [aPos, bPos, cPos].filter(Boolean).length;
+  const signsPresent = categoriesPositive >= 2;
+
+  let prob, cls, note;
+  if (trvLevel === 'high') {
+    prob = 'High'; cls = 'high';
+    note = 'Peak TRV >3.4 m/s → High probability regardless of other signs. Refer for further evaluation and RHC.';
+  } else if (trvLevel === 'mid' && signsPresent) {
+    prob = 'High'; cls = 'high';
+    note = `TRV 2.9–3.4 m/s + signs in ${categoriesPositive}/3 categories → High probability. Refer for RHC.`;
+  } else if (trvLevel === 'mid') {
+    prob = 'Intermediate'; cls = 'intermediate';
+    note = `TRV 2.9–3.4 m/s, signs in ${categoriesPositive}/3 categories (need ≥2 for High) → Intermediate probability. Consider further evaluation based on clinical context.`;
+  } else if (trvLevel === 'low28') {
+    if (signsPresent) {
+      prob = 'Intermediate'; cls = 'intermediate';
+      note = `TRV 2.8 m/s + signs in ${categoriesPositive}/3 categories — guideline footnote notes that TRV ≥2.8 m/s with ≥2 adjunctive signs may suggest PH → Intermediate probability. Consider further evaluation.`;
+    } else {
+      prob = 'Low–Intermediate'; cls = 'intermediate';
+      note = `TRV 2.8 m/s with signs in ${categoriesPositive}/3 categories (need ≥2). Guideline grades this as mild elevation — borderline. Clinical context is critical.`;
+    }
+  } else if (trvLevel === 'low' && signsPresent) {
+    prob = 'Intermediate'; cls = 'intermediate';
+    note = `TRV <2.8 m/s + signs in ${categoriesPositive}/3 categories → Intermediate probability. Consider further evaluation.`;
+  } else {
+    prob = 'Low'; cls = 'low';
+    note = `TRV <2.8 m/s with signs in ${categoriesPositive}/3 categories → Low probability. Reassess if clinical suspicion remains high.`;
+  }
+
+  const box = document.getElementById('ph-result-box');
+  box.className = 'ph-probability-box ' + cls;
+  document.getElementById('ph-prob-value').className = 'ph-prob-value ' + cls;
+  document.getElementById('ph-prob-value').textContent = prob;
+  document.getElementById('ph-prob-note').textContent = note;
+  document.querySelector('#ph-result-box .ph-prob-label').textContent = 'PH Probability';
+
+  // highlight check items
+  document.querySelectorAll('.check-item').forEach(item => {
+    item.classList.toggle('checked', item.querySelector('input').checked);
+  });
+}
+
+// ── RVSP ──
+function calcRVSP() {
+  const v = parseFloat(document.getElementById('rvsp-trv').value);
+  const rap = parseFloat(document.getElementById('rvsp-rap').value);
+  const el = document.getElementById('rvsp-result');
+  if (isNaN(v)) { el.classList.remove('show'); return; }
+  const val = 4 * v * v + rap;
+  const valEl = document.getElementById('rvsp-val');
+  const subEl = document.getElementById('rvsp-sub');
+  valEl.textContent = val.toFixed(0) + ' mm Hg';
+  el.className = 'calc-result show ' + (val >= 70 ? 'elevated' : val >= 50 ? 'moderate-el' : val >= 35 ? 'moderate-el' : 'normal');
+  const trv = v >= 3.6 ? 'Severe elevation (≥3.6 m/s)' : v >= 3.2 ? 'Moderate elevation (3.2–3.5 m/s)' : v >= 2.9 ? 'Mild-moderate (2.9–3.4 m/s)' : 'Normal range (≤2.8 m/s)';
+  const pasp = val >= 70 ? 'Severe PH' : val >= 50 ? 'Moderate PH' : val >= 35 ? 'Mild PH' : 'Normal';
+  subEl.textContent = `TR velocity: ${trv} · ${pasp} (RVSP ≥70 severe, 50–69 moderate, 35–49 mild) · RAP: ${rap} mm Hg`;
+}
+
+// ── mPAP ──
+function calcMPAP() {
+  const pasp = parseFloat(document.getElementById('mpap-pasp').value);
+  const paedp = parseFloat(document.getElementById('mpap-paedp').value);
+  const act = parseFloat(document.getElementById('mpap-act').value);
+  const prv = parseFloat(document.getElementById('mpap-prv').value);
+  const rap = parseFloat(document.getElementById('mpap-rap').value);
+  const results = [];
+  if (!isNaN(pasp) && !isNaN(paedp)) results.push({ method: '⅓PASP + ⅔PAEDP', val: pasp/3 + 2*paedp/3 });
+  if (!isNaN(act)) {
+    if (act < 120) results.push({ method: '90 − 0.62×AccT (AccT<120ms)', val: 90 - 0.62*act });
+    else results.push({ method: '79 − 0.45×AccT', val: 79 - 0.45*act });
+  }
+  if (!isNaN(prv)) results.push({ method: '4×(early PR V)² + RAP', val: 4*prv*prv + rap });
+  const el = document.getElementById('mpap-result');
+  if (!results.length) { el.innerHTML = '<span style="color:#a0aec0;font-size:0.82rem;">Enter at least one set of values</span>'; return; }
+  el.innerHTML = results.map(r =>
+    `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #e2e8f0;font-size:0.82rem;">
+      <span style="color:#4a5568;">${r.method}</span>
+      <span style="font-family:monospace;font-weight:700;color:${r.val>20?'#742a2a':'#276749'};">${r.val.toFixed(1)} mm Hg ${r.val>20?'<span style="font-size:0.7rem;background:#fed7d7;color:#742a2a;padding:1px 6px;border-radius:999px;">PH</span>':'<span style="font-size:0.7rem;background:#c6f6d5;color:#22543d;padding:1px 6px;border-radius:999px;">Normal</span>'}</span>
+    </div>`).join('');
+}
+calcMPAP();
+
+// ── PVR ──
+function calcPVR() {
+  const v = parseFloat(document.getElementById('pvr-trv').value);
+  const vti = parseFloat(document.getElementById('pvr-vti').value);
+  const el = document.getElementById('pvr-result');
+  if (isNaN(v) || isNaN(vti) || vti === 0) { el.classList.remove('show'); return; }
+  const val = (v / vti) * 10 + 0.16;
+  document.getElementById('pvr-val').textContent = val.toFixed(2) + ' WU';
+  el.className = 'calc-result show ' + (val >= 3 ? 'elevated' : val >= 2 ? 'moderate-el' : 'normal');
+  document.getElementById('pvr-sub').textContent = val >= 3 ? 'Elevated PVR (≥3 WU) — pre-capillary PH likely' : val >= 2 ? 'Borderline elevated (2–3 WU) — consider further evaluation' : 'Normal PVR (<2 WU)';
+}
+
+// ── RV-PA Coupling ──
+function calcCoupling() {
+  const tapse = parseFloat(document.getElementById('coup-tapse').value);
+  const pasp = parseFloat(document.getElementById('coup-pasp').value);
+  const el = document.getElementById('coup-result');
+  if (isNaN(tapse) || isNaN(pasp) || pasp === 0) { el.innerHTML = ''; return; }
+  const ratio = tapse / pasp;
+  let cls, label;
+  if (ratio >= 0.5) { cls = 'coupled'; label = 'Coupled (Normal)'; }
+  else if (ratio >= 0.40) { cls = 'borderline'; label = 'Borderline'; }
+  else if (ratio >= 0.32) { cls = 'uncoupled'; label = 'Uncoupled — Elevated Risk'; }
+  else { cls = 'uncoupled'; label = 'Severely Uncoupled — High Risk'; }
+  el.innerHTML = `<div class="coupling-result ${cls}">TAPSE/PASP = ${ratio.toFixed(3)} mm/mm Hg — ${label}</div>`;
+}
+
+// ── PAEDP ──
+function calcPAEDP() {
+  const v = parseFloat(document.getElementById('paedp-prv').value);
+  const rap = parseFloat(document.getElementById('paedp-rap').value);
+  const el = document.getElementById('paedp-result');
+  if (isNaN(v)) { el.classList.remove('show'); return; }
+  const val = 4 * v * v + rap;
+  document.getElementById('paedp-val').textContent = val.toFixed(0) + ' mm Hg';
+  el.className = 'calc-result show ' + (val >= 20 ? 'elevated' : val >= 15 ? 'moderate-el' : 'normal');
+  document.getElementById('paedp-sub').textContent = v >= 2.2 ? 'End-diastolic PR velocity ≥2.2 m/s = abnormal (suggests PH)' : 'End-diastolic PR velocity <2.2 m/s';
+}
+
+// ── PCWP ──
+function calcPCWP() {
+  const e = parseFloat(document.getElementById('pcwp-e').value);
+  const ep = parseFloat(document.getElementById('pcwp-ep').value);
+  const el = document.getElementById('pcwp-result');
+  if (isNaN(e) || isNaN(ep) || ep === 0) { el.classList.remove('show'); return; }
+  const ratio = e / ep;
+  const val = 1.24 * ratio + 1.9;
+  document.getElementById('pcwp-val').textContent = val.toFixed(1) + ' mm Hg';
+  el.className = 'calc-result show ' + (val >= 15 ? 'elevated' : 'normal');
+  document.getElementById('pcwp-sub').textContent = `E/e′ = ${ratio.toFixed(1)} · ${val >= 18 ? 'Markedly elevated — post-capillary PH likely' : val >= 15 ? 'Elevated — consider post-capillary PH' : 'Normal range'}`;
+}
+
+// ── WSPH toggle ──
+function toggleWSPH(el) {
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>
