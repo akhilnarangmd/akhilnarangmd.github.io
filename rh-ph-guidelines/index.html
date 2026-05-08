@@ -245,6 +245,95 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
 
 <div class="content">
 
+<!-- ═══════════════════════════════════════════════════════ RV FUNCTION ═══ -->
+<div id="panel-rv-function" class="tab-panel active">
+  <div class="section-header">
+    <h2>RV Systolic Function — Graded Severity</h2>
+    <p>All parameters are graded into severity ranges per 2025 ASE. Use multiple parameters; no single value is definitive.</p>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="stat-card ok"><div class="stat-label">TAPSE Normal</div><div class="stat-value">&gt;1.7</div><div class="stat-desc">cm</div></div>
+    <div class="stat-card ok"><div class="stat-label">TDI S′ Normal</div><div class="stat-value">&gt;9.5</div><div class="stat-desc">cm/s</div></div>
+    <div class="stat-card ok"><div class="stat-label">FAC Normal</div><div class="stat-value">&gt;35</div><div class="stat-desc">%</div></div>
+    <div class="stat-card ok"><div class="stat-label">3D RVEF Normal</div><div class="stat-value">&gt;45</div><div class="stat-desc">%</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">RV Systolic Function — Graded Severity</div>
+      <table class="param-table">
+        <tr><th>Parameter</th><th>Normal</th><th>Mild ↓</th><th>Moderate ↓</th><th>Severe ↓</th></tr>
+        <tr><td class="label">TAPSE (cm)</td><td class="val normal">&gt;1.7</td><td class="val mild">1.3–1.7</td><td class="val moderate">1.0–1.3</td><td class="val severe">≤1.0</td></tr>
+        <tr><td class="label">TDI S′ (cm/s)</td><td class="val normal">&gt;9.5</td><td class="val mild">7.2–9.5</td><td class="val moderate">5.0–7.2</td><td class="val severe">≤5.0</td></tr>
+        <tr><td class="label">FAC (%)</td><td class="val normal">&gt;35</td><td class="val mild">29–35</td><td class="val moderate">22–29</td><td class="val severe">≤22</td></tr>
+        <tr><td class="label">3D RVEF (%)</td><td class="val normal">&gt;45</td><td class="val mild">39–45</td><td class="val moderate">32–39</td><td class="val severe">&lt;32</td></tr>
+        <tr><td class="label">RVFWS (%)</td><td class="val normal">&gt;−20</td><td class="val mild">−15 to −20</td><td class="val moderate">−11 to −15</td><td class="val severe">&lt;−11</td></tr>
+        <tr><td class="label">RVGLS (%)</td><td class="val normal">&gt;−17</td><td class="val mild">−13 to −17</td><td class="val moderate">−9 to −13</td><td class="val severe">≤−9</td></tr>
+        <tr><td class="label">MPI — TDI</td><td class="val normal">&lt;0.55</td><td class="val mild">0.55–0.62</td><td class="val moderate">0.62–0.70</td><td class="val severe">≥0.70</td></tr>
+        <tr><td class="label">MPI — PW</td><td class="val normal">&lt;0.40</td><td class="val mild">0.40–0.49</td><td class="val moderate">0.49–0.57</td><td class="val severe">≥0.57</td></tr>
+        <tr><td class="label">RVOT VTI (cm)</td><td class="val normal">&gt;18</td><td colspan="3" style="color:#718096;font-size:0.76rem;">Reduced VTI = reduced SV</td></tr>
+        <tr><td class="label">RVOT AccT (ms)</td><td class="val normal">&gt;105</td><td class="val mild">80–105</td><td class="val moderate">60–80</td><td class="val severe">≤60</td></tr>
+        <tr><td class="label">RV dP/dt (mm Hg/s)</td><td class="val normal">&gt;400</td><td colspan="3" style="color:#718096;font-size:0.76rem;">&lt;400 = reduced — load-dependent</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">RV Diastolic Function — Two Contexts</div>
+      <div class="info-note blue" style="margin-bottom:10px;">📖 The guideline provides two separate frameworks: (1) Table 1 grades deceleration time by severity; (2) Table 6 classifies diastolic pattern (impaired/pseudonormal/restrictive). These are distinct uses — the table below shows the pattern classification (Table 6).</div>
+      <table class="param-table">
+        <tr><th>Parameter</th><th>Normal</th><th>Impaired Relaxation</th><th>Pseudonormal</th><th>Restrictive</th></tr>
+        <tr><td class="label">E/A ratio</td><td class="val">0.8–&lt;2.0</td><td class="val">&lt;0.8</td><td class="val">0.8–2.1</td><td class="val severe">&gt;2.1</td></tr>
+        <tr><td class="label">DT (ms) — Pattern (Table 6)</td><td class="val">120–230</td><td class="val">&gt;230</td><td class="val">120–230</td><td class="val severe">&lt;120</td></tr>
+        <tr><td class="label">e′/a′ ratio</td><td class="val">0.5–&lt;1.8</td><td class="val">&lt;1.0</td><td class="val">&lt;1.0</td><td class="val severe">&lt;1.0</td></tr>
+        <tr><td class="label">E/e′</td><td class="val normal">&lt;6.0</td><td class="val">6.0–7.3</td><td class="val moderate">7.3–8.4</td><td class="val severe">≥8.5</td></tr>
+        <tr><td class="label">IVRT (ms)</td><td class="val normal">≤73</td><td class="val">&gt;73</td><td class="val">&gt;73</td><td class="val">&gt;73</td></tr>
+        <tr><td class="label">HV S/D ratio</td><td class="val normal">≥1</td><td class="val">≥1</td><td class="val moderate">&lt;1</td><td class="val severe">&lt;1</td></tr>
+        <tr><td class="label">PA diastolic antegrade</td><td class="val">No</td><td class="val">No</td><td class="val">Yes</td><td class="val severe">Yes</td></tr>
+      </table>
+      <div style="margin-top:10px;font-size:0.79rem;color:#4a5568;background:#f7fafc;border-radius:6px;padding:10px 12px;">
+        <strong>DT graded severity (Table 1):</strong> Normal 120–230 ms · Mild 87–&lt;120 ms · Moderate 57–&lt;87 ms · Severe ≤57 ms<br/>
+        <strong>e′/a′ graded severity (Table 1):</strong> Normal 0.5–&lt;1.8 · Mildly abnormal 1.8–2.1 · Moderate &gt;2.1–2.4 · Severe ≥2.5
+      </div>
+
+      <div class="divider"></div>
+      <div class="card-subheading">RV Remodeling Stages in PH</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
+          <strong style="color:#276749;">Adaptive</strong><br/>
+          <span style="color:#4a5568;">Concentric RVH · Minimal dilation · Preserved RVEF and CO · Normal filling pressures · Preserved exercise capacity</span>
+        </div>
+        <div style="background:#fffaf0;border-left:3px solid #744210;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
+          <strong style="color:#744210;">Maladaptive</strong><br/>
+          <span style="color:#4a5568;">Chamber dilation (mid-cavity before basal) · Crescentic → spherical shape · Reduced mass · Fibrosis · Decreased function · Leftward apical traction</span>
+        </div>
+        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
+          <strong style="color:#742a2a;">RV-PA Uncoupling</strong><br/>
+          <span style="color:#4a5568;">Contractile failure · Congestive RH failure · Restrictive diastolic dysfunction · TVA dilation → significant FTR · Ventricular interdependence and dyssynchrony</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TR Grading -->
+  <div class="card" style="margin-top:0;">
+    <div class="card-heading">TR Severity Grading — Integrative (2025 ASE)</div>
+    <div class="info-note blue">📖 Massive and Torrential categories added in 2025. ~60% of PAH patients have moderate-severe TR. V-wave cutoff sign (triangular CW contour) invalidates Bernoulli — do not use for RVSP in this setting.</div>
+    <table class="param-table">
+      <tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th><th>Massive</th><th>Torrential</th></tr>
+      <tr><td class="label">Vena contracta width (mm)</td><td class="val">&lt;3</td><td class="val">3–6.9</td><td class="val severe">≥7</td><td class="val severe">14–20</td><td class="val severe">≥21</td></tr>
+      <tr><td class="label">EROA-PISA (mm²)</td><td class="val">&lt;20</td><td class="val">20–39</td><td class="val severe">≥40</td><td class="val severe">60–79</td><td class="val severe">≥80</td></tr>
+      <tr><td class="label">Regurgitant volume (mL)</td><td class="val">&lt;30</td><td class="val">30–44</td><td class="val severe">≥45</td><td class="val severe">60–74</td><td class="val severe">≥75</td></tr>
+      <tr><td class="label">3D vena contracta area (cm²)</td><td class="val">&lt;0.40</td><td class="val">0.40–0.59</td><td class="val severe">≥0.60</td><td colspan="2" style="color:#718096;font-size:0.76rem;">Not separately graded</td></tr>
+      <tr><td class="label">PISA radius @ Va 28 cm/s (mm)</td><td class="val">&lt;5</td><td class="val">6–8.9</td><td class="val severe">≥9</td><td colspan="2" style="color:#718096;font-size:0.76rem;">—</td></tr>
+      <tr><td class="label">Hepatic vein flow</td><td class="val">Systolic dominant</td><td class="val">Systolic blunting</td><td class="val severe">Systolic reversal</td><td class="val severe">Reversal</td><td class="val severe">Reversal</td></tr>
+      <tr><td class="label">Tricuspid inflow E velocity</td><td class="val">A-dominant</td><td class="val">Variable</td><td class="val severe">E ≥1.0 m/s</td><td colspan="2" style="color:#718096;font-size:0.76rem;">E-dominant</td></tr>
+      <tr><td class="label">CW Doppler contour</td><td class="val">Soft, parabolic</td><td class="val">Dense parabolic</td><td class="val severe">Dense triangular, early peak</td><td colspan="2" style="color:#718096;font-size:0.76rem;">Dense triangular</td></tr>
+    </table>
+  </div>
+</div>
+
+
 <!-- ═══════════════════════════════════════════════════════ PH PROBABILITY ═══ -->
 <div id="panel-ph" class="tab-panel">
   <div class="section-header">
@@ -440,94 +529,6 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
       </div>
       <div class="info-note" style="margin-top:10px;">⚠️ Inaccurate in LVAD, paced rhythm, AF, mitral prosthesis, MAC, MS, severe MR.</div>
     </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════ RV FUNCTION ═══ -->
-<div id="panel-rv-function" class="tab-panel active">
-  <div class="section-header">
-    <h2>RV Systolic Function — Graded Severity</h2>
-    <p>All parameters are graded into severity ranges per 2025 ASE. Use multiple parameters; no single value is definitive.</p>
-  </div>
-
-  <div class="grid-4" style="margin-bottom:16px;">
-    <div class="stat-card ok"><div class="stat-label">TAPSE Normal</div><div class="stat-value">&gt;1.7</div><div class="stat-desc">cm</div></div>
-    <div class="stat-card ok"><div class="stat-label">TDI S′ Normal</div><div class="stat-value">&gt;9.5</div><div class="stat-desc">cm/s</div></div>
-    <div class="stat-card ok"><div class="stat-label">FAC Normal</div><div class="stat-value">&gt;35</div><div class="stat-desc">%</div></div>
-    <div class="stat-card ok"><div class="stat-label">3D RVEF Normal</div><div class="stat-value">&gt;45</div><div class="stat-desc">%</div></div>
-  </div>
-
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-heading">RV Systolic Function — Graded Severity</div>
-      <table class="param-table">
-        <tr><th>Parameter</th><th>Normal</th><th>Mild ↓</th><th>Moderate ↓</th><th>Severe ↓</th></tr>
-        <tr><td class="label">TAPSE (cm)</td><td class="val normal">&gt;1.7</td><td class="val mild">1.3–1.7</td><td class="val moderate">1.0–1.3</td><td class="val severe">≤1.0</td></tr>
-        <tr><td class="label">TDI S′ (cm/s)</td><td class="val normal">&gt;9.5</td><td class="val mild">7.2–9.5</td><td class="val moderate">5.0–7.2</td><td class="val severe">≤5.0</td></tr>
-        <tr><td class="label">FAC (%)</td><td class="val normal">&gt;35</td><td class="val mild">29–35</td><td class="val moderate">22–29</td><td class="val severe">≤22</td></tr>
-        <tr><td class="label">3D RVEF (%)</td><td class="val normal">&gt;45</td><td class="val mild">39–45</td><td class="val moderate">32–39</td><td class="val severe">&lt;32</td></tr>
-        <tr><td class="label">RVFWS (%)</td><td class="val normal">&gt;−20</td><td class="val mild">−15 to −20</td><td class="val moderate">−11 to −15</td><td class="val severe">&lt;−11</td></tr>
-        <tr><td class="label">RVGLS (%)</td><td class="val normal">&gt;−17</td><td class="val mild">−13 to −17</td><td class="val moderate">−9 to −13</td><td class="val severe">≤−9</td></tr>
-        <tr><td class="label">MPI — TDI</td><td class="val normal">&lt;0.55</td><td class="val mild">0.55–0.62</td><td class="val moderate">0.62–0.70</td><td class="val severe">≥0.70</td></tr>
-        <tr><td class="label">MPI — PW</td><td class="val normal">&lt;0.40</td><td class="val mild">0.40–0.49</td><td class="val moderate">0.49–0.57</td><td class="val severe">≥0.57</td></tr>
-        <tr><td class="label">RVOT VTI (cm)</td><td class="val normal">&gt;18</td><td colspan="3" style="color:#718096;font-size:0.76rem;">Reduced VTI = reduced SV</td></tr>
-        <tr><td class="label">RVOT AccT (ms)</td><td class="val normal">&gt;105</td><td class="val mild">80–105</td><td class="val moderate">60–80</td><td class="val severe">≤60</td></tr>
-        <tr><td class="label">RV dP/dt (mm Hg/s)</td><td class="val normal">&gt;400</td><td colspan="3" style="color:#718096;font-size:0.76rem;">&lt;400 = reduced — load-dependent</td></tr>
-      </table>
-    </div>
-
-    <div class="card">
-      <div class="card-heading">RV Diastolic Function — Two Contexts</div>
-      <div class="info-note blue" style="margin-bottom:10px;">📖 The guideline provides two separate frameworks: (1) Table 1 grades deceleration time by severity; (2) Table 6 classifies diastolic pattern (impaired/pseudonormal/restrictive). These are distinct uses — the table below shows the pattern classification (Table 6).</div>
-      <table class="param-table">
-        <tr><th>Parameter</th><th>Normal</th><th>Impaired Relaxation</th><th>Pseudonormal</th><th>Restrictive</th></tr>
-        <tr><td class="label">E/A ratio</td><td class="val">0.8–&lt;2.0</td><td class="val">&lt;0.8</td><td class="val">0.8–2.1</td><td class="val severe">&gt;2.1</td></tr>
-        <tr><td class="label">DT (ms) — Pattern (Table 6)</td><td class="val">120–230</td><td class="val">&gt;230</td><td class="val">120–230</td><td class="val severe">&lt;120</td></tr>
-        <tr><td class="label">e′/a′ ratio</td><td class="val">0.5–&lt;1.8</td><td class="val">&lt;1.0</td><td class="val">&lt;1.0</td><td class="val severe">&lt;1.0</td></tr>
-        <tr><td class="label">E/e′</td><td class="val normal">&lt;6.0</td><td class="val">6.0–7.3</td><td class="val moderate">7.3–8.4</td><td class="val severe">≥8.5</td></tr>
-        <tr><td class="label">IVRT (ms)</td><td class="val normal">≤73</td><td class="val">&gt;73</td><td class="val">&gt;73</td><td class="val">&gt;73</td></tr>
-        <tr><td class="label">HV S/D ratio</td><td class="val normal">≥1</td><td class="val">≥1</td><td class="val moderate">&lt;1</td><td class="val severe">&lt;1</td></tr>
-        <tr><td class="label">PA diastolic antegrade</td><td class="val">No</td><td class="val">No</td><td class="val">Yes</td><td class="val severe">Yes</td></tr>
-      </table>
-      <div style="margin-top:10px;font-size:0.79rem;color:#4a5568;background:#f7fafc;border-radius:6px;padding:10px 12px;">
-        <strong>DT graded severity (Table 1):</strong> Normal 120–230 ms · Mild 87–&lt;120 ms · Moderate 57–&lt;87 ms · Severe ≤57 ms<br/>
-        <strong>e′/a′ graded severity (Table 1):</strong> Normal 0.5–&lt;1.8 · Mildly abnormal 1.8–2.1 · Moderate &gt;2.1–2.4 · Severe ≥2.5
-      </div>
-
-      <div class="divider"></div>
-      <div class="card-subheading">RV Remodeling Stages in PH</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="background:#f0fff4;border-left:3px solid #276749;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
-          <strong style="color:#276749;">Adaptive</strong><br/>
-          <span style="color:#4a5568;">Concentric RVH · Minimal dilation · Preserved RVEF and CO · Normal filling pressures · Preserved exercise capacity</span>
-        </div>
-        <div style="background:#fffaf0;border-left:3px solid #744210;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
-          <strong style="color:#744210;">Maladaptive</strong><br/>
-          <span style="color:#4a5568;">Chamber dilation (mid-cavity before basal) · Crescentic → spherical shape · Reduced mass · Fibrosis · Decreased function · Leftward apical traction</span>
-        </div>
-        <div style="background:#fff5f5;border-left:3px solid #742a2a;border-radius:6px;padding:10px 12px;font-size:0.79rem;">
-          <strong style="color:#742a2a;">RV-PA Uncoupling</strong><br/>
-          <span style="color:#4a5568;">Contractile failure · Congestive RH failure · Restrictive diastolic dysfunction · TVA dilation → significant FTR · Ventricular interdependence and dyssynchrony</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TR Grading -->
-  <div class="card" style="margin-top:0;">
-    <div class="card-heading">TR Severity Grading — Integrative (2025 ASE)</div>
-    <div class="info-note blue">📖 Massive and Torrential categories added in 2025. ~60% of PAH patients have moderate-severe TR. V-wave cutoff sign (triangular CW contour) invalidates Bernoulli — do not use for RVSP in this setting.</div>
-    <table class="param-table">
-      <tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th><th>Massive</th><th>Torrential</th></tr>
-      <tr><td class="label">Vena contracta width (mm)</td><td class="val">&lt;3</td><td class="val">3–6.9</td><td class="val severe">≥7</td><td class="val severe">14–20</td><td class="val severe">≥21</td></tr>
-      <tr><td class="label">EROA-PISA (mm²)</td><td class="val">&lt;20</td><td class="val">20–39</td><td class="val severe">≥40</td><td class="val severe">60–79</td><td class="val severe">≥80</td></tr>
-      <tr><td class="label">Regurgitant volume (mL)</td><td class="val">&lt;30</td><td class="val">30–44</td><td class="val severe">≥45</td><td class="val severe">60–74</td><td class="val severe">≥75</td></tr>
-      <tr><td class="label">3D vena contracta area (cm²)</td><td class="val">&lt;0.40</td><td class="val">0.40–0.59</td><td class="val severe">≥0.60</td><td colspan="2" style="color:#718096;font-size:0.76rem;">Not separately graded</td></tr>
-      <tr><td class="label">PISA radius @ Va 28 cm/s (mm)</td><td class="val">&lt;5</td><td class="val">6–8.9</td><td class="val severe">≥9</td><td colspan="2" style="color:#718096;font-size:0.76rem;">—</td></tr>
-      <tr><td class="label">Hepatic vein flow</td><td class="val">Systolic dominant</td><td class="val">Systolic blunting</td><td class="val severe">Systolic reversal</td><td class="val severe">Reversal</td><td class="val severe">Reversal</td></tr>
-      <tr><td class="label">Tricuspid inflow E velocity</td><td class="val">A-dominant</td><td class="val">Variable</td><td class="val severe">E ≥1.0 m/s</td><td colspan="2" style="color:#718096;font-size:0.76rem;">E-dominant</td></tr>
-      <tr><td class="label">CW Doppler contour</td><td class="val">Soft, parabolic</td><td class="val">Dense parabolic</td><td class="val severe">Dense triangular, early peak</td><td colspan="2" style="color:#718096;font-size:0.76rem;">Dense triangular</td></tr>
-    </table>
   </div>
 </div>
 
