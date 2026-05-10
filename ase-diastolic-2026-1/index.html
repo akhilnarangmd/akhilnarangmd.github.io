@@ -1572,6 +1572,7 @@ function showPage(id) {
   document.getElementById('page-' + id).classList.add('active');
   event.target.classList.add('active');
   window.scrollTo({top:0, behavior:'smooth'});
+  if (id === 'home') setTimeout(drawCrossArrow, 50);
 }
 
 // ══════════════════════════════════════════════════════
@@ -1618,12 +1619,6 @@ function drawCrossArrow() {
 // Draw on load and on resize
 window.addEventListener('load',   drawCrossArrow);
 window.addEventListener('resize', drawCrossArrow);
-// Also re-draw after any page navigation (diagram may have been hidden)
-const _origShowPage = showPage;
-function showPage(id) {
-  _origShowPage(id);
-  if (id === 'home') setTimeout(drawCrossArrow, 50);
-}
 
 
 // ── Algorithm node info data ──
