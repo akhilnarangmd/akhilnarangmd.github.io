@@ -389,19 +389,29 @@
               <div style="font-size:0.73rem; color:#78350f; margin-top:0.1rem;">E/e' and TR/PASP normal</div>
             </div>
             <div class="flow-arrow-down"><div class="flow-arrow-line" style="height:10px;"></div><div class="flow-arrow-head"></div></div>
+            <!-- E/A split -->
             <div style="width:100%; display:grid; grid-template-columns:1fr 1fr; gap:0.3rem; text-align:center;">
-              <div style="background:#fef3c7; border:1.5px solid #b7600a; border-radius:7px; padding:0.4rem 0.25rem;">
-                <div style="font-size:0.7rem; font-weight:700; color:#92400e;">E/A ≤0.8</div>
-                <div style="font-size:0.68rem; color:#78350f;">🟡 Grade 1 DD</div>
-                <div style="font-size:0.65rem; color:#78350f;">Normal LAP</div>
+              <!-- Left: E/A ≤0.8 → Normal LAP → Grade 1 -->
+              <div class="branch-col">
+                <div style="font-size:0.68rem; font-weight:700; color:#64748b; margin-bottom:2px;">E/A ≤0.8</div>
+                <div class="flow-arrow-down"><div class="flow-arrow-line" style="height:8px;"></div><div class="flow-arrow-head"></div></div>
+                <div style="background:#d1fae5; border:1.5px solid #059669; border-radius:7px; padding:0.4rem 0.25rem;">
+                  <div style="font-size:0.7rem; font-weight:700; color:#065f46;">Normal LAP</div>
+                </div>
+                <div class="flow-arrow-down"><div class="flow-arrow-line" style="height:8px;"></div><div class="flow-arrow-head"></div></div>
               </div>
-              <div class="clickable-node" style="background:#e0f2fe; border:1.5px solid #0284c7; border-radius:7px; padding:0.4rem 0.25rem; cursor:pointer;" onclick="selectNode('supplemental')">
-                <div style="font-size:0.7rem; font-weight:700; color:#0c4a6e;">E/A &gt;0.8</div>
-                <div style="font-size:0.68rem; color:#075985;">→ Suppl.</div>
+              <!-- Right: E/A >0.8 → Supplemental -->
+              <div class="branch-col">
+                <div style="font-size:0.68rem; font-weight:700; color:#64748b; margin-bottom:2px;">E/A &gt;0.8</div>
+                <div class="flow-arrow-down"><div class="flow-arrow-line" style="height:8px;"></div><div class="flow-arrow-head"></div></div>
+                <div class="clickable-node" style="background:#ede9fe; border:1.5px solid #7c3aed; border-radius:7px; padding:0.4rem 0.25rem; cursor:pointer;" onclick="selectNode('supplemental')">
+                  <div style="font-size:0.7rem; font-weight:700; color:#4c1d95;">→ Supplemental</div>
+                </div>
+                <div class="flow-arrow-down"><div class="flow-arrow-line" style="height:8px;"></div><div class="flow-arrow-head"></div></div>
               </div>
             </div>
-            <div class="flow-arrow-down"><div class="flow-arrow-line" style="height:10px;"></div><div class="flow-arrow-head"></div></div>
-            <div style="background:#fef3c7; border:2px solid #b7600a; border-radius:9px; padding:0.5rem 0.6rem; text-align:center;">
+            <!-- Both converge at Grade 1 DD -->
+            <div style="background:#fef3c7; border:2px solid #b7600a; border-radius:9px; padding:0.5rem 0.6rem; text-align:center; cursor:pointer;" id="node-grade1-result" onclick="selectNode('grade1')">
               <div style="font-weight:700; color:#92400e; font-size:0.83rem;">🟡 Grade 1 DD</div>
               <div style="font-size:0.72rem; color:#78350f; margin-top:0.1rem;">Impaired relaxation · Normal LAP</div>
             </div>
