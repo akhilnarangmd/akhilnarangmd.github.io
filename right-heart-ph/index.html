@@ -109,6 +109,14 @@ header .guideline-badge { display: inline-block; margin-top: 8px; background: rg
 .check-item label strong { display: block; color: #1a202c; }
 .check-item label span { color: #718096; font-size: 0.75rem; }
 
+/* ── Supportive bullet items ── */
+.supportive-item { display: flex; align-items: flex-start; gap: 8px; padding: 7px 10px; border-left: 2.5px solid #cbd5e0; background: #f7fafc; border-radius: 0 6px 6px 0; }
+.supportive-item-dot { color: #a0aec0; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0; }
+.supportive-item-title { font-size: 0.82rem; font-weight: 600; color: #2d3748; }
+.supportive-item-sub { font-size: 0.75rem; color: #718096; }
+.supportive-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.supportive-header { font-size: 0.72rem; font-weight: 700; color: #718096; text-transform: uppercase; letter-spacing: 0.06em; margin: 10px 0 6px; padding-left: 4px; }
+
 /* ── Category headers for PH tool ── */
 .cat-header { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 6px 12px; border-radius: 6px; margin: 10px 0 6px; }
 .cat-a { background: #ebf8ff; color: #2c5282; }
@@ -358,10 +366,23 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
         <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>RV/LV basal diameter ratio &gt;1.0</strong><span>RV-focused apical 4-chamber</span></label></label>
         <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>LV eccentricity index (LVEI) &gt;1.1</strong><span>PSAX at papillary muscle level — systole and/or diastole</span></label></label>
       </div>
-      <div style="font-size:0.72rem;font-weight:700;color:#718096;text-transform:uppercase;letter-spacing:0.06em;margin:6px 0 4px;padding-left:4px;">Supportive / Prognostic (not formal probability criteria)</div>
-      <div class="check-group">
-        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>TAPSE/PASP &lt;0.55 mm/mm Hg</strong><span>RV-PA coupling — prognostic, not in formal probability matrix</span></label></label>
-        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>RV free-wall strain &gt;−20%</strong><span>Prognostic marker — not in formal ESC/ASE probability criteria</span></label></label>
+
+      <div class="supportive-header">Supportive / Prognostic <span style="font-weight:400;text-transform:none;letter-spacing:0;">(not part of formal probability score)</span></div>
+      <div class="supportive-group">
+        <div class="supportive-item">
+          <span class="supportive-item-dot">&#9679;</span>
+          <div>
+            <div class="supportive-item-title">TAPSE/PASP &lt;0.55 mm/mmHg</div>
+            <div class="supportive-item-sub">RV-PA coupling — prognostic marker</div>
+          </div>
+        </div>
+        <div class="supportive-item">
+          <span class="supportive-item-dot">&#9679;</span>
+          <div>
+            <div class="supportive-item-title">RV free-wall strain &gt;&#8722;20%</div>
+            <div class="supportive-item-sub">Prognostic marker — not in formal ESC/ASE probability criteria</div>
+          </div>
+        </div>
       </div>
 
       <div class="cat-header cat-b">B — Pulmonary Artery Signs <span style="font-size:0.7rem;font-weight:400;color:#718096;">(formal guideline criteria)</span></div>
@@ -369,11 +390,30 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
         <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>Mid-systolic RVOT notching ("W sign")</strong><span>PSAX PA-bifurcation view — high PVR marker</span></label></label>
         <label class="check-item"><input type="checkbox" onchange="calcPH()"><label><strong>End-diastolic PR velocity &gt;2.2 m/s</strong><span>PSAX, CW Doppler at pulmonic valve</span></label></label>
       </div>
-      <div style="font-size:0.72rem;font-weight:700;color:#718096;text-transform:uppercase;letter-spacing:0.06em;margin:6px 0 4px;padding-left:4px;">Supportive (not in formal probability criteria)</div>
-      <div class="check-group">
-        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>PA diameter &gt;25 mm</strong><span>Supportive — non-specific, seen across all WSPH groups</span></label></label>
-        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>PA/Aorta ratio ≥1.0</strong><span>Supportive — adjunctive finding</span></label></label>
-        <label class="check-item" style="opacity:0.75;pointer-events:none;"><input type="checkbox" disabled><label><strong>RVOT AccT &lt;105 ms</strong><span>Supportive — also used for mPAP estimation</span></label></label>
+
+      <div class="supportive-header">Supportive <span style="font-weight:400;text-transform:none;letter-spacing:0;">(not part of formal probability score)</span></div>
+      <div class="supportive-group">
+        <div class="supportive-item">
+          <span class="supportive-item-dot">&#9679;</span>
+          <div>
+            <div class="supportive-item-title">PA diameter &gt;25 mm</div>
+            <div class="supportive-item-sub">Non-specific — seen across all WSPH groups</div>
+          </div>
+        </div>
+        <div class="supportive-item">
+          <span class="supportive-item-dot">&#9679;</span>
+          <div>
+            <div class="supportive-item-title">PA/Aorta ratio &#8805;1.0</div>
+            <div class="supportive-item-sub">Adjunctive finding</div>
+          </div>
+        </div>
+        <div class="supportive-item">
+          <span class="supportive-item-dot">&#9679;</span>
+          <div>
+            <div class="supportive-item-title">RVOT AccT &lt;105 ms</div>
+            <div class="supportive-item-sub">Also used for mPAP estimation</div>
+          </div>
+        </div>
       </div>
 
       <div class="cat-header cat-c">C — IVC and RA Signs <span style="font-size:0.7rem;font-weight:400;color:#718096;">(formal guideline criteria)</span></div>
@@ -1007,25 +1047,11 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
 </footer>
 
 <script>
-// ── Tab switching ──
 function switchTab(tabName) {
-  // Hide all panels
-  document.querySelectorAll('.tab-panel').forEach(panel => {
-    panel.classList.remove('active');
-  });
-
-  // Remove active state from all nav buttons
-  document.querySelectorAll('.main-nav button').forEach(button => {
-    button.classList.remove('active');
-  });
-
-  // Show selected panel
+  document.querySelectorAll('.tab-panel').forEach(panel => { panel.classList.remove('active'); });
+  document.querySelectorAll('.main-nav button').forEach(button => { button.classList.remove('active'); });
   const selectedPanel = document.getElementById('panel-' + tabName);
-  if (selectedPanel) {
-    selectedPanel.classList.add('active');
-  }
-
-  // Activate matching nav button based on its onclick value
+  if (selectedPanel) selectedPanel.classList.add('active');
   document.querySelectorAll('.main-nav button').forEach(button => {
     const onclickValue = button.getAttribute('onclick') || '';
     if (onclickValue.includes("'" + tabName + "'") || onclickValue.includes('"' + tabName + '"')) {
@@ -1034,12 +1060,8 @@ function switchTab(tabName) {
   });
 }
 
-// Ensure RV Function is the default tab on page load
-window.addEventListener('DOMContentLoaded', () => {
-  switchTab('rv-function');
-});
+window.addEventListener('DOMContentLoaded', () => { switchTab('rv-function'); });
 
-// ── PH Probability ──
 let trvLevel = null;
 function selectTRV(btn, level) {
   document.querySelectorAll('.trv-option').forEach(b => b.classList.remove('selected'));
@@ -1053,13 +1075,11 @@ function calcPH() {
   const aChecks = document.querySelectorAll('#cat-a input[type=checkbox]');
   const bChecks = document.querySelectorAll('#cat-b input[type=checkbox]');
   const cChecks = document.querySelectorAll('#cat-c input[type=checkbox]');
-
   const aPos = [...aChecks].some(c => c.checked);
   const bPos = [...bChecks].some(c => c.checked);
   const cPos = [...cChecks].some(c => c.checked);
   const categoriesPositive = [aPos, bPos, cPos].filter(Boolean).length;
   const signsPresent = categoriesPositive >= 2;
-
   let prob, cls, note;
   if (trvLevel === 'high') {
     prob = 'High'; cls = 'high';
@@ -1085,37 +1105,30 @@ function calcPH() {
     prob = 'Low'; cls = 'low';
     note = `TRV <2.8 m/s with signs in ${categoriesPositive}/3 categories → Low probability. Reassess if clinical suspicion remains high.`;
   }
-
   const box = document.getElementById('ph-result-box');
   box.className = 'ph-probability-box ' + cls;
   document.getElementById('ph-prob-value').className = 'ph-prob-value ' + cls;
   document.getElementById('ph-prob-value').textContent = prob;
   document.getElementById('ph-prob-note').textContent = note;
   document.querySelector('#ph-result-box .ph-prob-label').textContent = 'PH Probability';
-
-  // highlight check items
   document.querySelectorAll('.check-item').forEach(item => {
     item.classList.toggle('checked', item.querySelector('input').checked);
   });
 }
 
-// ── RVSP ──
 function calcRVSP() {
   const v = parseFloat(document.getElementById('rvsp-trv').value);
   const rap = parseFloat(document.getElementById('rvsp-rap').value);
   const el = document.getElementById('rvsp-result');
   if (isNaN(v)) { el.classList.remove('show'); return; }
   const val = 4 * v * v + rap;
-  const valEl = document.getElementById('rvsp-val');
-  const subEl = document.getElementById('rvsp-sub');
-  valEl.textContent = val.toFixed(0) + ' mm Hg';
-  el.className = 'calc-result show ' + (val >= 70 ? 'elevated' : val >= 50 ? 'moderate-el' : val >= 35 ? 'moderate-el' : 'normal');
+  document.getElementById('rvsp-val').textContent = val.toFixed(0) + ' mm Hg';
+  el.className = 'calc-result show ' + (val >= 70 ? 'elevated' : val >= 35 ? 'moderate-el' : 'normal');
   const trv = v >= 3.6 ? 'Severe elevation (≥3.6 m/s)' : v >= 3.2 ? 'Moderate elevation (3.2–3.5 m/s)' : v >= 2.9 ? 'Mild-moderate (2.9–3.4 m/s)' : 'Normal range (≤2.8 m/s)';
   const pasp = val >= 70 ? 'Severe PH' : val >= 50 ? 'Moderate PH' : val >= 35 ? 'Mild PH' : 'Normal';
-  subEl.textContent = `TR velocity: ${trv} · ${pasp} (RVSP ≥70 severe, 50–69 moderate, 35–49 mild) · RAP: ${rap} mm Hg`;
+  document.getElementById('rvsp-sub').textContent = `TR velocity: ${trv} · ${pasp} · RAP: ${rap} mm Hg`;
 }
 
-// ── mPAP ──
 function calcMPAP() {
   const pasp = parseFloat(document.getElementById('mpap-pasp').value);
   const paedp = parseFloat(document.getElementById('mpap-paedp').value);
@@ -1139,7 +1152,6 @@ function calcMPAP() {
 }
 calcMPAP();
 
-// ── PVR ──
 function calcPVR() {
   const v = parseFloat(document.getElementById('pvr-trv').value);
   const vti = parseFloat(document.getElementById('pvr-vti').value);
@@ -1151,7 +1163,6 @@ function calcPVR() {
   document.getElementById('pvr-sub').textContent = val >= 3 ? 'Elevated PVR (≥3 WU) — pre-capillary PH likely' : val >= 2 ? 'Borderline elevated (2–3 WU) — consider further evaluation' : 'Normal PVR (<2 WU)';
 }
 
-// ── RV-PA Coupling ──
 function calcCoupling() {
   const tapse = parseFloat(document.getElementById('coup-tapse').value);
   const pasp = parseFloat(document.getElementById('coup-pasp').value);
@@ -1166,7 +1177,6 @@ function calcCoupling() {
   el.innerHTML = `<div class="coupling-result ${cls}">TAPSE/PASP = ${ratio.toFixed(3)} mm/mm Hg — ${label}</div>`;
 }
 
-// ── PAEDP ──
 function calcPAEDP() {
   const v = parseFloat(document.getElementById('paedp-prv').value);
   const rap = parseFloat(document.getElementById('paedp-rap').value);
@@ -1178,7 +1188,6 @@ function calcPAEDP() {
   document.getElementById('paedp-sub').textContent = v >= 2.2 ? 'End-diastolic PR velocity ≥2.2 m/s = abnormal (suggests PH)' : 'End-diastolic PR velocity <2.2 m/s';
 }
 
-// ── PCWP ──
 function calcPCWP() {
   const e = parseFloat(document.getElementById('pcwp-e').value);
   const ep = parseFloat(document.getElementById('pcwp-ep').value);
@@ -1191,10 +1200,7 @@ function calcPCWP() {
   document.getElementById('pcwp-sub').textContent = `E/e′ = ${ratio.toFixed(1)} · ${val >= 18 ? 'Markedly elevated — post-capillary PH likely' : val >= 15 ? 'Elevated — consider post-capillary PH' : 'Normal range'}`;
 }
 
-// ── WSPH toggle ──
-function toggleWSPH(el) {
-  el.classList.toggle('open');
-}
+function toggleWSPH(el) { el.classList.toggle('open'); }
 </script>
 </body>
 </html>
