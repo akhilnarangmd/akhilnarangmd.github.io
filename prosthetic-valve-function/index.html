@@ -292,9 +292,8 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
   <!-- Figure 13 Algorithm -->
   <div class="card full">
     <div class="card-heading">Algorithm — Elevated Prosthetic Aortic Jet Velocity &gt;3 m/s (Figure 13)</div>
-    <div class="info-note blue" style="margin-bottom:16px;">📖 Evaluate jet contour first (early vs late peak), then DVI to reach a diagnosis. Click any node for details.</div>
-    <div style="overflow-x:auto;">
-    <svg width="100%" viewBox="0 0 720 480" role="img" xmlns="http://www.w3.org/2000/svg" style="min-width:560px;">
+    <div class="info-note blue" style="margin-bottom:16px;">📖 Evaluate jet contour first (early vs late peak), then DVI to reach a diagnosis.</div>
+    <svg width="100%" viewBox="0 0 680 460" role="img" xmlns="http://www.w3.org/2000/svg">
       <title>Figure 13 — Prosthetic aortic jet velocity algorithm</title>
       <desc>Algorithm for evaluation of elevated peak prosthetic aortic jet velocity. Zoghbi et al. JASE 2024.</desc>
       <defs>
@@ -306,109 +305,133 @@ footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; 
         </pattern>
       </defs>
 
+      <!-- ═══ LAYOUT PLAN (all x within 0..680)
+           3 outcome columns:
+             A (Normal AVR):       x=10..226   cx=118
+             B (Possible stenosis): x=234..466  cx=350
+             C (Stenosis):         x=474..668  cx=571
+
+           Jet contour boxes (2 per row, sharing middle):
+             Early Peak:  x=108..316   cx=212
+             CW early:   x=324..354   (triangular, w=30)
+             Late Peak:  x=362..570   cx=466
+             CW late:    x=578..608   (parabolic, w=30)
+
+           Entry centred: cx=340  x=160..520
+
+           DVI sidebar: x=10..86
+           DVI ≥0.30:   x=100..212   cx=156
+           DVI 0.29-0.25: x=276..412  cx=344
+           DVI <0.25:   x=476..600   cx=538
+      ═══ -->
+
       <!-- ENTRY -->
-      <rect x="170" y="12" width="380" height="44" rx="10" fill="#e9d8fd" stroke="#805ad5" stroke-width="1"/>
-      <text x="360" y="34" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#44337a">Prosthetic aortic jet velocity &gt; 3 m/s</text>
+      <rect x="160" y="10" width="360" height="42" rx="10" fill="#e9d8fd" stroke="#805ad5" stroke-width="1"/>
+      <text x="340" y="31" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="14" font-weight="600" fill="#44337a">Prosthetic aortic jet velocity &gt; 3 m/s</text>
 
-      <!-- Entry → 2 branches -->
-      <line x1="360" y1="56" x2="360" y2="70" stroke="#4a5568" stroke-width="1.2"/>
-      <line x1="226" y1="70" x2="510" y2="70" stroke="#4a5568" stroke-width="1.2"/>
-      <line x1="226" y1="70" x2="226" y2="84" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
-      <line x1="510" y1="70" x2="510" y2="84" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <!-- Entry → 2 branch stems -->
+      <line x1="340" y1="52" x2="340" y2="66" stroke="#4a5568" stroke-width="1.2"/>
+      <line x1="212" y1="66" x2="466" y2="66" stroke="#4a5568" stroke-width="1.2"/>
+      <line x1="212" y1="66" x2="212" y2="80" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <line x1="466" y1="66" x2="466" y2="80" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
 
-      <!-- Jet Contour sidebar -->
-      <rect x="12" y="90" width="86" height="62" rx="8" fill="#bee3f8" stroke="#2b6cb0" stroke-width="0.8"/>
-      <text x="55" y="114" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#1a365d">Jet</text>
-      <text x="55" y="132" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#1a365d">Contour</text>
+      <!-- Jet Contour sidebar label -->
+      <rect x="10" y="86" width="90" height="62" rx="8" fill="#bee3f8" stroke="#2b6cb0" stroke-width="0.8"/>
+      <text x="55" y="110" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#1a365d">Jet</text>
+      <text x="55" y="128" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#1a365d">Contour</text>
 
-      <!-- Early Peak box -->
-      <rect x="110" y="84" width="222" height="74" rx="10" fill="#bee3f8" stroke="#2b6cb0" stroke-width="1"/>
-      <text x="221" y="108" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#1a365d">Early Peak</text>
-      <text x="221" y="128" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#2c5282">AT &lt; 100 ms  ·  AT/ET &lt; 0.37</text>
+      <!-- Early Peak box: x=108..318 cx=213 -->
+      <rect x="108" y="80" width="210" height="68" rx="10" fill="#bee3f8" stroke="#2b6cb0" stroke-width="1"/>
+      <text x="213" y="104" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#1a365d">Early Peak</text>
+      <text x="213" y="124" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#2c5282">AT &lt; 100 ms  ·  AT/ET &lt; 0.37</text>
 
-      <!-- Early peak CW shape (triangular, steep left, gradual right, apex bottom) -->
-      <path d="M344,88 L350,154 Q372,134 386,88 Z" fill="url(#fig13hatch)" stroke="#718096" stroke-width="1.2" stroke-linejoin="round"/>
+      <!-- Early peak CW shape — triangular, steep left, gradual right, apex at bottom
+           box right edge = 318. Gap 10px. Shape x=328..360 cx=344 top=84 bottom=146 -->
+      <path d="M328,84 L334,146 Q350,128 362,84 Z"
+            fill="url(#fig13hatch)" stroke="#718096" stroke-width="1.2" stroke-linejoin="round"/>
 
-      <!-- Late Peak box -->
-      <rect x="402" y="84" width="222" height="74" rx="10" fill="#bee3f8" stroke="#2b6cb0" stroke-width="1"/>
-      <text x="513" y="108" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#1a365d">Late Peak</text>
-      <text x="513" y="128" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#2c5282">AT &gt; 100 ms  ·  AT/ET &gt; 0.37</text>
+      <!-- Late Peak box: x=370..580 cx=475 -->
+      <rect x="370" y="80" width="210" height="68" rx="10" fill="#bee3f8" stroke="#2b6cb0" stroke-width="1"/>
+      <text x="475" y="104" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#1a365d">Late Peak</text>
+      <text x="475" y="124" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#2c5282">AT &gt; 100 ms  ·  AT/ET &gt; 0.37</text>
 
-      <!-- Late peak CW shape (parabolic dome, symmetric, apex bottom) - well separated from box -->
-      <path d="M636,88 C636,154 656,156 656,156 C656,156 676,154 676,88 Z" fill="url(#fig13hatch)" stroke="#718096" stroke-width="1.2" stroke-linejoin="round"/>
+      <!-- Late peak CW shape — parabolic dome, symmetric, apex at bottom
+           box right edge = 580. Gap 10px. Shape x=590..622 cx=606 top=84 bottom=146 -->
+      <path d="M590,84 C590,146 606,148 606,148 C606,148 622,146 622,84 Z"
+            fill="url(#fig13hatch)" stroke="#718096" stroke-width="1.2" stroke-linejoin="round"/>
 
-      <!-- DVI sidebar -->
-      <rect x="12" y="186" width="86" height="34" rx="8" fill="#f6e05e" stroke="#b7791f" stroke-width="1"/>
-      <text x="55" y="203" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#744210">DVI</text>
+      <!-- DVI sidebar label -->
+      <rect x="10" y="180" width="72" height="34" rx="8" fill="#f6e05e" stroke="#c8a000" stroke-width="1"/>
+      <text x="46" y="197" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#744210">DVI</text>
 
-      <!-- Stems: Early peak → ≥0.30 and 0.29-0.25 -->
-      <line x1="221" y1="158" x2="221" y2="172" stroke="#4a5568" stroke-width="1.2"/>
-      <line x1="172" y1="172" x2="352" y2="172" stroke="#4a5568" stroke-width="1.2"/>
-      <line x1="172" y1="172" x2="172" y2="186" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
-      <line x1="352" y1="172" x2="352" y2="186" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <!-- Branch stems: jet contour → DVI row at y=162 -->
+      <line x1="213" y1="148" x2="213" y2="162" stroke="#4a5568" stroke-width="1.2"/>
+      <line x1="119" y1="162" x2="350" y2="162" stroke="#4a5568" stroke-width="1.2"/>
+      <line x1="119" y1="162" x2="119" y2="180" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <line x1="350" y1="162" x2="350" y2="180" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <line x1="475" y1="148" x2="475" y2="162" stroke="#4a5568" stroke-width="1.2"/>
+      <line x1="350" y1="162" x2="570" y2="162" stroke="#4a5568" stroke-width="1.2"/>
+      <line x1="570" y1="162" x2="570" y2="180" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
 
-      <!-- Stems: Late peak → 0.29-0.25 and <0.25 -->
-      <line x1="513" y1="158" x2="513" y2="172" stroke="#4a5568" stroke-width="1.2"/>
-      <line x1="352" y1="172" x2="548" y2="172" stroke="#4a5568" stroke-width="1.2"/>
-      <line x1="548" y1="172" x2="548" y2="186" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <!-- DVI value boxes — no orange stroke, uses same yellow fill outline to avoid red artifact
+           ≥0.30 starts at x=90 (clear of DVI label right edge x=82) -->
+      <rect x="90" y="180" width="58" height="34" rx="8" fill="#f6e05e" stroke="#c8a000" stroke-width="1"/>
+      <text x="119" y="197" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#744210">≥ 0.30</text>
 
-      <!-- DVI value boxes -->
-      <rect x="118" y="186" width="108" height="34" rx="8" fill="#f6e05e" stroke="#b7791f" stroke-width="1"/>
-      <text x="172" y="203" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#744210">≥ 0.30</text>
+      <rect x="286" y="180" width="128" height="34" rx="8" fill="#f6e05e" stroke="#c8a000" stroke-width="1"/>
+      <text x="350" y="197" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#744210">0.29 – 0.25</text>
 
-      <rect x="298" y="186" width="108" height="34" rx="8" fill="#f6e05e" stroke="#b7791f" stroke-width="1"/>
-      <text x="352" y="203" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#744210">0.29 – 0.25</text>
+      <rect x="510" y="180" width="120" height="34" rx="8" fill="#f6e05e" stroke="#c8a000" stroke-width="1"/>
+      <text x="570" y="197" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#744210">&lt; 0.25</text>
 
-      <rect x="494" y="186" width="108" height="34" rx="8" fill="#f6e05e" stroke="#b7791f" stroke-width="1"/>
-      <text x="548" y="203" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#744210">&lt; 0.25</text>
+      <!-- Arrows DVI → outcomes: perfectly vertical -->
+      <line x1="119" y1="214" x2="119" y2="230" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <line x1="350" y1="214" x2="350" y2="230" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <line x1="570" y1="214" x2="570" y2="230" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
 
-      <!-- Arrows DVI → outcome headers -->
-      <line x1="172" y1="220" x2="172" y2="236" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
-      <line x1="352" y1="220" x2="416" y2="220" stroke="#4a5568" stroke-width="1.2"/>
-      <line x1="416" y1="220" x2="416" y2="236" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
-      <line x1="548" y1="220" x2="608" y2="220" stroke="#4a5568" stroke-width="1.2"/>
-      <line x1="608" y1="220" x2="608" y2="236" stroke="#4a5568" stroke-width="1.2" marker-end="url(#fig13arr)"/>
+      <!-- Outcome header boxes — cx: A=119  B=350  C=570 -->
 
-      <!-- Outcome headers -->
-      <!-- A: Normal AVR (green) x=12..300 c=156 -->
-      <rect x="12" y="236" width="288" height="36" rx="9" fill="#c6f6d5" stroke="#276749" stroke-width="1"/>
-      <text x="156" y="254" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#22543d">Normal AVR §</text>
+      <!-- A: Normal AVR (green) x=10..228 cx=119 -->
+      <rect x="10" y="230" width="218" height="36" rx="9" fill="#c6f6d5" stroke="#276749" stroke-width="1"/>
+      <text x="119" y="248" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#22543d">Normal AVR §</text>
 
-      <!-- B: Possible Stenosis (amber) x=308..528 c=418 -->
-      <rect x="308" y="236" width="216" height="36" rx="9" fill="#fbd38d" stroke="#c05621" stroke-width="1"/>
-      <text x="416" y="254" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#7b341e">Possible stenosis* §</text>
+      <!-- B: Possible stenosis (amber) x=236..464 cx=350 -->
+      <rect x="236" y="230" width="228" height="36" rx="9" fill="#fbd38d" stroke="#c05621" stroke-width="1"/>
+      <text x="350" y="248" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#7b341e">Possible stenosis* §</text>
 
-      <!-- C: Stenosis (coral) x=532..706 c=619 -->
-      <rect x="532" y="236" width="176" height="36" rx="9" fill="#feb2b2" stroke="#c53030" stroke-width="1"/>
-      <text x="620" y="254" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#742a2a">Stenosis* §</text>
+      <!-- C: Stenosis (coral) x=472..668 cx=570 -->
+      <rect x="472" y="230" width="196" height="36" rx="9" fill="#feb2b2" stroke="#c53030" stroke-width="1"/>
+      <text x="570" y="248" text-anchor="middle" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#742a2a">Stenosis* §</text>
 
-      <!-- Detail boxes -->
-      <!-- A detail (green) -->
-      <rect x="12" y="280" width="288" height="112" rx="9" fill="#f0fff4" stroke="#276749" stroke-width="0.8"/>
-      <text x="26" y="302" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#22543d">Indexed EOA (cm²/m²):</text>
-      <text x="26" y="320" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" font-style="italic" fill="#276749"> &gt; 0.85: High flow state</text>
-      <text x="26" y="338" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" font-style="italic" fill="#276749"> &lt; 0.85: Patient-prosthesis mismatch</text>
+      <!-- Detail boxes (y=274 h=110)
+           A: x=10..228    B: x=236..464    C: x=472..668 -->
 
-      <!-- B detail (amber) -->
-      <rect x="308" y="280" width="216" height="112" rx="9" fill="#fffbeb" stroke="#c05621" stroke-width="0.8"/>
-      <text x="322" y="300" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#7b341e">Consider:</text>
-      <text x="322" y="318" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#744210">– Valve stenosis with small LVOT</text>
-      <text x="322" y="336" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#744210">– Improper LVOT PW Doppler</text>
-      <text x="322" y="354" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#744210">– Underestimation of jet velocity</text>
+      <!-- A detail -->
+      <rect x="10" y="274" width="218" height="110" rx="9" fill="#f0fff4" stroke="#276749" stroke-width="0.8"/>
+      <text x="24" y="296" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#22543d">Indexed EOA (cm²/m²):</text>
+      <text x="24" y="314" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" font-style="italic" fill="#276749">  &gt; 0.85: High flow state</text>
+      <text x="24" y="332" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" font-style="italic" fill="#276749">  &lt; 0.85: Patient-prosthesis</text>
+      <text x="24" y="350" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" font-style="italic" fill="#276749">             mismatch</text>
 
-      <!-- C detail (coral) -->
-      <rect x="532" y="280" width="176" height="112" rx="9" fill="#fff5f5" stroke="#c53030" stroke-width="0.8"/>
-      <text x="546" y="300" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#742a2a">Consider:</text>
-      <text x="546" y="318" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#742a2a">– Valvular stenosis</text>
-      <text x="546" y="336" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#742a2a">   incl. thrombosis</text>
-      <text x="546" y="354" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#742a2a">– Sub-valvular stenosis</text>
+      <!-- B detail -->
+      <rect x="236" y="274" width="228" height="110" rx="9" fill="#fffbeb" stroke="#c05621" stroke-width="0.8"/>
+      <text x="250" y="294" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#7b341e">Consider:</text>
+      <text x="250" y="312" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#744210">– Valve stenosis with small LVOT</text>
+      <text x="250" y="330" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#744210">– Improper LVOT PW Doppler position</text>
+      <text x="250" y="348" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#744210">– Underestimation of jet velocity</text>
+
+      <!-- C detail -->
+      <rect x="472" y="274" width="196" height="110" rx="9" fill="#fff5f5" stroke="#c53030" stroke-width="0.8"/>
+      <text x="486" y="294" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#742a2a">Consider:</text>
+      <text x="486" y="312" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#742a2a">– Valvular stenosis</text>
+      <text x="486" y="330" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#742a2a">   incl. thrombosis</text>
+      <text x="486" y="348" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="11" fill="#742a2a">– Sub-valvular stenosis</text>
 
       <!-- Footnotes -->
-      <line x1="12" y1="406" x2="706" y2="406" stroke="#e2e8f0" stroke-width="1"/>
-      <text x="12" y="422" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="10" fill="#718096">*  Valve stenosis further substantiated by EOA vs reference values for same valve type and size.</text>
-      <text x="12" y="440" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="10" fill="#718096">§  Mechanical valve motion: fluoroscopy &amp; CT &gt; TEE. Etiology of stenosis: CT angiography &amp; TEE &gt; CMR.</text>
+      <line x1="10" y1="396" x2="668" y2="396" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="10" y="412" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="10" fill="#718096">*  Valve stenosis further substantiated by EOA vs reference values for same valve type and size.</text>
+      <text x="10" y="430" dominant-baseline="central" font-family="system-ui,sans-serif" font-size="10" fill="#718096">§  Mechanical valve motion: fluoroscopy &amp; CT &gt; TEE. Etiology of stenosis: CT angiography &amp; TEE &gt; CMR.</text>
     </svg>
-    </div>
   </div>
 
   <div class="card full">
