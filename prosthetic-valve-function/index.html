@@ -1,1 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Prosthetic Valve Function — ASE Guidelines</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f4f8; color: #1a202c; min-height: 100vh; line-height: 1.6; }
 
+header { background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%); color: white; padding: 24px 20px; text-align: center; }
+header .icon { font-size: 2rem; margin-bottom: 6px; }
+header h1 { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 3px; }
+header p { font-size: 0.82rem; opacity: 0.8; }
+.guideline-badge { display: inline-block; margin-top: 8px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 3px 14px; font-size: 0.72rem; letter-spacing: 0.05em; }
+
+.main-nav { background: white; border-bottom: 2px solid #e2e8f0; display: flex; justify-content: center; overflow-x: auto; padding: 14px 20px; gap: 8px; flex-wrap: wrap; }
+.main-nav button { padding: 9px 16px; border: 2px solid #cbd5e0; background: white; border-radius: 8px; font-size: 0.82rem; font-weight: 700; color: #718096; cursor: pointer; white-space: nowrap; transition: all 0.2s; font-family: inherit; }
+.main-nav button.active { background: #1a365d; border-color: #1a365d; color: white; box-shadow: 0 2px 8px rgba(26,54,93,0.25); }
+.main-nav button:hover:not(.active) { border-color: #2b6cb0; color: #2b6cb0; background: #ebf8ff; }
+
+.content { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.section-header { margin-bottom: 20px; }
+.section-header h2 { font-size: 1.25rem; font-weight: 700; color: #1a365d; margin-bottom: 4px; }
+.section-header p { font-size: 0.83rem; color: #718096; }
+
+.card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); padding: 20px; margin-bottom: 16px; }
+.card-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #a0aec0; margin-bottom: 4px; }
+.card-heading { font-size: 1rem; font-weight: 700; color: #1a365d; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0; }
+.card-subheading { font-size: 0.85rem; font-weight: 700; color: #2d3748; margin: 14px 0 8px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+@media (max-width: 800px) { .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; } }
+@media (min-width: 801px) and (max-width: 1000px) { .grid-3 { grid-template-columns: 1fr 1fr; } .grid-4 { grid-template-columns: 1fr 1fr; } }
+.full { grid-column: 1 / -1; }
+
+.param-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 8px; }
+.param-table th { background: #1a365d; color: white; padding: 8px 10px; text-align: left; font-size: 0.75rem; font-weight: 600; }
+.param-table th:first-child { border-radius: 6px 0 0 0; }
+.param-table th:last-child { border-radius: 0 6px 0 0; }
+.param-table td { padding: 7px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: middle; }
+.param-table tr:last-child td { border-bottom: none; }
+.param-table tr:nth-child(even) td { background: #f7fafc; }
+.param-table .val { font-family: 'SF Mono','Fira Code',monospace; font-weight: 600; color: #1a365d; }
+.param-table .val.normal { color: #276749; }
+.param-table .val.possible { color: #744210; }
+.param-table .val.significant { color: #742a2a; }
+.param-table .label { font-weight: 600; color: #2d3748; }
+
+.badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+.badge-normal { background: #c6f6d5; color: #22543d; }
+.badge-possible { background: #fefcbf; color: #744210; }
+.badge-significant { background: #fed7d7; color: #742a2a; }
+.badge-blue { background: #ebf8ff; color: #2c5282; }
+.badge-purple { background: #e9d8fd; color: #44337a; }
+
+.info-note { font-size: 0.78rem; color: #744210; background: #fffaf0; border: 1px solid #fbd38d; border-radius: 6px; padding: 9px 12px; margin-bottom: 14px; }
+.info-note.blue { color: #2c5282; background: #ebf8ff; border-color: #bee3f8; }
+.info-note.green { color: #22543d; background: #f0fff4; border-color: #9ae6b4; }
+.info-note.red { color: #742a2a; background: #fff5f5; border-color: #fc8181; }
+
+.formula { background: #ebf8ff; border: 1px solid #bee3f8; border-left: 3px solid #2b6cb0; border-radius: 6px; padding: 12px 14px; font-family: 'SF Mono','Fira Code',monospace; font-size: 0.78rem; color: #2c5282; line-height: 1.9; margin: 12px 0; }
+
+.kv-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f0f4f8; font-size: 0.82rem; flex-wrap: wrap; }
+.kv-row:last-child { border-bottom: none; }
+.kv-label { color: #4a5568; flex: 1; min-width: 140px; }
+.kv-value { font-family: 'SF Mono','Fira Code',monospace; font-weight: 700; color: #1a365d; text-align: right; }
+
+/* Calculator inputs */
+.calc-input-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.calc-input-row label { font-size: 0.82rem; font-weight: 600; color: #2d3748; min-width: 180px; }
+.calc-input-wrap { display: flex; align-items: center; border: 1.5px solid #cbd5e0; border-radius: 7px; overflow: hidden; background: white; flex: 1; }
+.calc-input-wrap:focus-within { border-color: #2b6cb0; }
+.calc-input-wrap input { flex: 1; padding: 7px 10px; border: none; outline: none; font-family: 'SF Mono','Fira Code',monospace; font-size: 0.9rem; background: transparent; }
+.calc-unit { padding: 7px 10px; background: #f7fafc; font-size: 0.72rem; font-weight: 600; color: #718096; border-left: 1px solid #e2e8f0; white-space: nowrap; }
+.calc-select { flex: 1; padding: 7px 10px; border: none; outline: none; font-size: 0.85rem; background: transparent; font-family: inherit; }
+.btn-calc { padding: 10px 24px; background: linear-gradient(135deg, #2b6cb0, #1e4e8c); color: white; border: none; border-radius: 7px; font-size: 0.88rem; font-weight: 600; cursor: pointer; margin-top: 8px; font-family: inherit; }
+.btn-calc:hover { opacity: 0.88; }
+.btn-clear { padding: 10px 16px; background: white; border: 1.5px solid #cbd5e0; border-radius: 7px; font-size: 0.82rem; color: #718096; cursor: pointer; margin-top: 8px; margin-left: 6px; font-family: inherit; }
+
+.calc-result { margin-top: 12px; padding: 14px 16px; border-radius: 8px; display: none; }
+.calc-result.show { display: block; }
+.calc-result.normal { background: #f0fff4; border-left: 4px solid #276749; }
+.calc-result.possible { background: #fffaf0; border-left: 4px solid #744210; }
+.calc-result.significant { background: #fff5f5; border-left: 4px solid #742a2a; }
+.calc-result.info { background: #ebf8ff; border-left: 4px solid #2b6cb0; }
+.calc-result-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #718096; margin-bottom: 4px; }
+.calc-result-value { font-size: 1.8rem; font-weight: 800; font-family: 'SF Mono','Fira Code',monospace; color: #1a365d; line-height: 1; }
+.calc-result-sub { font-size: 0.78rem; color: #4a5568; margin-top: 4px; }
+
+.stat-card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; padding: 16px; text-align: center; }
+.stat-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #a0aec0; margin-bottom: 6px; }
+.stat-value { font-size: 1.6rem; font-weight: 800; font-family: 'SF Mono','Fira Code',monospace; color: #1a365d; line-height: 1; margin-bottom: 4px; }
+.stat-desc { font-size: 0.72rem; color: #718096; }
+.stat-card.ok .stat-value { color: #276749; }
+.stat-card.warn .stat-value { color: #744210; }
+.stat-card.alert .stat-value { color: #742a2a; }
+
+.divider { border: none; border-top: 1px solid #e2e8f0; margin: 16px 0; }
+
+.dysfunction-card { border-radius: 10px; padding: 14px 16px; border: 1.5px solid; margin-bottom: 10px; }
+.dysfunction-card.svd { border-color: #fc8181; background: #fff5f5; }
+.dysfunction-card.nonstructural { border-color: #faf089; background: #fffff0; }
+.dysfunction-card.endocarditis { border-color: #d6bcfa; background: #faf5ff; }
+.dysfunction-card.thrombus { border-color: #bee3f8; background: #ebf8ff; }
+.dysfunction-card h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; }
+.dysfunction-card.svd h4 { color: #742a2a; }
+.dysfunction-card.nonstructural h4 { color: #744210; }
+.dysfunction-card.endocarditis h4 { color: #44337a; }
+.dysfunction-card.thrombus h4 { color: #2c5282; }
+.dysfunction-card ul { list-style: none; padding: 0; }
+.dysfunction-card li { font-size: 0.79rem; color: #4a5568; padding: 2px 0 2px 14px; position: relative; }
+.dysfunction-card li::before { content: '•'; position: absolute; left: 3px; }
+
+/* Modality comparison */
+.modality-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 10px; }
+@media (max-width: 800px) { .modality-grid { grid-template-columns: 1fr 1fr; } }
+.modality-card { border-radius: 8px; padding: 12px; border: 1.5px solid #e2e8f0; text-align: center; }
+.modality-card h5 { font-size: 0.8rem; font-weight: 700; color: #1a365d; margin-bottom: 8px; }
+.strength-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; padding: 3px 0; border-bottom: 1px solid #f0f4f8; }
+.strength-row:last-child { border-bottom: none; }
+.strength-label { color: #4a5568; text-align: left; }
+.strength-dots { display: flex; gap: 2px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #e2e8f0; }
+.dot.filled { background: #2b6cb0; }
+
+/* Valve position tabs */
+.pos-tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+.pos-tab { padding: 7px 14px; border: 2px solid #cbd5e0; border-radius: 7px; font-size: 0.82rem; font-weight: 700; color: #718096; cursor: pointer; font-family: inherit; background: white; transition: all 0.15s; }
+.pos-tab.active { background: #1a365d; border-color: #1a365d; color: white; }
+.pos-tab:hover:not(.active) { border-color: #2b6cb0; color: #2b6cb0; }
+.pos-content { display: none; }
+.pos-content.active { display: block; }
+
+.disclaimer { background: #fffaf0; border: 1px solid #fbd38d; border-radius: 8px; padding: 12px 16px; font-size: 0.77rem; color: #744210; margin-top: 20px; }
+
+.home-bar { background: white; border-bottom: 1px solid #e2e8f0; padding: 8px 20px; display: flex; align-items: center; }
+.home-link { display: inline-flex; align-items: center; gap: 6px; color: #2b6cb0; text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: color 0.15s; }
+.home-link:hover { color: #1a365d; }
+.home-link::before { content: '←'; font-size: 0.9rem; }
+
+.citation-footer { margin-top: 2rem; padding: 1.5rem 2rem; background: #1a365d; border-radius: 12px; color: rgba(255,255,255,0.7); font-size: 0.8rem; line-height: 1.6; }
+.citation-footer strong { color: rgba(255,255,255,0.9); }
+.citation-footer a { color: #f6ad55; text-decoration: none; }
+.citation-footer a:hover { text-decoration: underline; }
+footer { text-align: center; padding: 18px; font-size: 0.77rem; color: #718096; border-top: 1px solid #e2e8f0; background: white; margin-top: 32px; }
+</style>
+</head>
+<body>
+
+<div class="home-bar">
+  <a class="home-link" href="https://echoinfo.org">Echo Info</a>
+</div>
+
+<header>
+  <div class="icon">🫀</div>
+  <h1>Prosthetic Valve Function</h1>
+  <p>ASE Guidelines — Echocardiographic &amp; Multimodality Assessment</p>
+  <div class="guideline-badge">JASE 2024 · Zoghbi et al. · DOI 10.1016/j.echo.2023.10.004</div>
+</header>
+
+<nav class="main-nav">
+  <button class="active" onclick="switchTab('overview')">Overview</button>
+  <button onclick="switchTab('aortic')">Aortic</button>
+  <button onclick="switchTab('mitral')">Mitral</button>
+  <button onclick="switchTab('pulm-tricuspid')">Tricuspid &amp; Pulm</button>
+  <button onclick="switchTab('calculators')">Calculators</button>
+  <button onclick="switchTab('multimodality')">Multimodality</button>
+  <button onclick="switchTab('normal-values')">Normal Values</button>
+</nav>
+
+<div class="content">
+
+<!-- ═══════════════════ OVERVIEW ═══════════════════ -->
+<div id="panel-overview" class="tab-panel active">
+  <div class="section-header">
+    <h2>Prosthetic Heart Valve Assessment — Overview</h2>
+    <p>Echocardiography is the first-line modality. Know valve type and size before interpreting hemodynamics. Always compare with baseline post-implantation study.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">PHV Dysfunction Categories</div>
+      <div class="dysfunction-card svd">
+        <h4>① Structural Valve Dysfunction (SVD)</h4>
+        <ul>
+          <li>Intrinsic permanent changes — wear, leaflet fibrosis/calcification, stent fracture</li>
+          <li>More common in bioprosthetic valves</li>
+          <li>Calcification in 50% of porcine valves at 5 yr; 75% at 8 yr</li>
+          <li>Failure rates 10–20% at 10–15 yr (homografts); 30% (heterografts)</li>
+        </ul>
+      </div>
+      <div class="dysfunction-card nonstructural">
+        <h4>② Nonstructural Dysfunction</h4>
+        <ul>
+          <li>PPM — normally functioning PHV too small for patient body size</li>
+          <li>Paravalvular leak (PVL) — dehiscence (surgical) or malapposition (transcatheter)</li>
+          <li>Pannus — fibrous ingrowth (0.2–4.5% prevalence; 3× more common mitral)</li>
+          <li>Inappropriate sizing, chamber dilation, valve embolization</li>
+        </ul>
+      </div>
+      <div class="dysfunction-card endocarditis">
+        <h4>③ Endocarditis</h4>
+        <ul>
+          <li>Prevalence 1–6%; can occur any time post-surgery</li>
+          <li>Mechanical: spreads from sewing ring → PVL, abscess, fistula</li>
+          <li>Bioprosthetic: originates in leaflet cusps</li>
+          <li>Paravalvular abscess: 56–100% of PHV endocarditis (vs 10–40% native)</li>
+        </ul>
+      </div>
+      <div class="dysfunction-card thrombus">
+        <h4>④ Thrombus</h4>
+        <ul>
+          <li>Prevalence 0.3–8% of PHVs</li>
+          <li>Right-sided valves 12–20× more vulnerable than left-sided</li>
+          <li>Echo: soft echodensity mass; CT: hypoattenuated leaflet thickening (HALT)</li>
+          <li>CT HU &lt;145 = thrombus; &gt;200 = pannus (87.5% sensitivity, 96% specificity)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Essential Assessment Parameters</div>
+      <div class="info-note blue">📖 Always document valve type and size — hemodynamic thresholds differ by valve design. Compare with prior baseline study to detect change.</div>
+
+      <div class="card-subheading">Doppler Parameters — All Valves</div>
+      <div class="kv-row"><span class="kv-label">Peak velocity &amp; gradient</span><span class="kv-value">Flow-dependent</span></div>
+      <div class="kv-row"><span class="kv-label">Mean pressure gradient</span><span class="kv-value">Primary criterion</span></div>
+      <div class="kv-row"><span class="kv-label">EOA (continuity equation)</span><span class="kv-value">Flow-independent</span></div>
+      <div class="kv-row"><span class="kv-label">Doppler Velocity Index (DVI)</span><span class="kv-value">Flow-independent</span></div>
+      <div class="kv-row"><span class="kv-label">Jet contour / acceleration time</span><span class="kv-value">Aortic position</span></div>
+      <div class="kv-row"><span class="kv-label">PHT (pressure half-time)</span><span class="kv-value">Mitral &amp; tricuspid</span></div>
+      <div class="kv-row"><span class="kv-label">Regurgitation severity</span><span class="kv-value">Trans- + paravalvular</span></div>
+
+      <div class="divider"></div>
+      <div class="card-subheading">Key Principles</div>
+      <div style="display:flex;flex-direction:column;gap:7px;font-size:0.8rem;">
+        <div style="padding:8px 10px;background:#f0fff4;border-left:3px solid #276749;border-radius:5px;color:#1a365d;">Use ≥1 flow-dependent <em>and</em> ≥1 flow-independent parameter to diagnose stenosis — never rely on a single value</div>
+        <div style="padding:8px 10px;background:#ebf8ff;border-left:3px solid #2b6cb0;border-radius:5px;color:#1a365d;">Doppler insonation from <em>all</em> available windows; use small non-imaging probe at suprasternal notch for aortic valves</div>
+        <div style="padding:8px 10px;background:#fffaf0;border-left:3px solid #744210;border-radius:5px;color:#744210;">Bileaflet mechanical valves: pressure recovery overestimates gradient by Doppler, especially in small valves + high-flow states</div>
+        <div style="padding:8px 10px;background:#ebf8ff;border-left:3px solid #2b6cb0;border-radius:5px;color:#1a365d;">EOA via continuity equation — measure LVOT at largest diameter perpendicular to flow (underestimating diameter is the main error source)</div>
+        <div style="padding:8px 10px;background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;color:#742a2a;">Significant stenosis should meet ≥1 flow-dependent criterion <em>and</em> ≥1 flow-independent criterion simultaneously</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-heading">Prosthesis-Patient Mismatch (PPM)</div>
+    <div class="grid-2" style="margin-top:0;">
+      <div>
+        <div class="info-note" style="margin-bottom:10px;">⚠️ PPM = indexed EOA too small for patient body size, despite normally functioning valve. Indexed EOA overestimates PPM severity in obesity (BMI &gt;30).</div>
+        <table class="param-table">
+          <thead><tr><th>Position</th><th>Normal</th><th>Moderate PPM</th><th>Severe PPM</th></tr></thead>
+          <tbody>
+            <tr><td class="label">Aortic (BMI &lt;30)</td><td class="val normal">&gt;0.85 cm²/m²</td><td class="val possible">0.66–0.85</td><td class="val significant">≤0.65</td></tr>
+            <tr><td class="label">Aortic (BMI ≥30)</td><td class="val normal">&gt;0.70 cm²/m²</td><td class="val possible">0.56–0.70</td><td class="val significant">≤0.55</td></tr>
+            <tr><td class="label">Mitral (BMI &lt;30)</td><td class="val normal">&gt;1.2 cm²/m²</td><td class="val possible">0.91–1.2</td><td class="val significant">≤0.90</td></tr>
+            <tr><td class="label">Mitral (BMI ≥30)</td><td class="val normal">&gt;1.0 cm²/m²</td><td class="val possible">0.76–1.0</td><td class="val significant">≤0.75</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card-subheading">Structural Valve Deterioration (SVD) Criteria</div>
+        <table class="param-table">
+          <thead><tr><th>Parameter</th><th>Possible SVD</th><th>Significant SVD</th></tr></thead>
+          <tbody>
+            <tr><td class="label">↑ Mean gradient</td><td class="val possible">≥10 mm Hg → ≥20 mm Hg</td><td class="val significant">≥20 mm Hg → ≥30 mm Hg</td></tr>
+            <tr><td class="label">↓ EOA</td><td class="val possible">≥0.3 cm² or ≥25%</td><td class="val significant">≥0.6 cm² or ≥50%</td></tr>
+            <tr><td class="label">↓ DVI</td><td class="val possible">≥0.1 or ≥20%</td><td class="val significant">≥0.2 or ≥40%</td></tr>
+            <tr><td class="label">New intraprosthetic AR</td><td class="val possible">↑ ≥1 grade → mod+</td><td class="val significant">↑ ≥2 grades → sev</td></tr>
+          </tbody>
+        </table>
+        <div class="info-note" style="margin-top:8px;">All changes measured from baseline 1–3 month post-procedural assessment under stable hemodynamics and LV function.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ AORTIC ═══════════════════ -->
+<div id="panel-aortic" class="tab-panel">
+  <div class="section-header">
+    <h2>Prosthetic Aortic Valve Assessment</h2>
+    <p>Use at least one flow-dependent and one flow-independent parameter. Acquire Doppler from all windows. Always compare with baseline.</p>
+  </div>
+
+  <div class="card full">
+    <div class="card-heading">Doppler Stenosis Criteria — Aortic Position</div>
+    <div class="info-note blue">📖 Significant stenosis = meets ≥1 flow-dependent (velocity/gradient) AND ≥1 flow-independent (EOA or DVI) criterion. Exclude high-flow states, supra/subvalvular obstruction, and pressure recovery before diagnosing stenosis.</div>
+    <table class="param-table">
+      <thead><tr><th>Parameter</th><th><span class="badge badge-normal">Normal</span></th><th><span class="badge badge-possible">Possible Stenosis</span></th><th><span class="badge badge-significant">Significant Stenosis</span></th></tr></thead>
+      <tbody>
+        <tr><td colspan="4" style="background:#f0f4f8;font-weight:700;font-size:0.75rem;padding:6px 10px;color:#2d3748;">Appropriate for ALL prosthetic aortic valves</td></tr>
+        <tr><td class="label">Jet velocity contour</td><td class="val normal">Triangular, early peaking</td><td class="val possible">Triangular to intermediate</td><td class="val significant">Rounded, symmetric</td></tr>
+        <tr><td class="label">Acceleration time (AT)</td><td class="val normal">&lt;80 ms</td><td class="val possible">80–100 ms</td><td class="val significant">&gt;100 ms</td></tr>
+        <tr><td class="label">AT / LV ejection time ratio</td><td class="val normal">&lt;0.32</td><td class="val possible">0.32–0.37</td><td class="val significant">&gt;0.37</td></tr>
+        <tr><td class="label">Peak velocity</td><td class="val normal">&lt;3 m/s</td><td class="val possible">3–4 m/s</td><td class="val significant">≥4 m/s</td></tr>
+        <tr><td colspan="4" style="background:#f0f4f8;font-weight:700;font-size:0.75rem;padding:6px 10px;color:#2d3748;">SAVR-specific</td></tr>
+        <tr><td class="label">Mean gradient</td><td class="val normal">&lt;20 mm Hg</td><td class="val possible">20–34 mm Hg</td><td class="val significant">≥35 mm Hg</td></tr>
+        <tr><td class="label">DVI (VTI<sub>LVOT</sub> / VTI<sub>PrAV</sub>)</td><td class="val normal">&gt;0.35</td><td class="val possible">0.25–0.35</td><td class="val significant">&lt;0.25</td></tr>
+        <tr><td class="label">EOA</td><td class="val normal">Reference ± 1 SD</td><td class="val possible">1 SD below reference</td><td class="val significant">2 SDs below reference</td></tr>
+        <tr><td colspan="4" style="background:#f0f4f8;font-weight:700;font-size:0.75rem;padding:6px 10px;color:#2d3748;">TAVI — change from baseline</td></tr>
+        <tr><td class="label">Mean gradient change</td><td class="val normal">&lt;10 mm Hg ↑ from baseline</td><td class="val possible">10–19 mm Hg ↑</td><td class="val significant">≥20 mm Hg ↑</td></tr>
+        <tr><td class="label">DVI change</td><td class="val normal">&lt;0.1 or &lt;20% ↓</td><td class="val possible">0.1–0.19 or 20–39% ↓</td><td class="val significant">≥0.2 or ≥40% ↓</td></tr>
+        <tr><td class="label">EOA change</td><td class="val normal">&lt;0.3 cm² or &lt;25% ↓</td><td class="val possible">0.3–0.59 cm² or 25–49% ↓</td><td class="val significant">≥0.6 cm² or ≥50% ↓</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">Prosthetic AR Severity — Grading Parameters</div>
+      <table class="param-table">
+        <thead><tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Jet width / LVOT diameter (central jets)</td><td class="val normal">≤25%</td><td class="val possible">26–64%</td><td class="val significant">≥65%</td></tr>
+          <tr><td class="label">VC width</td><td class="val normal">&lt;0.3 cm</td><td class="val possible">0.3–0.6 cm</td><td class="val significant">&gt;0.6 cm</td></tr>
+          <tr><td class="label">VC area (2D/3D color)</td><td class="val normal">&lt;0.10 cm²</td><td class="val possible">0.10–0.29 cm²</td><td class="val significant">≥0.30 cm²</td></tr>
+          <tr><td class="label">Circumferential PVL extent</td><td class="val normal">&lt;10%</td><td class="val possible">10–29%</td><td class="val significant">≥30%</td></tr>
+          <tr><td class="label">PHT</td><td class="val normal">&gt;500 ms</td><td class="val possible">200–500 ms</td><td class="val significant">&lt;200 ms</td></tr>
+          <tr><td class="label">Holodiastolic flow reversal (descending Ao)</td><td class="val normal">Absent / brief early</td><td class="val possible">Intermediate</td><td class="val significant">Prominent, holodiastolic</td></tr>
+          <tr><td class="label">Regurgitant volume</td><td class="val normal">&lt;30 mL/beat</td><td class="val possible">30–59 mL</td><td class="val significant">≥60 mL</td></tr>
+          <tr><td class="label">Regurgitant fraction</td><td class="val normal">&lt;30%</td><td class="val possible">30–50%</td><td class="val significant">≥50%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">TAVI &amp; Valve-in-Valve Considerations</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.81rem;">
+        <div style="padding:9px 12px;background:#f7fafc;border-left:3px solid #2b6cb0;border-radius:5px;">
+          <strong>In-stent flow acceleration:</strong> occurs at 2 locations — at stent inlet AND at valve cusps. Measure LVOT diameter and PW Doppler <em>proximal</em> to the stent to avoid EOA overestimation.
+        </div>
+        <div style="padding:9px 12px;background:#f7fafc;border-left:3px solid #2b6cb0;border-radius:5px;">
+          <strong>LVOT diameter (TAVI):</strong> Use outer-to-outer diameter of the stented valve at its lower (ventricular) end. Inner-to-inner may be used if PW sample placed inside stent proximal to cusps.
+        </div>
+        <div style="padding:9px 12px;background:#fffaf0;border-left:3px solid #744210;border-radius:5px;">
+          <strong>ViV elevated gradients:</strong> Mean gradient &gt;20 mm Hg in 28% of ViV cases. Confirm with catheterization — echo overestimates vs invasive due to pressure recovery (greater with self-expandable than balloon-expandable valves).
+        </div>
+        <div style="padding:9px 12px;background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;">
+          <strong>ViV PPM:</strong> Moderate or greater PPM in 60% of ViV; severe in 25%. However, moderate/severe PPM does not independently affect 1- or 3-year mortality.
+        </div>
+        <div style="padding:9px 12px;background:#f0fff4;border-left:3px solid #276749;border-radius:5px;">
+          <strong>TAVI vs SAVR:</strong> TAVI has similar or lower gradients, higher indexed EOA, lower PPM rates. Mild paravalvular AR more common in TAVI than SAVR despite improved skirt designs.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ MITRAL ═══════════════════ -->
+<div id="panel-mitral" class="tab-panel">
+  <div class="section-header">
+    <h2>Prosthetic Mitral Valve Assessment</h2>
+    <p>TEE often essential — TTE detection of MR jets is limited by acoustic reverberation and shadowing from mitral prostheses. Always report heart rate at time of Doppler measurement.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">Doppler Criteria — Prosthetic Mitral Stenosis</div>
+      <div class="info-note">⚠️ EOA via PHT method frequently inaccurate and leads to <em>overestimation</em> — use continuity equation instead.</div>
+      <table class="param-table">
+        <thead><tr><th>Parameter</th><th><span class="badge badge-normal">Normal</span></th><th><span class="badge badge-possible">Possible</span></th><th><span class="badge badge-significant">Significant</span></th></tr></thead>
+        <tbody>
+          <tr><td class="label">Peak velocity</td><td class="val normal">&lt;1.9 m/s</td><td class="val possible">1.9–2.5 m/s</td><td class="val significant">≥2.5 m/s</td></tr>
+          <tr><td class="label">Mean gradient</td><td class="val normal">≤5 mm Hg</td><td class="val possible">6–10 mm Hg</td><td class="val significant">&gt;10 mm Hg</td></tr>
+          <tr><td class="label">DVI (VTI<sub>PrMV</sub> / VTI<sub>LVOT</sub>)</td><td class="val normal">&lt;2.2</td><td class="val possible">2.2–2.5</td><td class="val significant">&gt;2.5</td></tr>
+          <tr><td class="label">EOA (continuity equation)</td><td class="val normal">≥2.0 cm²</td><td class="val possible">1–2 cm²</td><td class="val significant">&lt;1 cm²</td></tr>
+          <tr><td class="label">PHT</td><td class="val normal">&lt;130 ms</td><td class="val possible">130–200 ms</td><td class="val significant">&gt;200 ms</td></tr>
+        </tbody>
+      </table>
+      <div class="info-note blue" style="margin-top:10px;">📖 DVI (VTIPrMV/VTILVOT) is the most specific and sensitive single Doppler parameter for mitral prosthetic stenosis in published studies. Note that elevated DVI can also reflect significant MR (high flow through valve).</div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Indirect Signs of Significant Prosthetic MR</div>
+      <div class="info-note">⚠️ TTE color Doppler frequently limited by acoustic shadowing from mitral prosthesis — look for these spectral Doppler clues.</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:0.8rem;">
+        <div style="padding:8px 10px;background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;">
+          <strong>Peak mitral E velocity ≥1.9 m/s</strong> (mechanical valves) — sensitivity 90%, specificity 89%
+        </div>
+        <div style="padding:8px 10px;background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;">
+          <strong>VTIPrMV / VTILVOT ≥2.5</strong> — sensitivity 89%, specificity 91% (when both elevated with normal PHT → specificity ~100%)
+        </div>
+        <div style="padding:8px 10px;background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;">
+          <strong>Mean gradient ≥5 mm Hg</strong> — sensitivity 90%, specificity 70%
+        </div>
+        <div style="padding:8px 10px;background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;">
+          <strong>Maximal TR jet velocity &gt;3 m/s</strong> — sensitivity 80%, specificity 71%
+        </div>
+        <div style="padding:8px 10px;background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;">
+          <strong>Hyperdynamic LV with low VTILVOT</strong> (&lt;16 cm) — suggests MR despite preserved function
+        </div>
+        <div style="padding:8px 10px;background:#fff5f5;border-left:3px solid #742a2a;border-radius:5px;">
+          <strong>Systolic flow convergence</strong> on LV side of prosthesis — low sensitivity, high specificity
+        </div>
+      </div>
+      <div class="info-note" style="margin-top:10px;">If significant MR suspected → TEE indicated. The parasternal window often gives best color Doppler view of prosthetic MR on TTE.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-heading">Prosthetic MR Severity Grading — TTE + TEE</div>
+    <table class="param-table">
+      <thead><tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr></thead>
+      <tbody>
+        <tr><td class="label">Color jet area (central)</td><td class="val normal">&lt;4 cm² or &lt;20% LA</td><td class="val possible">Variable</td><td class="val significant">&gt;8 cm² or &gt;50% LA (or wall-impinging)</td></tr>
+        <tr><td class="label">Vena contracta width</td><td class="val normal">&lt;0.3 cm</td><td class="val possible">0.3–0.69 cm</td><td class="val significant">≥0.7 cm</td></tr>
+        <tr><td class="label">PISA radius (Nyquist 40 cm/s)</td><td class="val normal">≤0.5 cm</td><td class="val possible">0.6–0.9 cm</td><td class="val significant">&gt;0.9 cm</td></tr>
+        <tr><td class="label">Pulmonary vein flow</td><td class="val normal">Systolic dominance</td><td class="val possible">Systolic blunting</td><td class="val significant">Systolic flow reversal</td></tr>
+        <tr><td class="label">Regurgitant volume</td><td class="val normal">&lt;30 mL/beat</td><td class="val possible">30–59 mL</td><td class="val significant">≥60 mL</td></tr>
+        <tr><td class="label">Regurgitant fraction</td><td class="val normal">&lt;30%</td><td class="val possible">30–49%</td><td class="val significant">≥50%</td></tr>
+        <tr><td class="label">EROA</td><td class="val normal">&lt;0.20 cm²</td><td class="val possible">0.20–0.39 cm²</td><td class="val significant">≥0.40 cm²</td></tr>
+      </tbody>
+    </table>
+    <div class="info-note" style="margin-top:10px;">📖 For <strong>paravalvular jets</strong>: circumferential extent of sewing ring occupied by jet guides severity — &lt;10% mild, 10–29% moderate, ≥30% severe.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PULM & TRICUSPID ═══════════════════ -->
+<div id="panel-pulm-tricuspid" class="tab-panel">
+  <div class="section-header">
+    <h2>Prosthetic Tricuspid &amp; Pulmonary Valve Assessment</h2>
+    <p>Off-axis views often required. Heart rate and respiration significantly affect tricuspid gradients — average ≥5 cycles or measure at mid-expiratory apnea.</p>
+  </div>
+
+  <div class="pos-tabs">
+    <button class="pos-tab active" onclick="switchPos(this,'pos-tricuspid')">Tricuspid</button>
+    <button class="pos-tab" onclick="switchPos(this,'pos-pulm')">Pulmonary</button>
+  </div>
+
+  <!-- PULMONARY -->
+  <div id="pos-pulm" class="pos-content">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-heading">Prosthetic Pulmonary Valve Stenosis</div>
+        <table class="param-table">
+          <thead><tr><th>Parameter</th><th>Normal</th><th>Possible Obstruction</th></tr></thead>
+          <tbody>
+            <tr><td class="label">Peak velocity — bioprosthesis</td><td class="val normal">&lt;3.2 m/s</td><td class="val significant">≥3.2 m/s</td></tr>
+            <tr><td class="label">Peak velocity — homograft</td><td class="val normal">&lt;2.5 m/s</td><td class="val significant">≥2.5 m/s</td></tr>
+            <tr><td class="label">Mean gradient — bioprosthesis</td><td class="val normal">&lt;20 mm Hg</td><td class="val significant">≥20 mm Hg</td></tr>
+            <tr><td class="label">Mean gradient — homograft</td><td class="val normal">&lt;15 mm Hg</td><td class="val significant">≥15 mm Hg</td></tr>
+            <tr><td class="label">RV systolic pressure</td><td class="val normal">Stable</td><td class="val significant">Increased from baseline</td></tr>
+            <tr><td class="label">RV size and function</td><td class="val normal">Stable</td><td class="val significant">Increased size / ↓ function</td></tr>
+            <tr><td class="label">DVI</td><td class="val normal">Stable</td><td class="val significant">Decreased from baseline</td></tr>
+          </tbody>
+        </table>
+        <div class="info-note" style="margin-top:10px;">⚠️ Use PW Doppler to localize obstruction — may occur at valve, conduit edge, or branch PA. RVSP in PVR stenosis = RV systolic pressure <em>minus</em> gradient across obstructed valve.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-heading">Prosthetic Pulmonary Regurgitation Severity</div>
+        <table class="param-table">
+          <thead><tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr></thead>
+          <tbody>
+            <tr><td class="label">Jet width / annulus</td><td class="val normal">≤25%</td><td class="val possible">26–50%</td><td class="val significant">&gt;50%</td></tr>
+            <tr><td class="label">Jet density (CW)</td><td class="val normal">Incomplete/faint</td><td class="val possible">Dense</td><td class="val significant">Dense</td></tr>
+            <tr><td class="label">Jet deceleration</td><td class="val normal">Slow</td><td class="val possible">Variable</td><td class="val significant">Steep; early termination</td></tr>
+            <tr><td class="label">Diastolic flow reversal (distal main PA)</td><td class="val normal">None</td><td class="val possible">Present</td><td class="val significant">Present</td></tr>
+            <tr><td class="label">RV size</td><td class="val normal">Normal</td><td class="val possible">Normal or dilated</td><td class="val significant">Dilated / progressive</td></tr>
+            <tr><td class="label">Regurgitant fraction (Echo)</td><td class="val normal">&lt;30%</td><td class="val possible">30–50%</td><td class="val significant">&gt;50%</td></tr>
+            <tr><td class="label">Regurgitant fraction (CMR)</td><td class="val normal">&lt;26%</td><td class="val possible">26–35%</td><td class="val significant">&gt;35%</td></tr>
+          </tbody>
+        </table>
+        <div class="info-note blue" style="margin-top:10px;">📖 PHT &lt;95 ms or slope &gt;4.9 m/s² indicates need for intervention. CMR is superior for PR quantification — preferred for serial assessment.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRICUSPID -->
+  <div id="pos-tricuspid" class="pos-content active">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-heading">Prosthetic TV Stenosis Criteria</div>
+        <div class="info-note">⚠️ PHT-derived EOA <em>overestimates</em> TV area in bioprostheses — use continuity equation (EOA = stroke volume / VTIPrTV). If significant AR, measure stroke volume from RVOT.</div>
+        <table class="param-table">
+          <thead><tr><th>Parameter</th><th>Bioprosthetic</th><th>Mechanical</th></tr></thead>
+          <tbody>
+            <tr><td class="label">Peak E velocity</td><td class="val significant">≥2.1 m/s</td><td class="val significant">≥1.9 m/s</td></tr>
+            <tr><td class="label">Mean gradient</td><td class="val significant">≥9 mm Hg</td><td class="val significant">≥6 mm Hg</td></tr>
+            <tr><td class="label">PHT</td><td class="val significant">≥200 ms</td><td class="val significant">≥130 ms</td></tr>
+            <tr><td class="label">EOA (continuity eq.)</td><td class="val significant">&lt;1.5 cm²</td><td class="val significant">&lt;2.0 cm²</td></tr>
+            <tr><td class="label">DVI (VTIPrTV / VTILVOT)</td><td class="val significant">≥3.3</td><td class="val significant">≥2.1</td></tr>
+          </tbody>
+        </table>
+        <div class="info-note" style="margin-top:10px;">For ViV or valve-in-ring: post-implantation mean gradient &gt;10 mm Hg = evidence of stenosis. Normal bioprosthetic gradients &lt;6–9 mm Hg across valve sizes.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-heading">Prosthetic TR Severity Grading</div>
+        <table class="param-table">
+          <thead><tr><th>Parameter</th><th>Mild</th><th>Moderate</th><th>Severe</th></tr></thead>
+          <tbody>
+            <tr><td class="label">Color jet area</td><td class="val normal">Small, narrow, central</td><td class="val possible">Moderate central</td><td class="val significant">Large central or wall-impinging</td></tr>
+            <tr><td class="label">Vena contracta width</td><td class="val normal">&lt;0.3 cm</td><td class="val possible">0.3–0.69 cm</td><td class="val significant">≥0.7 cm</td></tr>
+            <tr><td class="label">PISA radius</td><td class="val normal">≤0.5 cm</td><td class="val possible">0.6–0.9 cm</td><td class="val significant">&gt;0.9 cm</td></tr>
+            <tr><td class="label">Hepatic vein flow</td><td class="val normal">Systolic dominance</td><td class="val possible">Systolic blunting</td><td class="val significant">Systolic flow reversal</td></tr>
+            <tr><td class="label">EROA</td><td class="val normal">&lt;0.20 cm²</td><td class="val possible">0.20–0.39 cm²</td><td class="val significant">≥0.40 cm²</td></tr>
+            <tr><td class="label">Regurgitant volume</td><td class="val normal">&lt;30 mL</td><td class="val possible">30–44 mL</td><td class="val significant">≥45 mL</td></tr>
+            <tr><td class="label">CW Doppler contour</td><td class="val normal">Faint, parabolic</td><td class="val possible">Dense, parabolic</td><td class="val significant">Dense, triangular</td></tr>
+          </tbody>
+        </table>
+        <div class="info-note blue" style="margin-top:10px;">📖 Modified RV inflow and subcostal views are essential to compensate for acoustic shadowing. 3D color planimetry of VC area may be the most accurate method but requires further validation.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CALCULATORS ═══════════════════ -->
+<div id="panel-calculators" class="tab-panel">
+  <div class="section-header">
+    <h2>Hemodynamic Calculators</h2>
+    <p>All calculated values are estimates. EOA via continuity equation is preferred — less flow-dependent than gradient alone. Compare with reference values for specific valve type and size.</p>
+  </div>
+
+  <div class="grid-2">
+    <!-- EOA Calculator -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">EOA — Continuity Equation</div>
+      <div class="formula">EOA = (LVOT area × VTI<sub>LVOT</sub>) / VTI<sub>valve</sub><br/>LVOT area = 0.785 × LVOT diameter²<br/>For TAVI: use outer-to-outer stent diameter</div>
+      <div class="calc-input-row">
+        <label>LVOT Diameter</label>
+        <div class="calc-input-wrap"><input type="number" id="eoa-lvot-d" placeholder="e.g. 2.0" step="0.1" oninput="calcEOA()"><span class="calc-unit">cm</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>VTI<sub>LVOT</sub> (PW Doppler)</label>
+        <div class="calc-input-wrap"><input type="number" id="eoa-vti-lvot" placeholder="e.g. 22" step="0.5" oninput="calcEOA()"><span class="calc-unit">cm</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>VTI<sub>valve</sub> (CW Doppler)</label>
+        <div class="calc-input-wrap"><input type="number" id="eoa-vti-valve" placeholder="e.g. 60" step="0.5" oninput="calcEOA()"><span class="calc-unit">cm</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>Valve Position</label>
+        <div class="calc-input-wrap">
+          <select id="eoa-position" class="calc-select" onchange="calcEOA()">
+            <option value="aortic">Aortic (DVI = LVOT/valve)</option>
+            <option value="mitral">Mitral (DVI = valve/LVOT)</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-result" id="eoa-result">
+        <div class="calc-result-label">EOA / DVI</div>
+        <div class="calc-result-value" id="eoa-val"></div>
+        <div class="calc-result-sub" id="eoa-sub"></div>
+      </div>
+    </div>
+
+    <!-- PPM Calculator -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">PPM — Indexed EOA</div>
+      <div class="formula">iEOA = EOA (cm²) / BSA (m²)<br/>BSA = 0.007184 × height<sup>0.725</sup> × weight<sup>0.425</sup> (Dubois)</div>
+      <div class="calc-input-row">
+        <label>EOA</label>
+        <div class="calc-input-wrap"><input type="number" id="ppm-eoa" placeholder="e.g. 1.6" step="0.1" oninput="calcPPM()"><span class="calc-unit">cm²</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>Height</label>
+        <div class="calc-input-wrap"><input type="number" id="ppm-ht" placeholder="e.g. 170" step="1" oninput="calcPPM()"><span class="calc-unit">cm</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>Weight</label>
+        <div class="calc-input-wrap"><input type="number" id="ppm-wt" placeholder="e.g. 75" step="1" oninput="calcPPM()"><span class="calc-unit">kg</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>Valve Position</label>
+        <div class="calc-input-wrap">
+          <select id="ppm-pos" class="calc-select" onchange="calcPPM()">
+            <option value="aortic">Aortic</option>
+            <option value="mitral">Mitral</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-result" id="ppm-result">
+        <div class="calc-result-label">Indexed EOA / PPM Grade</div>
+        <div class="calc-result-value" id="ppm-val"></div>
+        <div class="calc-result-sub" id="ppm-sub"></div>
+      </div>
+    </div>
+
+    <!-- Aortic DVI Interpreter -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">Aortic DVI Interpreter</div>
+      <div class="formula">DVI<sub>PrAV</sub> = VTI<sub>LVOT</sub> / VTI<sub>PrAV</sub><br/>Normal SAVR: &gt;0.35 · Significant stenosis: &lt;0.25<br/>DVI ≤0.35 associated with adverse outcomes in SAVR (not TAVI)</div>
+      <div class="calc-input-row">
+        <label>VTI<sub>LVOT</sub> (PW Doppler)</label>
+        <div class="calc-input-wrap"><input type="number" id="dvi-lvot" placeholder="e.g. 22" step="0.5" oninput="calcDVI()"><span class="calc-unit">cm</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>VTI<sub>PrAV</sub> (CW Doppler)</label>
+        <div class="calc-input-wrap"><input type="number" id="dvi-valve" placeholder="e.g. 50" step="0.5" oninput="calcDVI()"><span class="calc-unit">cm</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>Valve Type</label>
+        <div class="calc-input-wrap">
+          <select id="dvi-type" class="calc-select" onchange="calcDVI()">
+            <option value="savr">SAVR</option>
+            <option value="tavi">TAVI (compare to baseline)</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-result" id="dvi-result">
+        <div class="calc-result-label">DVI</div>
+        <div class="calc-result-value" id="dvi-val"></div>
+        <div class="calc-result-sub" id="dvi-sub"></div>
+      </div>
+    </div>
+
+    <!-- Stroke Volume / Regurgitant Fraction -->
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="card-heading">Regurgitant Volume &amp; Fraction (Aortic/Pulmonary)</div>
+      <div class="formula">RVol = SV<sub>prox</sub> − SV<sub>distal</sub><br/>RF (%) = RVol / SV<sub>total</sub> × 100<br/>For MR/TR: indirect method using LV total SV − aortic forward SV</div>
+      <div class="calc-input-row">
+        <label>Total stroke volume (LV)</label>
+        <div class="calc-input-wrap"><input type="number" id="rv-total" placeholder="e.g. 80" step="1" oninput="calcRV()"><span class="calc-unit">mL</span></div>
+      </div>
+      <div class="calc-input-row">
+        <label>Forward stroke volume (Ao/PA)</label>
+        <div class="calc-input-wrap"><input type="number" id="rv-forward" placeholder="e.g. 55" step="1" oninput="calcRV()"><span class="calc-unit">mL</span></div>
+      </div>
+      <div class="calc-result" id="rv-result">
+        <div class="calc-result-label">Regurgitant Volume / Fraction</div>
+        <div class="calc-result-value" id="rv-val"></div>
+        <div class="calc-result-sub" id="rv-sub"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ MULTIMODALITY ═══════════════════ -->
+<div id="panel-multimodality" class="tab-panel">
+  <div class="section-header">
+    <h2>Multimodality Imaging of Prosthetic Valves</h2>
+    <p>CT and CMR complement TTE/TEE — choice depends on valve type, position, and suspected pathology.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-heading">Comparative Strengths by Modality</div>
+    <table class="param-table">
+      <thead><tr><th>Application</th><th>TTE</th><th>TEE</th><th>CT</th><th>CMR</th></tr></thead>
+      <tbody>
+        <tr><td class="label">Valve structure / anatomic area (bioprosthetic)</td><td>++</td><td>++++</td><td>++++</td><td>+++</td></tr>
+        <tr><td class="label">Valve structure / motion (mechanical)</td><td>+</td><td>++ (MV 4+)</td><td>++++</td><td>+</td></tr>
+        <tr><td class="label">Gradient / EOA</td><td>+++</td><td>++ (MV 3+)</td><td>—</td><td>++</td></tr>
+        <tr><td class="label">Thrombus / pannus (mechanical)</td><td>+</td><td>+++</td><td>++++</td><td>+</td></tr>
+        <tr><td class="label">Regurgitation — localization</td><td>++</td><td>++++</td><td>++</td><td>+</td></tr>
+        <tr><td class="label">Regurgitation — quantitation</td><td>++</td><td>++++</td><td>++</td><td>++++</td></tr>
+        <tr><td class="label">Valve dehiscence</td><td>++</td><td>++++</td><td>++++</td><td>++</td></tr>
+        <tr><td class="label">Endocarditis / vegetations</td><td>++</td><td>+++</td><td>++ (abscess +++)</td><td>+</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-heading">CT — Key Indications &amp; Findings</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.8rem;">
+        <div style="padding:8px 10px;background:#f7fafc;border-left:3px solid #2b6cb0;border-radius:5px;">
+          <strong>Mechanical valve motion:</strong> Opening/closing angles without contrast. Normal opening angle 73–90° (bileaflet), 60–80° (monoleaflet). Noncontrast CT sufficient.
+        </div>
+        <div style="padding:8px 10px;background:#f7fafc;border-left:3px solid #2b6cb0;border-radius:5px;">
+          <strong>Thrombus vs pannus:</strong> CT HU &lt;145 = thrombus (87.5% sens, 96% spec vs pannus). Thrombus: early post-op, aortic side, HU &lt;200. Pannus: late, ventricular side, HU &gt;200.
+        </div>
+        <div style="padding:8px 10px;background:#f7fafc;border-left:3px solid #2b6cb0;border-radius:5px;">
+          <strong>HALT (hypoattenuated leaflet thickening):</strong> Prevalence 3.6–40% of TAVI. Responds to anticoagulation. Monitor with serial CT.
+        </div>
+        <div style="padding:8px 10px;background:#f7fafc;border-left:3px solid #2b6cb0;border-radius:5px;">
+          <strong>Paravalvular leak:</strong> Contrast-filled channel connecting upstream and downstream lumina. Distinguish from pledgets (felt HU 383–494 vs contrast 202–367).
+        </div>
+        <div style="padding:8px 10px;background:#f7fafc;border-left:3px solid #2b6cb0;border-radius:5px;">
+          <strong>Endocarditis workup:</strong> CT superior for paravalvular extension, root abscess; TEE superior for small vegetations (&lt;4 mm) and perforations (&lt;2 mm).
+        </div>
+        <div style="padding:8px 10px;background:#fffaf0;border-left:3px solid #744210;border-radius:5px;">
+          <strong>Limitations:</strong> No hemodynamic evaluation; beam-hardening artifact from metallic prostheses; nephrotoxic contrast; higher radiation with retrospective gating.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">CMR — Key Indications &amp; Methods</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.8rem;">
+        <div style="padding:8px 10px;background:#f0fff4;border-left:3px solid #276749;border-radius:5px;">
+          <strong>Regurgitation quantitation:</strong> Through-plane phase contrast at aortic/pulmonary level. Regurgitant volume = forward − net flow. Not affected by jet number or eccentricity.
+        </div>
+        <div style="padding:8px 10px;background:#f0fff4;border-left:3px solid #276749;border-radius:5px;">
+          <strong>Bioprosthetic valve area:</strong> Stack of 4–5 mm slices perpendicular to valve. Planimetry at leaflet tips during maximal systolic opening. Anatomic area = ~10–20% larger than effective area.
+        </div>
+        <div style="padding:8px 10px;background:#f0fff4;border-left:3px solid #276749;border-radius:5px;">
+          <strong>Prosthetic MR (indirect method):</strong> LV total stroke volume (SSFP cines) − aortic forward stroke volume (phase contrast at proximal ascending aorta) = MR volume.
+        </div>
+        <div style="padding:8px 10px;background:#f0fff4;border-left:3px solid #276749;border-radius:5px;">
+          <strong>LV remodeling:</strong> Late gadolinium enhancement detects replacement fibrosis. Focal fibrosis in 30–50% of AS patients; predicts perioperative risk and post-TAVI/SAVR survival.
+        </div>
+        <div style="padding:8px 10px;background:#fffaf0;border-left:3px solid #744210;border-radius:5px;">
+          <strong>Limitations:</strong> Mechanical valves create large artifact; arrhythmias reduce accuracy; lower temporal resolution vs echo; limited for small vegetations. Safe at 1.5T and 3T.
+        </div>
+        <div style="padding:8px 10px;background:#f0fff4;border-left:3px solid #276749;border-radius:5px;">
+          <strong>Indications for CMR after TTE:</strong> Discrepant clinical and echo findings; area-gradient mismatch; AR/PR quantitation; paravalvular complications; LV remodeling assessment.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-heading">When to Use Advanced Imaging</div>
+    <table class="param-table">
+      <thead><tr><th>Clinical Question</th><th>Preferred Next Step</th><th>Rationale</th></tr></thead>
+      <tbody>
+        <tr><td class="label">Elevated aortic gradient — mechanism unclear</td><td><strong>CT or TEE</strong></td><td>Visualize leaflets; distinguish thrombus, pannus, SVD, PPM</td></tr>
+        <tr><td class="label">Mechanical valve — occluder motion cannot be assessed</td><td><strong>CT or fluoroscopy</strong></td><td>Echo artifact from metal; CT/fluoro directly measures opening angles</td></tr>
+        <tr><td class="label">Suspected prosthetic MR (mitral or tricuspid)</td><td><strong>TEE (2D + 3D)</strong></td><td>TTE limited by shadowing; TEE provides en face view and jet localization</td></tr>
+        <tr><td class="label">Quantify AR or PR severity</td><td><strong>CMR</strong></td><td>Phase-contrast provides absolute regurgitant volumes irrespective of jet eccentricity</td></tr>
+        <tr><td class="label">Endocarditis — paravalvular extension</td><td><strong>CT angiography</strong></td><td>Better than TEE for abscess, pseudoaneurysm, fistula extent</td></tr>
+        <tr><td class="label">Pre-TAVI planning / ViV sizing</td><td><strong>CT</strong></td><td>Coronary ostial distances; annular sizing; leaflet calcification</td></tr>
+        <tr><td class="label">Pulmonary valve / conduit (poor echo windows)</td><td><strong>CMR then CT</strong></td><td>CMR quantifies PR; CT useful when stent artifact limits CMR</td></tr>
+        <tr><td class="label">Thrombus vs pannus (mechanical)</td><td><strong>CT with contrast</strong></td><td>HU thresholds differentiate with high specificity; guides thrombolysis decision</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ NORMAL VALUES ═══════════════════ -->
+<div id="panel-normal-values" class="tab-panel">
+  <div class="section-header">
+    <h2>Normal Doppler Reference Values — Appendix Tables A1–A9</h2>
+    <p>Mean ± SD unless noted. Values are flow-dependent — compare with patient-specific baseline when available. Refer to original guidelines for full dataset.</p>
+  </div>
+
+  <div class="pos-tabs" id="nv-tabs">
+    <button class="pos-tab active" onclick="switchNV(this,'nv-tavi-ao')">TAVI Aortic</button>
+    <button class="pos-tab" onclick="switchNV(this,'nv-savr-ao')">Surgical Aortic</button>
+    <button class="pos-tab" onclick="switchNV(this,'nv-mitral')">Mitral</button>
+    <button class="pos-tab" onclick="switchNV(this,'nv-pulm')">Pulmonary</button>
+    <button class="pos-tab" onclick="switchNV(this,'nv-tricuspid')">Tricuspid</button>
+  </div>
+
+  <!-- ── TAVI Aortic (A1, A2, A3) ── -->
+  <div id="nv-tavi-ao" class="pos-content active">
+
+    <div class="card">
+      <div class="card-heading">Table A1 — SAPIEN Percutaneous Aortic Valves (Native AS, Mean ± SD)</div>
+      <div class="info-note blue">📖 All data from Hahn et al., JACC Cardiovasc Imaging 2019. Values at 30 days post-implant.</div>
+      <table class="param-table">
+        <thead><tr><th>Valve / Size</th><th>EOA (cm²)</th><th>Mean Gradient (mm Hg)</th><th>DVI</th></tr></thead>
+        <tbody>
+          <tr><td colspan="4" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">SAPIEN (1st gen)</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">1.56 ± 0.43</td><td class="val">9.92 ± 4.27</td><td class="val">0.53 ± 0.13</td></tr>
+          <tr><td class="label">26 mm</td><td class="val">1.84 ± 0.52</td><td class="val">8.76 ± 3.89</td><td class="val">0.53 ± 0.13</td></tr>
+          <tr><td class="label">All sizes</td><td class="val">1.70 ± 0.49</td><td class="val">9.36 ± 4.13</td><td class="val">0.53 ± 0.13</td></tr>
+          <tr><td colspan="4" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">SAPIEN XT</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">1.41 ± 0.30</td><td class="val">10.41 ± 3.74</td><td class="val">0.52 ± 0.10</td></tr>
+          <tr><td class="label">26 mm</td><td class="val">1.74 ± 0.42</td><td class="val">9.24 ± 3.57</td><td class="val">0.54 ± 0.11</td></tr>
+          <tr><td class="label">29 mm</td><td class="val">2.06 ± 0.52</td><td class="val">8.36 ± 3.14</td><td class="val">0.53 ± 0.11</td></tr>
+          <tr><td class="label">All sizes</td><td class="val">1.67 ± 0.46</td><td class="val">9.52 ± 3.64</td><td class="val">0.53 ± 0.11</td></tr>
+          <tr><td colspan="4" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">SAPIEN 3</td></tr>
+          <tr><td class="label">20 mm</td><td class="val">1.22 ± 0.22</td><td class="val">16.23 ± 5.01</td><td class="val">0.42 ± 0.07</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">1.45 ± 0.26</td><td class="val">12.79 ± 4.65</td><td class="val">0.43 ± 0.08</td></tr>
+          <tr><td class="label">26 mm</td><td class="val">1.74 ± 0.35</td><td class="val">10.59 ± 3.88</td><td class="val">0.43 ± 0.09</td></tr>
+          <tr><td class="label">29 mm</td><td class="val">1.89 ± 0.37</td><td class="val">9.28 ± 3.16</td><td class="val">0.40 ± 0.09</td></tr>
+          <tr><td class="label">All sizes</td><td class="val">1.66 ± 0.38</td><td class="val">11.18 ± 4.35</td><td class="val">0.43 ± 0.09</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Table A2 — CoreValve &amp; Evolut R Percutaneous Aortic Valves (Native AS, Mean ± SD)</div>
+      <table class="param-table">
+        <thead><tr><th>Valve / Size</th><th>EOA (cm²)</th><th>Mean Gradient (mm Hg)</th><th>DVI</th></tr></thead>
+        <tbody>
+          <tr><td colspan="4" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">CoreValve</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">1.12 ± 0.36</td><td class="val">14.43 ± 5.72</td><td class="val">0.44 ± 0.09</td></tr>
+          <tr><td class="label">26 mm</td><td class="val">1.74 ± 0.49</td><td class="val">8.27 ± 3.82</td><td class="val">0.59 ± 0.15</td></tr>
+          <tr><td class="label">29 mm</td><td class="val">1.97 ± 0.53</td><td class="val">8.85 ± 4.17</td><td class="val">0.54 ± 0.12</td></tr>
+          <tr><td class="label">31 mm</td><td class="val">2.15 ± 0.72</td><td class="val">9.55 ± 3.44</td><td class="val">0.49 ± 0.12</td></tr>
+          <tr><td class="label">All sizes</td><td class="val">1.88 ± 0.56</td><td class="val">8.85 ± 4.14</td><td class="val">0.55 ± 0.13</td></tr>
+          <tr><td colspan="4" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Evolut R (30 days)</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">1.09 ± 0.26</td><td class="val">14.97 ± 7.15</td><td class="val">0.42 ± 0.04</td></tr>
+          <tr><td class="label">26 mm</td><td class="val">1.69 ± 0.40</td><td class="val">7.53 ± 2.65</td><td class="val">0.61 ± 0.13</td></tr>
+          <tr><td class="label">29 mm</td><td class="val">1.97 ± 0.54</td><td class="val">7.85 ± 3.08</td><td class="val">0.59 ± 0.14</td></tr>
+          <tr><td class="label">34 mm</td><td class="val">2.60 ± 0.75</td><td class="val">6.30 ± 3.23</td><td class="val">0.58 ± 0.15</td></tr>
+          <tr><td class="label">All sizes</td><td class="val">2.01 ± 0.65</td><td class="val">7.52 ± 3.19</td><td class="val">0.59 ± 0.14</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Table A3 — Aortic Valve-in-Valve at 1 Year (Mean ± SD)</div>
+      <div class="info-note">⚠️ ViV gradients are generally higher than native TAVI — elevated gradients (mean &gt;20 mm Hg) in 28% of cases. Confirm with invasive catheterization if clinically significant.</div>
+      <table class="param-table">
+        <thead><tr><th>TAVI ViV Valve</th><th>Peak Gradient (mm Hg)</th><th>Mean Gradient (mm Hg)</th><th>EOA (cm²)</th></tr></thead>
+        <tbody>
+          <tr><td class="label">CoreValve (all)</td><td class="val">23.48 ± 12.10</td><td class="val">12.89 ± 0.20</td><td class="val">1.62 ± 0.14</td></tr>
+          <tr><td class="label">Evolut (all)</td><td class="val">22.43 ± 5.72</td><td class="val">14.70 ± 9.11</td><td class="val">1.36 ± 0.07</td></tr>
+          <tr><td class="label">SAPIEN 3 (all)</td><td class="val">33.93 ± 10.11</td><td class="val">27.00 ± 10.20</td><td class="val">1.07 ± 0.32</td></tr>
+          <tr><td class="label">SAPIEN XT (all)</td><td class="val">31.31 ± 3.75</td><td class="val">18.02 ± 4.22</td><td class="val">1.31 ± 0.25</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Surgical Aortic (A4) ── -->
+  <div id="nv-savr-ao" class="pos-content">
+    <div class="card">
+      <div class="card-heading">Table A4 — Surgical Prosthetic Aortic Valves (Mean ± SD)</div>
+      <div class="info-note blue">📖 Use valve-type and size-specific reference to assess EOA. "—" indicates data not reported in source. Modified from Rajani et al., J Heart Valve Dis 2007.</div>
+      <div style="margin-bottom:10px;">
+        <input type="text" id="savr-search" placeholder="Filter by valve name…" oninput="filterSAVR()" style="width:100%;padding:8px 12px;border:1.5px solid #cbd5e0;border-radius:7px;font-size:0.85rem;font-family:inherit;outline:none;">
+      </div>
+      <div style="overflow-x:auto;max-height:600px;overflow-y:auto;">
+      <table class="param-table" id="savr-table">
+        <thead><tr><th>Valve (Type)</th><th>Size (mm)</th><th>Peak Grad (mm Hg)</th><th>Mean Grad (mm Hg)</th><th>EOA (cm²)</th></tr></thead>
+        <tbody>
+          <tr class="savr-row"><td class="label" rowspan="5">Abbott Epic (stented porcine)</td><td>21</td><td>—</td><td>19.1 ± 8.2</td><td class="val">1.0 ± 0.3</td></tr>
+          <tr class="savr-row"><td>23</td><td>—</td><td>13.9 ± 6.0</td><td class="val">1.4 ± 0.5</td></tr>
+          <tr class="savr-row"><td>25</td><td>—</td><td>12.1 ± 5.1</td><td class="val">1.5 ± 0.5</td></tr>
+          <tr class="savr-row"><td>27</td><td>—</td><td>11.4 ± 4.1</td><td class="val">1.6 ± 0.4</td></tr>
+          <tr class="savr-row"><td>29</td><td>—</td><td>7.5 ± 3.3</td><td class="val">2.4 ± 1.1</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="6">Abbott Trifecta (stented pericardial)</td><td>19</td><td>—</td><td>10.7 ± 4.6</td><td class="val">1.41 ± 0.24</td></tr>
+          <tr class="savr-row"><td>21</td><td>—</td><td>8.1 ± 3.5</td><td class="val">1.63 ± 0.29</td></tr>
+          <tr class="savr-row"><td>23</td><td>—</td><td>7.2 ± 2.8</td><td class="val">1.81 ± 0.30</td></tr>
+          <tr class="savr-row"><td>25</td><td>—</td><td>6.2 ± 2.7</td><td class="val">2.02 ± 0.32</td></tr>
+          <tr class="savr-row"><td>27</td><td>—</td><td>4.8 ± 2.0</td><td class="val">2.20 ± 0.20</td></tr>
+          <tr class="savr-row"><td>29</td><td>—</td><td>4.7 ± 1.6</td><td class="val">2.35 ± 0.22</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="6">ATS Bileaflet (mechanical)</td><td>19</td><td>47.0 ± 12.6</td><td>25.3 ± 8.0</td><td class="val">1.1 ± 0.3</td></tr>
+          <tr class="savr-row"><td>21</td><td>23.7 ± 6.8</td><td>15.9 ± 5.0</td><td class="val">1.4 ± 0.5</td></tr>
+          <tr class="savr-row"><td>23</td><td>—</td><td>14.4 ± 4.9</td><td class="val">1.7 ± 0.5</td></tr>
+          <tr class="savr-row"><td>25</td><td>—</td><td>11.3 ± 3.7</td><td class="val">2.1 ± 0.7</td></tr>
+          <tr class="savr-row"><td>27</td><td>—</td><td>8.4 ± 3.7</td><td class="val">2.5 ± 0.1</td></tr>
+          <tr class="savr-row"><td>29</td><td>—</td><td>8.0 ± 3.0</td><td class="val">3.1 ± 0.8</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="5">ATS AP Bileaflet (mechanical)</td><td>20</td><td>21.4 ± 4.2</td><td>11.1 ± 3.5</td><td class="val">1.3 ± 0.3</td></tr>
+          <tr class="savr-row"><td>22</td><td>18.7 ± 8.3</td><td>10.5 ± 4.5</td><td class="val">1.7 ± 0.4</td></tr>
+          <tr class="savr-row"><td>24</td><td>15.1 ± 5.6</td><td>7.5 ± 3.1</td><td class="val">2.0 ± 0.6</td></tr>
+          <tr class="savr-row"><td>26</td><td>—</td><td>6.0 ± 2.0</td><td class="val">2.1 ± 0.4</td></tr>
+          <tr class="savr-row"><td>18</td><td>—</td><td>21.0 ± 1.8</td><td class="val">1.2 ± 0.3</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="5">Baxter Perimount (stented bovine pericardial)</td><td>19</td><td>32.5 ± 8.5</td><td>19.5 ± 5.5</td><td class="val">1.3 ± 0.2</td></tr>
+          <tr class="savr-row"><td>21</td><td>24.9 ± 7.7</td><td>13.8 ± 4.0</td><td class="val">1.3 ± 0.3</td></tr>
+          <tr class="savr-row"><td>23</td><td>19.9 ± 7.4</td><td>11.5 ± 3.9</td><td class="val">1.6 ± 0.3</td></tr>
+          <tr class="savr-row"><td>25</td><td>16.5 ± 7.8</td><td>10.7 ± 3.8</td><td class="val">1.6 ± 0.4</td></tr>
+          <tr class="savr-row"><td>27</td><td>12.8 ± 5.4</td><td>4.8 ± 2.2</td><td class="val">2.0 ± 0.4</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">Carbomedics Standard (bileaflet mechanical)</td><td>19</td><td>38.0 ± 12.8</td><td>18.9 ± 8.3</td><td class="val">1.0 ± 0.3</td></tr>
+          <tr class="savr-row"><td>21</td><td>26.8 ± 10.1</td><td>12.9 ± 5.4</td><td class="val">1.5 ± 0.4</td></tr>
+          <tr class="savr-row"><td>23</td><td>22.5 ± 7.4</td><td>11.0 ± 4.6</td><td class="val">1.4 ± 0.3</td></tr>
+          <tr class="savr-row"><td>25</td><td>19.6 ± 7.8</td><td>9.1 ± 3.5</td><td class="val">1.8 ± 0.4</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">Carpentier-Edwards Pericardial (stented bovine pericardial)</td><td>19</td><td>32.1 ± 3.4</td><td>24.2 ± 8.6</td><td class="val">1.2 ± 0.3</td></tr>
+          <tr class="savr-row"><td>21</td><td>25.7 ± 9.9</td><td>20.3 ± 9.1</td><td class="val">1.5 ± 0.4</td></tr>
+          <tr class="savr-row"><td>23</td><td>21.7 ± 8.6</td><td>13.0 ± 5.3</td><td class="val">1.8 ± 0.3</td></tr>
+          <tr class="savr-row"><td>25</td><td>16.5 ± 5.4</td><td>9.0 ± 2.3</td><td class="val">—</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="5">Carpentier-Edwards Standard (stented porcine)</td><td>19</td><td>43.5 ± 12.7</td><td>25.6 ± 8.0</td><td class="val">0.9 ± 0.2</td></tr>
+          <tr class="savr-row"><td>21</td><td>27.7 ± 7.6</td><td>17.3 ± 6.2</td><td class="val">1.5 ± 0.3</td></tr>
+          <tr class="savr-row"><td>23</td><td>28.9 ± 7.5</td><td>16.1 ± 6.2</td><td class="val">1.7 ± 0.5</td></tr>
+          <tr class="savr-row"><td>25</td><td>24.0 ± 7.1</td><td>12.9 ± 4.6</td><td class="val">1.9 ± 0.5</td></tr>
+          <tr class="savr-row"><td>27</td><td>22.1 ± 8.2</td><td>12.1 ± 5.5</td><td class="val">2.3 ± 0.6</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">Edwards Inspiris Resilia (stented pericardial)</td><td>19</td><td>—</td><td>17.6 ± 7.8</td><td class="val">1.1 ± 0.2</td></tr>
+          <tr class="savr-row"><td>21</td><td>—</td><td>12.6 ± 4.7</td><td class="val">1.3 ± 0.3</td></tr>
+          <tr class="savr-row"><td>23</td><td>—</td><td>10.1 ± 3.8</td><td class="val">1.6 ± 0.4</td></tr>
+          <tr class="savr-row"><td>25</td><td>—</td><td>9.6 ± 5.2</td><td class="val">1.8 ± 0.5</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="5">Edwards Intuity (sutureless)</td><td>19</td><td>—</td><td>13.9 ± 3.9</td><td class="val">1.1 ± 0.1</td></tr>
+          <tr class="savr-row"><td>21</td><td>—</td><td>11.6 ± 3.6</td><td class="val">1.3 ± 0.1</td></tr>
+          <tr class="savr-row"><td>23</td><td>—</td><td>10.4 ± 3.5</td><td class="val">1.7 ± 0.2</td></tr>
+          <tr class="savr-row"><td>25</td><td>—</td><td>9.1 ± 3.2</td><td class="val">1.9 ± 0.2</td></tr>
+          <tr class="savr-row"><td>27</td><td>—</td><td>8.3 ± 3.7</td><td class="val">2.2 ± 0.2</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">Hancock II (stented porcine)</td><td>21</td><td>—</td><td>14.8 ± 4.1</td><td class="val">1.3 ± 0.4</td></tr>
+          <tr class="savr-row"><td>23</td><td>34.0 ± 13.0</td><td>16.6 ± 8.5</td><td class="val">1.3 ± 0.4</td></tr>
+          <tr class="savr-row"><td>25</td><td>22.0 ± 5.3</td><td>10.8 ± 2.8</td><td class="val">1.6 ± 0.4</td></tr>
+          <tr class="savr-row"><td>29</td><td>16.2 ± 1.5</td><td>8.2 ± 1.7</td><td class="val">1.6 ± 0.2</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">Medtronic Freestyle (stentless)</td><td>21</td><td>—</td><td>9.1 ± 5.1</td><td class="val">1.4 ± 0.3</td></tr>
+          <tr class="savr-row"><td>23</td><td>11.0 ± 4.0</td><td>8.1 ± 4.6</td><td class="val">1.7 ± 0.5</td></tr>
+          <tr class="savr-row"><td>25</td><td>—</td><td>5.3 ± 3.1</td><td class="val">2.1 ± 0.5</td></tr>
+          <tr class="savr-row"><td>27</td><td>—</td><td>4.6 ± 3.1</td><td class="val">2.5 ± 0.1</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">Medtronic Mosaic (stented porcine)</td><td>21</td><td>—</td><td>14.2 ± 5.0</td><td class="val">1.4 ± 0.4</td></tr>
+          <tr class="savr-row"><td>23</td><td>23.8 ± 11.0</td><td>13.7 ± 4.8</td><td class="val">1.5 ± 0.4</td></tr>
+          <tr class="savr-row"><td>25</td><td>22.5 ± 10.0</td><td>11.7 ± 5.1</td><td class="val">1.8 ± 0.5</td></tr>
+          <tr class="savr-row"><td>27</td><td>—</td><td>10.4 ± 4.3</td><td class="val">1.9 ± 0.1</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">Medtronic Avalus (stented pericardial)</td><td>19</td><td>—</td><td>17.1 ± 5.0</td><td class="val">1.11 ± 0.25</td></tr>
+          <tr class="savr-row"><td>21</td><td>—</td><td>14.5 ± 4.3</td><td class="val">1.25 ± 0.25</td></tr>
+          <tr class="savr-row"><td>23</td><td>—</td><td>12.1 ± 3.8</td><td class="val">1.47 ± 0.32</td></tr>
+          <tr class="savr-row"><td>25</td><td>—</td><td>11.7 ± 4.0</td><td class="val">1.57 ± 0.31</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">MCRI On-X (bileaflet mechanical)</td><td>19</td><td>21.3 ± 10.8</td><td>11.8 ± 3.4</td><td class="val">1.5 ± 0.2</td></tr>
+          <tr class="savr-row"><td>21</td><td>16.4 ± 5.9</td><td>9.9 ± 3.6</td><td class="val">1.7 ± 0.4</td></tr>
+          <tr class="savr-row"><td>23</td><td>15.9 ± 6.4</td><td>8.6 ± 3.4</td><td class="val">1.9 ± 0.6</td></tr>
+          <tr class="savr-row"><td>25</td><td>16.5 ± 10.2</td><td>6.9 ± 4.3</td><td class="val">2.4 ± 0.6</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="5">St. Jude Medical Regent (bileaflet mechanical)</td><td>19</td><td>20.6 ± 12</td><td>11.0 ± 4.9</td><td class="val">1.6 ± 0.4</td></tr>
+          <tr class="savr-row"><td>21</td><td>15.6 ± 9.4</td><td>8.0 ± 4.8</td><td class="val">2.0 ± 0.7</td></tr>
+          <tr class="savr-row"><td>23</td><td>12.8 ± 6.8</td><td>6.9 ± 3.5</td><td class="val">2.3 ± 0.9</td></tr>
+          <tr class="savr-row"><td>25</td><td>11.7 ± 6.8</td><td>5.6 ± 3.2</td><td class="val">2.5 ± 0.8</td></tr>
+          <tr class="savr-row"><td>27</td><td>7.9 ± 5.5</td><td>3.5 ± 1.7</td><td class="val">3.6 ± 0.5</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="6">St. Jude Medical Standard (bileaflet mechanical)</td><td>19</td><td>42.0 ± 10.0</td><td>24.5 ± 5.8</td><td class="val">1.5 ± 0.1</td></tr>
+          <tr class="savr-row"><td>21</td><td>25.7 ± 9.5</td><td>15.2 ± 5.0</td><td class="val">1.4 ± 0.4</td></tr>
+          <tr class="savr-row"><td>23</td><td>21.8 ± 7.5</td><td>13.4 ± 5.6</td><td class="val">1.6 ± 0.4</td></tr>
+          <tr class="savr-row"><td>25</td><td>18.9 ± 7.3</td><td>11.0 ± 5.3</td><td class="val">1.9 ± 0.5</td></tr>
+          <tr class="savr-row"><td>27</td><td>13.7 ± 4.2</td><td>8.4 ± 3.4</td><td class="val">2.5 ± 0.4</td></tr>
+          <tr class="savr-row"><td>29</td><td>13.5 ± 5.8</td><td>7.0 ± 1.7</td><td class="val">2.8 ± 0.5</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="4">Sorin Perceval (sutureless)</td><td>S (21)</td><td>—</td><td>10.1 ± 4.2</td><td class="val">1.3 ± 0.3</td></tr>
+          <tr class="savr-row"><td>M (23)</td><td>—</td><td>9.4 ± 5.5</td><td class="val">1.5 ± 0.4</td></tr>
+          <tr class="savr-row"><td>L (25)</td><td>—</td><td>8.5 ± 4.6</td><td class="val">1.5 ± 0.4</td></tr>
+          <tr class="savr-row"><td>XL (27)</td><td>—</td><td>9.7 ± 4.7</td><td class="val">1.6 ± 0.4</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="3">Starr-Edwards (caged ball)</td><td>23</td><td>32.6 ± 12.8</td><td>22.0 ± 9.0</td><td class="val">1.1 ± 0.2</td></tr>
+          <tr class="savr-row"><td>26</td><td>31.8 ± 9.0</td><td>19.7 ± 6.1</td><td class="val">—</td></tr>
+          <tr class="savr-row"><td>29</td><td>29.0 ± 9.3</td><td>16.3 ± 5.5</td><td class="val">—</td></tr>
+          <tr class="savr-row"><td class="label" rowspan="2">Homograft</td><td>20–22</td><td>7.2 ± 3.0</td><td>3.5 ± 1.5</td><td class="val">—</td></tr>
+          <tr class="savr-row"><td>24–27</td><td>6.2 ± 2.6</td><td>2.8 ± 1.1</td><td class="val">—</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="font-size:0.75rem;color:#718096;margin-top:8px;">Showing selected valves. See full guidelines Appendix Table A4 for all 35+ valve types.</div>
+    </div>
+  </div>
+
+  <!-- ── Mitral (A5, A6) ── -->
+  <div id="nv-mitral" class="pos-content">
+    <div class="card">
+      <div class="card-heading">Table A5 — Surgical Prosthetic Mitral Valves (Mean ± SD)</div>
+      <div class="info-note blue">📖 Always report heart rate at time of measurement. Modified from Rosenhek et al., J Am Soc Echocardiogr 2003.</div>
+      <div style="margin-bottom:10px;">
+        <input type="text" id="smv-search" placeholder="Filter by valve name…" oninput="filterSMV()" style="width:100%;padding:8px 12px;border:1.5px solid #cbd5e0;border-radius:7px;font-size:0.85rem;font-family:inherit;outline:none;">
+      </div>
+      <div style="overflow-x:auto;max-height:560px;overflow-y:auto;">
+      <table class="param-table" id="smv-table">
+        <thead><tr><th>Valve (Type)</th><th>Size (mm)</th><th>Peak Grad (mm Hg)</th><th>Mean Grad (mm Hg)</th><th>Peak Vel (m/s)</th><th>PHT (ms)</th><th>EOA (cm²)</th></tr></thead>
+        <tbody>
+          <tr class="smv-row"><td class="label" rowspan="4">Abbott Epic</td><td>27</td><td>—</td><td>6.1 ± 2.9</td><td>—</td><td>—</td><td class="val">1.4 ± 0.7</td></tr>
+          <tr class="smv-row"><td>29</td><td>—</td><td>5.5 ± 1.7</td><td>—</td><td>—</td><td class="val">1.5 ± 0.5</td></tr>
+          <tr class="smv-row"><td>31</td><td>—</td><td>4.8 ± 1.4</td><td>—</td><td>—</td><td class="val">1.6 ± 0.3</td></tr>
+          <tr class="smv-row"><td>33</td><td>—</td><td>4.1 ± 1.6</td><td>—</td><td>—</td><td class="val">1.5 ± 0.3</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="5">Bjork-Shiley (single tilting disk)</td><td>25</td><td>12 ± 4</td><td>6 ± 2</td><td>1.75 ± 0.38</td><td>99 ± 27</td><td class="val">1.72 ± 0.6</td></tr>
+          <tr class="smv-row"><td>27</td><td>10 ± 4</td><td>5 ± 2</td><td>1.6 ± 0.49</td><td>89 ± 28</td><td class="val">1.81 ± 0.54</td></tr>
+          <tr class="smv-row"><td>29</td><td>7.83 ± 2.93</td><td>2.83 ± 1.27</td><td>1.37 ± 0.25</td><td>79 ± 17</td><td class="val">2.1 ± 0.43</td></tr>
+          <tr class="smv-row"><td>31</td><td>6 ± 3</td><td>2 ± 1.9</td><td>1.41 ± 0.26</td><td>70 ± 14</td><td class="val">2.2 ± 0.3</td></tr>
+          <tr class="smv-row"><td>23</td><td>—</td><td>—</td><td>1.7</td><td>115</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="4">Carbomedics (bileaflet mechanical)</td><td>25</td><td>10.3 ± 2.3</td><td>3.6 ± 0.6</td><td>1.3 ± 0.1</td><td>93 ± 8</td><td class="val">2.9 ± 0.8</td></tr>
+          <tr class="smv-row"><td>27</td><td>8.79 ± 3.46</td><td>3.46 ± 1.03</td><td>1.61 ± 0.3</td><td>89 ± 20</td><td class="val">2.9 ± 0.75</td></tr>
+          <tr class="smv-row"><td>29</td><td>8.78 ± 2.9</td><td>3.39 ± 0.97</td><td>1.52 ± 0.3</td><td>88 ± 17</td><td class="val">2.3 ± 0.4</td></tr>
+          <tr class="smv-row"><td>31</td><td>8.87 ± 2.34</td><td>3.32 ± 0.87</td><td>1.61 ± 0.29</td><td>92 ± 24</td><td class="val">2.8 ± 1.14</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="5">Carpentier-Edwards Pericardial (stented)</td><td>27</td><td>—</td><td>6 ± 2</td><td>1.7 ± 0.3</td><td>98 ± 28</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td>29</td><td>—</td><td>4.7 ± 2</td><td>1.76 ± 0.27</td><td>92 ± 14</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td>31</td><td>—</td><td>4.4 ± 2</td><td>1.54 ± 0.15</td><td>92 ± 19</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td>33</td><td>—</td><td>6 ± 3</td><td>—</td><td>93 ± 12</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td>27</td><td>—</td><td>3.6</td><td>1.6</td><td>100</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="5">Carpentier-Edwards Perimount (stented pericardial)</td><td>25</td><td>—</td><td>4.0 ± 1.0</td><td>1.7 ± 0.10</td><td>67 ± 21.5</td><td class="val">1.75 ± 0.53</td></tr>
+          <tr class="smv-row"><td>27</td><td>—</td><td>6.3 ± 1.65</td><td>1.7 ± 0.27</td><td>74 ± 20.6</td><td class="val">1.88 ± 0.52</td></tr>
+          <tr class="smv-row"><td>29</td><td>—</td><td>6.0 ± 1.41</td><td>1.8 ± 0.19</td><td>76 ± 17.9</td><td class="val">2.02 ± 0.57</td></tr>
+          <tr class="smv-row"><td>31</td><td>—</td><td>5.5 ± 1.06</td><td>1.8 ± 0.20</td><td>80 ± 21.8</td><td class="val">2.09 ± 0.48</td></tr>
+          <tr class="smv-row"><td>33</td><td>—</td><td>6.1 ± 1.86</td><td>1.7 ± 0.23</td><td>77 ± 13.2</td><td class="val">2.24 ± 0.97</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="5">Hancock II (stented porcine)</td><td>25</td><td>—</td><td>8.3 ± 1.71</td><td>2.1 ± 0.28</td><td>76 ± 19.8</td><td class="val">1.42 ± 0.29</td></tr>
+          <tr class="smv-row"><td>27</td><td>—</td><td>6.1 ± 1.33</td><td>2.0 ± 0.28</td><td>81 ± 18.9</td><td class="val">1.62 ± 0.47</td></tr>
+          <tr class="smv-row"><td>29</td><td>—</td><td>6.7 ± 2.20</td><td>2.0 ± 0.31</td><td>77 ± 15.1</td><td class="val">1.83 ± 0.68</td></tr>
+          <tr class="smv-row"><td>31</td><td>—</td><td>6.0 ± 1.58</td><td>2.0 ± 0.32</td><td>76 ± 12.1</td><td class="val">1.70 ± 0.41</td></tr>
+          <tr class="smv-row"><td>33</td><td>—</td><td>5.5 ± 1.64</td><td>1.9 ± 0.50</td><td>65 ± 8.7</td><td class="val">2.71 ± 0.77</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="4">Medtronic Mosaic (stented porcine)</td><td>25</td><td>—</td><td>8.3 ± 1.71</td><td>2.1 ± 0.28</td><td>76 ± 19.8</td><td class="val">1.42 ± 0.29</td></tr>
+          <tr class="smv-row"><td>27</td><td>—</td><td>6.1 ± 1.33</td><td>2.0 ± 0.28</td><td>81 ± 18.9</td><td class="val">1.62 ± 0.47</td></tr>
+          <tr class="smv-row"><td>29</td><td>—</td><td>6.7 ± 2.20</td><td>2.0 ± 0.31</td><td>77 ± 15.1</td><td class="val">1.83 ± 0.68</td></tr>
+          <tr class="smv-row"><td>31</td><td>—</td><td>6.0 ± 1.58</td><td>2.0 ± 0.32</td><td>76 ± 12.1</td><td class="val">1.70 ± 0.41</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="4">On-X (bileaflet mechanical)</td><td>25</td><td>11.5 ± 3.2</td><td>5.3 ± 2.1</td><td>—</td><td>—</td><td class="val">1.9 ± 1.1</td></tr>
+          <tr class="smv-row"><td>27–29</td><td>10.3 ± 4.5</td><td>4.5 ± 1.6</td><td>—</td><td>—</td><td class="val">2.2 ± 0.5</td></tr>
+          <tr class="smv-row"><td>31–33</td><td>9.8 ± 3.8</td><td>4.8 ± 2.4</td><td>—</td><td>—</td><td class="val">2.5 ± 1.1</td></tr>
+          <tr class="smv-row"><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="6">St. Jude Medical (bileaflet mechanical)</td><td>25</td><td>—</td><td>2.5 ± 1</td><td>1.34 ± 1.12</td><td>75 ± 4</td><td class="val">1.35 ± 0.17</td></tr>
+          <tr class="smv-row"><td>27</td><td>11 ± 4</td><td>5 ± 1.82</td><td>1.61 ± 0.29</td><td>75 ± 10</td><td class="val">1.67 ± 0.17</td></tr>
+          <tr class="smv-row"><td>29</td><td>10 ± 3</td><td>4.15 ± 1.8</td><td>1.57 ± 0.29</td><td>85 ± 10</td><td class="val">1.75 ± 0.24</td></tr>
+          <tr class="smv-row"><td>31</td><td>12 ± 6</td><td>4.46 ± 2.22</td><td>1.59 ± 0.33</td><td>74 ± 13</td><td class="val">2.03 ± 0.32</td></tr>
+          <tr class="smv-row"><td>23</td><td>—</td><td>4.0</td><td>1.5</td><td>160</td><td class="val">1.0</td></tr>
+          <tr class="smv-row"><td>33</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="5">Starr-Edwards (caged ball)</td><td>28</td><td>—</td><td>7 ± 2.75</td><td>1.9 ± 0.57</td><td>—</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td>30</td><td>12.2 ± 4.6</td><td>6.99 ± 2.5</td><td>1.7 ± 0.3</td><td>125 ± 25</td><td class="val">1.65 ± 0.4</td></tr>
+          <tr class="smv-row"><td>32</td><td>11.5 ± 4.2</td><td>5.08 ± 2.5</td><td>1.7 ± 0.3</td><td>110 ± 25</td><td class="val">1.98 ± 0.4</td></tr>
+          <tr class="smv-row"><td>34</td><td>—</td><td>5.0</td><td>2.6</td><td>—</td><td class="val">—</td></tr>
+          <tr class="smv-row"><td>26</td><td>—</td><td>10.0</td><td>—</td><td>—</td><td class="val">1.4</td></tr>
+          <tr class="smv-row"><td class="label" rowspan="5">Edwards Mitris (stented pericardial)</td><td>25</td><td>—</td><td>4.9 ± 1.2</td><td>—</td><td>—</td><td class="val">1.1 ± 0.4</td></tr>
+          <tr class="smv-row"><td>27</td><td>—</td><td>4.1 ± 1.4</td><td>—</td><td>—</td><td class="val">1.2 ± 0.3</td></tr>
+          <tr class="smv-row"><td>29</td><td>—</td><td>4.1 ± 1.5</td><td>—</td><td>—</td><td class="val">1.5 ± 0.6</td></tr>
+          <tr class="smv-row"><td>31</td><td>—</td><td>3.9 ± 2.0</td><td>—</td><td>—</td><td class="val">1.4 ± 0.5</td></tr>
+          <tr class="smv-row"><td>33</td><td>—</td><td>3.3 ± 1.4</td><td>—</td><td>—</td><td class="val">1.5 ± 0.7</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Table A6 — SAPIEN Valve in Mitral Position (ViV / ViR / ViMAC)</div>
+      <div class="info-note">⚠️ None of the SAPIEN valves in these studies had &gt;2+ MR. Data expressed as median (IQR) or mean ± SD.</div>
+      <table class="param-table">
+        <thead><tr><th>Reference / Size</th><th>ViV</th><th>ViR</th><th>ViMAC</th><th>All (Mean Gradient, mm Hg)</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Guerrero et al. (all sizes)</td><td class="val">7 (6–9)</td><td class="val">7 (6–9)</td><td class="val">6 (4–8)</td><td class="val">7 (5–9)</td></tr>
+          <tr><td class="label">Whisenant et al. (all)</td><td class="val">7.3 ± 2.73</td><td>NA</td><td>NA</td><td>NA</td></tr>
+          <tr><td class="label">Eleid et al. — 23 mm</td><td class="val">6.4 ± 2.4</td><td class="val">5 ± 2</td><td class="val">8*</td><td class="val">6.25 ± 2.2</td></tr>
+          <tr><td class="label">Eleid et al. — 26 mm</td><td class="val">7.0 ± 2.6</td><td class="val">6 ± 1.4</td><td class="val">4*</td><td class="val">6.5 ± 2.4</td></tr>
+          <tr><td class="label">Eleid et al. — 29 mm</td><td class="val">4.9 ± 2.1</td><td class="val">6 ± 3</td><td class="val">2.5 ± 0.5</td><td class="val">4.8 ± 2.3</td></tr>
+          <tr><td class="label">Eleid et al. — all sizes</td><td class="val">5.7 ± 2.5</td><td class="val">5.7 ± 2.2</td><td class="val">4.3 ± 2.3</td><td class="val">5.5 ± 2.4</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:0.75rem;color:#718096;margin-top:6px;">*Limited data, no SD reported. ViMAC = valve-in-mitral annular calcification.</div>
+    </div>
+  </div>
+
+  <!-- ── Pulmonary (A7) ── -->
+  <div id="nv-pulm" class="pos-content">
+    <div class="card">
+      <div class="card-heading">Table A7 — Normal Doppler Values for Prosthetic Pulmonary Valves</div>
+      <div class="info-note blue">📖 Accurate CW Doppler may be challenging due to valve position — use off-axis parasternal and suprasternal views. AT = acceleration time.</div>
+      <table class="param-table">
+        <thead><tr><th>Valve Type / Size</th><th>Peak Grad (mm Hg)</th><th>Mean Grad (mm Hg)</th><th>Peak Vel (m/s)</th><th>EOA (cm²)</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Homograft</td><td>—</td><td class="val">&lt;15</td><td class="val">&lt;2.5</td><td>—</td></tr>
+          <tr><td class="label">Valved conduits (Contegra, Shelhigh, Medtronic)</td><td>—</td><td class="val">&lt;15</td><td class="val">&lt;2.2</td><td>—</td></tr>
+          <tr><td class="label">Bioprosthetic valves (general)</td><td>—</td><td class="val">&lt;15</td><td class="val">&lt;2.2</td><td>—</td></tr>
+          <tr><td colspan="5" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Percutaneous — Melody</td></tr>
+          <tr><td class="label">16 mm (≤20 mm conduit)</td><td>—</td><td>—</td><td class="val">&lt;2.4</td><td>—</td></tr>
+          <tr><td class="label">18 mm (≤22 mm conduit)</td><td>—</td><td>—</td><td class="val">&lt;2.4</td><td>—</td></tr>
+          <tr><td colspan="5" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Percutaneous — SAPIEN</td></tr>
+          <tr><td class="label">20 mm</td><td class="val">16 ± 5</td><td>—</td><td>—</td><td class="val">1.22 ± 0.2</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">11 (8–17)</td><td>—</td><td>—</td><td class="val">1.47 (1.1–2.0)</td></tr>
+          <tr><td class="label">26 mm</td><td class="val">9.5 (4.9–14.5)</td><td>—</td><td>—</td><td class="val">1.77 (1.3–2.4)</td></tr>
+          <tr><td class="label">29 mm</td><td class="val">10.4 (5.9–15.5)</td><td>—</td><td>—</td><td class="val">2.0 (1.5–2.6)</td></tr>
+          <tr><td colspan="5" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Mechanical — St. Jude (pulmonary position)</td></tr>
+          <tr><td class="label">21 mm</td><td class="val">20 (19–21)</td><td class="val">12 (11–13)</td><td class="val">2.2</td><td class="val">1.73</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">20 (7–35)</td><td class="val">11 (4–20)</td><td class="val">2.0 (1.2–2.9)</td><td class="val">2.5 (1–3.8)</td></tr>
+          <tr><td class="label">25 mm</td><td class="val">18 ± 7.5</td><td class="val">11 ± 6</td><td class="val">2.0</td><td class="val">2.9 ± 1</td></tr>
+          <tr><td class="label">27 mm</td><td class="val">15 (6–30)</td><td class="val">6 (3–18)</td><td class="val">1.8 (1.2–2.7)</td><td class="val">4.2 (3–4.8)</td></tr>
+          <tr><td colspan="5" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Mechanical — Carbomedics (pulmonary)</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">19 (17–20)</td><td class="val">12</td><td class="val">2.0 (1.8–2.2)</td><td class="val">1.7 (1.3–2.1)</td></tr>
+          <tr><td class="label">25 mm</td><td class="val">20 (11–30)</td><td class="val">11 (5–33)</td><td class="val">2.0 (1.6–2.7)</td><td class="val">3.3 (1.5–4.4)</td></tr>
+          <tr><td class="label">27 mm</td><td class="val">19 (10–28)</td><td class="val">10 (6–14)</td><td class="val">1.9 (1.4–2.4)</td><td class="val">4.1 (4.0–4.1)</td></tr>
+          <tr><td colspan="5" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Mechanical — On-X (pulmonary)</td></tr>
+          <tr><td class="label">23 mm</td><td class="val">20 (7–36)</td><td class="val">12 (4–22)</td><td class="val">2.2 (1.1–2.7)</td><td class="val">2.4 (1.9–2.9)</td></tr>
+          <tr><td class="label">25 mm</td><td class="val">17 (7–24)</td><td class="val">10 (3–13)</td><td class="val">1.8 (1.3–2.4)</td><td class="val">1.5 (0.9–2.2)</td></tr>
+          <tr><td class="label">29 mm</td><td class="val">20 (18–22)</td><td class="val">12 ± 1</td><td class="val">2.1 (1.9–2.3)</td><td class="val">2.02 (1.8–2.2)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Tricuspid (A8, A9) ── -->
+  <div id="nv-tricuspid" class="pos-content">
+
+    <div class="card">
+      <div class="card-heading">Table A8 — Transcatheter Tricuspid ViV and ViR</div>
+      <div class="info-note blue">📖 Data from McElhinney et al., J Am Coll Cardiol 2019 (n=306). ViV = 93%, ViR = 7%.</div>
+      <table class="param-table">
+        <thead><tr><th>n</th><th>ViV / ViR</th><th>Age (yrs)</th><th>Mean Gradient (mm Hg)</th><th>PVL</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>306</td>
+            <td>ViV 284 (93%) / ViR 22 (7%)</td>
+            <td>40 (1–86)</td>
+            <td class="val">3.8 ± 2.0<br><span style="font-size:0.74rem;color:#718096;">≥29 mm: 3.6 ± 1.8 · &lt;29 mm: 4.2 ± 2.3</span></td>
+            <td>Trivial or none in 83%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-heading">Table A9 — Surgical Prosthetic Tricuspid Valves (Mean ± SD)</div>
+      <div class="info-note">⚠️ PHT not recommended when Doppler contour is rounded. DVI = VTIPrTV / VTILVOT. iEOA = EOA indexed to BSA. Modified from Blauwet et al., J Am Soc Echocardiogr 2010 &amp; 2011.</div>
+      <div style="overflow-x:auto;">
+      <table class="param-table">
+        <thead><tr><th>Valve (Size)</th><th>PHT (ms)</th><th>Mean Grad (mm Hg)</th><th>E Vel (m/s)</th><th>VTIPrTV (cm)</th><th>DVI</th><th>EOA (cm²)</th><th>iEOA (cm²/m²)</th></tr></thead>
+        <tbody>
+          <tr><td colspan="8" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Mechanical — St. Jude Medical Standard</td></tr>
+          <tr><td class="label">27 mm</td><td>77 ± 14.6</td><td class="val">2.4 ± 1.27</td><td>1.1 ± 0.32</td><td>25 ± 7.0</td><td>1.2 ± 0.33</td><td class="val">2.54 ± 0.64</td><td>1.52 ± 0.34</td></tr>
+          <tr><td class="label">29 mm</td><td>100 ± 35.2</td><td class="val">2.6 ± 1.13</td><td>1.2 ± 0.21</td><td>31 ± 6.5</td><td>1.4 ± 0.30</td><td class="val">2.20 ± 0.33</td><td>1.21 ± 0.13</td></tr>
+          <tr><td class="label">31 mm</td><td>81 ± 13.5</td><td class="val">3.3 ± 1.21</td><td>1.4 ± 0.31</td><td>30 ± 5.1</td><td>1.4 ± 0.23</td><td class="val">2.49 ± 0.45</td><td>1.38 ± 0.29</td></tr>
+          <tr><td class="label">33 mm</td><td>82 ± 18.8</td><td class="val">3.2 ± 1.24</td><td>1.3 ± 0.22</td><td>30 ± 7.8</td><td>1.5 ± 0.33</td><td class="val">2.46 ± 0.59</td><td>1.36 ± 0.36</td></tr>
+          <tr><td colspan="8" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Mechanical — Carbomedics Standard</td></tr>
+          <tr><td class="label">31 mm</td><td>78</td><td class="val">4.0 ± 1.63</td><td>1.4 ± 0.19</td><td>40 ± 11.4</td><td>1.9 ± 0.53</td><td class="val">2.01 ± 0.51</td><td>1.04 ± 0.18</td></tr>
+          <tr><td class="label">33 mm</td><td>98 ± 9.7</td><td class="val">3.4 ± 1.19</td><td>1.2 ± 0.16</td><td>34 ± 7.3</td><td>1.6 ± 0.33</td><td class="val">2.33 ± 0.43</td><td>1.25 ± 0.35</td></tr>
+          <tr><td colspan="8" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Mechanical — Starr-Edwards (caged ball)</td></tr>
+          <tr><td class="label">30 mm</td><td>132</td><td class="val">5</td><td>1.5</td><td>41</td><td>1.5</td><td class="val">2.07</td><td>1.51</td></tr>
+          <tr><td class="label">32 mm</td><td>NA</td><td class="val">4.0 ± 1.0</td><td>1.5 ± 0.44</td><td>39 ± 14.2</td><td>2.0 ± 0.68</td><td class="val">1.87 ± 0.33</td><td>0.96 ± 0.18</td></tr>
+          <tr><td class="label">34 mm</td><td>118 ± 32.9</td><td class="val">5.7 ± 1.63</td><td>1.8 ± 0.28</td><td>44 ± 7.8</td><td>1.9 ± 0.32</td><td class="val">1.81 ± 0.48</td><td>1.08 ± 0.29</td></tr>
+          <tr><td colspan="8" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Bioprosthetic — Medtronic Mosaic</td></tr>
+          <tr><td class="label">25 mm</td><td>80</td><td class="val">4.0</td><td>1.6</td><td>35</td><td>3.2</td><td class="val">1.37</td><td>0.93</td></tr>
+          <tr><td class="label">27 mm</td><td>NA</td><td class="val">5.5 ± 0.53</td><td>1.6 ± 0.17</td><td>51 ± 6.8</td><td>2.2 ± 0.4</td><td class="val">1.53 ± 0.16</td><td>0.86 ± 0.18</td></tr>
+          <tr><td class="label">29 mm</td><td>115 ± 13.4</td><td class="val">6.0 ± 2.0</td><td>1.5 ± 0.26</td><td>37 ± 0.97</td><td>1.8 ± 0.39</td><td class="val">1.96 ± 0.39</td><td>1.12 ± 0.21</td></tr>
+          <tr><td class="label">31 mm</td><td>144 ± 28.6</td><td class="val">5.2 ± 1.43</td><td>1.5 ± 0.21</td><td>46 ± 9.5</td><td>2.2 ± 0.6</td><td class="val">1.74 ± 0.52</td><td>0.95 ± 0.29</td></tr>
+          <tr><td class="label">33 mm</td><td>139 ± 56.5</td><td class="val">4.3 ± 1.3</td><td>1.4 ± 0.19</td><td>40 ± 8.6</td><td>2.1 ± 0.3</td><td class="val">2.0 ± 0.53</td><td>1.01 ± 0.26</td></tr>
+          <tr><td colspan="8" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Bioprosthetic — Carpentier-Edwards Perimount</td></tr>
+          <tr><td class="label">29 mm</td><td>94 ± 2.8</td><td class="val">2.0 ± 1.41</td><td>1.1 ± 0.21</td><td>29 ± 7.1</td><td>1.6 ± 0.20</td><td class="val">2.16 ± 0.43</td><td>1.39 ± 0.42</td></tr>
+          <tr><td class="label">31 mm</td><td>74 ± 26.2</td><td class="val">3.7 ± 1.53</td><td>1.2 ± 0.20</td><td>37 ± 9.1</td><td>1.7 ± 0.35</td><td class="val">2.12 ± 0.53</td><td>1.20 ± 0.29</td></tr>
+          <tr><td class="label">33 mm</td><td>137 ± 53</td><td class="val">3.9 ± 1.07</td><td>1.4 ± 0.21</td><td>38 ± 7.9</td><td>1.9 ± 0.28</td><td class="val">1.93 ± 0.43</td><td>1.03 ± 0.19</td></tr>
+          <tr><td colspan="8" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Bioprosthetic — Carpentier-Edwards Duraflex</td></tr>
+          <tr><td class="label">27 mm</td><td>130 ± 45.4</td><td class="val">5.2 ± 1.69</td><td>1.5 ± 0.26</td><td>46 ± 8.0</td><td>2.4 ± 0.40</td><td class="val">1.34 ± 0.22</td><td>0.78 ± 0.15</td></tr>
+          <tr><td class="label">29 mm</td><td>102 ± 26.5</td><td class="val">6.0 ± 1.95</td><td>1.7 ± 0.27</td><td>47 ± 9.6</td><td>2.3 ± 0.60</td><td class="val">1.54 ± 0.38</td><td>0.88 ± 0.19</td></tr>
+          <tr><td class="label">31 mm</td><td>115 ± 40.8</td><td class="val">5.7 ± 1.67</td><td>1.5 ± 0.27</td><td>48 ± 9.0</td><td>2.3 ± 0.53</td><td class="val">1.57 ± 0.39</td><td>0.88 ± 0.22</td></tr>
+          <tr><td class="label">33 mm</td><td>116 ± 39.7</td><td class="val">5.6 ± 2.10</td><td>1.5 ± 0.26</td><td>47 ± 10.2</td><td>2.3 ± 0.54</td><td class="val">1.69 ± 0.44</td><td>0.92 ± 0.24</td></tr>
+          <tr><td class="label">35 mm</td><td>83 ± 26.5</td><td class="val">5.3 ± 1.61</td><td>1.5 ± 0.25</td><td>46 ± 10.5</td><td>2.3 ± 0.54</td><td class="val">1.63 ± 0.38</td><td>0.88 ± 0.22</td></tr>
+          <tr><td colspan="8" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Bioprosthetic — Medtronic Hancock II</td></tr>
+          <tr><td class="label">31 mm</td><td>NA</td><td class="val">5.7 ± 1.37</td><td>1.6 ± 0.19</td><td>49 ± 8.7</td><td>2.3 ± 0.36</td><td class="val">1.4 ± 0.21</td><td>0.77 ± 0.19</td></tr>
+          <tr><td class="label">33 mm</td><td>NA</td><td class="val">5.5 ± 3.54</td><td>1.4 ± 0.28</td><td>50 ± 16.3</td><td>2.9 ± 0.48</td><td class="val">1.4 ± 0.59</td><td>0.71 ± 0.24</td></tr>
+          <tr><td class="label">35 mm</td><td>NA</td><td class="val">5.3 ± 0.58</td><td>1.3 ± 0.32</td><td>41 ± 2.5</td><td>1.8 ± 0.12</td><td class="val">2.11 ± 0.23</td><td>1.01 ± 0.22</td></tr>
+          <tr><td colspan="8" style="background:#f0f4f8;font-weight:700;font-size:0.74rem;padding:5px 10px;color:#2d3748;">Bioprosthetic — St. Jude Biocor</td></tr>
+          <tr><td class="label">29 mm</td><td>NA</td><td class="val">6</td><td>1.6</td><td>43</td><td>1.7</td><td class="val">2.84</td><td>1.54</td></tr>
+          <tr><td class="label">31 mm</td><td>106 ± 48.5</td><td class="val">5.1 ± 1.36</td><td>1.5 ± 0.34</td><td>46 ± 12.5</td><td>2.2 ± 0.57</td><td class="val">1.92 ± 0.53</td><td>0.99 ± 0.19</td></tr>
+          <tr><td class="label">33 mm</td><td>125 ± 45.7</td><td class="val">3.9 ± 1.20</td><td>1.3 ± 0.23</td><td>39 ± 10</td><td>1.9 ± 0.56</td><td class="val">1.88 ± 0.49</td><td>1.07 ± 0.29</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end panel-normal-values -->
+
+<div class="disclaimer">
+  ⚠️ <strong>Clinical Disclaimer:</strong> This tool is for educational and clinical reference only, based on Zoghbi et al., JASE 2024;37:2–63. All hemodynamic thresholds must be interpreted with knowledge of specific valve type, size, and flow state. Normal reference ranges vary by prosthesis — consult Appendix Tables A1–A9 of the guidelines for type- and size-specific values. Not a substitute for individual clinical judgment.
+</div>
+</div><!-- end .content -->
+
+<div class="content" style="padding-top:0;">
+  <div class="citation-footer">
+    <strong>Citation:</strong> Zoghbi WA, Jone P-N, Chamsi-Pasha MA, et al. Guidelines for the Evaluation of Prosthetic Valve Function With Cardiovascular Imaging. <em>J Am Soc Echocardiogr.</em> 2024;37:2–63.
+    <br><br>
+    📄 <a href="https://www.asecho.org/wp-content/uploads/2024/01/PIIS0894731723005333.pdf" target="_blank">Download full guidelines from ASE website</a> &nbsp;|&nbsp;
+    <a href="https://doi.org/10.1016/j.echo.2023.10.004" target="_blank">DOI: 10.1016/j.echo.2023.10.004</a>
+    <br><br>
+    <em style="opacity:0.6;font-size:0.77rem;">For educational and clinical reference purposes only. Normal reference values vary by specific valve type and size — refer to original guideline Appendix Tables A1–A9 for complete normative data. Content © 2024 American Society of Echocardiography.</em>
+  </div>
+</div>
+
+<footer>
+  Prosthetic Valve Function &nbsp;·&nbsp; echoinfo.org &nbsp;·&nbsp; Created by Akhil Narang, MD
+</footer>
+
+<script>
+function switchTab(tabName) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.main-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + tabName).classList.add('active');
+  document.querySelectorAll('.main-nav button').forEach(b => {
+    const oc = b.getAttribute('onclick') || '';
+    if (oc.includes("'" + tabName + "'") || oc.includes('"' + tabName + '"')) b.classList.add('active');
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function switchPos(btn, posId) {
+  document.querySelectorAll('.pos-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pos-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(posId).classList.add('active');
+}
+
+// ── EOA Calculator ──
+function calcEOA() {
+  const d = parseFloat(document.getElementById('eoa-lvot-d').value);
+  const vtiLVOT = parseFloat(document.getElementById('eoa-vti-lvot').value);
+  const vtiValve = parseFloat(document.getElementById('eoa-vti-valve').value);
+  const pos = document.getElementById('eoa-position').value;
+  const el = document.getElementById('eoa-result');
+  if (isNaN(d) || isNaN(vtiLVOT) || isNaN(vtiValve) || vtiValve === 0) { el.classList.remove('show'); return; }
+  const area = 0.785 * d * d;
+  const sv = area * vtiLVOT;
+  const eoa = sv / vtiValve;
+  const dvi = pos === 'aortic' ? (vtiLVOT / vtiValve) : (vtiValve / vtiLVOT);
+  document.getElementById('eoa-val').textContent = eoa.toFixed(2) + ' cm²';
+  let cls = 'info', sub = '';
+  if (pos === 'aortic') {
+    sub = `DVI = ${dvi.toFixed(2)} · SV = ${sv.toFixed(0)} mL · LVOT area = ${area.toFixed(2)} cm²`;
+    cls = dvi < 0.25 ? 'significant' : dvi <= 0.35 ? 'possible' : 'normal';
+    sub += dvi < 0.25 ? ' → Significant stenosis threshold (SAVR)' : dvi <= 0.35 ? ' → Possible stenosis (SAVR)' : ' → Normal DVI (SAVR)';
+  } else {
+    sub = `DVI (PrMV/LVOT) = ${dvi.toFixed(2)} · SV = ${sv.toFixed(0)} mL`;
+    cls = dvi > 2.5 ? 'significant' : dvi >= 2.2 ? 'possible' : 'normal';
+    sub += dvi > 2.5 ? ' → Significant mitral stenosis threshold' : dvi >= 2.2 ? ' → Possible mitral stenosis' : ' → Normal mitral DVI';
+  }
+  el.className = 'calc-result show ' + cls;
+  document.getElementById('eoa-sub').textContent = sub;
+}
+
+// ── PPM Calculator ──
+function calcPPM() {
+  const eoa = parseFloat(document.getElementById('ppm-eoa').value);
+  const ht = parseFloat(document.getElementById('ppm-ht').value);
+  const wt = parseFloat(document.getElementById('ppm-wt').value);
+  const pos = document.getElementById('ppm-pos').value;
+  const el = document.getElementById('ppm-result');
+  if (isNaN(eoa) || isNaN(ht) || isNaN(wt)) { el.classList.remove('show'); return; }
+  const bsa = 0.007184 * Math.pow(ht, 0.725) * Math.pow(wt, 0.425);
+  const ieoa = eoa / bsa;
+  const bmi = wt / ((ht/100) ** 2);
+  const obese = bmi >= 30;
+  let grade, cls;
+  if (pos === 'aortic') {
+    const norm = obese ? 0.70 : 0.85;
+    const sev = obese ? 0.55 : 0.65;
+    grade = ieoa > norm ? 'No PPM' : ieoa > sev ? 'Moderate PPM' : 'Severe PPM';
+    cls = ieoa > norm ? 'normal' : ieoa > sev ? 'possible' : 'significant';
+  } else {
+    const norm = obese ? 1.0 : 1.2;
+    const sev = obese ? 0.75 : 0.90;
+    grade = ieoa > norm ? 'No PPM' : ieoa > sev ? 'Moderate PPM' : 'Severe PPM';
+    cls = ieoa > norm ? 'normal' : ieoa > sev ? 'possible' : 'significant';
+  }
+  el.className = 'calc-result show ' + cls;
+  document.getElementById('ppm-val').textContent = ieoa.toFixed(2) + ' cm²/m²';
+  document.getElementById('ppm-sub').textContent = `${grade} · BSA = ${bsa.toFixed(2)} m² · BMI = ${bmi.toFixed(1)} kg/m² (${obese ? 'obese thresholds applied' : 'standard thresholds'})`;
+}
+
+// ── DVI Calculator ──
+function calcDVI() {
+  const lvot = parseFloat(document.getElementById('dvi-lvot').value);
+  const valve = parseFloat(document.getElementById('dvi-valve').value);
+  const type = document.getElementById('dvi-type').value;
+  const el = document.getElementById('dvi-result');
+  if (isNaN(lvot) || isNaN(valve) || valve === 0) { el.classList.remove('show'); return; }
+  const dvi = lvot / valve;
+  let cls, sub;
+  if (type === 'savr') {
+    cls = dvi < 0.25 ? 'significant' : dvi <= 0.35 ? 'possible' : 'normal';
+    sub = dvi < 0.25 ? 'Significant stenosis (SAVR threshold <0.25)' : dvi <= 0.35 ? 'Possible stenosis (SAVR threshold 0.25–0.35)' : 'Normal (SAVR threshold >0.35)';
+  } else {
+    cls = 'info';
+    sub = 'TAVI: compare to baseline DVI. Significant = decrease ≥0.2 or ≥40% from baseline.';
+  }
+  el.className = 'calc-result show ' + cls;
+  document.getElementById('dvi-val').textContent = dvi.toFixed(3);
+  document.getElementById('dvi-sub').textContent = sub;
+}
+
+// ── Regurgitant Volume Calculator ──
+function calcRV() {
+  const total = parseFloat(document.getElementById('rv-total').value);
+  const forward = parseFloat(document.getElementById('rv-forward').value);
+  const el = document.getElementById('rv-result');
+  if (isNaN(total) || isNaN(forward)) { el.classList.remove('show'); return; }
+  const rvol = total - forward;
+  const rf = (rvol / total) * 100;
+  const cls = rf >= 50 ? 'significant' : rf >= 30 ? 'possible' : 'normal';
+  el.className = 'calc-result show ' + cls;
+  document.getElementById('rv-val').textContent = rvol.toFixed(0) + ' mL · RF ' + rf.toFixed(0) + '%';
+  const grade = rf >= 50 ? 'Severe regurgitation (RF ≥50%)' : rf >= 30 ? 'Moderate regurgitation (RF 30–50%)' : 'Mild regurgitation (RF <30%)';
+  document.getElementById('rv-sub').textContent = grade;
+}
+
+function switchNV(btn, id) {
+  document.querySelectorAll('#nv-tabs .pos-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#panel-normal-values .pos-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function filterSAVR() {
+  const q = document.getElementById('savr-search').value.toLowerCase();
+  document.querySelectorAll('#savr-table .savr-row').forEach(r => {
+    const label = r.querySelector('.label');
+    const text = (label ? label.textContent : r.textContent).toLowerCase();
+    r.style.display = text.includes(q) || q === '' ? '' : 'none';
+  });
+}
+
+function filterSMV() {
+  const q = document.getElementById('smv-search').value.toLowerCase();
+  document.querySelectorAll('#smv-table .smv-row').forEach(r => {
+    const label = r.querySelector('.label');
+    const text = (label ? label.textContent : r.textContent).toLowerCase();
+    r.style.display = text.includes(q) || q === '' ? '' : 'none';
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => { switchTab('overview'); });
+</script>
+</body>
+</html>
