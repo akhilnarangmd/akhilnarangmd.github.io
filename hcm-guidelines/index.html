@@ -1367,9 +1367,31 @@
         <text x="1020" y="718" text-anchor="middle" fill="#1a2942" font-size="14">for any suspected</text>
         <text x="1020" y="740" text-anchor="middle" fill="#1a2942" font-size="14">morphologic changes</text>
 
-        <!-- Arrows from Class boxes down to symptom pills -->
-        <line x1="760" y1="788" x2="760" y2="816" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
-        <line x1="1020" y1="788" x2="1020" y2="816" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+        <!-- ── CROSS CONNECTORS (matching poster) ──
+             Each Class box sends TWO right-angle elbow arrows:
+             one to "If Symptomatic" and one to "If Asymptomatic".
+             
+             Class I  cx=760, bot=788
+             Class IIb cx=1020, bot=788
+             If Symptomatic  cx=760, top=818
+             If Asymptomatic cx=1020, top=818
+             
+             Routing: all 4 lines drop to a shared horizontal at y=806,
+             then branch left or right to reach their target cx,
+             then drop to y=818 with arrowhead. -->
+
+        <!-- Vertical stubs from both class boxes down to y=806 -->
+        <line x1="760"  y1="788" x2="760"  y2="806" stroke="#2c4a73" stroke-width="2"/>
+        <line x1="1020" y1="788" x2="1020" y2="806" stroke="#2c4a73" stroke-width="2"/>
+
+        <!-- Horizontal bar at y=806 connecting both stubs -->
+        <line x1="760" y1="806" x2="1020" y2="806" stroke="#2c4a73" stroke-width="2"/>
+
+        <!-- From y=806: arrow DOWN-LEFT to If Symptomatic (cx=760) -->
+        <line x1="760" y1="806" x2="760" y2="818" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- From y=806: arrow DOWN-RIGHT to If Asymptomatic (cx=1020) -->
+        <line x1="1020" y1="806" x2="1020" y2="818" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
 
         <!-- If Symptomatic pill  cx=760 y=818 h=42 -->
         <rect x="650" y="818" width="220" height="42" rx="21" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
