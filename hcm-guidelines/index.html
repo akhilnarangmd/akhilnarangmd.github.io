@@ -1,1 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypertrophic Cardiomyopathy · echoinfo.org</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --navy:    #1a365d;
+    --blue:    #2b6cb0;
+    --blue-lt: #ebf8ff;
+    --teal:    #276749;
+    --teal-lt: #f0fff4;
+    --red:     #742a2a;
+    --red-lt:  #fff5f5;
+    --amber:   #744210;
+    --amber-lt:#fffaf0;
+    --purple:  #44337a;
+    --purple-lt:#faf5ff;
+    --gray-50: #f7fafc;
+    --gray-100:#edf2f7;
+    --gray-200:#e2e8f0;
+    --gray-400:#a0aec0;
+    --gray-500:#718096;
+    --gray-700:#2d3748;
+    --gray-900:#1a202c;
+    --white:   #ffffff;
+    --bg:      #f8f9fa;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+    --radius:  10px;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--gray-900);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+    color: white;
+    padding: 28px 20px 24px;
+    text-align: center;
+  }
+  header .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+  header h1 {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  header .subtitle {
+    font-size: 0.85rem;
+    opacity: 0.82;
+    margin-bottom: 12px;
+  }
+  .guideline-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    padding: 4px 16px;
+    font-size: 0.74rem;
+    letter-spacing: 0.03em;
+    color: white;
+  }
+
+  /* ── NAV ── */
+  .nav-wrapper {
+    background: white;
+    border-bottom: 2px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 20px;
+  }
+  .nav-btn {
+    padding: 9px 18px;
+    border: 2px solid var(--gray-200);
+    background: white;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gray-500);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .nav-btn:hover:not(.active) { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); }
+  .nav-btn.active { background: var(--navy); border-color: var(--navy); color: white; box-shadow: 0 2px 8px rgba(26,54,93,0.25); }
+
+  /* ── LAYOUT ── */
+  .content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 64px;
+  }
+
+  /* ── PANELS ── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── SECTION INTRO ── */
+  .section-intro {
+    margin-bottom: 20px;
+  }
+  .section-intro h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 6px;
+  }
+  .section-intro p { font-size: 0.88rem; color: var(--gray-500); line-height: 1.65; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    border: 1px solid var(--gray-200);
+  }
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon { font-size: 1rem; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+
+  /* ── ALGORITHM FLOW ── */
+  .algo-flow { display: flex; flex-direction: column; gap: 0; }
+  .algo-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .algo-step:last-child { border-bottom: none; }
+  .step-num {
+    background: var(--navy);
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-content h4 { font-size: 0.88rem; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+  .step-content p { font-size: 0.82rem; color: var(--gray-700); line-height: 1.55; }
+
+  /* ── THRESHOLD PILLS ── */
+  .thresh-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .thresh {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .thresh-normal  { background: #f0fff4; color: #276749; border: 1px solid #9ae6b4; }
+  .thresh-warn    { background: #fffaf0; color: #744210; border: 1px solid #f6ad55; }
+  .thresh-danger  { background: #fff5f5; color: #742a2a; border: 1px solid #fc8181; }
+  .thresh-info    { background: #ebf8ff; color: #2c5282; border: 1px solid #90cdf4; }
+  .thresh-purple  { background: #faf5ff; color: #44337a; border: 1px solid #b794f4; }
+
+  /* ── PHENOTYPE CARDS ── */
+  .pheno-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+  .pheno-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 14px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .pheno-card:hover { background: var(--blue-lt); border-color: var(--blue); transform: translateY(-1px); }
+  .pheno-card.selected { background: var(--blue-lt); border-color: var(--blue); box-shadow: 0 0 0 2px rgba(43,108,176,0.2); }
+  .pheno-card .pheno-img { font-size: 1.8rem; margin-bottom: 6px; }
+  .pheno-card .pheno-label { font-size: 0.75rem; font-weight: 700; color: var(--navy); }
+  .pheno-card .pheno-sub { font-size: 0.68rem; color: var(--gray-500); margin-top: 2px; }
+  .pheno-detail { display: none; margin-top: 16px; }
+  .pheno-detail.active { display: block; }
+
+  /* ── TABLE ── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .data-table th {
+    background: var(--navy);
+    color: white;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .data-table td { padding: 9px 12px; border-bottom: 1px solid var(--gray-100); vertical-align: top; }
+  .data-table tr:hover td { background: var(--gray-50); }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  /* ── RISK CALCULATOR ── */
+  .calc-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width: 700px) { .calc-wrapper { grid-template-columns: 1fr; } }
+  .calc-inputs { display: flex; flex-direction: column; gap: 12px; }
+  .field-group { display: flex; flex-direction: column; gap: 4px; }
+  .field-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .field-label .unit { font-weight: 400; color: var(--gray-500); }
+  .field-input {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 7px;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    color: var(--gray-900);
+    background: var(--white);
+    transition: border-color .15s, box-shadow .15s;
+    width: 100%;
+  }
+  .field-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(43,108,176,0.15); }
+  .field-select {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 7px;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    color: var(--gray-900);
+    background: var(--white);
+    width: 100%;
+    cursor: pointer;
+  }
+  .toggle-group { display: flex; gap: 8px; flex-wrap: wrap; }
+  .toggle-btn {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 6px;
+    background: var(--white);
+    color: var(--gray-700);
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .toggle-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .toggle-btn.active { background: var(--navy); border-color: var(--navy); color: white; }
+
+  .btn-calc {
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 24px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .15s;
+    letter-spacing: 0.02em;
+    width: 100%;
+    margin-top: 4px;
+  }
+  .btn-calc:hover { background: var(--blue); }
+  .btn-clear {
+    background: var(--white);
+    color: var(--gray-500);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s;
+    width: 100%;
+    margin-top: 6px;
+  }
+  .btn-clear:hover { border-color: var(--gray-400); color: var(--gray-700); }
+
+  /* ── RESULT BOX ── */
+  .result-box {
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 20px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .result-empty { color: var(--gray-400); font-size: 0.82rem; margin: auto; text-align: center; }
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 12px;
+    background: white;
+    border-radius: 7px;
+    border: 1px solid var(--gray-100);
+    font-size: 0.82rem;
+    gap: 8px;
+  }
+  .result-label { color: var(--gray-700); font-weight: 600; flex: 1; }
+  .result-val { font-weight: 700; color: var(--navy); text-align: right; }
+
+  /* ── SCD RISK BADGE ── */
+  .risk-badge {
+    text-align: center;
+    padding: 18px;
+    border-radius: var(--radius);
+    font-weight: 700;
+  }
+  .risk-low    { background: #f0fff4; color: #276749; border: 2px solid #9ae6b4; }
+  .risk-int    { background: #fffaf0; color: #744210; border: 2px solid #f6ad55; }
+  .risk-high   { background: #fff5f5; color: #742a2a; border: 2px solid #fc8181; }
+  .risk-label  { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; opacity: 0.8; }
+  .risk-value  { font-size: 2rem; }
+  .risk-sub    { font-size: 0.78rem; margin-top: 4px; opacity: 0.85; }
+
+  /* ── INFO ROWS ── */
+  .info-row {
+    display: flex;
+    gap: 10px;
+    font-size: 0.82rem;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--navy); flex-shrink: 0; margin-top: 6px; }
+  .info-dot.teal   { background: var(--teal); }
+  .info-dot.red    { background: #e53e3e; }
+  .info-dot.amber  { background: #d69e2e; }
+  .info-dot.purple { background: #6b46c1; }
+
+  /* ── ACCORDION ── */
+  .accordion { border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+  .acc-item { border-bottom: 1px solid var(--gray-100); }
+  .acc-item:last-child { border-bottom: none; }
+  .acc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--navy);
+    background: white;
+    transition: background .12s;
+    user-select: none;
+  }
+  .acc-header:hover { background: var(--gray-50); }
+  .acc-arrow { transition: transform .2s; font-size: 0.75rem; color: var(--gray-400); }
+  .acc-item.open .acc-arrow { transform: rotate(180deg); }
+  .acc-body { display: none; padding: 14px 18px; background: var(--gray-50); border-top: 1px solid var(--gray-100); }
+  .acc-item.open .acc-body { display: block; }
+
+  /* ── ALERT ── */
+  .alert {
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.81rem;
+    line-height: 1.55;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+  .alert-blue   { background: var(--blue-lt);   border-left: 3px solid var(--blue);   color: #2c5282; }
+  .alert-amber  { background: var(--amber-lt);  border-left: 3px solid #c05621;       color: var(--amber); }
+  .alert-red    { background: var(--red-lt);    border-left: 3px solid #c53030;       color: var(--red); }
+  .alert-green  { background: var(--teal-lt);   border-left: 3px solid var(--teal);   color: #22543d; }
+  .alert-purple { background: var(--purple-lt); border-left: 3px solid #6b46c1;       color: var(--purple); }
+  .alert-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── RECOMMENDATION BOX ── */
+  .rec-box {
+    background: linear-gradient(135deg, #ebf8ff, #f0fff4);
+    border: 1.5px solid #90cdf4;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-top: 14px;
+  }
+  .rec-box h4 { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .rec-item { font-size: 0.81rem; color: var(--gray-700); padding: 5px 0; display: flex; gap: 8px; }
+  .rec-num { font-weight: 700; color: var(--blue); flex-shrink: 0; }
+
+  /* ── MODALITY COMPARISON ── */
+  .modality-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+  .mod-card {
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--gray-200);
+  }
+  .mod-title { font-size: 0.82rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+  .mod-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── LVOT CALCULATOR ── */
+  .lvot-display {
+    text-align: center;
+    padding: 20px;
+  }
+  .lvot-gradient-val {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .lvot-unit { font-size: 1rem; color: var(--gray-500); }
+  .lvot-class {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+
+  /* ── CITATION ── */
+  .citation-footer {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    background: var(--navy);
+    border-radius: 12px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.79rem;
+    line-height: 1.65;
+  }
+  .citation-footer strong { color: rgba(255,255,255,0.9); }
+  .citation-footer a { color: #f6ad55; text-decoration: none; }
+  .citation-footer a:hover { text-decoration: underline; }
+  .citation-footer em { opacity: 0.65; font-size: 0.74rem; }
+
+  footer {
+    border-top: 1px solid var(--gray-200);
+    text-align: center;
+    padding: 16px 24px;
+    font-size: 0.76rem;
+    color: var(--gray-400);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  footer a { color: var(--gray-500); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media(max-width: 600px) {
+    .content { padding: 16px 12px 48px; }
+    .nav-btn { padding: 8px 12px; font-size: 0.78rem; }
+    .card { padding: 16px 14px; }
+    header { padding: 20px 16px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="icon">🫀</div>
+  <h1>Hypertrophic Cardiomyopathy</h1>
+  <p class="subtitle">2022 ASE Multimodality Imaging Guidelines — Comprehensive Reference</p>
+  <div class="guideline-badge">JASE 2022 · Nagueh et al. · DOI 10.1016/j.echo.2022.03.012 · ASE · ASNC · SCMR · SCCT</div>
+</header>
+
+<div class="nav-wrapper">
+  <nav>
+    <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="nav-btn" onclick="showTab('diagnosis')">Diagnosis & LVH</button>
+    <button class="nav-btn" onclick="showTab('lvot')">LVOT & MV</button>
+    <button class="nav-btn" onclick="showTab('diastolic')">Diastolic</button>
+    <button class="nav-btn" onclick="showTab('scd')">SCD Risk</button>
+    <button class="nav-btn" onclick="showTab('treatment')">Treatment</button>
+    <button class="nav-btn" onclick="showTab('screening')">Screening</button>
+  </nav>
+</div>
+
+<div class="content">
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- OVERVIEW -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel active" id="panel-overview">
+    <div class="section-intro">
+      <h2>Multimodality Imaging in HCM</h2>
+      <p>HCM is defined by LV hypertrophy (≥15 mm) in the absence of other causative conditions. Prevalence: 1:200–1:500. Symptoms arise from LVOT obstruction, diastolic dysfunction, ischemia, and arrhythmias. Multimodality imaging is fundamental to diagnosis, risk stratification, and guiding treatment.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title"><span class="icon">📋</span>Diagnostic Criteria</div>
+        <div class="info-row"><div class="info-dot"></div><div>Wall thickness <strong>≥15 mm</strong> in any LV segment (no other cause) — diagnostic in adults</div></div>
+        <div class="info-row"><div class="info-dot"></div><div>Wall thickness <strong>≥13 mm</strong> — diagnostic if family history of HCM or known pathogenic mutation</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div>Pediatrics: <strong>z-score &gt;2</strong> (size-specific; somatic growth must be considered)</div></div>
+        <div class="info-row"><div class="info-dot amber"></div><div>Hypertrophy usually <strong>asymmetric</strong>, affecting non-contiguous LV segments; occasionally involves RV</div></div>
+        <div class="thresh-row">
+          <span class="thresh thresh-info">≥13 mm + family Hx</span>
+          <span class="thresh thresh-warn">≥15 mm diagnostic</span>
+          <span class="thresh thresh-danger">≥30 mm massive LVH</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="icon">🩻</span>Imaging Modality Roles</div>
+        <div class="modality-grid" style="grid-template-columns:1fr; gap:8px;">
+          <div style="display:flex; align-items:flex-start; gap:10px; padding:8px; background:var(--blue-lt); border-radius:7px; border-left:3px solid var(--blue);">
+            <div style="font-size:0.75rem; font-weight:700; color:var(--blue); min-width:36px;">TTE</div>
+            <div style="font-size:0.79rem; color:var(--gray-700);">First-line modality for diagnosis, LVH characterization, LVOT gradient, MV anatomy, diastolic function, and serial follow-up</div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:10px; padding:8px; background:var(--teal-lt); border-radius:7px; border-left:3px solid var(--teal);">
+            <div style="font-size:0.75rem; font-weight:700; color:var(--teal); min-width:36px;">CMR</div>
+            <div style="font-size:0.79rem; color:var(--gray-700);">LGE for fibrosis, tissue characterization (T1/T2 mapping/ECV), complex morphology, borderline LVH, suboptimal echo</div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:10px; padding:8px; background:var(--amber-lt); border-radius:7px; border-left:3px solid #c05621;">
+            <div style="font-size:0.75rem; font-weight:700; color:var(--amber); min-width:36px;">CT</div>
+            <div style="font-size:0.79rem; color:var(--gray-700);">CMR-incompatible devices, septal perforator mapping pre-ASA, CCTA for coronary anatomy, 3D morphology</div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:10px; padding:8px; background:var(--purple-lt); border-radius:7px; border-left:3px solid #6b46c1;">
+            <div style="font-size:0.75rem; font-weight:700; color:var(--purple); min-width:36px;">Nuclear</div>
+            <div style="font-size:0.79rem; color:var(--gray-700);">Myocardial perfusion (SPECT/PET), microvascular dysfunction; PET preferred for quantitative MBF and ATTR amyloidosis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:0">
+      <div class="card-title"><span class="icon">🗺️</span>HCM Phenotypic Patterns — Select to Explore</div>
+      <div class="pheno-grid">
+        <div class="pheno-card" onclick="selectPheno('sigmoid')">
+          <div class="pheno-img">🔵</div>
+          <div class="pheno-label">Sigmoid</div>
+          <div class="pheno-sub">Basal anterior septum</div>
+        </div>
+        <div class="pheno-card" onclick="selectPheno('reverse')">
+          <div class="pheno-img">🟢</div>
+          <div class="pheno-label">Reversed Curvature</div>
+          <div class="pheno-sub">Mid-septum; highest genetic yield</div>
+        </div>
+        <div class="pheno-card" onclick="selectPheno('apical')">
+          <div class="pheno-img">🔺</div>
+          <div class="pheno-label">Apical</div>
+          <div class="pheno-sub">Distal LV; deep T-wave inversions</div>
+        </div>
+        <div class="pheno-card" onclick="selectPheno('midcav')">
+          <div class="pheno-img">⚡</div>
+          <div class="pheno-label">Mid-Cavity</div>
+          <div class="pheno-sub">MVO; aneurysm risk</div>
+        </div>
+        <div class="pheno-card" onclick="selectPheno('concentric')">
+          <div class="pheno-img">⭕</div>
+          <div class="pheno-label">Concentric</div>
+          <div class="pheno-sub">Neutral; phenocopy overlap</div>
+        </div>
+      </div>
+      <div class="pheno-detail" id="pheno-sigmoid">
+        <div class="alert alert-blue"><span class="alert-icon">ℹ️</span><div><strong>Sigmoid Septum:</strong> Basal anterior septal bulge with ovoid LV cavity. Septal/posterior wall ratio &gt;1.3 in a normotensive patient. <strong>Lowest genetic yield</strong> of all patterns — common in elderly hypertensive patients. Ensure RV trabeculations are not included in measurement (compare PLAX and PSAX).</div></div>
+      </div>
+      <div class="pheno-detail" id="pheno-reverse">
+        <div class="alert alert-green"><span class="alert-icon">🧬</span><div><strong>Reversed Septal Curvature:</strong> Crescent-shaped LV cavity with mid-septal hypertrophy. <strong>Highest yield for pathogenic sarcomere mutations.</strong> Patients with mutations have greater wall thickness than mutation-negative individuals, correlating with higher adverse event rates.</div></div>
+      </div>
+      <div class="pheno-detail" id="pheno-apical">
+        <div class="alert alert-amber"><span class="alert-icon">⚠️</span><div><strong>Apical HCM:</strong> Hypertrophy confined to the distal LV. Associated with deep lateral T-wave inversions on ECG. Avoid LV foreshortening. <strong>Use UEA</strong> (ultrasound enhancing agent) to evaluate apex — low threshold given risk of missing apical aneurysm. CMR if still uncertain. Less LVOTO, higher prevalence in athletes with HCM.</div></div>
+      </div>
+      <div class="pheno-detail" id="pheno-midcav">
+        <div class="alert alert-red"><span class="alert-icon">🚨</span><div><strong>Mid-Cavity Obstruction (MVO):</strong> Systolic obliteration of LV cavity + gradient ≥30 mmHg at rest. <strong>High-risk phenotype</strong> — associated with refractory symptoms, ventricular arrhythmias, premature mortality. Apical aneurysm in ~3% of CMR registry patients. LV thrombus risk. Class IIa indication for prophylactic ICD. Always use UEA or CMR to evaluate for aneurysm.</div></div>
+      </div>
+      <div class="pheno-detail" id="pheno-concentric">
+        <div class="alert alert-purple"><span class="alert-icon">🔍</span><div><strong>Concentric/Neutral Pattern:</strong> Symmetric LVH. Key differential: hypertensive heart disease, cardiac amyloidosis, Fabry disease, PRKAG2. Integrate ECG, clinical history, and tissue characterization by CMR (LGE, T1 mapping, ECV) to differentiate HCM from phenocopies.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span>Class I Recommendations at a Glance</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.78rem; font-weight:700; color:var(--navy); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em;">Initial Evaluation</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">TTE recommended for <strong>all suspected HCM</strong></div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">UEA when visualization is suboptimal</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">CMR for borderline LVH or suboptimal echo</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Report: pattern, extent, max wall thickness at end-diastole</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.78rem; font-weight:700; color:var(--navy); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em;">Established HCM Follow-up</div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Repeat TTE every <strong>1–2 years</strong> if no clinical change</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;"><strong>Prompt</strong> repeat TTE with any change in status</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">TTE at <strong>3–6 months</strong> post septal reduction therapy</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">CMR every <strong>3–5 years</strong> for SCD risk (Class IIb)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- DIAGNOSIS & LVH -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-diagnosis">
+    <div class="section-intro">
+      <h2>Assessment of LV Hypertrophy & Phenocopy Differentiation</h2>
+      <p>Accurate quantification of the magnitude, location, and pattern of LVH is essential. The imaging report must include the pattern and distribution of hypertrophy, the location of maximum wall thickness, and the measurement at end-diastole.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📐</span>Echocardiographic Pitfalls in Wall Thickness Measurement</div>
+      <div class="accordion">
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">RV trabeculations & structures <span class="acc-arrow">▼</span></div>
+          <div class="acc-body"><p style="font-size:0.83rem; color:var(--gray-700);">Systematic exclusion of RV structures (trabeculations, moderator band, crista supraventricularis) is mandatory when measuring the IVS. Compare PLAX and PSAX views to differentiate true contractile IVS from RV trabeculation — the blue line measurement in the figure example inflated IVS from 10 mm to 13 mm.</p></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">Long-axis view overestimation <span class="acc-arrow">▼</span></div>
+          <div class="acc-body"><p style="font-size:0.83rem; color:var(--gray-700);">Long-axis views can overestimate wall thickness due to tangential cuts through the wall. This applies to both echo and CMR. Always integrate and cross-reference short- and long-axis views for accurate measurements. CMR example: tangential long-axis cut produced 23 mm vs. true 18 mm on short-axis.</p></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">Apical and anterolateral walls <span class="acc-arrow">▼</span></div>
+          <div class="acc-body"><p style="font-size:0.83rem; color:var(--gray-700);">Apical, anterior, and anterolateral walls are challenging to visualize and measure accurately. Use a <strong>low threshold for UEA</strong> — especially when pre-test probability is high (family member of gene-positive patient, concerning ECG patterns like deep lateral T-wave inversions). UEA measurements are more reproducible and better aligned with CMR.</p></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">3D echocardiography <span class="acc-arrow">▼</span></div>
+          <div class="acc-body"><p style="font-size:0.83rem; color:var(--gray-700);">High-quality 3D echo is superior to 2D for LV mass and more closely correlates with CMR. RV free wall should be measured in subcostal views at end-diastole, avoiding epicardial fat inclusion.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔬</span>Differentiating HCM from Phenocopies — Key Features</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Phenocopy</th>
+              <th>Population</th>
+              <th>Key ECG Finding</th>
+              <th>Key Echo/CMR Finding</th>
+              <th>Distinguishing Feature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Athlete's Heart</strong></td>
+              <td>Young, trained</td>
+              <td>Sinus brady, early repolarization, LVH voltages</td>
+              <td>WT typically &lt;12 mm (Caucasian), &lt;15 mm (Black male); balanced 4-chamber dilation; supranormal diastolic function; no LGE</td>
+              <td>Normal/supranormal diastolic function; no SAM; regression with detraining (may occur in HCM too)</td>
+            </tr>
+            <tr>
+              <td><strong>Cardiac Amyloidosis</strong></td>
+              <td>Adults &gt;40</td>
+              <td>Low QRS voltage relative to WT; pseudo-infarct pattern</td>
+              <td>Concentric LVH, restrictive filling, GLS apical sparing; diffuse subendocardial or transmural LGE; prolonged T1, elevated ECV</td>
+              <td>GLS apical sparing reclassifies 22% of cases; Tc pyrophosphate scan for ATTR</td>
+            </tr>
+            <tr>
+              <td><strong>Hypertensive Heart Disease</strong></td>
+              <td>Adults &gt;40</td>
+              <td>LVH criteria, repolarization changes, prolonged QTc</td>
+              <td>Concentric hypertrophy or remodeling; varying diastolic dysfunction; patchy LGE possible</td>
+              <td>History of hypertension; no SAM; no mutation; increased ECV in some</td>
+            </tr>
+            <tr>
+              <td><strong>Anderson-Fabry Disease</strong></td>
+              <td>Adults</td>
+              <td>LVH + repolarization; preexcitation; arrhythmias</td>
+              <td>Concentric/asymmetric LVH; prominent papillary muscle; thinned basal inferolateral wall in advanced disease; LGE lateral mid-wall; short T1 in septum</td>
+              <td>Multi-system involvement; deficient α-galactosidase A; X-linked</td>
+            </tr>
+            <tr>
+              <td><strong>Danon Disease</strong></td>
+              <td>Children/adolescents</td>
+              <td>Pre-excitation (WPW); high voltages</td>
+              <td>Massive concentric LVH; extensive LGE sparing mid-septum</td>
+              <td>Elevated CK; LAMP2 mutation; X-linked dominant</td>
+            </tr>
+            <tr>
+              <td><strong>PRKAG2</strong></td>
+              <td>Adults &lt;40</td>
+              <td>Pre-excitation; BBB; AF; AV block; sinus bradycardia</td>
+              <td>Variable LVH; from minimal to severe; variable LGE</td>
+              <td>Autosomal dominant; PRKAG2 gene mutation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-blue" style="margin-top:12px;"><span class="alert-icon">💡</span><div><strong>ECG Integration:</strong> Deeply inverted T-waves in lateral leads → suspect apical HCM. Low voltage QRS relative to wall thickness → suspect amyloidosis. Short PR or pre-excitation → consider Fabry, Danon, PRKAG2. Use Figure 4 algorithm integrating ECG + echo findings.</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">💪</span>Athlete's Heart vs. HCM — Gray Zone Approach</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--teal); margin-bottom:8px;">Favors Physiologic Hypertrophy</div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">WT &lt;12 mm (Caucasian); &lt;15 mm (elite Black male athletes)</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Balanced 4-chamber dilation; uniform thickening (&lt;2 mm difference)</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Normal or supranormal diastolic function</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">No SAM; no LVOTO at rest or exercise</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Preserved/supranormal functional capacity</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">No LGE by CMR (except occasional RV insertion points)</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--red); margin-bottom:8px;">Favors HCM</div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">Asymmetric or non-contiguous hypertrophy</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">Abnormal mitral valve/subvalvular anatomy; SAM</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">Pathologic ECG: inferolateral TWI, ST depression, Q waves</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">LGE on CMR; abnormally prolonged T1; increased ECV</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">Family history of HCM or SCD; known pathogenic mutation</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">Exercise-induced LVOTO in pediatric patients</div></div>
+        </div>
+      </div>
+      <div class="alert alert-amber" style="margin-top:12px;"><span class="alert-icon">⚠️</span><div><strong>Note:</strong> Normal diastolic function and preserved functional capacity can occur in athletes with HCM. Regression of hypertrophy with detraining, while suggestive of physiologic adaptation, may also occur in HCM. Pursue CMR if concern persists after initial evaluation.</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- LVOT & MITRAL VALVE -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-lvot">
+    <div class="section-intro">
+      <h2>LVOT Obstruction & Mitral Valve Assessment</h2>
+      <p>LVOTO occurs in 70–75% of HCM patients at rest or with provocation. SAM is driven primarily by drag forces on elongated mitral leaflets, not Venturi forces. A systematic Doppler approach with provocative maneuvers is essential.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title"><span class="icon">📏</span>LVOT Gradient Calculator</div>
+        <div class="field-group">
+          <label class="field-label">Peak LVOT Velocity <span class="unit">(m/s)</span></label>
+          <input type="number" step="0.1" min="0" max="10" class="field-input" id="lvot-vel" placeholder="e.g. 4.7" oninput="calcLVOT()">
+        </div>
+        <div style="margin:12px 0; text-align:center; padding:16px; background:var(--gray-50); border-radius:8px; border:1px solid var(--gray-200);">
+          <div id="lvot-result-val" class="lvot-gradient-val">—</div>
+          <div class="lvot-unit">mmHg</div>
+          <div id="lvot-class" style="margin-top:8px; font-size:0.82rem; font-weight:700;"></div>
+        </div>
+        <div style="font-size:0.75rem; color:var(--gray-500); text-align:center;">Modified Bernoulli: Gradient = 4 × V²</div>
+        <div class="thresh-row" style="justify-content:center; margin-top:8px;">
+          <span class="thresh thresh-normal">&lt;30: Not significant</span>
+          <span class="thresh thresh-warn">30–49: Significant</span>
+          <span class="thresh thresh-danger">≥50: Invasive threshold</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="icon">🔄</span>LVOT Gradient from MR Velocity</div>
+        <div class="field-group">
+          <label class="field-label">Peak MR Velocity <span class="unit">(m/s)</span></label>
+          <input type="number" step="0.1" min="0" max="10" class="field-input" id="mr-vel" placeholder="e.g. 6.6" oninput="calcMR()">
+        </div>
+        <div class="field-group" style="margin-top:10px;">
+          <label class="field-label">Systolic BP <span class="unit">(mmHg)</span></label>
+          <input type="number" step="1" min="0" max="300" class="field-input" id="sbp-val" placeholder="e.g. 120" oninput="calcMR()">
+        </div>
+        <div class="field-group" style="margin-top:10px;">
+          <label class="field-label">Assumed LAP <span class="unit">(mmHg, typically 10–15)</span></label>
+          <input type="number" step="1" min="0" max="40" class="field-input" id="lap-val" placeholder="10" value="10" oninput="calcMR()">
+        </div>
+        <div style="margin-top:12px; padding:12px; background:var(--gray-50); border-radius:8px; border:1px solid var(--gray-200); font-size:0.82rem;">
+          <div id="mr-result">Enter MR velocity and SBP to calculate estimated LVOT gradient.</div>
+        </div>
+        <div class="alert alert-amber" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div style="font-size:0.78rem;">Caution: if velocity &gt;5.5 m/s, verify this is LVOT signal and not MR. MR velocity is always higher than LVOT, peaks earlier, and has longer duration (spans isovolumic contraction & relaxation).</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔊</span>Doppler Findings — Key Patterns</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:10px;">CW Doppler Patterns in LVOTO</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Dagger-shaped:</strong> Mid-to-late systolic peaking; concave-to-the-left contour — classic LVOTO pattern</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Lobster-claw:</strong> Seen when gradient &gt;60 mmHg at rest; two low-velocity systolic components with mid-systolic drop</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Early-peaking, triangular:</strong> Favors fixed obstruction (DSS) or aortic stenosis</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;"><strong>Mid-cavity pattern:</strong> Intracavitary velocity peaking in mid-systole with abrupt deceleration — MVO</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:10px;">M-Mode & Color Doppler</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>M-mode SAM severity:</strong> Mild: SAM-septal distance &gt;10 mm; Moderate: ≤10 mm or brief contact (&lt;30% systole); Severe: contact ≥30% of systole</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Mid-systolic aortic notch:</strong> M-mode sign of LVOT obstruction — premature aortic valve closure</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;"><strong>Color Doppler:</strong> Localizes turbulent aliased flow; turbulence onset = anatomical level of obstruction</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;"><strong>PW Doppler:</strong> Sequential sampling from LV apex to LVOT to localize obstruction level</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🫀</span>Mitral Valve Anatomy in Obstructive HCM</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Structural Abnormalities</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Elongated anterior mitral leaflet — extends past coaptation point, generating drag-force SAM</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Anterior/apical papillary muscle displacement — 70% have bifid papillary muscle on CMR</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Anomalous insertion of papillary muscle directly into anterior leaflet (~13%)</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div style="font-size:0.81rem;">Leaflet &gt;16 mm/m² considered elongated; may require plication at surgery</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">MR in Obstructive HCM</div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">SAM-related MR: typically <strong>posteriorly or laterally directed</strong> eccentric jet; mid-to-late systolic</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">Central or anterior jet → evaluate for intrinsic valve pathology (prolapse, flail, chordal rupture)</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Quantify MR as: LV SV (2D) minus RVOT stroke volume (in absence of significant AR)</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div style="font-size:0.81rem;">PISA method unreliable for eccentric jets — use volumetric approach</div></div>
+        </div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:12px;"><span class="alert-icon">📋</span><div>Echocardiographic report must include: (1) quantification of LVOT gradient and MR severity, (2) mitral valve anatomy, (3) degree and duration of SAM, (4) papillary muscle morphology, (5) effect of provocative maneuvers on gradient.</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">⚡</span>Provocative Maneuvers Algorithm</div>
+      <div class="algo-flow">
+        <div class="algo-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Resting TTE</h4>
+            <p>Measure peak LVOT gradient at rest. Gradient ≥30 mmHg is significant; ≥50 mmHg is threshold for invasive therapy consideration.</p>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>If Resting Gradient &lt;50 mmHg → Provocation</h4>
+            <p><strong>Valsalva (strain phase):</strong> Goal-directed approach — maintain &gt;40 mmHg for &gt;10 sec. Less effective than exercise. <strong>Squat-to-stand:</strong> 5 cycles of squat (3 sec) then stand. <strong>Amyl nitrite:</strong> Vasodilator; limited supply in many centers.</p>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>If Bedside Provocation Fails → Exercise Stress Echo</h4>
+            <p>Most physiologic provocation. Upright (treadmill/upright bike) preferred — higher gradients than supine. Measure gradient immediately post-exercise in supine position. <strong>Dobutamine stress echo is NOT recommended</strong> — non-physiologic; can provoke gradients in normal subjects.</p>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Gradient ≥50 mmHg + Drug-Refractory Symptoms</h4>
+            <p>Threshold for invasive septal reduction therapy (SRT). Beta blockers and non-DHP calcium channel blockers should <em>not</em> be withheld prior to exercise testing. Pediatric patients: exercise echo preferred (≥8 years, cooperative).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">⚙️</span>Differential Diagnosis of SAM/LVOTO</div>
+      <div class="alert alert-amber"><span class="alert-icon">⚠️</span><div style="font-size:0.82rem;"><strong>SAM is not specific for HCM.</strong> Other causes include: elderly with sigmoid septum + hyperdynamic LV; compensatory basal hypercontractility post-MI; Takotsubo cardiomyopathy; post-mitral valve repair; post-AVR with LVH; ICU patients with anemia/volume depletion/tachycardia; inotropes/vasodilators; RV pressure overload (COPD/ARDS exacerbation); cardiac amyloidosis; Anderson-Fabry disease.</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- DIASTOLIC FUNCTION -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-diastolic">
+    <div class="section-intro">
+      <h2>Diastolic Function Assessment in HCM</h2>
+      <p>Diastolic dysfunction in HCM is driven by impaired LV relaxation, increased myocyte/chamber stiffness, and abnormal LA function from an atrial myopathy. It contributes to symptoms even in non-obstructive HCM. A comprehensive approach is required.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🩺</span>Required Parameters for HCM Diastolic Assessment</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Essential Measurements</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Mitral inflow:</strong> Record at leaflet tips (E, A velocities) AND at annulus level (for Ar duration)</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Tissue Doppler:</strong> Septal e' and lateral e' at mitral annulus → calculate average E/e' ratio</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>TR velocity:</strong> CW Doppler from multiple windows; correlates with mean LAP</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Biplane LA maximum volume index:</strong> More accurate than anteroposterior diameter</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Pulmonary vein velocities:</strong> Especially Ar-A duration — Ar-A &gt;30 ms → elevated LVEDP</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">LA Pressure Estimation Thresholds</div>
+          <div class="thresh-row" style="flex-direction:column; gap:6px;">
+            <span class="thresh thresh-danger">LA max volume index &gt;34 mL/m²</span>
+            <span class="thresh thresh-danger">Average E/e' ratio &gt;14</span>
+            <span class="thresh thresh-danger">Peak TR velocity &gt;2.8 m/s</span>
+          </div>
+          <div style="font-size:0.78rem; color:var(--gray-600); margin-top:10px; line-height:1.55;">3/3 or 2/2 abnormal → <strong>LA pressure elevated</strong><br>3/3 or 2/2 normal → <strong>LA pressure normal</strong><br>Only 1 feasible or conflicting → <strong>Indeterminate</strong></div>
+          <div class="alert alert-blue" style="margin-top:8px;"><span class="alert-icon">ℹ️</span><div style="font-size:0.78rem;">In the presence of ≥moderate MR, E/e' and LA volume are unreliable. Use peak TR velocity and Ar-A duration preferentially.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📈</span>LA Strain & Advanced Diastolic Parameters</div>
+      <div class="grid-2">
+        <div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;"><strong>LA reservoir, conduit, and pump strain</strong> associated with reduced exercise tolerance and new-onset AF in HCM</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Serial LA strain analysis by the <strong>same software</strong> for a given patient is reasonable (inter-vendor differences exist)</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div style="font-size:0.81rem;"><strong>CMR:</strong> High burden of atrial fibrosis in HCM patients — accounts for abnormal LA function and predisposition to AF</div></div>
+        </div>
+        <div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Shear wave imaging:</strong> Propagation speed higher in HCM vs. controls — reflects increased myocardial stiffness; currently investigational</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;"><strong>Restrictive filling pattern + elevated E/e'</strong> in HCM associated with: HF hospitalizations, reduced exercise tolerance in children & adults, and SCD</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Pediatrics:</strong> Adult guidelines should NOT be applied. Normal ranges are very wide; use age-specific values</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📉</span>LV Systolic Function Assessment</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">EF Assessment</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">LVEF is <strong>normal to hyperdynamic</strong> in most HCM patients</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">LV dysfunction (EF &lt;50%) in 4–9% of cohorts; associated with high all-cause mortality and transplant/LVAD rates</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Endorsed lower limit of normal: <strong>50%</strong> (2D or 3D echo) given absence of HCM-specific data</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Use UEA when images suboptimal; CMR or CT if still inadequate</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Global Longitudinal Strain (GLS)</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Strain abnormalities co-locate with regions of hypertrophy (septum in classic HCM; apex in apical variant)</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>GLS predicts event-free survival</strong> in HCM patients with normal EF</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Systolic strain rate augmentation is blunted with exercise — in both obstructive and non-obstructive HCM</div></div>
+          <div class="info-row"><div class="info-dot purple"></div><div style="font-size:0.81rem;">FT-CMR strain inversely related to LGE burden (%); no additional acquisition needed for post-processing</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SCD RISK -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-scd">
+    <div class="section-intro">
+      <h2>SCD Risk Stratification & Imaging Markers</h2>
+      <p>Overall SCD risk in HCM is approximately 0.5%/year. Imaging provides key risk markers. The ESC HCM Risk-SCD calculator incorporates age, max wall thickness, LA diameter, max LVOT gradient, family history, NSVT, and unexplained syncope.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span>SCD Risk Assessment Tool</div>
+      <div style="font-size:0.8rem; color:var(--gray-600); margin-bottom:16px;">Check all applicable risk factors for this patient:</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.78rem; font-weight:700; color:var(--navy); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em;">Major Risk Factors (Class IIa for ICD)</div>
+          <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; cursor:pointer;">
+            <input type="checkbox" id="rf-masslvh" style="margin-top:3px; cursor:pointer;" onchange="updateRisk()">
+            <div><div style="font-size:0.83rem; font-weight:600;">Massive LVH ≥30 mm</div><div style="font-size:0.75rem; color:var(--gray-500);">(~10% of HCM; continuous relationship between WT and risk)</div></div>
+          </label>
+          <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; cursor:pointer;">
+            <input type="checkbox" id="rf-aneurysm" style="margin-top:3px; cursor:pointer;" onchange="updateRisk()">
+            <div><div style="font-size:0.83rem; font-weight:600;">LV Apical Aneurysm</div><div style="font-size:0.75rem; color:var(--gray-500);">Independent of size; adverse event rate 5–15%/year; Class IIa ICD</div></div>
+          </label>
+          <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; cursor:pointer;">
+            <input type="checkbox" id="rf-ef" style="margin-top:3px; cursor:pointer;" onchange="updateRisk()">
+            <div><div style="font-size:0.83rem; font-weight:600;">LVEF ≤50%</div><div style="font-size:0.75rem; color:var(--gray-500);">Class IIa for ICD; consider CMR for accurate EF assessment</div></div>
+          </label>
+        </div>
+        <div>
+          <div style="font-size:0.78rem; font-weight:700; color:var(--navy); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em;">Additional Imaging Risk Markers</div>
+          <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; cursor:pointer;">
+            <input type="checkbox" id="rf-lge" style="margin-top:3px; cursor:pointer;" onchange="updateRisk()">
+            <div><div style="font-size:0.83rem; font-weight:600;">Extensive LGE ≥15% of LV mass</div><div style="font-size:0.75rem; color:var(--gray-500);">6SD or FWHM technique; LGE present in ~50% of HCM but SCD prevalence far lower</div></div>
+          </label>
+          <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; cursor:pointer;">
+            <input type="checkbox" id="rf-lvoto" style="margin-top:3px; cursor:pointer;" onchange="updateRisk()">
+            <div><div style="font-size:0.83rem; font-weight:600;">LVOT Obstruction ≥30 mmHg</div><div style="font-size:0.75rem; color:var(--gray-500);">Resting gradient; stronger association than latent gradient for SCD</div></div>
+          </label>
+          <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; cursor:pointer;">
+            <input type="checkbox" id="rf-la" style="margin-top:3px; cursor:pointer;" onchange="updateRisk()">
+            <div><div style="font-size:0.83rem; font-weight:600;">Enlarged LA (diameter ≥48 mm or volume index &gt;34 mL/m²)</div><div style="font-size:0.75rem; color:var(--gray-500);">Included in ESC HCM Risk-SCD calculator as continuous variable</div></div>
+          </label>
+        </div>
+      </div>
+      <div id="risk-output" style="margin-top:16px; padding:16px; background:var(--gray-50); border-radius:var(--radius); border:1.5px solid var(--gray-200); font-size:0.83rem; color:var(--gray-700);">
+        Select risk factors above to see guidance.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔬</span>LGE by CMR — Imaging Details</div>
+      <div class="grid-2">
+        <div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Present in ~50%</strong> of HCM patients; typically patchy, mid-myocardial, within segments of maximal hypertrophy</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;"><strong>LGE ≥15% of LV mass</strong> (6SD technique) associated with increased SCD risk; use for "gray zone" patients without major ACC/AHA risk factors</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Quantification: either <strong>6 SD</strong> or <strong>FWHM</strong> technique preferred in HCM; both superior to 2SD</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Isolated LGE at RV insertion points — <strong>not associated</strong> with increased risk</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div style="font-size:0.81rem;">Repeat CMR every <strong>3–5 years</strong> — evaluate changes in WT, LGE magnitude, new apical aneurysms, LVEF changes</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">LGE Patterns in HCM</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>RV insertion points:</strong> Not independently associated with increased risk (most common pattern)</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div style="font-size:0.81rem;"><strong>Patchy mid-ventricular (hypertrophied septum):</strong> Non-ischemic pattern; most prognostically significant</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;"><strong>Apical transmural LGE:</strong> Associated with apical aneurysm; high thromboembolic risk; Class IIa ICD</div></div>
+          <div class="info-row"><div class="info-dot purple"></div><div style="font-size:0.81rem;"><strong>T2 signal:</strong> Increased signal = edema/inflammation; potentially increased SCD risk (limited data)</div></div>
+        </div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:12px;"><span class="alert-icon">📊</span><div><strong>T1 Mapping & ECV:</strong> Native T1 correlates with areas of increased wall thickness and LGE in HCM. ECV quantifies diffuse interstitial expansion. Helps differentiate HCM from HHD, athlete's heart, Fabry disease, and cardiac amyloidosis. Associated with adverse outcomes.</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">📋</span>Summary: Key Imaging Markers for SCD Risk</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Imaging Parameter</th>
+              <th>SCD Risk Threshold</th>
+              <th>Modality</th>
+              <th>Key Caveat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>LV Max Wall Thickness*</strong></td>
+              <td>Highest risk ≥30 mm; relationship is continuous</td>
+              <td>Echo or CMR</td>
+              <td>Most SCD occurs below 30 mm threshold; limited negative predictive value</td>
+            </tr>
+            <tr>
+              <td><strong>Late Gadolinium Enhancement**</strong></td>
+              <td>Highest risk &gt;15%; continuous relationship</td>
+              <td>CMR</td>
+              <td>Threshold &gt;6 SD above normal myocardium; no single recommended technique</td>
+            </tr>
+            <tr>
+              <td><strong>LVOT Obstruction*</strong></td>
+              <td>Resting gradient ≥30 mmHg</td>
+              <td>Echo</td>
+              <td>Varies with loading conditions; dynamic nature limits use as sole marker</td>
+            </tr>
+            <tr>
+              <td><strong>LV Apical Aneurysm*</strong></td>
+              <td>Any size associated with risk</td>
+              <td>Echo (UEA) or CMR</td>
+              <td>CMR more sensitive; suspect in mid-cavity obliteration; Class IIa ICD</td>
+            </tr>
+            <tr>
+              <td><strong>LA Size</strong></td>
+              <td>Volume &gt;34 mL/m² or diameter ≥48 mm</td>
+              <td>Echo</td>
+              <td>Included in ESC calculator; volume more accurate than single 2D measurement</td>
+            </tr>
+            <tr>
+              <td><strong>LVEF*</strong></td>
+              <td>EF &lt;50%</td>
+              <td>Echo or CMR</td>
+              <td>Class IIa ICD; consider CMR for optimal EF assessment</td>
+            </tr>
+            <tr>
+              <td><strong>LV GLS (emerging)</strong></td>
+              <td>No clear threshold; abnormal = worse prognosis</td>
+              <td>Echo (CMR emerging)</td>
+              <td>Further standardization needed between platforms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:0.75rem; color:var(--gray-500); margin-top:8px;">*Major risk factor — Class IIa indication for ICD if present. **Used in "gray zone" patients without major risk factors for shared decision-making.</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- TREATMENT -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-treatment">
+    <div class="section-intro">
+      <h2>Imaging for Treatment Selection & Monitoring</h2>
+      <p>Imaging guides every phase of HCM management — from selection of septal reduction therapy to intraoperative guidance, post-procedure assessment, and monitoring of novel pharmacologic therapies.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title"><span class="icon">🔪</span>Surgical Septal Myectomy — TEE Role</div>
+        <div class="algo-flow">
+          <div class="algo-step">
+            <div class="step-num">Pre</div>
+            <div class="step-content">
+              <h4>Pre-Bypass Assessment</h4>
+              <p>IVS max thickness (anteroseptal + inferoseptal walls at end-diastole); longitudinal extent of septal thickness; distance from right coronary cusp to AML-septal contact point; anterior leaflet length (&gt;16 mm/m² = elongated); rule out subaortic membrane and aortic stenosis. Best views: ME 4C and long-axis.</p>
+            </div>
+          </div>
+          <div class="algo-step">
+            <div class="step-num">Post</div>
+            <div class="step-content">
+              <h4>Post-Bypass Assessment</h4>
+              <p>Pharmacologic challenge (isoproterenol or dobutamine) to evaluate residual obstruction. LVOT velocity &gt;3 m/s or significant SAM on provocation → return to bypass. Exclude complications: aortic regurgitation, VSD, coronary cameral fistula. Note: IVS measurements post-bypass may be inaccurate due to tissue edema.</p>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-blue" style="margin-top:8px;"><span class="alert-icon">📋</span><div style="font-size:0.78rem;">Extended myectomy required when hypertrophy extends to mid-LV or when MVO is present. Papillary muscle abnormalities (anomalous insertion, bifid) need unique treatment — papillary muscle release and realignment.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="icon">🍺</span>Alcohol Septal Ablation — MCE Guidance</div>
+        <div class="algo-flow">
+          <div class="algo-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Identify Target Septal Perforator</h4>
+              <p>Coronary CT angiography may pre-identify candidate vessel. At catheterization: balloon inflated in candidate perforator, contrast injected through balloon catheter.</p>
+            </div>
+          </div>
+          <div class="algo-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Myocardial Contrast Echo (MCE) Verification</h4>
+              <p>1–2 mL diluted agitated contrast + saline flush under continuous imaging. Target: basal septum opacification corresponding to SAM-septal contact zone. Document absence of perfusion in: LV anterolateral wall, RV free wall, papillary muscles.</p>
+            </div>
+          </div>
+          <div class="algo-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Post-Procedure Imaging</h4>
+              <p>Evaluate: septal thickness changes, LV dimensions and mass, systolic and diastolic function, MR degree, possible VSD. MCE use → shorter intervention time, less ethanol, lower heart block rate, higher success.</p>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-amber" style="margin-top:8px;"><span class="alert-icon">⚠️</span><div style="font-size:0.78rem;">Inappropriate targets (must not be opacified): distal septum, LV papillary muscles, RV papillary muscles. If MCE shows inappropriate opacification → abort or select different vessel.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">💊</span>Medical Therapy Monitoring</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Standard Medical Therapy</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Beta blockers & non-DHP calcium channel blockers — titrate based on clinical response; monitor for bradycardia and AV block</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">If symptomatic despite max β-blocker/CCB ± disopyramide → repeat echo to document resting/provocable gradient ≥50 mmHg before proceeding to SRT discussion</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Reduced EF on GDMT: repeat echo to assess reverse remodeling, LV filling pressures, PA pressures. Repeat TTE every 1–2 years if stable.</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Novel Therapies (Myosin Inhibitors)</div>
+          <div class="alert alert-red"><span class="alert-icon">🚨</span><div style="font-size:0.79rem;"><strong>Oral allosteric cardiac myosin inhibitors:</strong> A new drug class that resets the equilibrium between the on and off state of myosin heads → reversible inhibition of actin-myosin cross-bridging, reducing LVOT obstruction.<br><br><strong>LVEF monitoring is mandatory</strong> — risk of HF with reduced EF. Specific monitoring frequency and clinically relevant LVEF thresholds remain to be determined per evolving guidelines. Monitor LVEF at each dose titration and at regular intervals.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🔧</span>TEER & Pacing — Imaging Role</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Transcatheter Edge-to-Edge Repair (TEER)</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Off-label in HCM; considered for patients with refractory symptoms, unacceptable surgical risk, and septal thickness &lt;1.5 cm</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div style="font-size:0.81rem;">Favorable baseline findings: SAM-related LVOTO, no calcification in grasping zone, mean transmitral gradient &lt;5 mmHg, MVA ≥4 cm²</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>TEE critical</strong> for intraprocedural guidance — deep transgastric view to measure LVOT gradient before and after</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Dual-Chamber Pacing</div>
+          <div class="info-row"><div class="info-dot amber"></div><div style="font-size:0.81rem;"><strong>Not recommended for most HCM patients</strong> — may be considered in select patients with drug-refractory symptoms who are NOT candidates for SRT</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;"><strong>Apical RV lead placement</strong> is optimal (maximally reduces LVOT gradient); TEE guidance can be used</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">CRT-D: echo supportive for response evaluation and AV delay optimization</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SCREENING -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-screening">
+    <div class="section-intro">
+      <h2>Family Screening & Ischemia Assessment</h2>
+      <p>Screening recommendations depend on age, presence of a known pathogenic variant, and whether there is early-onset disease in the family. Echocardiography is the initial imaging modality for all HCM screening.</p>
+    </div>
+
+    <!-- FLOWCHART: HCM Family Screening Algorithm (ASE Poster / AHA-ACC 2020) -->
+    <div class="card">
+      <div class="card-title"><span class="icon">🗺️</span>Recommended Evaluation &amp; Testing — HCM Family Screening</div>
+      <p style="font-size:0.8rem; color:var(--gray-500); margin-bottom:18px;">Adapted from the 2020 AHA/ACC HCM Guideline (Ommen et al.) and the ASE HCM Poster.</p>
+
+      <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+      <svg viewBox="0 0 1200 1100" xmlns="http://www.w3.org/2000/svg"
+           style="width:100%; min-width:760px; display:block; font-family:'Segoe UI',system-ui,sans-serif;">
+        <defs>
+          <marker id="hcmArr" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+            <polygon points="0 0, 11 4, 0 8" fill="#2c4a73"/>
+          </marker>
+        </defs>
+
+        <!-- ════ ROW 1: Family History entry box  cx=600  y=20 h=50 ════ -->
+        <rect x="200" y="20" width="800" height="50" rx="10" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="600" y="51" text-anchor="middle" fill="#1a2942" font-size="17" font-weight="700">Family History of Hypertrophic Cardiomyopathy (HCM) or Suspected HCM</text>
+
+        <!-- Arrow down -->
+        <line x1="600" y1="70" x2="600" y2="96" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- ════ ROW 2: Diagnostic Evaluation  cx=600  y=100 h=44 ════ -->
+        <rect x="340" y="100" width="520" height="44" rx="10" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="600" y="128" text-anchor="middle" fill="#1a2942" font-size="16" font-weight="700">Perform Diagnostic Evaluation (ECG, Imaging)</text>
+
+        <!-- Branch down then split: stem y=144→168, horizontal y=168 from x=180 to x=890 -->
+        <line x1="600" y1="144" x2="600" y2="168" stroke="#2c4a73" stroke-width="2"/>
+        <line x1="180" y1="168" x2="890" y2="168" stroke="#2c4a73" stroke-width="2"/>
+        <!-- Left drop to Pheno Negative pill -->
+        <line x1="180" y1="168" x2="180" y2="196" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+        <!-- Right drop to Pheno Positive pill -->
+        <line x1="890" y1="168" x2="890" y2="196" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- ════ ROW 3: Phenotype pills  y=198 h=44 ════ -->
+        <rect x="70" y="198" width="220" height="44" rx="22" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="180" y="226" text-anchor="middle" fill="#1a2942" font-size="16" font-weight="700">Phenotype Negative</text>
+
+        <rect x="780" y="198" width="220" height="44" rx="22" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="890" y="226" text-anchor="middle" fill="#1a2942" font-size="16" font-weight="700">Phenotype Positive</text>
+
+        <!-- ════════════════════════════════════════════════════════════
+             LEFT PATH (Phenotype Negative)
+             cx=180 for first question, then splits to Yes (cx=110) and No (cx=380)
+             ════════════════════════════════════════════════════════════ -->
+
+        <!-- Arrow from pill to Q1 -->
+        <line x1="180" y1="242" x2="180" y2="278" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- Q1: Family with known pathogenic variant?  cx=180 x=60 w=240 y=280 h=110 -->
+        <rect x="60" y="280" width="240" height="110" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="180" y="312" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">Family with a known</text>
+        <text x="180" y="332" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">pathogenic or likely</text>
+        <text x="180" y="352" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">pathogenic variant?</text>
+
+        <!-- Split stem and bar: from Q1 bottom cx=180 y=390 down to y=415, bar from x=110 to x=380 -->
+        <line x1="180" y1="390" x2="180" y2="415" stroke="#2c4a73" stroke-width="2"/>
+        <line x1="110" y1="415" x2="380" y2="415" stroke="#2c4a73" stroke-width="2"/>
+        <line x1="110" y1="415" x2="110" y2="442" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+        <line x1="380" y1="415" x2="380" y2="442" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- Yes pill  cx=110 y=444 h=40 -->
+        <rect x="50" y="444" width="120" height="40" rx="20" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="110" y="470" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">Yes</text>
+
+        <!-- No pill  cx=380 y=444 h=40 -->
+        <rect x="320" y="444" width="120" height="40" rx="20" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="380" y="470" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">No</text>
+
+        <!-- YES branch arrow down to Q2 -->
+        <line x1="110" y1="484" x2="110" y2="514" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- Q2: Patient has family variant?  cx=110 x=20 w=180 y=516 h=88 -->
+        <rect x="20" y="516" width="180" height="88" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="110" y="550" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">Patient has</text>
+        <text x="110" y="572" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">family variant?</text>
+
+        <!-- Q2 → No: horizontal right from x=200 y=560 to x=380, then down existing vertical -->
+        <line x1="200" y1="560" x2="350" y2="560" stroke="#2c4a73" stroke-width="2"/>
+        <!-- No pill for Q2  cx=275 y=544 -->
+        <rect x="228" y="544" width="94" height="34" rx="17" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="275" y="567" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">No</text>
+        <!-- Connect horizontal into the existing No vertical at x=380 -->
+        <line x1="350" y1="560" x2="380" y2="560" stroke="#2c4a73" stroke-width="2"/>
+        <!-- Small drop from y=560 down to the existing No vertical y=484→702 (joins at y=560) -->
+        <!-- The No vertical already exists from y=484 to y=702 — just needs junction mark -->
+
+        <!-- Arrow from Q2 to "Yes, or unknown" pill -->
+        <line x1="110" y1="604" x2="110" y2="632" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- Yes, or unknown pill  cx=110 y=634 h=40 -->
+        <rect x="20" y="634" width="180" height="40" rx="20" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="110" y="660" text-anchor="middle" fill="#1a2942" font-size="14" font-weight="700">Yes, or unknown</text>
+
+        <!-- Arrow down to Class I screening box -->
+        <line x1="110" y1="674" x2="110" y2="702" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- Class I (Screening ECG & Echo)  cx=110 x=20 w=180 y=704 h=130 -->
+        <rect x="20" y="704" width="180" height="130" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <!-- Green header bar -->
+        <path d="M 20 716 L 20 704 Q 20 704 32 704 L 188 704 Q 200 704 200 716 L 200 736 L 20 736 Z" fill="#7fb98b"/>
+        <text x="110" y="725" text-anchor="middle" fill="white" font-size="15" font-weight="800">Class I</text>
+        <text x="110" y="765" text-anchor="middle" fill="#1a2942" font-size="13" font-weight="700">Screening ECG &amp; Echo</text>
+        <text x="110" y="789" text-anchor="middle" fill="#1a2942" font-size="13">at the intervals in</text>
+        <text x="110" y="808" text-anchor="middle" fill="#1a2942" font-size="13">the table below</text>
+
+        <!-- NO branch arrow down to Class III  cx=380 -->
+        <line x1="380" y1="484" x2="380" y2="702" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- Class III: No Benefit  cx=380 x=260 w=240 y=704 h=130 -->
+        <rect x="260" y="704" width="240" height="130" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <!-- Orange header bar -->
+        <path d="M 260 716 L 260 704 Q 260 704 272 704 L 488 704 Q 500 704 500 716 L 500 736 L 260 736 Z" fill="#e89a4a"/>
+        <text x="380" y="725" text-anchor="middle" fill="white" font-size="15" font-weight="800">Class III: No Benefit</text>
+        <text x="380" y="765" text-anchor="middle" fill="#1a2942" font-size="13" font-weight="700">Further clinical or</text>
+        <text x="380" y="784" text-anchor="middle" fill="#1a2942" font-size="13" font-weight="700">genetic testing is not</text>
+        <text x="380" y="803" text-anchor="middle" fill="#1a2942" font-size="13" font-weight="700">recommended</text>
+
+        <!-- ════════════════════════════════════════════════════════════
+             RIGHT PATH (Phenotype Positive)
+             ════════════════════════════════════════════════════════════ -->
+
+        <!-- Arrow from Pheno Positive pill to Comprehensive Eval -->
+        <line x1="890" y1="242" x2="890" y2="278" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- Comprehensive Baseline Evaluation
+             cx=890  x=575 w=610  y=280 h=240  right edge=1185 (fits within 1200px viewBox) -->
+        <rect x="575" y="280" width="610" height="240" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="890" y="312" text-anchor="middle" fill="#1a2942" font-size="18" font-weight="700">Perform Comprehensive Baseline Evaluation</text>
+        <text x="890" y="336" text-anchor="middle" fill="#5a7290" font-size="15">with SCD risk assessment (consider ESC guidelines)</text>
+
+        <!-- Divider line at x=880 (splits box in half: left 305px, right 305px) -->
+        <line x1="880" y1="356" x2="880" y2="508" stroke="#9eb2cc" stroke-width="1.5"/>
+
+        <!-- LEFT: Risk Factors — single clean column x=590 to x=878 -->
+        <text x="592" y="374" fill="#1a2942" font-size="15" font-weight="700">Risk factors for SCD</text>
+        <text x="598" y="398" fill="#1a2942" font-size="14">• Unexplained Syncope</text>
+        <text x="598" y="420" fill="#1a2942" font-size="14">• Massive LVH</text>
+        <text x="598" y="442" fill="#1a2942" font-size="14">• Family history of SCD</text>
+        <text x="598" y="464" fill="#1a2942" font-size="14">• LV Apical Aneurysm</text>
+        <text x="598" y="486" fill="#1a2942" font-size="14">• EF &lt;50%</text>
+        <text x="598" y="508" fill="#1a2942" font-size="14">• Extensive LGE on CMR</text>
+
+        <!-- RIGHT: Stress Testing — x=894 to x=1183 -->
+        <text x="896" y="374" fill="#1a2942" font-size="15" font-weight="700">Stress testing</text>
+        <text x="900" y="398" fill="#1a2942" font-size="14">• To determine baseline</text>
+        <text x="908" y="418" fill="#1a2942" font-size="14">  functional status</text>
+        <text x="900" y="442" fill="#1a2942" font-size="14">• To clarify symptom status</text>
+        <text x="900" y="466" fill="#1a2942" font-size="14">• To confirm &amp; quantify</text>
+        <text x="908" y="486" fill="#1a2942" font-size="14">  severity of LVOTO</text>
+
+        <!-- Split below Comprehensive Eval: stem y=520→548, bar x=760 to x=1020 -->
+        <line x1="890" y1="520" x2="890" y2="548" stroke="#2c4a73" stroke-width="2"/>
+        <line x1="760" y1="548" x2="1020" y2="548" stroke="#2c4a73" stroke-width="2"/>
+        <line x1="760" y1="548" x2="760" y2="576" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+        <line x1="1020" y1="548" x2="1020" y2="576" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- ── CLASS I  cx=760  x=640 w=240 y=578 h=210 bot=788 ── -->
+        <rect x="640" y="578" width="240" height="210" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <path d="M 640 590 L 640 578 Q 640 578 652 578 L 868 578 Q 880 578 880 590 L 880 614 L 640 614 Z" fill="#7fb98b"/>
+        <text x="760" y="602" text-anchor="middle" fill="white" font-size="17" font-weight="800">Class I</text>
+        <text x="760" y="642" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">Every 1–2 years</text>
+        <text x="760" y="662" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">or sooner if symptoms change</text>
+        <text x="760" y="688" text-anchor="middle" fill="#1a2942" font-size="14">Perform serial evaluation of</text>
+        <text x="760" y="708" text-anchor="middle" fill="#1a2942" font-size="14">clinical status &amp; SCD risk:</text>
+        <text x="656" y="732" fill="#1a2942" font-size="14">• Clinical assessment</text>
+        <text x="656" y="754" fill="#1a2942" font-size="14">• Echo  • Holter</text>
+
+        <!-- ── CLASS IIb  cx=1020  x=900 w=240 y=578 h=210 bot=788 ── -->
+        <rect x="900" y="578" width="240" height="210" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <path d="M 900 590 L 900 578 Q 900 578 912 578 L 1128 578 Q 1140 578 1140 590 L 1140 614 L 900 614 Z" fill="#e89a4a"/>
+        <text x="1020" y="602" text-anchor="middle" fill="white" font-size="17" font-weight="800">Class IIb</text>
+        <text x="1020" y="642" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">Every 3–5 years</text>
+        <text x="1020" y="674" text-anchor="middle" fill="#1a2942" font-size="14">Perform CMR for SCD risk</text>
+        <text x="1020" y="696" text-anchor="middle" fill="#1a2942" font-size="14">assessment or to evaluate</text>
+        <text x="1020" y="718" text-anchor="middle" fill="#1a2942" font-size="14">for any suspected</text>
+        <text x="1020" y="740" text-anchor="middle" fill="#1a2942" font-size="14">morphologic changes</text>
+
+        <!-- Arrows from Class boxes down to symptom pills -->
+        <line x1="760" y1="788" x2="760" y2="816" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+        <line x1="1020" y1="788" x2="1020" y2="816" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- If Symptomatic pill  cx=760 y=818 h=42 -->
+        <rect x="650" y="818" width="220" height="42" rx="21" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="760" y="845" text-anchor="middle" fill="#1a2942" font-size="16" font-weight="700">If Symptomatic</text>
+
+        <!-- If Asymptomatic pill  cx=1020 y=818 h=42 -->
+        <rect x="910" y="818" width="220" height="42" rx="21" fill="white" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="1020" y="845" text-anchor="middle" fill="#1a2942" font-size="16" font-weight="700">If Asymptomatic</text>
+
+        <!-- Arrows down to final boxes -->
+        <line x1="760" y1="860" x2="760" y2="888" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+        <line x1="1020" y1="860" x2="1020" y2="888" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
+
+        <!-- Exercise Testing  cx=760  x=640 w=240 y=890 h=170 -->
+        <rect x="640" y="890" width="240" height="170" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="760" y="918" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">Treadmill or Bike</text>
+        <text x="760" y="938" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">Exercise Testing</text>
+        <text x="760" y="962" text-anchor="middle" fill="#5a7290" font-size="13">Special considerations:</text>
+        <text x="656" y="984" fill="#1a2942" font-size="14">• Stress echo if gradient</text>
+        <text x="664" y="1004" fill="#1a2942" font-size="14">  &lt;50 mmHg</text>
+        <text x="656" y="1028" fill="#1a2942" font-size="14">• CPET if advanced HF</text>
+        <text x="664" y="1048" fill="#1a2942" font-size="14">  therapies considered</text>
+
+        <!-- Every 2-3 years  cx=1020  x=900 w=240 y=890 h=170 -->
+        <rect x="900" y="890" width="240" height="170" rx="12" fill="#e7edf3" stroke="#2c4a73" stroke-width="1.6"/>
+        <text x="1020" y="922" text-anchor="middle" fill="#1a2942" font-size="15" font-weight="700">Every 2–3 years</text>
+        <text x="1020" y="954" text-anchor="middle" fill="#1a2942" font-size="14">Treadmill exercise</text>
+        <text x="1020" y="976" text-anchor="middle" fill="#1a2942" font-size="14">or CPET testing for</text>
+        <text x="1020" y="998" text-anchor="middle" fill="#1a2942" font-size="14">assessment of</text>
+        <text x="1020" y="1020" text-anchor="middle" fill="#1a2942" font-size="14">functional status</text>
+
+        <!-- Citation -->
+        <text x="600" y="1084" text-anchor="middle" fill="#94a3b8" font-size="12" font-style="italic">Ommen SR et al. 2020 AHA/ACC Guideline for Diagnosis and Treatment of Patients with HCM. J Am Coll Cardiol. 2020;76(25):3022–3055.</text>
+
+      </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">👨‍👩‍👧‍👦</span>Screening Intervals — First-Degree Relatives</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Age Group</th>
+              <th>Condition</th>
+              <th>Initiation</th>
+              <th>Interval</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Children & adolescents</td>
+              <td>Genotype-positive family AND/OR early-onset HCM</td>
+              <td>At time of diagnosis in family member</td>
+              <td><strong>Every 1–2 years</strong></td>
+            </tr>
+            <tr>
+              <td>Children & adolescents</td>
+              <td>Without above 2 conditions</td>
+              <td>Any time after diagnosis in family (no later than puberty)</td>
+              <td><strong>Every 2–3 years</strong></td>
+            </tr>
+            <tr>
+              <td>Adults</td>
+              <td>Any first-degree relative</td>
+              <td>At time of diagnosis in family member</td>
+              <td><strong>Every 3–5 years</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rec-box" style="margin-top:12px;">
+        <h4>Key Screening Points</h4>
+        <div class="rec-item"><div class="rec-num">1.</div><div>All myocardial segments carefully examined for hypertrophy — no segment can be assumed normal</div></div>
+        <div class="rec-item"><div class="rec-num">2.</div><div>CMR if: technically challenging echo, abnormal ECG with apparently normal echo, or borderline LVH on echo</div></div>
+        <div class="rec-item"><div class="rec-num">3.</div><div>Genotype-positive / phenotype-negative individuals: crypts, increased WT/LVEDD ratio, elevated ECV, abnormal segmental strain may be early markers — limited data relating these to development of LVH</div></div>
+        <div class="rec-item"><div class="rec-num">4.</div><div>If family has known pathogenic/likely pathogenic variant → patient genetic testing first; if negative → no further testing (Class III: no benefit)</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🫁</span>Ischemia Assessment in HCM</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Mechanisms of Ischemia</div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Increased O₂ demand: larger myocardial mass, elevated filling pressures</div></div>
+          <div class="info-row"><div class="info-dot"></div><div style="font-size:0.81rem;">Decreased O₂ supply: microvascular dysfunction, medial hypertrophy of intramural arterioles</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div style="font-size:0.81rem;">Myocardial bridges common (~50% on CCTA); may prolong coronary compression into diastole</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div style="font-size:0.81rem;">CFR by PW Doppler in mid-LAD: reduced CFR associated with worse outcomes</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Preferred Stress Perfusion Modalities</div>
+          <div class="thresh-row" style="flex-direction:column; gap:6px;">
+            <span class="thresh thresh-info">PET: preferred — attenuation correction, quantitative MBF, shorter duration. Abnormal MBF reserve = independent predictor of clinical deterioration</span>
+            <span class="thresh thresh-info">CMR Perfusion: high spatial resolution; correlates well with PET-derived MBF; multiparametric approach (perfusion + LGE + ECV)</span>
+            <span class="thresh thresh-warn">SPECT: limited by attenuation artifacts; suboptimal for wall motion assessment post-stress; relative (not absolute) perfusion only</span>
+            <span class="thresh thresh-warn">Stress Echo: wall motion abnormalities in HCM are multifactorial; NOT a reliable predictor of epicardial CAD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🩻</span>Coronary Artery Disease Evaluation in HCM</div>
+      <div class="algo-flow">
+        <div class="algo-step">
+          <div class="step-num">Low</div>
+          <div class="step-content">
+            <h4>Low Pre-Test Probability (&lt;15%)</h4>
+            <p>Conservative initial approach; diagnostic yield is low. Consider calcium scan — clinically relevant CAD very rare without detectable coronary calcium. Persistent symptoms may necessitate further testing.</p>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num">Int</div>
+          <div class="step-content">
+            <h4>Low-to-Intermediate Probability (15–50%)</h4>
+            <p>CCTA preferred — evaluates epicardial CAD and myocardial bridging. Reference standard for anomalous coronary anatomy. Diagnostic performance in HCM similar to general cohorts. Note: CCTA tends to overestimate severity vs. invasive angiography.</p>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="step-num">High</div>
+          <div class="step-content">
+            <h4>High Probability or Known CAD (&gt;50%)</h4>
+            <p>Functional test (quantitative PET or CMR perfusion preferred over SPECT/stress echo). Reserve invasive angiography for severe CAD on CCTA (left main, triple vessel) or persistent symptoms. Functional assessment (FFR or CT-FFR) recommended before revascularization.</p>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-amber" style="margin-top:12px;"><span class="alert-icon">⚠️</span><div>Preprocedural nitroglycerin should be <strong>avoided</strong> when severe LVOTO is present before cardiac CT. CT-FFR not validated specifically in HCM — patients with higher myocardial mass may have lower CT-FFR values in distal vessels even without significant CAD.</div></div>
+    </div>
+
+    <div class="citation-footer">
+      <strong>Citation:</strong> Nagueh SF, Phelan D, Abraham T, et al. Recommendations for Multimodality Cardiovascular Imaging of Patients with Hypertrophic Cardiomyopathy: An Update from the American Society of Echocardiography, in Collaboration with the American Society of Nuclear Cardiology, the Society for Cardiovascular Magnetic Resonance, and the Society of Cardiovascular Computed Tomography. <em>J Am Soc Echocardiogr.</em> 2022;35:533–569.
+      <br><br>
+      📄 <a href="https://doi.org/10.1016/j.echo.2022.03.012" target="_blank">DOI: 10.1016/j.echo.2022.03.012</a> &nbsp;|&nbsp;
+      <a href="https://www.asecho.org" target="_blank">American Society of Echocardiography</a>
+      <br><br>
+      <em>This interactive tool is for educational and clinical reference purposes only. It does not replace clinical judgment or individualized patient assessment. Always refer to the full guideline document for complete recommendations. Content © 2022 American Society of Echocardiography.</em>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<footer>
+  Hypertrophic Cardiomyopathy &nbsp;·&nbsp; <a href="https://echoinfo.org">echoinfo.org</a> &nbsp;·&nbsp; Created by Akhil Narang, MD
+</footer>
+
+<script>
+  // ── Tab navigation ──
+  function showTab(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  // ── Phenotype cards ──
+  function selectPheno(id) {
+    document.querySelectorAll('.pheno-card').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.pheno-detail').forEach(d => d.classList.remove('active'));
+    event.currentTarget.classList.add('selected');
+    const el = document.getElementById('pheno-' + id);
+    if (el) el.classList.add('active');
+  }
+
+  // ── Accordion ──
+  function toggleAcc(header) {
+    const item = header.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // ── LVOT Calculator ──
+  function calcLVOT() {
+    const v = parseFloat(document.getElementById('lvot-vel').value);
+    const rv = document.getElementById('lvot-result-val');
+    const rc = document.getElementById('lvot-class');
+    if (!v || v <= 0) { rv.textContent = '—'; rc.textContent = ''; return; }
+    const g = (4 * v * v).toFixed(0);
+    rv.textContent = g;
+    rv.style.color = g >= 50 ? '#742a2a' : g >= 30 ? '#744210' : '#276749';
+    if (g < 30) {
+      rc.textContent = 'Not significant';
+      rc.style.cssText = 'background:#f0fff4;color:#276749;padding:5px 14px;border-radius:999px;font-size:0.8rem;font-weight:700;';
+    } else if (g < 50) {
+      rc.textContent = 'Significant obstruction';
+      rc.style.cssText = 'background:#fffaf0;color:#744210;padding:5px 14px;border-radius:999px;font-size:0.8rem;font-weight:700;';
+    } else {
+      rc.textContent = 'Invasive therapy threshold';
+      rc.style.cssText = 'background:#fff5f5;color:#742a2a;padding:5px 14px;border-radius:999px;font-size:0.8rem;font-weight:700;';
+    }
+  }
+
+  // ── MR → LVOT gradient ──
+  function calcMR() {
+    const mrV = parseFloat(document.getElementById('mr-vel').value);
+    const sbp = parseFloat(document.getElementById('sbp-val').value);
+    const lap = parseFloat(document.getElementById('lap-val').value) || 10;
+    const el = document.getElementById('mr-result');
+    if (!mrV || !sbp) { el.innerHTML = 'Enter MR velocity and SBP to calculate estimated LVOT gradient.'; return; }
+    const lvla = (4 * mrV * mrV).toFixed(0);
+    const lvsp = (+lvla + lap).toFixed(0);
+    const lvot = (lvsp - sbp).toFixed(0);
+    el.innerHTML = `<div style="line-height:1.8; font-size:0.82rem;">
+      <div>LV-LA gradient = 4 × (${mrV})² = <strong>${lvla} mmHg</strong></div>
+      <div>LVSP = ${lvla} + ${lap} (LAP) = <strong>${lvsp} mmHg</strong></div>
+      <div>LVOT gradient = LVSP − SBP = ${lvsp} − ${sbp} = <strong style="font-size:1rem;color:${+lvot>=50?'#742a2a':+lvot>=30?'#744210':'#276749'}">${lvot} mmHg</strong></div>
+    </div>`;
+  }
+
+  // ── SCD Risk ──
+  function updateRisk() {
+    const major = ['rf-masslvh','rf-aneurysm','rf-ef'].filter(id => document.getElementById(id).checked);
+    const additional = ['rf-lge','rf-lvoto','rf-la'].filter(id => document.getElementById(id).checked);
+    const total = major.length + additional.length;
+    const el = document.getElementById('risk-output');
+
+    if (total === 0) { el.innerHTML = 'Select risk factors above to see guidance.'; el.style.cssText=''; return; }
+
+    let html = '';
+    if (major.length > 0) {
+      html += `<div style="font-weight:700; color:#742a2a; margin-bottom:8px;">⚠️ Major Risk Factor(s) Present (${major.length})</div>`;
+      html += '<div style="font-size:0.82rem; color:#742a2a; margin-bottom:12px;">Class IIa indication for ICD implantation. Shared decision-making discussion warranted. Refer to HCM specialist center.</div>';
+    }
+    if (additional.length > 0) {
+      html += `<div style="font-weight:700; color:#744210; margin-bottom:8px;">Additional Risk Markers Present (${additional.length})</div>`;
+      html += '<div style="font-size:0.82rem; color:#744210; margin-bottom:12px;">Consider using ESC HCM Risk-SCD calculator for 5-year risk estimation. LGE ≥15% may support ICD decision in "gray zone" patients without major risk factors.</div>';
+    }
+    html += `<div style="font-size:0.8rem; color:var(--gray-600); border-top:1px solid var(--gray-200); padding-top:8px; margin-top:4px;">Overall SCD risk in HCM: ~0.5%/year. ESC recommendation: ICD if 5-year risk ≥6% (high); consider if 4–5.9% (intermediate). Always integrate clinical context, patient values, and comorbidities.</div>`;
+
+    el.innerHTML = html;
+    el.style.background = major.length > 0 ? '#fff5f5' : '#fffaf0';
+    el.style.borderColor = major.length > 0 ? '#fc8181' : '#f6ad55';
+  }
+</script>
+</body>
+</html>
