@@ -561,7 +561,7 @@
           </div>
           <div style="display:flex; align-items:flex-start; gap:10px; padding:8px; background:var(--purple-lt); border-radius:7px; border-left:3px solid #6b46c1;">
             <div style="font-size:0.75rem; font-weight:700; color:var(--purple); min-width:36px;">Nuclear</div>
-            <div style="font-size:0.79rem; color:var(--gray-700);">Myocardial perfusion (SPECT/PET), microvascular dysfunction; PET preferred for quantitative MBF and ATTR amyloidosis</div>
+            <div style="font-size:0.79rem; color:var(--gray-700);">Myocardial perfusion (SPECT/PET), microvascular dysfunction; PET preferred for quantitative myocardial blood flow; Tc-based bone scintigraphy (Tc-PYP) for ATTR amyloidosis</div>
           </div>
         </div>
       </div>
@@ -606,7 +606,7 @@
         <div class="alert alert-amber"><span class="alert-icon">⚠️</span><div><strong>Apical HCM:</strong> Hypertrophy confined to the distal LV. Associated with deep lateral T-wave inversions on ECG. Avoid LV foreshortening. <strong>Use UEA</strong> (ultrasound enhancing agent) to evaluate apex — low threshold given risk of missing apical aneurysm. CMR if still uncertain. Less LVOTO, higher prevalence in athletes with HCM.</div></div>
       </div>
       <div class="pheno-detail" id="pheno-midcav">
-        <div class="alert alert-red"><span class="alert-icon">🚨</span><div><strong>Mid-Cavity Obstruction (MVO):</strong> Systolic obliteration of LV cavity + gradient ≥30 mmHg at rest. <strong>High-risk phenotype</strong> — associated with refractory symptoms, ventricular arrhythmias, premature mortality. Apical aneurysm in ~3% of CMR registry patients. LV thrombus risk. Class IIa indication for prophylactic ICD. Always use UEA or CMR to evaluate for aneurysm.</div></div>
+        <div class="alert alert-red"><span class="alert-icon">🚨</span><div><strong>Mid-Cavity Obstruction (MVO):</strong> Systolic obliteration of LV cavity + gradient ≥30 mmHg at rest. <strong>High-risk phenotype</strong> — associated with refractory symptoms, ventricular arrhythmias, premature mortality. LV thrombus risk. MVO can be complicated by an apical aneurysm (~3% of CMR registry patients) — it is the <em>apical aneurysm</em> that is an established SCD risk marker and Class IIa consideration for prophylactic ICD, not MVO per se. Always use UEA or CMR to evaluate for apical aneurysm in any patient with MVO or apical HCM.</div></div>
       </div>
       <div class="pheno-detail" id="pheno-concentric">
         <div class="alert alert-purple"><span class="alert-icon">🔍</span><div><strong>Concentric/Neutral Pattern:</strong> Symmetric LVH. Key differential: hypertensive heart disease, cardiac amyloidosis, Fabry disease, PRKAG2. Integrate ECG, clinical history, and tissue characterization by CMR (LGE, T1 mapping, ECV) to differentiate HCM from phenocopies.</div></div>
@@ -979,7 +979,7 @@
           </label>
           <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; cursor:pointer;">
             <input type="checkbox" id="rf-ef" style="margin-top:3px; cursor:pointer;" onchange="updateRisk()">
-            <div><div style="font-size:0.83rem; font-weight:600;">LVEF ≤50%</div><div style="font-size:0.75rem; color:var(--gray-500);">Class IIa for ICD; consider CMR for accurate EF assessment</div></div>
+            <div><div style="font-size:0.83rem; font-weight:600;">LVEF &lt;50%</div><div style="font-size:0.75rem; color:var(--gray-500);">Class IIa for ICD; consider CMR for accurate EF assessment</div></div>
           </label>
         </div>
         <div>
@@ -1486,7 +1486,7 @@
         <div>
           <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Preferred Stress Perfusion Modalities</div>
           <div class="thresh-row" style="flex-direction:column; gap:6px;">
-            <span class="thresh thresh-info">PET: preferred — attenuation correction, quantitative MBF, shorter duration. Abnormal MBF reserve = independent predictor of clinical deterioration</span>
+            <span class="thresh thresh-info">PET: preferred — attenuation correction, quantitative myocardial blood flow, shorter duration. Abnormal MBF reserve = independent predictor of clinical deterioration</span>
             <span class="thresh thresh-info">CMR Perfusion: high spatial resolution; correlates well with PET-derived MBF; multiparametric approach (perfusion + LGE + ECV)</span>
             <span class="thresh thresh-warn">SPECT: limited by attenuation artifacts; suboptimal for wall motion assessment post-stress; relative (not absolute) perfusion only</span>
             <span class="thresh thresh-warn">Stress Echo: wall motion abnormalities in HCM are multifactorial; NOT a reliable predictor of epicardial CAD</span>
