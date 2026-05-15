@@ -395,7 +395,44 @@ footer a { color: var(--gray-500); text-decoration: none; }
 
 ---
 
-## 6. Header Pattern
+## 6. Home Bar — Back Navigation
+
+Every card **must** include a home bar above the header. This provides consistent back navigation to `echoinfo.org`.
+
+**CSS — add inside `<style>` at the bottom, just before the responsive block:**
+
+```css
+.home-bar { background: white; border-bottom: 1px solid #e2e8f0; padding: 8px 20px; display: flex; align-items: center; }
+.home-link { display: inline-flex; align-items: center; gap: 6px; color: #2b6cb0; text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: color 0.15s; }
+.home-link:hover { color: #1a365d; }
+.home-link::before { content: '←'; font-size: 0.9rem; }
+```
+
+**HTML — place immediately after `<body>`, before `<header>`:**
+
+```html
+<body>
+
+<div class="home-bar">
+  <a class="home-link" href="https://echoinfo.org">Echo Info</a>
+</div>
+
+<header>
+  ...
+</header>
+```
+
+**Rules:**
+- Always present — every card, no exceptions
+- White background bar with a 1px bottom border (`#e2e8f0`)
+- Arrow (`←`) rendered via CSS `::before` pseudo-element — do not add it in the HTML text
+- Link text is always `Echo Info` (not the card name, not the full URL)
+- Href is always `https://echoinfo.org`
+- Not fixed/sticky — scrolls with the page (the nav tabs below are sticky)
+
+---
+
+## 7. Header Pattern
 
 ```html
 <header>
@@ -416,7 +453,7 @@ footer a { color: var(--gray-500); text-decoration: none; }
 
 ---
 
-## 7. Navigation Tabs
+## 8. Navigation Tabs
 
 - Justify center, wrap on mobile
 - Inactive: white bg, gray border, gray text
@@ -427,7 +464,7 @@ footer a { color: var(--gray-500); text-decoration: none; }
 
 ---
 
-## 8. Citation Footer
+## 9. Citation Footer
 
 Place at the bottom of the last tab panel:
 
@@ -447,7 +484,7 @@ Place at the bottom of the last tab panel:
 
 ---
 
-## 9. SVG Flowcharts — Complete Rules
+## 10. SVG Flowcharts — Complete Rules
 
 ### When to use SVG
 - **Always use SVG** for any branching algorithm or flowchart
@@ -597,7 +634,7 @@ Phenotype pill cx matches column cx below it
 
 ---
 
-## 10. Clinical Accuracy Rules
+## 11. Clinical Accuracy Rules
 
 These are based on errors found and corrected in the HCM card:
 
@@ -630,7 +667,7 @@ When in doubt, quote the guideline text directly rather than paraphrasing. Alway
 
 ---
 
-## 11. Homepage Card (root index.html)
+## 12. Homepage Card (root index.html)
 
 Add this block inside the appropriate `.tool-grid` div in root `index.html`:
 
@@ -660,7 +697,7 @@ Also add to the feedback modal `<select>` dropdown:
 
 ---
 
-## 12. Deployment Steps
+## 13. Deployment Steps
 
 1. Create folder `card-name/` in the repo root
 2. Upload `index.html` into that folder
@@ -673,7 +710,7 @@ Also add to the feedback modal `<select>` dropdown:
 
 ---
 
-## 13. Known Gotchas & Lessons Learned
+## 14. Known Gotchas &amp; Lessons Learned
 
 **GitHub Pages CDN caching:** After committing, check `raw.githubusercontent.com` to confirm the commit landed. The live site may lag a few minutes. If stale content persists, contact GitHub Support.
 
