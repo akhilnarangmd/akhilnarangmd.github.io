@@ -376,9 +376,17 @@ footer a { color: var(--gray-500); text-decoration: none; }
   .result-grid { grid-template-columns: 1fr; }
   .modality-grid { grid-template-columns: 1fr; }
 }
+.home-bar { background: white; border-bottom: 1px solid #e2e8f0; padding: 8px 20px; display: flex; align-items: center; }
+.home-link { display: inline-flex; align-items: center; gap: 6px; color: #2b6cb0; text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: color 0.15s; }
+.home-link:hover { color: #1a365d; }
+.home-link::before { content: '←'; font-size: 0.9rem; }
 </style>
 </head>
 <body>
+
+<div class="home-bar">
+  <a class="home-link" href="https://echoinfo.org">Echo Info</a>
+</div>
 
 <header>
   <div class="icon">🏃</div>
