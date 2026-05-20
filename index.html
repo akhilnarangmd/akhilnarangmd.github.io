@@ -55,18 +55,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 }
 .card-launch { font-weight: 700; color: #2b6cb0; font-size: 0.78rem; display: flex; align-items: center; gap: 3px; }
 
-.top-blue { background: linear-gradient(90deg, #1a365d, #2b6cb0); }
-.top-green { background: linear-gradient(90deg, #1a4a30, #276749); }
+.top-blue   { background: linear-gradient(90deg, #1a365d, #2b6cb0); }
+.top-green  { background: linear-gradient(90deg, #1a4a30, #276749); }
 .top-purple { background: linear-gradient(90deg, #44337a, #6b46c1); }
-.top-red { background: linear-gradient(90deg, #742a2a, #c53030); }
-.top-amber { background: linear-gradient(90deg, #744210, #c05621); }
+.top-red    { background: linear-gradient(90deg, #742a2a, #c53030); }
+.top-amber  { background: linear-gradient(90deg, #744210, #c05621); }
+.top-teal   { background: linear-gradient(90deg, #1a4a4a, #2c7a7b); }
 
 .disclaimer {
   background: #fffaf0; border: 1px solid #fbd38d; border-radius: 10px;
   padding: 14px 18px; font-size: 0.77rem; color: #744210; line-height: 1.65; margin-top: 40px;
 }
 
-/* Feedback button */
 .feedback-btn {
   position: fixed; bottom: 24px; right: 24px; z-index: 999;
   background: white; color: #1a365d;
@@ -140,19 +140,21 @@ footer strong { color: #1a365d; }
 
   <div class="tool-grid">
 
-    <a class="tool-card" href="ase-diastolic-2026-1/">
-      <div class="card-top top-green"></div>
+    <!-- 1. Chamber Quantification (NEW) -->
+    <a class="tool-card" href="chamber-quantification/">
+      <div class="card-top top-teal"></div>
       <div class="card-body">
-        <span class="card-icon">🟢</span>
-        <div class="card-name">Diastolic Function</div>
-        <div class="card-desc">Step-by-step 2025 ASE diastolic function algorithm with LAP estimation, DD grading, special populations (AF, HCM, MR, MAC, PH), and normal ranges by age.</div>
+        <span class="card-icon">📐</span>
+        <div class="card-name">Chamber Quantification</div>
+        <div class="card-desc">2015 ASE/EACVI guidelines — normal values for LV size, EF, mass, GLS, RV dimensions and function, LA/RA volumes, aortic root, and IVC. Includes interactive calculators for EF, LV mass, RWT, FAC, and RIMP.</div>
       </div>
       <div class="card-footer">
-        <span>Nagueh et al., JASE 2025</span>
+        <span>Lang et al., JASE 2015</span>
         <span class="card-launch">Open →</span>
       </div>
     </a>
 
+    <!-- 2. Right Heart & PH -->
     <a class="tool-card" href="right-heart-ph/">
       <div class="card-top top-purple"></div>
       <div class="card-body">
@@ -166,12 +168,27 @@ footer strong { color: #1a365d; }
       </div>
     </a>
 
+    <!-- 3. Diastolic Function -->
+    <a class="tool-card" href="ase-diastolic-2026-1/">
+      <div class="card-top top-green"></div>
+      <div class="card-body">
+        <span class="card-icon">🟢</span>
+        <div class="card-name">Diastolic Function</div>
+        <div class="card-desc">Step-by-step 2025 ASE diastolic function algorithm with LAP estimation, DD grading, special populations (AF, HCM, MR, MAC, PH), and normal ranges by age.</div>
+      </div>
+      <div class="card-footer">
+        <span>Nagueh et al., JASE 2025</span>
+        <span class="card-launch">Open →</span>
+      </div>
+    </a>
+
+    <!-- 4. Strain -->
     <a class="tool-card" href="strain-guidelines/">
       <div class="card-top" style="background: linear-gradient(90deg, #2c5282, #4299e1);"></div>
       <div class="card-body">
-        <span class="card-icon">📈</span>
+        <span class="card-icon">📊</span>
         <div class="card-name">Strain Echocardiography</div>
-        <div class="card-desc">Normal values for LVGLS, RVFWLS, and LA strain; endorsed clinical indications; condition-specific cutoffs; special populations; technical pitfalls; and 2025 updates vs 2011.</div>
+        <div class="card-desc">2025 ASE/EACVI consensus on myocardial deformation imaging — GLS acquisition, vendor variability, reference values, and clinical applications across cardiomyopathies, chemotherapy, and valvular disease.</div>
       </div>
       <div class="card-footer">
         <span>Thomas et al., JASE 2025</span>
@@ -179,6 +196,7 @@ footer strong { color: #1a365d; }
       </div>
     </a>
 
+    <!-- 5. Prosthetic Valve -->
     <a class="tool-card" href="prosthetic-valve-function/">
       <div class="card-top" style="background: linear-gradient(90deg, #744210, #b7791f);"></div>
       <div class="card-body">
@@ -192,19 +210,7 @@ footer strong { color: #1a365d; }
       </div>
     </a>
 
-    <a class="tool-card" href="hcm-guidelines/">
-      <div class="card-top top-blue"></div>
-      <div class="card-body">
-        <span class="card-icon">🫀</span>
-        <div class="card-name">Hypertrophic Cardiomyopathy</div>
-        <div class="card-desc">2022 ASE multimodality imaging guidelines — LVH phenotypes, LVOT gradient calculator, SCD risk stratification, family screening algorithm, diastolic function, and septal reduction therapy guidance.</div>
-      </div>
-      <div class="card-footer">
-        <span>Nagueh et al., JASE 2022</span>
-        <span class="card-launch">Open →</span>
-      </div>
-    </a>
-
+    <!-- 6. Stress Echo -->
     <a class="tool-card" href="stress-echo/">
       <div class="card-top top-amber"></div>
       <div class="card-body">
@@ -214,6 +220,20 @@ footer strong { color: #1a365d; }
       </div>
       <div class="card-footer">
         <span>Pellikka et al., JASE 2020 · Nagueh et al., JASE 2025</span>
+        <span class="card-launch">Open →</span>
+      </div>
+    </a>
+
+    <!-- 7. HCM -->
+    <a class="tool-card" href="hcm-guidelines/">
+      <div class="card-top top-blue"></div>
+      <div class="card-body">
+        <span class="card-icon">🫀</span>
+        <div class="card-name">Hypertrophic Cardiomyopathy</div>
+        <div class="card-desc">2022 ASE multimodality imaging guidelines — LVH phenotypes, LVOT gradient calculator, SCD risk stratification, family screening algorithm, diastolic function, and septal reduction therapy guidance.</div>
+      </div>
+      <div class="card-footer">
+        <span>Nagueh et al., JASE 2022</span>
         <span class="card-launch">Open →</span>
       </div>
     </a>
@@ -292,12 +312,13 @@ footer strong { color: #1a365d; }
     <label>Tool (optional)</label>
     <select id="fb-tool">
       <option value="">— Select a tool —</option>
-      <option>Diastolic Function</option>
+      <option>Chamber Quantification</option>
       <option>Right Heart &amp; Pulmonary Hypertension</option>
+      <option>Diastolic Function</option>
       <option>Strain Echocardiography</option>
       <option>Prosthetic Valve Function</option>
-      <option>Hypertrophic Cardiomyopathy</option>
       <option>Stress Echocardiography</option>
+      <option>Hypertrophic Cardiomyopathy</option>
       <option>MR &amp; TR Quantification</option>
       <option>Aortic Stenosis</option>
       <option>Echo Swan</option>
