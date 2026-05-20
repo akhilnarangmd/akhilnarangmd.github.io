@@ -7,8 +7,10 @@
 
 ```
 akhilnarangmd.github.io/
-├── index.html                  ← Homepage (card grid)
-├── echoinfo-style-guide.md     ← This file
+├── index.html                    ← Homepage (card grid)
+├── echoinfo-style-guide.md       ← This file
+├── chamber-quantification/
+│   └── index.html
 ├── ase-diastolic-2026-1/
 │   └── index.html
 ├── right-heart-ph/
@@ -29,6 +31,15 @@ akhilnarangmd.github.io/
 
 Each card is a **single self-contained `index.html`** file — all CSS and JS inline, no external dependencies except the system font stack.
 
+**Current card order on homepage (maintain this order):**
+1. Chamber Quantification
+2. Right Heart & PH
+3. Diastolic Function
+4. Strain
+5. Prosthetic Valve
+6. Stress Echo
+7. HCM
+
 ---
 
 ## 2. Starting a New Card — Checklist
@@ -38,8 +49,9 @@ Before writing any code:
 - [ ] Read the full guideline document — clinical accuracy is paramount
 - [ ] Plan the tab structure (typically 5–8 tabs)
 - [ ] Note any algorithms/flowcharts that need to be reproduced
+- [ ] Check whether any other cards cover overlapping content → add cross-reference banners (see Section 14)
 - [ ] Create folder `card-name/index.html` in the repo
-- [ ] Add the card to root `index.html` homepage (see Section 16)
+- [ ] Add the card to root `index.html` homepage (see Section 11)
 - [ ] Add card name to feedback modal dropdown in root `index.html`
 
 ---
@@ -68,8 +80,8 @@ Before writing any code:
 
 <div class="nav-wrapper">
   <nav>
-    <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
-    <button class="nav-btn" onclick="showTab('diagnosis')">Diagnosis</button>
+    <button class="nav-btn active" onclick="showTab('overview', event)">Overview</button>
+    <button class="nav-btn" onclick="showTab('diagnosis', event)">Diagnosis</button>
     <!-- add more tabs as needed, max ~8 -->
   </nav>
 </div>
@@ -95,7 +107,7 @@ Before writing any code:
 </footer>
 
 <script>
-function showTab(id) {
+function showTab(id, event) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('panel-' + id).classList.add('active');
@@ -109,6 +121,8 @@ function toggleAcc(header) {
 </body>
 </html>
 ```
+
+**Note:** `showTab` now takes `event` as a second argument — this is required. Always write `onclick="showTab('overview', event)"`. The old single-argument form breaks active-state highlighting on nav buttons.
 
 ---
 
@@ -300,6 +314,7 @@ nav {
 .data-table td { padding: 9px 12px; border-bottom: 1px solid var(--gray-100); vertical-align: top; }
 .data-table tr:hover td { background: var(--gray-50); }
 .data-table tr:last-child td { border-bottom: none; }
+.data-table .sub-head td { background: #edf2f7; font-weight: 700; font-size: 0.78rem; color: var(--navy); }
 
 /* ── CALCULATOR INPUTS ── */
 .field-group { display: flex; flex-direction: column; gap: 4px; }
@@ -324,6 +339,40 @@ nav {
   background: white; color: var(--gray-500); border: 1.5px solid var(--gray-200);
   border-radius: 8px; padding: 10px 24px; font-size: 0.82rem; font-weight: 600;
   cursor: pointer; width: 100%; margin-top: 6px; font-family: inherit;
+}
+
+/* ── CROSS-REFERENCE BANNERS ── */
+/* See Section 14 for full usage rules */
+.xref-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+  border-radius: 10px; padding: 14px 18px; margin-bottom: 18px;
+  border: none; cursor: pointer; width: 100%; text-align: left;
+  text-decoration: none; color: white; font-family: inherit;
+  box-shadow: 0 2px 10px rgba(26,54,93,0.18);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.xref-banner:hover { opacity: 0.92; transform: translateY(-1px); }
+.xref-icon {
+  font-size: 1.8rem; flex-shrink: 0;
+  background: rgba(255,255,255,0.15); border-radius: 50%;
+  width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+}
+.xref-body { flex: 1; }
+.xref-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: rgba(255,255,255,0.65); margin-bottom: 2px;
+}
+.xref-title { font-size: 0.95rem; font-weight: 800; color: white; margin-bottom: 2px; }
+.xref-sub { font-size: 0.78rem; color: rgba(255,255,255,0.75); line-height: 1.4; }
+.xref-arrow { font-size: 1.2rem; color: rgba(255,255,255,0.6); flex-shrink: 0; }
+.xref-banner.xref-purple {
+  background: linear-gradient(135deg, #44337a 0%, #6b46c1 100%);
+  box-shadow: 0 2px 10px rgba(68,51,122,0.22);
+}
+.xref-banner.xref-teal {
+  background: linear-gradient(135deg, #1a4a4a 0%, #2c7a7b 100%);
+  box-shadow: 0 2px 10px rgba(26,74,74,0.22);
 }
 
 /* ── CITATION FOOTER ── */
@@ -395,44 +444,7 @@ footer a { color: var(--gray-500); text-decoration: none; }
 
 ---
 
-## 6. Home Bar — Back Navigation
-
-Every card **must** include a home bar above the header. This provides consistent back navigation to `echoinfo.org`.
-
-**CSS — add inside `<style>` at the bottom, just before the responsive block:**
-
-```css
-.home-bar { background: white; border-bottom: 1px solid #e2e8f0; padding: 8px 20px; display: flex; align-items: center; }
-.home-link { display: inline-flex; align-items: center; gap: 6px; color: #2b6cb0; text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: color 0.15s; }
-.home-link:hover { color: #1a365d; }
-.home-link::before { content: '←'; font-size: 0.9rem; }
-```
-
-**HTML — place immediately after `<body>`, before `<header>`:**
-
-```html
-<body>
-
-<div class="home-bar">
-  <a class="home-link" href="https://echoinfo.org">Echo Info</a>
-</div>
-
-<header>
-  ...
-</header>
-```
-
-**Rules:**
-- Always present — every card, no exceptions
-- White background bar with a 1px bottom border (`#e2e8f0`)
-- Arrow (`←`) rendered via CSS `::before` pseudo-element — do not add it in the HTML text
-- Link text is always `Echo Info` (not the card name, not the full URL)
-- Href is always `https://echoinfo.org`
-- Not fixed/sticky — scrolls with the page (the nav tabs below are sticky)
-
----
-
-## 7. Header Pattern
+## 6. Header Pattern
 
 ```html
 <header>
@@ -453,7 +465,7 @@ Every card **must** include a home bar above the header. This provides consisten
 
 ---
 
-## 8. Navigation Tabs
+## 7. Navigation Tabs
 
 - Justify center, wrap on mobile
 - Inactive: white bg, gray border, gray text
@@ -464,7 +476,7 @@ Every card **must** include a home bar above the header. This provides consisten
 
 ---
 
-## 9. Citation Footer
+## 8. Citation Footer
 
 Place at the bottom of the last tab panel:
 
@@ -484,7 +496,7 @@ Place at the bottom of the last tab panel:
 
 ---
 
-## 10. SVG Flowcharts — Complete Rules
+## 9. SVG Flowcharts — Complete Rules
 
 ### When to use SVG
 - **Always use SVG** for any branching algorithm or flowchart
@@ -581,8 +593,6 @@ The phenotype pill cx must match the cx of all content below it. Calculate colum
 
 ### Bracket / cross-connector pattern (two boxes → two pills)
 
-When Class I and Class IIb both feed into "If Symptomatic" AND "If Asymptomatic":
-
 ```svg
 <!-- Both class boxes drop to shared horizontal bar -->
 <line x1="760"  y1="788" x2="760"  y2="806" stroke="#2c4a73" stroke-width="2"/>
@@ -593,8 +603,6 @@ When Class I and Class IIb both feed into "If Symptomatic" AND "If Asymptomatic"
 <line x1="760"  y1="806" x2="760"  y2="818" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
 <line x1="1020" y1="806" x2="1020" y2="818" stroke="#2c4a73" stroke-width="2" marker-end="url(#hcmArr)"/>
 ```
-
-This creates the visual bracket showing both class evaluations share the same downstream decision point.
 
 ### Colored header strip inside box
 
@@ -634,9 +642,7 @@ Phenotype pill cx matches column cx below it
 
 ---
 
-## 11. Clinical Accuracy Rules
-
-These are based on errors found and corrected in the HCM card:
+## 10. Clinical Accuracy Rules
 
 ### Nuclear imaging — modality specificity
 - **PET** → quantitative myocardial blood flow (MBF) / stress perfusion imaging
@@ -667,7 +673,7 @@ When in doubt, quote the guideline text directly rather than paraphrasing. Alway
 
 ---
 
-## 12. Homepage Card (root index.html)
+## 11. Homepage Card (root index.html)
 
 Add this block inside the appropriate `.tool-grid` div in root `index.html`:
 
@@ -688,7 +694,12 @@ Add this block inside the appropriate `.tool-grid` div in root `index.html`:
 </a>
 ```
 
-**Stripe classes:** `top-blue` `top-green` `top-purple` `top-red` `top-amber`
+**Stripe classes:** `top-blue` `top-green` `top-purple` `top-red` `top-amber` `top-teal`
+
+`top-teal` is defined in root `index.html` as:
+```css
+.top-teal { background: linear-gradient(90deg, #1a4a4a, #2c7a7b); }
+```
 
 Also add to the feedback modal `<select>` dropdown:
 ```html
@@ -697,20 +708,20 @@ Also add to the feedback modal `<select>` dropdown:
 
 ---
 
-## 13. Deployment Steps
+## 12. Deployment Steps
 
 1. Create folder `card-name/` in the repo root
-2. Upload `index.html` into that folder
-3. Edit root `index.html` — add card block to the correct `.tool-grid` section
+2. Upload `index.html` into that folder (for large files >10KB use the .txt rename method — see Section 13)
+3. Edit root `index.html` — add card block to the correct `.tool-grid` in the correct homepage order
 4. Edit root `index.html` — add card name to feedback modal `<select>`
 5. Commit all changes
 6. Verify at `https://echoinfo.org/card-name/`
-7. Verify root homepage shows the new card
+7. Verify root homepage shows the new card in the correct position
 8. Check mobile layout: nav wraps, cards stack, SVG scrolls horizontally
 
 ---
 
-## 14. Known Gotchas &amp; Lessons Learned
+## 13. Known Gotchas & Lessons Learned
 
 **GitHub Pages CDN caching:** After committing, check `raw.githubusercontent.com` to confirm the commit landed. The live site may lag a few minutes. If stale content persists, contact GitHub Support.
 
@@ -727,6 +738,122 @@ Also add to the feedback modal `<select>` dropdown:
 **Mobile nav with many tabs:** More than 6 tabs will wrap to two lines on narrow screens. This is acceptable — `flex-wrap: wrap` handles it. Keep labels short to minimize wrapping.
 
 **SVG on mobile:** The `min-width: 760px` + `overflow-x: auto` pattern works well. Do not try to make complex flowcharts fully responsive — horizontal scrolling is acceptable and expected for algorithm diagrams.
+
+**showTab requires event argument:** The JS tab function signature is `showTab(id, event)`. Always pass `event` from the onclick: `onclick="showTab('overview', event)"`. The old single-argument form breaks active-state highlighting on the nav buttons.
+
+---
+
+## 14. Cross-Reference Banners
+
+Use when a card's content overlaps with, or has been superseded by, another card. Two formats — pick one per reference per page, never both.
+
+### Format A — Full banner (top of a tab panel)
+
+Use when an entire tab's subject is better covered in a dedicated card. Place as the **first element inside the panel div**, before any `.card` blocks.
+
+```html
+<a class="xref-banner xref-teal" href="../right-heart-ph/">
+  <div class="xref-icon">💜</div>
+  <div class="xref-body">
+    <div class="xref-label">See dedicated guideline card</div>
+    <div class="xref-title">Right Heart &amp; Pulmonary Hypertension</div>
+    <div class="xref-sub">2025 ASE guidelines — comprehensive RV function grading, PH probability,
+    RAP algorithm, RV strain thresholds, WSPH classification, and updated normal values
+    (Mukherjee et al., JASE 2025)</div>
+  </div>
+  <div class="xref-arrow">→</div>
+</a>
+```
+
+**Color variants:**
+| Class | Gradient | Use for |
+|---|---|---|
+| *(none)* | Navy → blue | General / LV references |
+| `.xref-teal` | Dark teal → teal | Right Heart / RV references |
+| `.xref-purple` | Dark purple → purple | Strain references |
+
+### Format B — Inline pill (inside a table sub-head row)
+
+Use when only a specific table section is outdated, not the whole tab.
+
+```html
+<tr class="sub-head">
+  <td colspan="4">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+      Right Ventricle — 2015 ASE Reference Values
+      <a href="../right-heart-ph/"
+         style="font-size:0.72rem; font-weight:700; color:#2c7a7b;
+                background:#e6fffa; border:1px solid #81e6d9;
+                border-radius:999px; padding:2px 10px;
+                white-space:nowrap; text-decoration:none; letter-spacing:0.02em;">
+        Updated 2025 guidelines →
+      </a>
+    </div>
+  </td>
+</tr>
+```
+
+**Pill color pairs by topic:**
+| Topic | Text | Background | Border |
+|---|---|---|---|
+| RV / Right Heart | `#2c7a7b` | `#e6fffa` | `#81e6d9` |
+| Strain | `#6b46c1` | `#faf5ff` | `#b794f4` |
+| General / LV | `#2b6cb0` | `#ebf8ff` | `#90cdf4` |
+
+**Rules:**
+- Never use both Format A and Format B for the same reference on the same page — pick one
+- Format A for whole-tab supersession; Format B for specific table rows only
+- The `colspan` value must match the number of columns in that table
+
+---
+
+## 15. Data Table Patterns
+
+### Standard sub-head row
+```html
+<tr class="sub-head"><td colspan="4">Section Label</td></tr>
+```
+Renders as a gray-background divider with navy bold text. Adjust `colspan` to match column count.
+
+### Highlighted "featured" column
+Use when one column represents newer or preferred data (e.g. WASE 2022 alongside older normative studies):
+
+```html
+<!-- Header cell -->
+<th style="background:#1e4d8c; border-left:3px solid #90cdf4;">
+  WASE 2022 ★<br>
+  <span style="font-weight:400; font-size:0.7rem; opacity:0.85;">Global · n=1,589</span>
+</th>
+
+<!-- Data cells in that column — apply to every row including sub-heads -->
+<td style="background:#f0f7ff; font-weight:600; border-left:3px solid #90cdf4;">
+  70 ± 15<br>
+  <span style="font-size:0.75rem; color:#4a7db5;">(LLN–ULN: 45–79)</span>
+</td>
+```
+
+The `border-left:3px solid #90cdf4` on both `<th>` and every `<td>` in the column creates a continuous left-edge accent. Apply consistently to every row in that column.
+
+### Inline note cards below a table
+
+When a table needs source attribution or a clinical caveat, use two side-by-side note divs:
+
+```html
+<div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start;">
+  <div style="background:#ebf8ff; border:1px solid #90cdf4; border-radius:6px;
+              padding:8px 12px; font-size:0.78rem; color:#2c5282;
+              flex:1; min-width:220px;">
+    <strong>★ Source note</strong> — Study name, n, method, key finding.
+  </div>
+  <div style="background:#fffaf0; border:1px solid #f6ad55; border-radius:6px;
+              padding:8px 12px; font-size:0.78rem; color:#744210;
+              flex:1; min-width:220px;">
+    <strong>⚠️ Clinical caveat</strong> — Important limitation or context.
+  </div>
+</div>
+```
+
+Use blue (`#ebf8ff` / `#90cdf4`) for source/citation notes and amber (`#fffaf0` / `#f6ad55`) for warnings. Both boxes flex to fill the row and stack on mobile via `flex-wrap:wrap`.
 
 ---
 
