@@ -1,1 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pericardial Disease · echoinfo.org</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+:root {
+  --navy:      #1a365d;
+  --blue:      #2b6cb0;
+  --blue-lt:   #ebf8ff;
+  --teal:      #276749;
+  --teal-lt:   #f0fff4;
+  --red:       #742a2a;
+  --red-lt:    #fff5f5;
+  --amber:     #744210;
+  --amber-lt:  #fffaf0;
+  --purple:    #44337a;
+  --purple-lt: #faf5ff;
+  --gray-50:   #f7fafc;
+  --gray-100:  #edf2f7;
+  --gray-200:  #e2e8f0;
+  --gray-400:  #a0aec0;
+  --gray-500:  #718096;
+  --gray-700:  #2d3748;
+  --gray-900:  #1a202c;
+  --white:     #ffffff;
+  --bg:        #f8f9fa;
+  --radius:    10px;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--gray-900);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+header {
+  background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+  color: white;
+  padding: 28px 20px 24px;
+  text-align: center;
+}
+header .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+header h1 {
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
+  font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px;
+}
+header .subtitle { font-size: 0.85rem; opacity: 0.82; margin-bottom: 12px; }
+.guideline-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 999px;
+  padding: 4px 16px;
+  font-size: 0.74rem; letter-spacing: 0.03em; color: white;
+}
+
+/* ── NAV ── */
+.nav-wrapper {
+  background: white;
+  border-bottom: 2px solid var(--gray-200);
+  position: sticky; top: 0; z-index: 100; overflow-x: auto;
+}
+nav {
+  display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+  max-width: 1100px; margin: 0 auto; padding: 14px 20px;
+}
+.nav-btn {
+  padding: 9px 18px;
+  border: 2px solid var(--gray-200);
+  background: white; border-radius: 8px;
+  font-size: 0.82rem; font-weight: 700; color: var(--gray-500);
+  cursor: pointer; white-space: nowrap; font-family: inherit;
+  transition: all 0.15s;
+}
+.nav-btn:hover:not(.active) {
+  border-color: var(--blue); color: var(--blue); background: var(--blue-lt);
+}
+.nav-btn.active {
+  background: var(--navy); border-color: var(--navy); color: white;
+  box-shadow: 0 2px 8px rgba(26,54,93,0.25);
+}
+
+/* ── LAYOUT ── */
+.content { max-width: 1100px; margin: 0 auto; padding: 28px 20px 64px; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ── SECTION INTRO ── */
+.section-intro { margin-bottom: 20px; }
+.section-intro h2 {
+  font-size: 1.25rem; font-weight: 700; color: var(--gray-900); margin-bottom: 6px;
+}
+.section-intro p { font-size: 0.88rem; color: var(--gray-500); line-height: 1.65; }
+
+/* ── CARDS ── */
+.card {
+  background: white; border-radius: var(--radius);
+  padding: 20px 24px; margin-bottom: 14px; border: 1px solid var(--gray-200);
+}
+.card-title {
+  font-size: 0.95rem; font-weight: 700; color: var(--gray-900);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+
+/* ── GRIDS ── */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+
+/* ── INFO ROWS ── */
+.info-row {
+  display: flex; gap: 10px; font-size: 0.82rem;
+  padding: 8px 0; border-bottom: 1px solid var(--gray-100);
+}
+.info-row:last-child { border-bottom: none; }
+.info-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--navy); flex-shrink: 0; margin-top: 6px;
+}
+.info-dot.teal   { background: var(--teal); }
+.info-dot.red    { background: #e53e3e; }
+.info-dot.amber  { background: #d69e2e; }
+.info-dot.purple { background: #6b46c1; }
+
+/* ── THRESHOLD PILLS ── */
+.thresh-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.thresh {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 600;
+}
+.thresh-normal { background: #f0fff4; color: #276749; border: 1px solid #9ae6b4; }
+.thresh-warn   { background: #fffaf0; color: #744210; border: 1px solid #f6ad55; }
+.thresh-danger { background: #fff5f5; color: #742a2a; border: 1px solid #fc8181; }
+.thresh-info   { background: #ebf8ff; color: #2c5282; border: 1px solid #90cdf4; }
+.thresh-purple { background: #faf5ff; color: #44337a; border: 1px solid #b794f4; }
+
+/* ── ALERTS ── */
+.alert {
+  border-radius: 8px; padding: 12px 16px; font-size: 0.81rem;
+  line-height: 1.55; display: flex; gap: 10px;
+  align-items: flex-start; margin-top: 10px;
+}
+.alert-blue   { background: var(--blue-lt);   border-left: 3px solid var(--blue);   color: #2c5282; }
+.alert-amber  { background: var(--amber-lt);  border-left: 3px solid #c05621;       color: var(--amber); }
+.alert-red    { background: var(--red-lt);    border-left: 3px solid #c53030;       color: var(--red); }
+.alert-green  { background: var(--teal-lt);   border-left: 3px solid var(--teal);   color: #22543d; }
+.alert-purple { background: var(--purple-lt); border-left: 3px solid #6b46c1;       color: var(--purple); }
+
+/* ── RECOMMENDATION BOX ── */
+.rec-box {
+  background: linear-gradient(135deg, #ebf8ff, #f0fff4);
+  border: 1.5px solid #90cdf4; border-radius: var(--radius);
+  padding: 16px 20px; margin-top: 14px;
+}
+.rec-box h4 {
+  font-size: 0.82rem; font-weight: 700; color: var(--navy);
+  margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.rec-item { font-size: 0.81rem; color: var(--gray-700); padding: 5px 0; display: flex; gap: 8px; }
+.rec-num { font-weight: 700; color: var(--blue); flex-shrink: 0; }
+
+/* ── ACCORDION ── */
+.accordion { border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+.acc-item { border-bottom: 1px solid var(--gray-100); }
+.acc-item:last-child { border-bottom: none; }
+.acc-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px; cursor: pointer; font-weight: 700; font-size: 0.85rem;
+  color: var(--navy); background: white; user-select: none;
+}
+.acc-header:hover { background: var(--gray-50); }
+.acc-arrow { transition: transform .2s; font-size: 0.75rem; color: var(--gray-400); }
+.acc-item.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { display: none; padding: 14px 18px; background: var(--gray-50); border-top: 1px solid var(--gray-100); }
+.acc-item.open .acc-body { display: block; }
+
+/* ── DATA TABLES ── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.data-table th {
+  background: var(--navy); color: white; padding: 9px 12px;
+  text-align: left; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.data-table td { padding: 9px 12px; border-bottom: 1px solid var(--gray-100); vertical-align: top; }
+.data-table tr:hover td { background: var(--gray-50); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .sub-head td { background: #edf2f7; font-weight: 700; font-size: 0.78rem; color: var(--navy); }
+
+/* ── CROSS-REFERENCE BANNERS ── */
+.xref-banner {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+  border-radius: 10px; padding: 14px 18px; margin-bottom: 18px;
+  border: none; cursor: pointer; width: 100%; text-align: left;
+  text-decoration: none; color: white; font-family: inherit;
+  box-shadow: 0 2px 10px rgba(26,54,93,0.18);
+  transition: opacity 0.15s, transform 0.15s;
+}
+.xref-banner:hover { opacity: 0.92; transform: translateY(-1px); }
+.xref-icon {
+  font-size: 1.8rem; flex-shrink: 0;
+  background: rgba(255,255,255,0.15); border-radius: 50%;
+  width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+}
+.xref-body { flex: 1; }
+.xref-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: rgba(255,255,255,0.65); margin-bottom: 2px;
+}
+.xref-title { font-size: 0.95rem; font-weight: 800; color: white; margin-bottom: 2px; }
+.xref-sub { font-size: 0.78rem; color: rgba(255,255,255,0.75); line-height: 1.4; }
+.xref-arrow { font-size: 1.2rem; color: rgba(255,255,255,0.6); flex-shrink: 0; }
+.xref-banner.xref-teal {
+  background: linear-gradient(135deg, #1a4a4a 0%, #2c7a7b 100%);
+  box-shadow: 0 2px 10px rgba(26,74,74,0.22);
+}
+
+/* ── CITATION FOOTER ── */
+.citation-footer {
+  margin-top: 2.5rem; padding: 1.5rem 2rem;
+  background: var(--navy); border-radius: 12px;
+  color: rgba(255,255,255,0.7); font-size: 0.79rem; line-height: 1.65;
+}
+.citation-footer strong { color: rgba(255,255,255,0.9); }
+.citation-footer a { color: #f6ad55; text-decoration: none; }
+.citation-footer a:hover { text-decoration: underline; }
+.citation-footer em { opacity: 0.65; font-size: 0.74rem; }
+
+/* ── PAGE FOOTER ── */
+footer {
+  border-top: 1px solid var(--gray-200); text-align: center;
+  padding: 16px 24px; font-size: 0.76rem; color: var(--gray-400);
+  max-width: 1100px; margin: 0 auto;
+}
+footer a { color: var(--gray-500); text-decoration: none; }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 600px) {
+  header { padding: 20px 16px 18px; }
+  .content { padding: 16px 12px 48px; }
+  .nav-btn { padding: 8px 12px; font-size: 0.78rem; }
+  .card { padding: 16px 14px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="icon">🫀</div>
+  <h1>Pericardial Disease</h1>
+  <p class="subtitle">Multimodality Imaging — Pericarditis · Tamponade · Constrictive vs. Restrictive</p>
+
+</header>
+
+<div class="nav-wrapper">
+  <nav>
+    <button class="nav-btn active" onclick="showTab('overview', event)">Overview</button>
+    <button class="nav-btn" onclick="showTab('pericarditis', event)">Pericarditis</button>
+    <button class="nav-btn" onclick="showTab('tamponade', event)">Tamponade</button>
+    <button class="nav-btn" onclick="showTab('constrictive', event)">Constrictive</button>
+    <button class="nav-btn" onclick="showTab('cp-vs-rcm', event)">CP vs. RCM</button>
+    <button class="nav-btn" onclick="showTab('multimodality', event)">Multimodality</button>
+    <button class="nav-btn" onclick="showTab('references', event)">References</button>
+  </nav>
+</div>
+
+<div class="content">
+
+  <!-- ═══════════════════════ OVERVIEW ═══════════════════════ -->
+  <div class="panel active" id="panel-overview">
+    <div class="section-intro">
+      <h2>Pericardial Disease — Clinical Framework</h2>
+      <p>Pericardial diseases represent a spectrum from acute inflammation to chronic constriction. Echocardiography is the first-line modality; CMR and CT provide complementary characterization of inflammation, thickness, and calcification. This card synthesizes the 2025 ACC Concise Clinical Guidance (Wang et al.), the 2024 International Position Statement (Klein et al., JACC Cardiovasc Imaging), and the 2023 JASE multimodality CP vs. RCM review (Lloyd et al.).</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🫀 Spectrum of Pericardial Disease</div>
+        <div class="info-row"><div class="info-dot"></div><div><strong>Acute pericarditis</strong> — inflammation with chest pain, ECG changes, ± effusion</div></div>
+        <div class="info-row"><div class="info-dot amber"></div><div><strong>Recurrent/incessant pericarditis</strong> — ≥2 flares after symptom-free interval; IL-1 driven</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div><strong>Pericardial effusion</strong> — fluid accumulation; hemodynamic impact determines urgency</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div><strong>Cardiac tamponade</strong> — compressive physiology → impaired output → hemodynamic collapse</div></div>
+        <div class="info-row"><div class="info-dot purple"></div><div><strong>Constrictive pericarditis</strong> — loss of elasticity → diastolic restraint → HF syndrome</div></div>
+        <div class="info-row"><div class="info-dot"></div><div><strong>Effusive-constrictive</strong> — persistent constrictive physiology after effusion drainage</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📊 Epidemiology &amp; Etiology</div>
+        <div class="info-row"><div class="info-dot"></div><div>Pericarditis accounts for ~0.1% of hospital admissions; ~5% of ED chest pain evaluations</div></div>
+        <div class="info-row"><div class="info-dot"></div><div>More common in men aged 16–65; recurrent form more common in women</div></div>
+        <div class="info-row"><div class="info-dot amber"></div><div><strong>High-income countries:</strong> Idiopathic/viral most common (presumed autoinflammatory)</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div><strong>Low-income countries:</strong> Tuberculosis (often HIV-associated) predominates</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div>Other etiologies: post-cardiac injury, autoimmune, neoplastic, uremic, radiation-induced</div></div>
+        <div class="info-row"><div class="info-dot purple"></div><div>COVID-19 and post-procedural (ablation, TAVI, pacemaker) are emerging causes</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:0;">
+      <div class="card-title">🏥 Multimodality Imaging — Role of Each Modality</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Modality</th>
+              <th>First-Line Use</th>
+              <th>Key Strengths</th>
+              <th>Limitations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sub-head"><td colspan="4">Echocardiography</td></tr>
+            <tr>
+              <td><strong>TTE</strong></td>
+              <td>All pericardial disease; first-line for effusion, tamponade, CP</td>
+              <td>Bedside accessible; Doppler respiratory variation; septal bounce; annulus reversus (e' medial &gt; lateral)</td>
+              <td>Limited for pericardial thickness; acoustic windows</td>
+            </tr>
+            <tr>
+              <td><strong>TEE</strong></td>
+              <td>Suboptimal TTE; post-op focal hematoma</td>
+              <td>Superior spatial resolution for pericardial thickening</td>
+              <td>Invasive; not first-line in acute setting</td>
+            </tr>
+            <tr class="sub-head"><td colspan="4">Advanced Imaging</td></tr>
+            <tr>
+              <td><strong>CMR</strong></td>
+              <td>Suspected myocardial involvement; high-risk AP; recurrent pericarditis; inflammatory assessment in CP</td>
+              <td>Tissue characterization: T1 (thickening ≥3 mm), T2-STIR (edema/active inflammation), LGE (pericardial enhancement). Predicts anti-inflammatory therapy response. Quantitative LGE grading.</td>
+              <td>Availability; cost; time; no role in acute tamponade management</td>
+            </tr>
+            <tr>
+              <td><strong>Cardiac CT</strong></td>
+              <td>Pericardial calcification; pre-pericardiectomy planning; pericardial thickness</td>
+              <td>Highest sensitivity for calcification; multiplanar localization of complex effusions</td>
+              <td>Radiation; no hemodynamic data; limited soft tissue characterization</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-blue" style="margin-top:12px;">
+        <span>ℹ️</span>
+        <div>Per the 2025 ACC CCG: Echo first → CMR if myocardial involvement suspected or inflammatory phenotyping needed → CT for calcification assessment and pre-op planning. CMR and CT are complementary at 6–12 month intervals to monitor treatment response in recurrent/chronic pericarditis.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ PERICARDITIS ═══════════════════════ -->
+  <div class="panel" id="panel-pericarditis">
+    <div class="section-intro">
+      <h2>Acute &amp; Recurrent Pericarditis</h2>
+      <p>The 2025 ACC CCG modernizes diagnostic criteria, elevating biomarkers and CMR from supportive to central diagnostic elements. A phenotype-driven approach guides therapy selection.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🩺 2025 ACC Diagnostic Criteria (Novel — Wang et al. JACC 2025)</div>
+      <div class="alert alert-blue">
+        <span>📋</span>
+        <div><strong>Required:</strong> Pleuritic chest pain or equivalent suggestive presentation, PLUS ≥1 additional finding:</div>
+      </div>
+      <div style="margin-top: 12px;">
+        <div class="info-row"><div class="info-dot teal"></div><div><strong>(a)</strong> Pericardial friction rub on auscultation</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div><strong>(b)</strong> Typical ECG changes — diffuse ST-elevation, PR-depression</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div><strong>(c)</strong> Inflammatory biomarker elevation (CRP, ESR)</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div><strong>(d)</strong> Cardiac imaging evidence of new or worsening pericardial effusion (echo preferred; CMR or CT acceptable)</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div><strong>(e)</strong> Cardiac imaging evidence of pericardial inflammation (CMR preferred; CT acceptable)</div></div>
+      </div>
+      <div class="thresh-row" style="margin-top:14px;">
+        <span class="thresh thresh-normal">✅ 2+ criteria = Definite</span>
+        <span class="thresh thresh-warn">⚠️ 1 criterion = Possible</span>
+        <span class="thresh thresh-danger">❌ 0 criteria = Unlikely</span>
+      </div>
+      <div class="alert alert-amber" style="margin-top:10px;">
+        <span>⚡</span>
+        <div><strong>Key update vs. 2015 ESC "2 of 4" rule:</strong> The ACC 2025 criteria require pleuritic chest pain as a prerequisite and add CMR/CT pericardial inflammation as a formal diagnostic criterion. Biomarkers and CMR are now central, not merely supportive.</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">📅 Classification by Duration</div>
+        <div class="info-row"><div class="info-dot teal"></div><div><strong>Acute pericarditis:</strong> Symptoms duration &lt;4–6 weeks</div></div>
+        <div class="info-row"><div class="info-dot amber"></div><div><strong>Incessant pericarditis:</strong> &gt;4–6 weeks to 3 months without remission</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div><strong>Recurrent pericarditis (RP):</strong> New flare after symptom-free interval ≥4–6 weeks. Occurs in 20–30% after initial episode.</div></div>
+        <div class="info-row"><div class="info-dot purple"></div><div><strong>Chronic pericarditis:</strong> &gt;3 months duration</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🔬 Inflammatory vs. Non-Inflammatory Phenotype</div>
+        <div class="info-row"><div class="info-dot red"></div><div><strong>Inflammatory phenotype:</strong> High fever, raised CRP, pleural involvement, neutrophilic leukocytosis, high neutrophil/lymphocyte ratio, CMR with active LGE and T2-STIR edema</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div><strong>Non-inflammatory phenotype:</strong> Absence of above features; normal CRP; CMR showing pericardial thickening without active enhancement; more common in autoimmune/post-radiation</div></div>
+        <div class="alert alert-blue" style="margin-top:10px;">
+          <span>ℹ️</span>
+          <div>Phenotype distinction drives second-line therapy: anti-IL-1 agents (rilonacept, anakinra) for inflammatory; corticosteroids for non-inflammatory/autoimmune</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💊 Management Algorithm (2025 ACC CCG)</div>
+      <div class="rec-box">
+        <h4>Step-Wise Treatment</h4>
+        <div class="rec-item"><div class="rec-num">1st</div><div><strong>Colchicine + NSAIDs (or aspirin)</strong> — first-line for acute pericarditis and first recurrence. Add exercise restriction (HR &lt;100 bpm max, ≥1 month minimum).</div></div>
+        <div class="rec-item"><div class="rec-num">2nd</div><div><strong>Anti-IL-1 agents</strong> (rilonacept, anakinra) — second-line for inflammatory phenotype; may consider for non-inflammatory phenotype if refractory.</div></div>
+        <div class="rec-item"><div class="rec-num">Alt</div><div><strong>Corticosteroids</strong> — second-line for non-inflammatory phenotype and systemic autoimmune diseases; low-to-medium dose with slow wean. Avoid high-dose steroids as first recurrence therapy.</div></div>
+        <div class="rec-item"><div class="rec-num">Surg</div><div><strong>Radical pericardiectomy</strong> — medically refractory pericarditis or constrictive pericarditis; requires expert surgical center. Partial pericardiectomy is inadequate (inferior long-term survival).</div></div>
+        <div class="rec-item"><div class="rec-num">+</div><div>Treat underlying etiology. Consider referral to a Pericardial Diseases Center (PDC) for complex cases.</div></div>
+      </div>
+      <div class="alert alert-amber" style="margin-top:10px;">
+        <span>⚠️</span>
+        <div><strong>CMR monitoring:</strong> CT and CMR can be used at baseline and at 6–12 month intervals to guide therapy and assess treatment response. In burned-out calcific pericarditis, CT is essential for pre-surgical planning.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔬 CMR in Pericarditis — Hallmarks &amp; LGE Grading</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>CMR Sequence</th>
+              <th>Finding</th>
+              <th>Clinical Significance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>T1-weighted (black-blood)</strong></td>
+              <td>Pericardial thickening ≥3 mm</td>
+              <td>Structural pericardial involvement; present even in non-inflammatory phases</td>
+            </tr>
+            <tr>
+              <td><strong>T2-STIR</strong></td>
+              <td>Increased T2 signal (edema)</td>
+              <td>Active pericardial inflammation; grades severity of current inflammatory activity</td>
+            </tr>
+            <tr>
+              <td><strong>Late Gadolinium Enhancement (LGE)</strong></td>
+              <td>Pericardial gadolinium uptake</td>
+              <td>Neovascularization/active inflammation; predicts recurrence risk; guides anti-inflammatory therapy; resolves with disease remission</td>
+            </tr>
+            <tr>
+              <td><strong>Chronic/Burned-out</strong></td>
+              <td>No LGE; pericardial thickening ± calcification</td>
+              <td>Anti-inflammatory therapy NOT indicated; calcification detected better on CT; surgical planning</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-green" style="margin-top:10px;">
+        <span>✅</span>
+        <div><strong>Key principle:</strong> CMR LGE predicts response to anti-inflammatory therapies. Anti-inflammatory therapy is NOT indicated in CP without evidence of active inflammation on CMR. Absence of LGE with pericardial thickening/calcification favors chronic irreversible disease.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ TAMPONADE ═══════════════════════ -->
+  <div class="panel" id="panel-tamponade">
+    <div class="section-intro">
+      <h2>Pericardial Effusion &amp; Cardiac Tamponade</h2>
+      <p>Tamponade is a dynamic process dependent on rate of fluid accumulation, not absolute volume. The 2025 ACC CCG reframes tamponade assessment around integrated clinical-hemodynamic-imaging evaluation rather than simple size thresholds.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📏 Pericardial Effusion Sizing (Echocardiography)</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr><th>Category</th><th>Size (Echo, Diastolic)</th><th>Approximate Volume</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="thresh thresh-normal" style="display:inline-block;">Trivial</span></td>
+              <td>Seen only in systole</td>
+              <td>&lt;50 mL</td>
+              <td>Often physiologic; can be pericardial fat</td>
+            </tr>
+            <tr>
+              <td><span class="thresh thresh-normal" style="display:inline-block;">Mild</span></td>
+              <td>&lt;10 mm</td>
+              <td>~50–200 mL</td>
+              <td>Typically well-tolerated; monitor for progression</td>
+            </tr>
+            <tr>
+              <td><span class="thresh thresh-warn" style="display:inline-block;">Moderate</span></td>
+              <td>10–20 mm</td>
+              <td>~200–500 mL</td>
+              <td>Assess for hemodynamic compromise; Doppler evaluation mandatory</td>
+            </tr>
+            <tr>
+              <td><span class="thresh thresh-danger" style="display:inline-block;">Large</span></td>
+              <td>&gt;20 mm</td>
+              <td>&gt;500 mL</td>
+              <td>High risk for tamponade; urgent Doppler + clinical assessment</td>
+            </tr>
+            <tr>
+              <td><span class="thresh thresh-danger" style="display:inline-block;">Very Large</span></td>
+              <td>&gt;25 mm</td>
+              <td>&gt;500 mL</td>
+              <td>Often unevenly distributed; high suspicion for neoplasia, TB, or hypothyroidism</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-amber" style="margin-top:10px;">
+        <span>⚠️</span>
+        <div><strong>Critical principle (2025 ACC CCG / ASE 2013):</strong> Effusion volume does not reliably predict tamponade risk. A rapidly accumulating small effusion (e.g., post-procedural hemopericardium causing tamponade at ~250 mL) can be far more dangerous than a large chronic effusion. Small and very large effusions are most likely to be unevenly distributed.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔬 Effusion Characterization — CT Attenuation Values (ASE 2013, Klein et al.)</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr><th>Effusion Type</th><th>CT Attenuation</th><th>Echo Appearance</th><th>Typical Etiology</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Transudative</strong></td>
+              <td>&lt;10 Hounsfield units (near water)</td>
+              <td>Echolucent; motionless</td>
+              <td>Heart failure, hypothyroidism, idiopathic</td>
+            </tr>
+            <tr>
+              <td><strong>Exudative</strong></td>
+              <td>20–60 Hounsfield units</td>
+              <td>May show stranding, loculations</td>
+              <td>Purulent, malignant, inflammatory, myxedematous</td>
+            </tr>
+            <tr>
+              <td><strong>Chylous</strong></td>
+              <td>−60 to −80 Hounsfield units (fat density)</td>
+              <td>Variable</td>
+              <td>Lymphatic obstruction, trauma, post-surgical</td>
+            </tr>
+            <tr>
+              <td><strong>Hemorrhagic</strong></td>
+              <td>&gt;60 Hounsfield units</td>
+              <td>Echogenic, slow-swirling spontaneous contrast</td>
+              <td>Trauma, aortic dissection, post-procedural, malignancy, anticoagulation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-blue" style="margin-top:10px;">
+        <span>ℹ️</span>
+        <div>On CMR: transudative effusions appear dark on T1-weighted SE images and bright on cine (SSFP) sequences. Exudative and hemorrhagic effusions show higher T1W signal intensity due to elevated protein content. Fat suppression sequences help distinguish chylous effusion from fat.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⚡ Echocardiographic Signs of Cardiac Tamponade (ASE 2013 · Klein et al.)</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--red); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em;">Structural / 2D Signs</div>
+          <div class="info-row"><div class="info-dot red"></div><div><strong>Right atrial systolic collapse:</strong> Duration &gt;1/3 of cardiac cycle → ~100% sensitive and specific for clinical tamponade. Timing: near the R wave on ECG (atrial relaxation phase).</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div><strong>RV diastolic collapse:</strong> Early diastolic indentation of RV free wall after end of T wave. Initially only with inspiration; as tamponade worsens, persists throughout cycle. Occurs when cardiac output ↓ ~20% but BP not yet fallen.</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div><strong>Absence of all chamber collapse:</strong> &gt;90% negative predictive value for clinical tamponade. Collapse may be absent in RVH, severe PAH, or elevated LV filling pressures.</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div><strong>Left atrial/LV collapse:</strong> Less common; suggests posterior loculated effusion or severe PAH. Often post-surgical.</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div><strong>Swinging heart:</strong> Pendular cardiac motion within large effusion; associated with electrical alternans on ECG.</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--red); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em;">Doppler / Respiratory Signs — ASE Consensus Formula</div>
+          <div style="background:#fff5f5; border:1px solid #fc8181; border-radius:6px; padding:8px 12px; font-size:0.78rem; margin-bottom:8px;">
+            <strong>Formula:</strong> % variation = (expiration − inspiration) / expiration × 100%
+          </div>
+          <div class="info-row"><div class="info-dot red"></div><div><strong>Mitral E variation ≥30%</strong> (research threshold; &gt;25% clinically significant): Lowest on first beat of inspiration, highest on first beat of expiration.</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div><strong>Tricuspid E variation ≥60%</strong>: Highest on first beat of inspiration; lowest on first beat of expiration (opposite to mitral). Calculated % will be a negative value.</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div><strong>IVC plethora:</strong> Dilated IVC (&gt;2.1 cm) with &lt;50% inspiratory collapse. Present in 92% of effusions requiring drainage. High sensitivity, low specificity.</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div><strong>Hepatic vein:</strong> Diastolic flow reversal on first beat of expiration (same time tricuspid E is lowest). Forward flow decreasing; in severe tamponade diastolic forward flow disappears entirely between inspiratory beats.</div></div>
+          <div class="info-row"><div class="info-dot purple"></div><div><strong>Do NOT use Doppler variation alone</strong> — requires concurrent: PEff + ↓ stroke volume/CO + elevated CVP + chamber collapse. COPD produces similar Doppler changes but largest beat occurs on 2nd inspiration beat (not 1st).</div></div>
+        </div>
+      </div>
+      <div class="alert alert-red" style="margin-top:12px;">
+        <span>🚨</span>
+        <div><strong>Special scenarios:</strong> Low-pressure (occult) tamponade in hypovolemic patients may lack classic RA/RV collapse; regional post-surgical tamponade from hematoma requires TEE. Positive-pressure ventilation reverses the Doppler respiratory variation pattern — standard criteria do not apply.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🗂️ Structured Echocardiographic Protocol for Effusion</div>
+      <div class="rec-box">
+        <h4>Systematic 5-Step Assessment</h4>
+        <div class="rec-item"><div class="rec-num">1</div><div><strong>Quantity &amp; distribution:</strong> Measure effusion in multiple views (PLAX, PSAX, apical 4-chamber, subcostal); global vs. loculated; anterior vs. posterior</div></div>
+        <div class="rec-item"><div class="rec-num">2</div><div><strong>Quality of fluid:</strong> Echogenicity — fibrinous strands/loculations suggest exudative or hemorrhagic etiology; density suggests hemopericardium</div></div>
+        <div class="rec-item"><div class="rec-num">3</div><div><strong>Chamber collapse:</strong> Look for RA systolic collapse, RV diastolic collapse in all views; assess duration relative to cardiac cycle</div></div>
+        <div class="rec-item"><div class="rec-num">4</div><div><strong>Respiratory ventricular variation:</strong> M-mode PLAX/PSAX for septal shift; assess with patient breathing normally (not Valsalva)</div></div>
+        <div class="rec-item"><div class="rec-num">5</div><div><strong>IVC and hepatic vein flow:</strong> IVC diameter + collapsibility; hepatic vein Doppler for systolic/diastolic reversal pattern</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🩺 Pericardiocentesis — When and How</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Indications</div>
+          <div class="info-row"><div class="info-dot red"></div><div>Hemodynamic compromise (tamponade physiology)</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div>Large effusion with concern for bacterial/neoplastic etiology</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div>Moderate effusion not responding to anti-inflammatory therapy after 2–3 weeks</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div>Diagnostic sampling when etiology uncertain</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Imaging Guidance</div>
+          <div class="info-row"><div class="info-dot teal"></div><div><strong>TTE guidance preferred</strong> — real-time needle visualization; subcostal or apical approach</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div>CT aids planning for small, multiloculated, or post-surgical effusions</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div><strong>Surgical window</strong> — when percutaneous not safe/feasible; malignant or recurrent loculated effusions; effusive-constrictive physiology</div></div>
+          <div class="info-row"><div class="info-dot purple"></div><div>CMR indicated if coexisting pericarditis or pericardial malignancy suspected</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ CONSTRICTIVE ═══════════════════════ -->
+  <div class="panel" id="panel-constrictive">
+    <div class="section-intro">
+      <h2>Constrictive Pericarditis — Diagnosis &amp; Management</h2>
+      <p>CP results from loss of pericardial elasticity causing exaggerated interventricular dependence and dissociation between intracardiac and intrathoracic pressures. Echocardiography has high positive predictive value; CMR defines inflammation to guide therapy.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔬 Pathophysiology of Constrictive Physiology</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Key Hemodynamic Principles</div>
+          <div class="info-row"><div class="info-dot red"></div><div><strong>Pericardial constraint:</strong> Fixed pericardial volume limits total cardiac filling — ventricular filling is volume-fixed</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div><strong>Ventricular interdependence:</strong> RV filling increase → septal shift → LV filling decrease (and vice versa). Exaggerated in CP.</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div><strong>Dissociation of intracardiac/intrathoracic pressures:</strong> Inspiratory fall in intrathoracic pressure is NOT transmitted to intracardiac chambers (pericardium blocks transmission)</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div><strong>Result:</strong> LV filling does not augment on inspiration (unlike normal); RV filling augments more than normal → septal bounce toward LV in early diastole</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">CP vs. Normal Physiology</div>
+          <div class="info-row"><div class="info-dot teal"></div><div><strong>Normal:</strong> Inspiration ↓ intrathoracic pressure → transmitted to cardiac chambers → pulmonary venous return unchanged → LV fills normally</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div><strong>CP:</strong> Inspiration ↓ intrathoracic pressure → NOT transmitted (rigid pericardium) → pulmonary venous return ↓ → LV filling ↓ → E wave ↓ ≥25%</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div><strong>Key contrast with RCM:</strong> In RCM, intracardiac pressures DO change with respiration (pericardium normal) → NO significant respiratory variation in mitral inflow</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📋 Echocardiographic Criteria for CP — ASE 2013 Guideline Thresholds</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Finding</th>
+              <th>Threshold</th>
+              <th>Mechanism</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sub-head"><td colspan="4">Primary Criteria — High Specificity (ASE 2013 · Welch Circ CV Imaging 2014)</td></tr>
+            <tr>
+              <td><strong>Interventricular septal bounce</strong></td>
+              <td>Present on 2D/M-mode</td>
+              <td>Exaggerated ventricular interdependence; abrupt posterior septal motion in early diastole with inspiration; "septal shudder"</td>
+              <td>M-mode at PLAX/PSAX with respirometer confirms timing. Also: diastolic flattening of LV posterior wall.</td>
+            </tr>
+            <tr>
+              <td><strong>Mitral E respiratory variation</strong></td>
+              <td>≥25% (clinical); ≥30% (research)</td>
+              <td>Dissociation of intrathoracic/intracardiac pressures. Formula: (exp − insp) / exp × 100%.</td>
+              <td>Lowest on first beat of inspiration. May be absent with markedly elevated LAP — unmask with upright/preload reduction. Respirometry mandatory.</td>
+            </tr>
+            <tr>
+              <td><strong>Tricuspid E respiratory variation</strong></td>
+              <td>≥40% (first beat after inspiration)</td>
+              <td>Same mechanism; opposite direction to mitral. Formula: (exp − insp) / exp gives negative value.</td>
+              <td>Maximal drop is on first beat of expiration (same as hepatic vein diastolic reversal timing).</td>
+            </tr>
+            <tr>
+              <td><strong>Annulus reversus</strong></td>
+              <td>Medial e' &gt; lateral e'</td>
+              <td>Lateral mitral annulus tethered to thickened pericardium; medial annular motion relatively preserved.</td>
+              <td>Normal pattern is lateral &gt; medial. Inversely related to pericardial thickness at LV AV groove on CT. Normalizes after pericardiectomy.</td>
+            </tr>
+            <tr>
+              <td><strong>Hepatic vein expiratory diastolic reversal</strong></td>
+              <td>Diastolic reversal on expiration</td>
+              <td>Ventricular interaction and dissociation of pressures. Limited RV filling during expiration → retrograde flow to IVC/hepatic veins.</td>
+              <td>Inspiratory HV diastolic reversals suggest RCM (opposite). SVC flow shows less respiratory variation than HV in CP.</td>
+            </tr>
+            <tr class="sub-head"><td colspan="4">Supporting Criteria</td></tr>
+            <tr>
+              <td><strong>Medial mitral annulus e' (tissue Doppler)</strong></td>
+              <td>≥9 cm/s (often higher; typically &gt;7 cm/s)</td>
+              <td>Preserved longitudinal motion (myocardium normal; pericardial tethering relaxed longitudinally).</td>
+              <td>Annulus paradoxus: E/e' ratio inversely proportional to PCWP in CP (opposite to cardiomyopathy).</td>
+            </tr>
+            <tr>
+              <td><strong>Color M-mode flow propagation Vp</strong></td>
+              <td>≥100 cm/sec</td>
+              <td>Rapid early diastolic filling (early filling phase is accelerated before pericardial restraint kicks in at mid-diastole).</td>
+              <td>Nyquist limit should be baseline-shifted to 30–40 cm/sec. Normal or increased in CP; reduced in RCM.</td>
+            </tr>
+            <tr>
+              <td><strong>Pericardial thickening</strong></td>
+              <td>&gt;4 mm (CT/CMR); TEE correlates with CT</td>
+              <td>Structural marker of constriction.</td>
+              <td>Important caveat: 18–28% of surgically confirmed CP has normal pericardial thickness on CT/histology. Absence of thickening does NOT rule out CP.</td>
+            </tr>
+            <tr>
+              <td><strong>IVC plethora</strong></td>
+              <td>Dilated IVC (&gt;2.1 cm); &lt;50% collapse</td>
+              <td>Elevated RA pressure; venous congestion.</td>
+              <td>Non-specific; also present in RCM and right-sided failure from other causes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+        <div style="background:#ebf8ff; border:1px solid #90cdf4; border-radius:6px; padding:8px 12px; font-size:0.78rem; color:#2c5282; flex:1; min-width:220px;">
+          <strong>★ Respirometry technique (ASE 2013):</strong> Simultaneous respirometer recording is mandatory. Sweep speed 25–50 mm/sec. PW sample volume 1–2 mm for mitral/tricuspid inflow; 3–4 mm for hepatic vein. If respiratory variation absent at rest, repeat in upright position (preload reduction). M-mode of IVS is essential for subtle septal bounce.
+        </div>
+        <div style="background:#fffaf0; border:1px solid #f6ad55; border-radius:6px; padding:8px 12px; font-size:0.78rem; color:#744210; flex:1; min-width:220px;">
+          <strong>⚠️ CMR accuracy:</strong> CMR has 93% accuracy for differentiating CP from RCM using pericardial thickening &gt;4 mm as cutoff (ASE 2013 / Thavendiranathan et al.). CMR tagging sequences demonstrate pericardial-myocardial adherence — fibrotic adhesions are present when tag deformation is absent.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🔄 Transient vs. Chronic Constrictive Pericarditis</div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--teal); margin-bottom:8px;">Transient/Subacute CP (Inflammatory)</div>
+          <div class="info-row"><div class="info-dot teal"></div><div>Active pericardial inflammation driving reversible constriction</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div>CMR: Active LGE and T2-STIR edema present</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div>Anti-inflammatory therapy (colchicine ± NSAIDs ± steroids) for ≥8–12 weeks before re-evaluation</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div>Resolution of constriction in ~50% with appropriate therapy — pericardiectomy can be avoided</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--red); margin-bottom:8px;">Chronic/Advanced CP (Fibrocalcific)</div>
+          <div class="info-row"><div class="info-dot red"></div><div>Calcified, fibrotic pericardium; irreversible</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div>CMR: No LGE; pericardial thickening ± calcification; CT best for calcification extent</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div>Anti-inflammatory therapy NOT indicated</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div>Radical pericardiectomy at expert center — comprehensive (not partial) resection required</div></div>
+        </div>
+      </div>
+      <div class="alert alert-purple" style="margin-top:10px;">
+        <span>🔑</span>
+        <div><strong>CMR is the pivotal gatekeeper:</strong> The presence or absence of active pericardial LGE determines whether anti-inflammatory therapy is appropriate before pericardiectomy. Do not proceed to surgery without CMR assessment of inflammation where feasible.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💧 Effusive-Constrictive Pericarditis — A Distinct Entity (ASE 2013)</div>
+      <div class="alert alert-purple" style="margin-bottom:12px;">
+        <span>🔑</span>
+        <div><strong>Definition:</strong> Persistent constrictive physiology (elevated RA pressure, dip-and-plateau RV/LV waveforms, ventricular interdependence) that persists even after pericardiocentesis. Prevalence: ~1.3% of all pericarditis; ~6.9% of those presenting with tamponade (Sagrista-Sauleda et al., NEJM 2004).</div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Pathophysiology</div>
+          <div class="info-row"><div class="info-dot red"></div><div>Involves both visceral and parietal pericardium with inflammation, fibrotic thickening, and myocardial adherence ("epicarditis")</div></div>
+          <div class="info-row"><div class="info-dot red"></div><div>Hallmark: a tense PEff accumulates between thickened, edematous or fibrotic parietal and visceral pericardium</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div>Etiologies: idiopathic (most common), malignancy, radiation; post-surgical less common than in pure CP</div></div>
+        </div>
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Echo &amp; Imaging Features</div>
+          <div class="info-row"><div class="info-dot teal"></div><div><strong>Echo:</strong> Echogenic/organized material in PEff; bandlike fibrinous strands traversing pericardial cavity; visceral pericardial thickening. Features of tamponade early → features of CP after drainage.</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div><strong>CT:</strong> PEff + pericardial thickening &gt;3 mm; enhancing pericardial layers; nodular thickening; calcification; loculations</div></div>
+          <div class="info-row"><div class="info-dot teal"></div><div><strong>CMR:</strong> Pericardial LGE ± T2-STIR edema; ventricular interdependence on real-time cine; flattening/inversion of IVS</div></div>
+          <div class="info-row"><div class="info-dot amber"></div><div><strong>Clinical presentation:</strong> Three scenarios: (1) active pericarditis + echogenic effusion; (2) chronic PEff + right HF; (3) tamponade not improving after pericardiocentesis</div></div>
+        </div>
+      </div>
+      <div class="alert alert-green" style="margin-top:10px;">
+        <span>✅</span>
+        <div><strong>Management:</strong> Surgical pericardial window or pericardiectomy. Anti-inflammatory therapy if CMR shows active LGE. Idiopathic cases undergoing pericardiectomy have favorable outcomes. In the past, diagnosis required hemodynamic demonstration post-pericardiocentesis; now often detected earlier with imaging.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏥 Invasive Hemodynamics — When and What to Expect</div>
+      <div class="info-row"><div class="info-dot navy"></div><div><strong>Indications:</strong> Equivocal non-invasive imaging; differentiation from RCM remains uncertain after echo + CMR/CT</div></div>
+      <div class="info-row"><div class="info-dot navy"></div><div><strong>Simultaneous RHC + LHC:</strong> Required to demonstrate ventricular interdependence directly</div></div>
+      <div style="margin-top:12px;">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--navy); margin-bottom:8px;">Classic Hemodynamic Findings in CP</div>
+        <div class="info-row"><div class="info-dot red"></div><div><strong>Discordant RV/LV systolic pressures:</strong> On inspiration, RVSP increases while LVSP falls (opposite to normal concordant decline). Area index &gt;1.1 (Nishimura criterion)</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div><strong>Dip-and-plateau ("square root sign"):</strong> Rapid early diastolic filling followed by abrupt cessation; seen in both RV and LV diastolic pressure tracings</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div><strong>Equalization of diastolic pressures:</strong> RVEDP ≈ LVEDP (within 5 mmHg); RA mean ≈ RV diastolic ≈ PCWP</div></div>
+        <div class="info-row"><div class="info-dot amber"></div><div><strong>Jain et al. (JAMA Cardiol 2022):</strong> Simplified criteria — concordant RV-LV systolic area index &gt;1.1 on inspiration alone has high diagnostic accuracy for CP at catheterization</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ CP vs RCM ═══════════════════════ -->
+  <div class="panel" id="panel-cp-vs-rcm">
+    <div class="section-intro">
+      <h2>Constrictive Pericarditis vs. Restrictive Cardiomyopathy</h2>
+      <p>CP and RCM share clinical presentation and many imaging features, but management differs fundamentally. An algorithmic multimodality approach is required. Based on Lloyd, Anavekar, Oh, Miranda (JASE 2023) and Geske et al. (JACC 2016).</p>
+    </div>
+
+    <!-- SVG Algorithm -->
+    <div class="card">
+      <div class="card-title">🔀 Differentiating Algorithm — CP vs. RCM</div>
+      <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+      <svg viewBox="0 0 1300 1160" xmlns="http://www.w3.org/2000/svg"
+           style="width:100%; min-width:960px; display:block;
+                  font-family:'Segoe UI',system-ui,sans-serif;">
+        <defs>
+          <marker id="arr" markerWidth="12" markerHeight="9" refX="11" refY="4.5" orient="auto">
+            <polygon points="0 0, 12 4.5, 0 9" fill="#2c4a73"/>
+          </marker>
+        </defs>
+
+        <!-- ── ENTRY BOX cx=650 ── -->
+        <rect x="60" y="12" width="1180" height="66" rx="10" fill="#1a365d"/>
+        <text x="650" y="37" text-anchor="middle" fill="white" font-size="17" font-weight="800">Clinical Presentation: HFpEF — Dyspnea, Exercise Intolerance, Elevated JVP, Peripheral Edema</text>
+        <text x="650" y="60" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="14">CP and RCM both present with bi-ventricular diastolic dysfunction and restrictive filling physiology</text>
+
+        <!-- Down arrow -->
+        <line x1="650" y1="78" x2="650" y2="102" stroke="#2c4a73" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <!-- ── STEP 1 BOX cx=650, x=220..1080 ── -->
+        <rect x="220" y="104" width="860" height="84" rx="8" fill="#e8f0f8" stroke="#2c4a73" stroke-width="1.5"/>
+        <path d="M220 118 L220 104 Q220 104 234 104 L1066 104 Q1080 104 1080 118 L1080 138 L220 138 Z" fill="#2b6cb0"/>
+        <text x="650" y="126" text-anchor="middle" fill="white" font-size="15" font-weight="700">STEP 1: History, Clinical Exam &amp; Basic Features</text>
+        <text x="650" y="153" text-anchor="middle" fill="#1a2942" font-size="13">CP: Prior pericarditis · cardiac surgery · radiation · TB &nbsp;|&nbsp; RCM: Amyloid · family hx · systemic disease · neuropathy</text>
+        <text x="650" y="172" text-anchor="middle" fill="#4a6080" font-size="13">Pericardial knock → CP · Kussmaul sign: both · Low voltage ECG → amyloid · LVH on echo → infiltrative</text>
+
+        <!-- Down arrow -->
+        <line x1="650" y1="188" x2="650" y2="210" stroke="#2c4a73" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <!-- ── STEP 2 BOX cx=650, x=60..1240 ── -->
+        <rect x="60" y="212" width="1180" height="100" rx="8" fill="#e8f0f8" stroke="#2c4a73" stroke-width="1.5"/>
+        <path d="M60 226 L60 212 Q60 212 74 212 L1226 212 Q1240 212 1240 226 L1240 246 L60 246 Z" fill="#2b6cb0"/>
+        <text x="650" y="236" text-anchor="middle" fill="white" font-size="15" font-weight="700">STEP 2: Echo — Doppler &amp; Key Discriminators</text>
+        <line x1="650" y1="247" x2="650" y2="310" stroke="#b0c4de" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="355" y="267" text-anchor="middle" fill="#742a2a" font-size="14" font-weight="700">▶ Favors CP</text>
+        <text x="355" y="286" text-anchor="middle" fill="#1a2942" font-size="13">Mitral E variation ≥25%; septal bounce; annulus reversus</text>
+        <text x="355" y="304" text-anchor="middle" fill="#1a2942" font-size="13">Expiratory HV diastolic reversal; Vp ≥100 cm/s</text>
+        <text x="945" y="267" text-anchor="middle" fill="#276749" font-size="14" font-weight="700">▶ Favors RCM</text>
+        <text x="945" y="286" text-anchor="middle" fill="#1a2942" font-size="13">&lt;10% mitral E variation; lateral e' &gt; medial e'</text>
+        <text x="945" y="304" text-anchor="middle" fill="#1a2942" font-size="13">Low e' bilaterally (&lt;7 cm/s); reduced GLS; inspiratory HV reversal</text>
+
+        <!-- Down arrow -->
+        <line x1="650" y1="312" x2="650" y2="334" stroke="#2c4a73" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <!-- ── STEP 3 BOX cx=650, x=80..1220 ── -->
+        <rect x="80" y="336" width="1140" height="94" rx="8" fill="#e8f0f8" stroke="#2c4a73" stroke-width="1.5"/>
+        <path d="M80 350 L80 336 Q80 336 94 336 L1206 336 Q1220 336 1220 350 L1220 370 L80 370 Z" fill="#276749"/>
+        <text x="650" y="358" text-anchor="middle" fill="white" font-size="15" font-weight="700">STEP 3: Tissue Doppler &amp; Strain — Critical Differentiators</text>
+        <line x1="650" y1="371" x2="650" y2="426" stroke="#b0c4de" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="365" y="391" text-anchor="middle" fill="#1a2942" font-size="13"><tspan font-weight="700" fill="#742a2a">CP: </tspan>Medial e' ≥9 cm/s; medial &gt; lateral (annulus reversus)</text>
+        <text x="365" y="410" text-anchor="middle" fill="#1a2942" font-size="13">GLS relatively preserved; circumferential strain ↓; no apical sparing</text>
+        <text x="935" y="391" text-anchor="middle" fill="#1a2942" font-size="13"><tspan font-weight="700" fill="#276749">RCM: </tspan>Medial e' &lt;7 cm/s; lateral &gt; medial (normal pattern)</text>
+        <text x="935" y="410" text-anchor="middle" fill="#1a2942" font-size="13">GLS globally ↓; amyloid: apical sparing on bull's-eye map</text>
+
+        <!-- Down arrow -->
+        <line x1="650" y1="430" x2="650" y2="452" stroke="#2c4a73" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <!-- ── STEP 4 BOX cx=650, x=80..1220 ── -->
+        <rect x="80" y="454" width="1140" height="94" rx="8" fill="#e8f0f8" stroke="#2c4a73" stroke-width="1.5"/>
+        <path d="M80 468 L80 454 Q80 454 94 454 L1206 454 Q1220 454 1220 468 L1220 488 L80 488 Z" fill="#44337a"/>
+        <text x="650" y="476" text-anchor="middle" fill="white" font-size="15" font-weight="700">STEP 4: CMR + Cardiac CT</text>
+        <line x1="650" y1="489" x2="650" y2="544" stroke="#b0c4de" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="365" y="509" text-anchor="middle" fill="#1a2942" font-size="13"><tspan font-weight="700" fill="#44337a">CP: </tspan>Pericardial thickening &gt;4 mm; active LGE; T2-STIR edema</text>
+        <text x="365" y="528" text-anchor="middle" fill="#1a2942" font-size="13">Calcification on CT (best modality); CMR tagging → adhesions</text>
+        <text x="935" y="509" text-anchor="middle" fill="#1a2942" font-size="13"><tspan font-weight="700" fill="#44337a">RCM: </tspan>Normal pericardium; diffuse subendocardial LGE (amyloid)</text>
+        <text x="935" y="528" text-anchor="middle" fill="#1a2942" font-size="13">T1 mapping ↑; ECV expansion; pyrophosphate scan + (ATTR)</text>
+
+        <!-- Down arrow -->
+        <line x1="650" y1="548" x2="650" y2="570" stroke="#2c4a73" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <!-- ── DECISION DIAMOND cx=650, top=572 bottom=664 ── -->
+        <polygon points="650,572 810,618 650,664 490,618" fill="#fffaf0" stroke="#c05621" stroke-width="2.5"/>
+        <text x="650" y="612" text-anchor="middle" fill="#744210" font-size="14" font-weight="700">Still</text>
+        <text x="650" y="632" text-anchor="middle" fill="#744210" font-size="14" font-weight="700">Uncertain?</text>
+
+        <!-- ── LEFT NO BRANCH: diamond left point (490,618) → left column x=170 → down ── -->
+        <!-- Horizontal left -->
+        <line x1="490" y1="618" x2="170" y2="618" stroke="#2c4a73" stroke-width="2.5"/>
+        <!-- No pill centered at midpoint x=(490+170)/2=330 -->
+        <rect x="302" y="605" width="56" height="26" rx="13" fill="white" stroke="#2c4a73" stroke-width="2"/>
+        <text x="330" y="623" text-anchor="middle" fill="#2c4a73" font-size="14" font-weight="700">No</text>
+        <!-- Label above -->
+        <text x="330" y="600" text-anchor="middle" fill="#742a2a" font-size="12" font-weight="700">(CP pattern clear)</text>
+        <!-- Vertical drop from x=170 y=618 down to outcome box top y=780 -->
+        <line x1="170" y1="618" x2="170" y2="776" stroke="#2c4a73" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <!-- ── RIGHT NO BRANCH: diamond right point (810,618) → right column x=1130 → down ── -->
+        <line x1="810" y1="618" x2="1130" y2="618" stroke="#2c4a73" stroke-width="2.5"/>
+        <!-- No pill centered at midpoint x=(810+1130)/2=970 -->
+        <rect x="942" y="605" width="56" height="26" rx="13" fill="white" stroke="#2c4a73" stroke-width="2"/>
+        <text x="970" y="623" text-anchor="middle" fill="#2c4a73" font-size="14" font-weight="700">No</text>
+        <text x="970" y="600" text-anchor="middle" fill="#276749" font-size="12" font-weight="700">(RCM pattern clear)</text>
+        <line x1="1130" y1="618" x2="1130" y2="776" stroke="#2c4a73" stroke-width="2.5" marker-end="url(#arr)"/>
+
+        <!-- ── YES BRANCH: diamond bottom (650,664) → down → Step 5 ── -->
+        <line x1="650" y1="664" x2="650" y2="688" stroke="#2c4a73" stroke-width="2.5" marker-end="url(#arr)"/>
+        <rect x="618" y="659" width="64" height="26" rx="13" fill="white" stroke="#c05621" stroke-width="2"/>
+        <text x="650" y="677" text-anchor="middle" fill="#c05621" font-size="14" font-weight="700">Yes</text>
+
+        <!-- ── STEP 5: CATH BOX — centered, above outcome boxes ── -->
+        <!-- x=330..970, y=690..760 -->
+        <rect x="330" y="690" width="640" height="76" rx="8" fill="#fff5f5" stroke="#c53030" stroke-width="2"/>
+        <text x="650" y="716" text-anchor="middle" fill="#742a2a" font-size="15" font-weight="700">STEP 5: Invasive Hemodynamics</text>
+        <text x="650" y="735" text-anchor="middle" fill="#1a2942" font-size="13">Simultaneous RHC + LHC · Discordant RV/LV pressures · RVEDP ≈ LVEDP · Dip-and-plateau</text>
+        <text x="650" y="754" text-anchor="middle" fill="#718096" font-size="12">Jain et al. JAMA Cardiol 2022: area index &gt;1.1 confirms CP</text>
+
+        <!-- ── CP OUTCOME BOX cx=170, x=20..380, y=778..938 ── -->
+        <rect x="20" y="778" width="360" height="148" rx="10" fill="#fff5f5" stroke="#c53030" stroke-width="2"/>
+        <path d="M20 792 L20 778 Q20 778 34 778 L366 778 Q380 778 380 792 L380 814 L20 814 Z" fill="#c53030"/>
+        <text x="200" y="802" text-anchor="middle" fill="white" font-size="15" font-weight="800">CP Confirmed</text>
+        <text x="200" y="832" text-anchor="middle" fill="#742a2a" font-size="13" font-weight="700">Assess for inflammation (CMR)</text>
+        <text x="200" y="852" text-anchor="middle" fill="#1a2942" font-size="13">LGE+ → Anti-inflammatory Rx ≥8–12 wk</text>
+        <text x="200" y="871" text-anchor="middle" fill="#1a2942" font-size="13">LGE− → Radical pericardiectomy</text>
+        <text x="200" y="890" text-anchor="middle" fill="#1a2942" font-size="13">Expert surgical center; comprehensive resection</text>
+        <text x="200" y="914" text-anchor="middle" fill="#718096" font-size="12">Transient CP: ~50% resolve with anti-inflam Rx</text>
+
+        <!-- ── RCM OUTCOME BOX cx=1130, x=920..1280, y=778..938 ── -->
+        <rect x="920" y="778" width="360" height="148" rx="10" fill="#f0fff4" stroke="#276749" stroke-width="2"/>
+        <path d="M920 792 L920 778 Q920 778 934 778 L1266 778 Q1280 778 1280 792 L1280 814 L920 814 Z" fill="#276749"/>
+        <text x="1100" y="802" text-anchor="middle" fill="white" font-size="15" font-weight="800">RCM Confirmed</text>
+        <text x="1100" y="836" text-anchor="middle" fill="#276749" font-size="13" font-weight="700">Identify and treat underlying etiology</text>
+        <text x="1100" y="862" text-anchor="middle" fill="#1a2942" font-size="13">Disease-specific therapy where available</text>
+        <text x="1100" y="886" text-anchor="middle" fill="#1a2942" font-size="13">Guideline-directed medical management for HF</text>
+        <text x="1100" y="912" text-anchor="middle" fill="#718096" font-size="12">Transplant evaluation for refractory cases</text>
+
+        <!-- Citation line -->
+        <text x="650" y="1140" text-anchor="middle" fill="#94a3b8" font-size="11">Lloyd et al. JASE 2023 · Welch et al. Circ CV Imaging 2014 · Jain et al. JAMA Cardiol 2022 · Geske et al. JACC 2016 · Klein et al. JASE 2013</text>
+      </svg>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="card">
+      <div class="card-title">📊 Systematic Comparison: CP vs. RCM</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th style="background:#7a1a1a;">Constrictive Pericarditis</th>
+              <th style="background:#1a4a2a;">Restrictive Cardiomyopathy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sub-head"><td colspan="3">History &amp; Exam</td></tr>
+            <tr>
+              <td>Typical etiology</td>
+              <td>Prior pericarditis, cardiac surgery, radiation, TB</td>
+              <td>Amyloidosis, Fabry, hemochromatosis, sarcoidosis, radiation (myocardial), idiopathic</td>
+            </tr>
+            <tr>
+              <td>Pericardial knock</td>
+              <td>Present (high-pitched early S3-like sound)</td>
+              <td>Absent</td>
+            </tr>
+            <tr>
+              <td>ECG</td>
+              <td>Non-specific; low voltage if extensive calcification</td>
+              <td>Low voltage (amyloid); LVH (early infiltration); conduction disease</td>
+            </tr>
+            <tr class="sub-head"><td colspan="3">Echocardiography — 2D</td></tr>
+            <tr>
+              <td>LV wall thickness</td>
+              <td>Normal</td>
+              <td>Increased (amyloid); can be normal (idiopathic)</td>
+            </tr>
+            <tr>
+              <td>LV size/EF</td>
+              <td>Normal; EF preserved</td>
+              <td>Normal/small; EF preserved until late; late systolic dysfunction</td>
+            </tr>
+            <tr>
+              <td>Septal motion</td>
+              <td>Septal bounce (exaggerated ventricular interdependence)</td>
+              <td>Normal</td>
+            </tr>
+            <tr>
+              <td>Pericardium</td>
+              <td>Thickened ± bright/calcified on echo; best on CT/CMR</td>
+              <td>Normal</td>
+            </tr>
+            <tr class="sub-head"><td colspan="3">Doppler</td></tr>
+            <tr>
+              <td>Mitral E respiratory variation</td>
+              <td style="background:#fff5f5; font-weight:600;">≥25% decrease on inspiration</td>
+              <td style="background:#f0fff4;">&lt;10% (no significant variation)</td>
+            </tr>
+            <tr>
+              <td>Tricuspid E respiratory variation</td>
+              <td style="background:#fff5f5; font-weight:600;">≥40% increase on inspiration</td>
+              <td style="background:#f0fff4;">Minimal</td>
+            </tr>
+            <tr>
+              <td>Hepatic vein Doppler</td>
+              <td style="background:#fff5f5; font-weight:600;">Expiratory diastolic reversal</td>
+              <td style="background:#f0fff4;">Inspiratory diastolic reversal (HV systolic blunting in both)</td>
+            </tr>
+            <tr class="sub-head"><td colspan="3">Tissue Doppler &amp; Strain</td></tr>
+            <tr>
+              <td>Medial mitral annulus e'</td>
+              <td style="background:#fff5f5; font-weight:600;">≥9 cm/s (relatively preserved)</td>
+              <td style="background:#f0fff4;">&lt;7 cm/s (reduced — myocardial disease)</td>
+            </tr>
+            <tr>
+              <td>Lateral vs. medial e'</td>
+              <td style="background:#fff5f5; font-weight:600;"><strong>Annulus reversus:</strong> Medial &gt; lateral</td>
+              <td style="background:#f0fff4;">Normal: Lateral &gt; medial</td>
+            </tr>
+            <tr>
+              <td>GLS (global longitudinal strain)</td>
+              <td>Relatively preserved; may show basal-dominant reduction if pericardial tethering</td>
+              <td>Reduced globally; amyloid: apical sparing pattern (classic)</td>
+            </tr>
+            <tr class="sub-head"><td colspan="3">Advanced Imaging</td></tr>
+            <tr>
+              <td>Pericardial thickness</td>
+              <td>&gt;3–4 mm (CT gold standard); calcification common in chronic disease</td>
+              <td>Normal (&lt;2 mm)</td>
+            </tr>
+            <tr>
+              <td>CMR LGE</td>
+              <td>Pericardial LGE in inflammatory/transient CP; absent in fibrocalcific CP</td>
+              <td>Diffuse subendocardial (amyloid); focal (sarcoid); null-point shift (amyloid)</td>
+            </tr>
+            <tr>
+              <td>CMR T1/ECV</td>
+              <td>Normal myocardial T1 and ECV</td>
+              <td>Elevated T1 and ECV (amyloid); reduced T1 (Fabry/Anderson-Fabry)</td>
+            </tr>
+            <tr class="sub-head"><td colspan="3">Hemodynamics</td></tr>
+            <tr>
+              <td>Ventricular interdependence</td>
+              <td style="background:#fff5f5; font-weight:600;">Discordant RV/LV systolic pressures (Area index &gt;1.1)</td>
+              <td style="background:#f0fff4;">Concordant (both decline on inspiration)</td>
+            </tr>
+            <tr>
+              <td>Diastolic pressure equalization</td>
+              <td>RVEDP ≈ LVEDP ± 5 mmHg</td>
+              <td>May have gradient (LVEDP &gt; RVEDP)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-blue" style="margin-top:12px;">
+        <span>🤖</span>
+        <div><strong>Emerging data:</strong> Deep learning using apical 4-chamber TTE video clips achieved AUC 0.84 (external validation) for distinguishing CP from restrictive cardiomyopathy/cardiac amyloidosis in a 381-patient Mayo Clinic dataset (Chao et al. JACC Cardiovasc Imaging 2024;17:349–60). Clinical implementation pending prospective validation.</div>
+      </div>
+      <div class="alert alert-purple" style="margin-top:10px;">
+        <span>📐</span>
+        <div><strong>Strain imaging — CP vs. RCM (ASE 2013, Sengupta et al.):</strong> In CP, circumferential strain and early diastolic untwisting are reduced while GLS is relatively preserved. In RCM, GLS is more profoundly reduced. The ratio of LV lateral wall strain to septal strain is more robust than regional annular velocity for differentiating the two. After pericardiectomy, longitudinal strain in RV/LV free walls and circumferential strain improve.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ MULTIMODALITY ═══════════════════════ -->
+  <div class="panel" id="panel-multimodality">
+    <div class="section-intro">
+      <h2>Multimodality Imaging Integration</h2>
+      <p>Each modality contributes unique information. Integrated cMMI is pivotal for diagnosis, risk stratification, and monitoring. Based on Klein et al. JACC Cardiovasc Imaging 2024 International Position Statement and 2025 ACC CCG.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🗺️ Imaging-Guided Therapy — Pericarditis Continuum</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Echo Role</th>
+              <th>CMR Role</th>
+              <th>CT Role</th>
+              <th>Therapy Implication</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Acute pericarditis</strong></td>
+              <td>First-line: effusion size/location, tamponade, wall motion (myo-pericarditis)</td>
+              <td>If myocardial involvement suspected; high-risk features; T2-STIR + LGE for active inflammation</td>
+              <td>Seldom needed; pericardial thickening, excludes alternative thoracic pathology</td>
+              <td>NSAIDs + colchicine × 4–6 weeks (acute); exercise restriction</td>
+            </tr>
+            <tr>
+              <td><strong>Recurrent pericarditis</strong></td>
+              <td>Serial monitoring of effusion; tamponade signs</td>
+              <td>Diagnosis, prognostication, monitor response; LGE predicts recurrence risk</td>
+              <td>Pericardial thickening; calcification if chronic evolution</td>
+              <td>Colchicine + NSAIDs for first recurrence; anti-IL-1 (rilonacept/anakinra) if inflammatory phenotype</td>
+            </tr>
+            <tr>
+              <td><strong>Transient CP</strong></td>
+              <td>CP criteria present (septal bounce, respiratory variation); assess resolution</td>
+              <td>Active LGE/T2-STIR = inflammatory → anti-inflam trial for ≥8–12 wk before surgery</td>
+              <td>Thickening without heavy calcification</td>
+              <td>Anti-inflammatory therapy; re-evaluate with CMR at 8–12 weeks</td>
+            </tr>
+            <tr>
+              <td><strong>Chronic/Calcific CP</strong></td>
+              <td>CP criteria; may be minimal echo pericardial visualization</td>
+              <td>No LGE; pericardial thickening; anti-inflammatory NOT indicated</td>
+              <td>Defines extent + distribution of calcification; pre-op planning</td>
+              <td>Radical pericardiectomy at expert center</td>
+            </tr>
+            <tr>
+              <td><strong>Effusive-constrictive</strong></td>
+              <td>Persistent CP physiology after pericardiocentesis on echo/Doppler</td>
+              <td>Pericardial inflammation assessment; effusion characterization</td>
+              <td>Pericardial thickening; calcification</td>
+              <td>Surgical pericardial window or pericardiectomy; anti-inflammatory if LGE+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🔴 High-Risk Features Requiring Advanced Imaging</div>
+        <div class="info-row"><div class="info-dot red"></div><div>Fever &gt;38°C at presentation</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div>Subacute onset (no acute pleuritic pain)</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div>Large pericardial effusion (&gt;20 mm) or tamponade</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div>Failure to respond to NSAID/colchicine after 7 days</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div>Myopericarditis (troponin elevation, wall motion abnormality)</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div>Immunocompromised state</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div>Oral anticoagulation use</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div>Trauma; post-cardiac surgery; suspected bacterial/neoplastic etiology</div></div>
+        <div class="alert alert-red" style="margin-top:10px;">
+          <span>🏥</span>
+          <div>High-risk features: hospitalize; CMR ± CT; consider referral to Pericardial Diseases Center (PDC)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🟢 Low-Risk Features (Outpatient Management)</div>
+        <div class="info-row"><div class="info-dot teal"></div><div>Young, otherwise healthy individual</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div>Acute pleuritic chest pain improved by sitting forward</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div>Typical ECG changes (diffuse ST elevation, PR depression)</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div>Small or absent effusion</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div>Normal troponin (no myocardial involvement)</div></div>
+        <div class="info-row"><div class="info-dot teal"></div><div>Responds to NSAIDs within 7 days</div></div>
+        <div class="alert alert-green" style="margin-top:10px;">
+          <span>✅</span>
+          <div>Low-risk: Outpatient management with NSAIDs + colchicine; close follow-up; exercise restriction</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏛️ Pericardial Diseases Center (PDC) — Referral Considerations</div>
+      <div class="alert alert-blue">
+        <span>ℹ️</span>
+        <div>The 2025 ACC CCG introduces the concept of a multidisciplinary Pericardial Diseases Center integrating cardiology, cardiac surgery, rheumatology, and advanced cardiac imaging expertise for complex cases.</div>
+      </div>
+      <div class="info-row" style="margin-top:10px;"><div class="info-dot"></div><div>Recurrent pericarditis not responding to first-line therapy</div></div>
+      <div class="info-row"><div class="info-dot"></div><div>Suspected effusive-constrictive physiology</div></div>
+      <div class="info-row"><div class="info-dot"></div><div>Consideration for anti-IL-1 therapy (rilonacept, anakinra)</div></div>
+      <div class="info-row"><div class="info-dot"></div><div>Constrictive pericarditis being evaluated for pericardiectomy</div></div>
+      <div class="info-row"><div class="info-dot"></div><div>Pericardial disease in the setting of systemic autoimmune conditions</div></div>
+      <div class="info-row"><div class="info-dot"></div><div>Pericardial malignancy or complex post-surgical pericardial syndromes</div></div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════ REFERENCES ═══════════════════════ -->
+  <div class="panel" id="panel-references">
+    <div class="section-intro">
+      <h2>References &amp; Sources</h2>
+      <p>All clinical content on this card is derived from peer-reviewed guidelines and original research. This is an educational reference only and does not replace clinical judgment or individualized patient assessment.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📄 Primary Guidelines</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr><th>#</th><th>Citation</th><th>Scope on This Card</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">1</td>
+              <td>Wang TKM, Klein AL, Cremer PC, Imazio M, et al. 2025 Concise Clinical Guidance: An ACC Expert Consensus Statement on the Diagnosis and Management of Pericarditis. <em>J Am Coll Cardiol.</em> 2025;86(25):2691–2719. <a href="https://doi.org/10.1016/j.jacc.2025.05.023" target="_blank" style="color:var(--blue);">DOI 10.1016/j.jacc.2025.05.023</a></td>
+              <td>Diagnostic criteria, phenotyping, treatment algorithm, tamponade reframing, CP management, PDC concept</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">2</td>
+              <td>Klein AL, Abbara S, Agler DA, Appleton CP, Asher CR, Hoit B, et al. ASE Clinical Recommendations for Multimodality Cardiovascular Imaging of Patients with Pericardial Disease. <em>J Am Soc Echocardiogr.</em> 2013;26:965–1012. Endorsed by SCMR and SCCT. <a href="https://doi.org/10.1016/j.echo.2013.06.023" target="_blank" style="color:var(--blue);">DOI 10.1016/j.echo.2013.06.023</a></td>
+              <td>All echo technique and thresholds: effusion sizing, tamponade Doppler formula and specific criteria, CP Doppler key points, color M-mode, annulus paradoxus/reversus, CT attenuation values, effusive-constrictive, strain differentiation, respirometry protocol</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">3</td>
+              <td>Klein AL, Wang TKM, Cremer PC, et al. Pericardial Diseases: International Position Statement on New Concepts and Advances in Multimodality Cardiac Imaging. <em>JACC Cardiovasc Imaging.</em> 2024;17:937–988. <a href="https://doi.org/10.1016/j.jcmg.2024.02.013" target="_blank" style="color:var(--blue);">DOI 10.1016/j.jcmg.2024.02.013</a></td>
+              <td>Multimodality imaging framework, IL-1 biology, imaging-guided therapy continuum, tamponade algorithm, CP multimodal approach</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">4</td>
+              <td>Lloyd JW, Anavekar NS, Oh JK, Miranda WR. Multimodality Imaging in Differentiating Constrictive Pericarditis From Restrictive Cardiomyopathy: A Comprehensive Overview for Clinicians and Imagers. <em>J Am Soc Echocardiogr.</em> 2023;36(12):1254–1265. <a href="https://doi.org/10.1016/j.echo.2023.08.016" target="_blank" style="color:var(--blue);">DOI 10.1016/j.echo.2023.08.016</a></td>
+              <td>CP vs. RCM differentiation algorithm, multimodality imaging approach, ambiguous cases pathway</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📄 Supporting References</div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead>
+            <tr><th>#</th><th>Citation</th><th>Scope on This Card</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">5</td>
+              <td>Welch TD, Ling LH, Espinosa RE, Anavekar NS, Wiste HJ, Lahr BD, Schaff HV, Oh JK. Echocardiographic diagnosis of constrictive pericarditis: Mayo Clinic criteria. <em>Circ Cardiovasc Imaging.</em> 2014;7:526–534. <a href="https://doi.org/10.1161/CIRCIMAGING.113.001613" target="_blank" style="color:var(--blue);">DOI 10.1161/CIRCIMAGING.113.001613</a></td>
+              <td>Mayo Clinic echocardiographic criteria for CP diagnosis and validation</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">6</td>
+              <td>Jain CC, Miranda WR, Sabbagh AE, Nishimura RA. A Simplified Method for the Diagnosis of Constrictive Pericarditis in the Cardiac Catheterization Laboratory. <em>JAMA Cardiol.</em> 2022;7(1):100–104. <a href="https://doi.org/10.1001/jamacardio.2021.3478" target="_blank" style="color:var(--blue);">DOI 10.1001/jamacardio.2021.3478</a></td>
+              <td>Invasive hemodynamics for CP: discordant area index &gt;1.1</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">7</td>
+              <td>Geske JB, Anavekar NS, Nishimura RA, Oh JK, Gersh BJ. Differentiation of Constriction and Restriction: Complex Cardiovascular Hemodynamics. <em>J Am Coll Cardiol.</em> 2016;68(21):2329–2347. <a href="https://doi.org/10.1016/j.jacc.2016.08.050" target="_blank" style="color:var(--blue);">DOI 10.1016/j.jacc.2016.08.050</a></td>
+              <td>Hemodynamic differentiation of CP vs. RCM</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">8</td>
+              <td>Chao CJ, Jeong J, Arsanjani R, et al. Echocardiography-based deep learning model to differentiate constrictive pericarditis and restrictive cardiomyopathy. <em>JACC Cardiovasc Imaging.</em> 2024;17(4):349–360. <a href="https://doi.org/10.1016/j.jcmg.2023.09.011" target="_blank" style="color:var(--blue);">DOI 10.1016/j.jcmg.2023.09.011</a></td>
+              <td>AI/deep learning differentiation of CP vs. RCM (AUC 0.84)</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">9</td>
+              <td>Sagrista-Sauleda J, Angel J, Sanchez A, Permanyer-Miralda G, Soler-Soler J. Effusive-constrictive pericarditis. <em>N Engl J Med.</em> 2004;350:469–475.</td>
+              <td>Effusive-constrictive pericarditis prevalence and clinical features</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">10</td>
+              <td>Sengupta PP, Krishnamoorthy VK, Abhayaratna WP, et al. Disparate patterns of left ventricular mechanics differentiate constrictive pericarditis from restrictive cardiomyopathy. <em>JACC Cardiovasc Imaging.</em> 2008;1:29–38.</td>
+              <td>Strain imaging patterns: circumferential (CP) vs. longitudinal (RCM) reduction</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:var(--blue); white-space:nowrap;">11</td>
+              <td>Klein AL, Wang TKM, Cremer PC, et al. (ACC.org Expert Analysis). Multimodality Imaging in Pericardial Diseases and the Role of Imaging-Guided Therapies. <em>ACC.org.</em> January 2025. <a href="https://www.acc.org/latest-in-cardiology/articles/2025/01/16/17/38/multimodality-imaging-in-pericardial-diseases" target="_blank" style="color:var(--blue);">ACC.org link</a></td>
+              <td>Contemporary multimodality imaging review; IL-1 biology; imaging-guided therapies framework</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-amber" style="margin-top:12px;">
+        <span>⚠️</span>
+        <div><strong>Educational use only.</strong> This card is a clinical reference tool for educational purposes. It does not replace individualized clinical judgment, formal guideline documents, or physician-patient consultation. Guidelines evolve — always verify against the current primary source.</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  Pericardial Disease &nbsp;·&nbsp; <a href="https://echoinfo.org">echoinfo.org</a> &nbsp;·&nbsp; Created by Akhil Narang, MD
+</footer>
+
+<script>
+function showTab(id, event) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function toggleAcc(header) {
+  header.parentElement.classList.toggle('open');
+}
+</script>
+</body>
+</html>
