@@ -21,6 +21,8 @@ akhilnarangmd.github.io/
 │   └── index.html
 ├── hcm-guidelines/
 │   └── index.html
+├── pericardial-disease/
+│   └── index.html
 ├── mr-tr-calculator/
 │   └── index.html
 ├── aortic-stenosis/
@@ -39,6 +41,7 @@ Each card is a **single self-contained `index.html`** file — all CSS and JS in
 5. Prosthetic Valve
 6. Stress Echo
 7. HCM
+8. Pericardial Disease
 
 ---
 
