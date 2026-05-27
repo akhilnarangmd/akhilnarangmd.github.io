@@ -351,7 +351,7 @@ footer strong { color: #1a365d; }
     <textarea id="fb-message" placeholder="Describe your feedback or correction…"></textarea>
     <div class="modal-btns">
       <button class="modal-cancel" onclick="closeFeedback()">Cancel</button>
-      <button class="modal-submit" onclick="submitFeedback()">Send via Email →</button>
+      <button class="modal-submit" id="fb-submit-btn" onclick="submitFeedback()">Send Feedback →</button>
     </div>
   </div>
 </div>
@@ -364,16 +364,61 @@ footer strong { color: #1a365d; }
 function openFeedback() { document.getElementById('feedback-modal').classList.add('open'); }
 function closeFeedback() { document.getElementById('feedback-modal').classList.remove('open'); }
 function closeFeedbackOutside(e) { if (e.target === document.getElementById('feedback-modal')) closeFeedback(); }
-function submitFeedback() {
+
+async function submitFeedback() {
   const tool = document.getElementById('fb-tool').value;
   const type = document.getElementById('fb-type').value;
   const msg  = document.getElementById('fb-message').value.trim();
   if (!msg) { alert('Please enter a message before sending.'); return; }
-  const subject = encodeURIComponent('[Echo Info Feedback]' + (tool ? ' ' + tool : '') + (type ? ' — ' + type : ''));
-  const body = encodeURIComponent((tool ? 'Tool: ' + tool + '\n' : '') + (type ? 'Type: ' + type + '\n' : '') + '\nMessage:\n' + msg);
-  window.location.href = 'mailto:feedback@echoinfo.org?subject=' + subject + '&body=' + body;
-  closeFeedback();
+
+  const btn = document.getElementById('fb-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending\u2026';
+
+  const subject = '[Echo Info Feedback]' + (tool ? ' ' + tool : '') + (type ? ' \u2014 ' + type : '');
+  const bodyText = (tool ? 'Tool: ' + tool + '\n' : '')
+                 + (type ? 'Type: ' + type + '\n' : '')
+                 + '\nMessage:\n' + msg;
+
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/feedback@echoinfo.org', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: subject,
+        _replyto: 'noreply@echoinfo.org',
+        _captcha: 'false',
+        Tool: tool || '(not specified)',
+        Type: type || '(not specified)',
+        Message: msg
+      })
+    });
+
+    if (res.ok) {
+      btn.textContent = '\u2713 Sent!';
+      btn.style.background = '#276749';
+      setTimeout(() => {
+        closeFeedback();
+        document.getElementById('fb-tool').value = '';
+        document.getElementById('fb-type').value = '';
+        document.getElementById('fb-message').value = '';
+        btn.disabled = false;
+        btn.textContent = 'Send Feedback \u2192';
+        btn.style.background = '';
+      }, 1800);
+    } else {
+      throw new Error('Server error');
+    }
+  } catch (err) {
+    const subject2 = encodeURIComponent(subject);
+    const body2 = encodeURIComponent(bodyText);
+    window.location.href = 'mailto:feedback@echoinfo.org?subject=' + subject2 + '&body=' + body2;
+    btn.disabled = false;
+    btn.textContent = 'Send Feedback \u2192';
+    btn.style.background = '';
+  }
 }
+
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFeedback(); });
 </script>
 </body>
